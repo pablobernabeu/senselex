@@ -1,0 +1,23 @@
+{
+  "name": "senselex",
+  "version": "0.1.0",
+  "private": true,
+  "description": "SenseLex: open infrastructure for crosslinguistic multisensory lexical norms (Atlas web service, offline-first field client, FAIR export).",
+  "type": "module",
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "bin": {
+    "senselex": "./bin/senselex.js"
+  },
+  "scripts": {
+    "start": "node bin/senselex.js serve",
+    "seed": "node bin/senselex.js seed",
+    "smoke": "node scripts/smoke.js",
+    "test": "node --test"
+  },
+  "license": "MIT",
+  "author": "Pablo Bernabeu",
+  "dependencies": {},
+  "devDependencies": {}
+}

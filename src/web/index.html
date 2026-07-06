@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SenseLex Atlas</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>SenseLex Atlas</h1>
+    <p class="lede">An open, crosslinguistic database of multisensory lexical norms. Browse the norms a community has contributed, and add a rating of your own.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="browse-heading">
+      <h2 id="browse-heading">Browse norms</h2>
+      <div class="field">
+        <label for="language-select">Language</label>
+        <select id="language-select" aria-describedby="language-help"></select>
+        <p id="language-help" class="help">Choose a language to see its sensorimotor norms.</p>
+      </div>
+      <div id="norms-status" role="status" aria-live="polite"></div>
+      <div class="table-wrap">
+        <table id="norms-table">
+          <thead>
+            <tr>
+              <th scope="col">Concept</th>
+              <th scope="col">Word</th>
+              <th scope="col">Raters</th>
+              <th scope="col">Dominant modality</th>
+              <th scope="col">Max strength</th>
+              <th scope="col">Exclusivity</th>
+            </tr>
+          </thead>
+          <tbody id="norms-body"></tbody>
+        </table>
+      </div>
+      <p class="downloads">
+        <a id="download-csv" href="#" download>Download as CSV</a>
+        <a id="download-meta" href="#" download>Download metadata</a>
+      </p>
+    </section>
+
+    <section aria-labelledby="contribute-heading">
+      <h2 id="contribute-heading">Contribute a rating</h2>
+      <p class="help">Rate how strongly you experience the word through each channel, from 0 (not at all) to 5 (greatly). You may leave channels blank. An audio prompt can be played for participants who do not read.</p>
+      <form id="rating-form">
+        <div class="field">
+          <label for="form-language">Language</label>
+          <input id="form-language" name="languageCode" required autocomplete="off" inputmode="text">
+        </div>
+        <div class="field">
+          <label for="form-concept">Concept identifier</label>
+          <input id="form-concept" name="conceptId" required autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="form-word">Word</label>
+          <input id="form-word" name="word" required autocomplete="off" dir="auto" lang="">
+        </div>
+        <fieldset>
+          <legend>Perceptual and action strength</legend>
+          <div id="rating-grid" class="rating-grid"></div>
+        </fieldset>
+        <div class="field">
+          <label for="form-token">Write token</label>
+          <input id="form-token" name="token" type="password" autocomplete="off">
+          <p class="help">Contributing requires a token issued by the study. Leave blank only on an open development server.</p>
+        </div>
+        <button type="submit">Submit rating</button>
+        <p id="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>SenseLex is open-source research infrastructure. Norms are released under a Creative Commons Attribution licence.</p>
+  </footer>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

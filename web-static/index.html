@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SenseLex Atlas</title>
+  <style>
+    :root {
+      --bg:#fbfaf7; --panel:#fff; --ink:#1d1c1a; --muted:#54504a; --line:#d9d4ca;
+      --accent:#5a4f8c; --accent-ink:#fff; --focus:#1668c0; --good:#2e7d52; --warn:#9a5b1c;
+      --font:"Noto Sans","Noto Sans Arabic","Noto Sans Hebrew","Noto Sans Devanagari","Noto Sans Tamil","Noto Sans Thai","Noto Sans CJK SC","Noto Sans CJK JP","Noto Sans CJK KR",system-ui,sans-serif;
+    }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:var(--font); color:var(--ink); background:var(--bg); line-height:1.55; font-size:18px; }
+    header { max-width:64rem; margin:0 auto; padding:1.25rem 1.5rem .5rem; }
+    main { max-width:64rem; margin:0 auto; padding:0 1.5rem 3rem; }
+    footer { max-width:64rem; margin:0 auto; padding:1.5rem; color:var(--muted); border-top:1px solid var(--line); font-size:.95rem; }
+    section.refs { max-width:64rem; margin:0 auto; padding:1.7rem 1.5rem .2rem; }
+    section.refs h2 { margin:0 0 .2rem; }
+    section.refs p.help { margin:.2rem 0 .6rem; }
+    ul.reflist { list-style:none; margin:.4rem 0 0; padding-left:0; }
+    ul.reflist li { margin:.7rem 0; line-height:1.6; font-size:1.12rem; color:var(--ink); padding-left:2.4em; text-indent:-2.4em; }
+    ul.reflist a { color:var(--accent); text-decoration:underline; text-underline-offset:2px; word-break:break-word; }
+    h1 { font-size:1.7rem; margin:0; }
+    h2 { font-size:1.3rem; margin:1.6rem 0 .4rem; }
+    #view-manage > h2 { margin-top:.9rem; }
+    h3 { font-size:1.08rem; margin:1.2rem 0 .3rem; }
+    p.lede { color:var(--muted); margin:.4rem 0 0; max-width:52rem; font-size:1.3rem; line-height:1.6; }
+    .help { color:var(--muted); font-size:1.18rem; line-height:1.6; margin:.3rem 0 .7rem; max-width:52rem; }
+    .notice { background:#f1ede4; border:1px solid var(--line); border-radius:.6rem; padding:.9rem 1.2rem; margin:1rem 0 .3rem; max-width:52rem; color:var(--muted); font-size:.98rem; line-height:1.5; }
+    .notice h3 { margin:.7rem 0 .1rem; font-size:.98rem; color:var(--ink); }
+    .notice h3:first-child { margin-top:0; }
+    .notice p { margin:.1rem 0; }
+    nav { display:flex; gap:.4rem; flex-wrap:wrap; margin:1rem auto 0; max-width:64rem; padding:0 1.5rem; }
+    nav button { background:var(--panel); border:1px solid var(--line); color:var(--ink); border-radius:.5rem .5rem 0 0; padding:.55rem 1.1rem; cursor:pointer; font:inherit; font-weight:600; }
+    nav button[aria-selected="true"] { background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+    .bar { display:flex; gap:.6rem 1.7rem; flex-wrap:wrap; align-items:baseline; margin:1.3rem 0 .7rem; padding:.8rem 1.2rem; color:var(--muted); font-size:.98rem; background:var(--panel); border:1px solid var(--line); border-radius:.6rem; }
+    .bar b { color:var(--accent); font-size:1.1rem; }
+    section.view { display:none; background:var(--panel); border:1px solid var(--line); border-radius:0 .6rem .6rem .6rem; padding:1.25rem 1.4rem; }
+    section.view.active { display:block; }
+    label { display:block; font-weight:600; margin:.6rem 0 .25rem; }
+    input, select, textarea, button { font:inherit; }
+    input, select, textarea { width:100%; max-width:30rem; padding:.5rem .6rem; border:1px solid var(--line); border-radius:.4rem; background:var(--bg); color:inherit; }
+    textarea { min-height:7rem; font-family:ui-monospace,Consolas,monospace; font-size:.9rem; max-width:48rem; }
+    .row { display:flex; gap:.8rem; flex-wrap:wrap; align-items:end; }
+    .row > div { flex:1 1 11rem; min-width:8rem; }
+    .row > div.narrow { flex:0 0 7rem; }
+    button.act { background:var(--accent); color:var(--accent-ink); border:none; border-radius:.4rem; padding:.55rem 1.1rem; cursor:pointer; font-weight:600; min-height:2.7rem; }
+    button.act:hover { filter:brightness(1.08); }
+    button.ghost { background:var(--bg); border:1px solid var(--line); color:var(--ink); border-radius:.4rem; padding:.5rem .9rem; cursor:pointer; min-height:2.7rem; }
+    button.ghost:hover { border-color:var(--accent); }
+    :focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+    .panel { border:1px solid var(--line); border-radius:.6rem; padding:1rem 1.1rem; background:var(--bg); margin:.6rem 0 1rem; }
+    .stimulus { text-align:center; padding:1.1rem; border:1px dashed var(--line); border-radius:.6rem; margin:.6rem 0; }
+    .stimulus .word { font-size:2.3rem; font-weight:600; }
+    .stimulus .gloss { display:block; font-size:1.02rem; font-weight:400; color:var(--muted); margin-top:.4rem; }
+    .rating-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(12.5rem,1fr)); gap:.3rem 1.4rem; margin:.6rem 0; }
+    .rating-row { display:flex; align-items:center; justify-content:space-between; gap:.6rem; padding:.15rem 0; }
+    .rating-row label { margin:0; font-weight:500; font-size:1.02rem; }
+    .rating-row input { width:4.6rem; }
+    .progress { height:.5rem; background:var(--line); border-radius:.4rem; overflow:hidden; margin:.5rem 0; }
+    .progress > span { display:block; height:100%; background:var(--accent); }
+    .table-wrap { overflow-x:auto; }
+    table { border-collapse:collapse; width:100%; margin-top:.6rem; font-size:.98rem; }
+    th, td { text-align:left; padding:.45rem .6rem; border-bottom:1px solid var(--line); white-space:nowrap; }
+    th { background:var(--bg); cursor:pointer; }
+    td.word { font-size:1.08rem; }
+    .pill { display:inline-block; padding:.05rem .55rem; border-radius:1rem; background:var(--bg); border:1px solid var(--line); font-size:.85rem; color:var(--muted); }
+    .pill.high { border-color:#9bbf9b; } .pill.medium { border-color:#cdb98a; } .pill.low { border-color:#b79ad0; }
+    .msg { margin:.6rem 0; padding:.55rem .8rem; border-radius:.4rem; font-size:1rem; }
+    .msg.ok { background:#e8f3ec; color:var(--good); } .msg.warn { background:#f6ecdf; color:var(--warn); }
+    .empty { color:var(--muted); padding:1rem 0; font-size:1.05rem; }
+    .inline { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; margin-top:.4rem; }
+    .spacer { height:1px; background:var(--line); margin:1.4rem 0; }
+    details { margin:.6rem 0; } summary { cursor:pointer; font-weight:600; }
+    .titlebar { display:flex; align-items:flex-start; justify-content:space-between; gap:1rem; }
+    .theme-toggle { flex:0 0 auto; background:var(--panel); border:1px solid var(--line); color:var(--ink); border-radius:.5rem; padding:.4rem .8rem; cursor:pointer; font:inherit; font-size:.92rem; font-weight:600; white-space:nowrap; }
+    .theme-toggle:hover { border-color:var(--accent); }
+    details.how { margin:.7rem 0 0; max-width:52rem; }
+    details.how summary { color:var(--accent); }
+    details.how p { color:var(--muted); font-size:1.08rem; line-height:1.6; margin:.5rem 0 0; }
+    /* Dark palette, shared by the explicit toggle and the system preference. */
+    :root[data-theme="dark"] { --bg:#171614; --panel:#201e1b; --ink:#f3efe7; --muted:#b3aca1; --line:#38342d; --accent:#b8aee8; --accent-ink:#171614; --focus:#7db1ff; --good:#7fd6a3; --warn:#e0b07a; }
+    :root[data-theme="dark"] .msg.ok { background:#1c2c22; } :root[data-theme="dark"] .msg.warn { background:#2c241a; }
+    :root[data-theme="dark"] .notice { background:#221f1a; }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) { --bg:#171614; --panel:#201e1b; --ink:#f3efe7; --muted:#b3aca1; --line:#38342d; --accent:#b8aee8; --accent-ink:#171614; --focus:#7db1ff; --good:#7fd6a3; --warn:#e0b07a; }
+      :root:not([data-theme="light"]) .msg.ok { background:#1c2c22; } :root:not([data-theme="light"]) .msg.warn { background:#2c241a; }
+      :root:not([data-theme="light"]) .notice { background:#221f1a; }
+    }
+  </style>
+  <script>try{var t=localStorage.getItem("senselex.theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}</script>
+</head>
+<body>
+  <header>
+    <div class="titlebar">
+      <h1>SenseLex Atlas</h1>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Switch between the light and dark theme">Theme</button>
+    </div>
+    <p class="lede">A tool for collecting and analysing multisensory lexical norms. It runs entirely in your browser, saves your data on this device and needs no installation and no login. Draw a controlled set of words from a lexical database, rate them and read the norms back.</p>
+    <div class="notice">
+      <h3>Author</h3>
+      <p>Dr Pablo Bernabeu, Department of Education, University of Oxford</p>
+      <h3>Legal disclaimer</h3>
+      <p>This app is being developed by Dr Pablo Bernabeu in a personal capacity during spare time. The employer is not affiliated with, does not endorse, and bears no liability for this app.</p>
+      <h3>Usage and licence</h3>
+      <p>This app is in early development and is not suitable for use at the current time. All rights reserved. No part of this software may be used, copied, modified, merged, distributed, sublicensed, or otherwise exploited without the prior written permission of the author. No warranty is provided and no liability is accepted for any use of this software.</p>
+    </div>
+    <details class="how" open>
+      <summary>How this works</summary>
+      <p>The work runs across three tabs. Build &amp; manage is where you assemble the word list: draw a frequency-controlled sample from the built-in banks, add your own words and manage languages and backups. Collect presents those words one at a time for sensorimotor rating or free naming. Explore turns the collected ratings into norms you can sort and download.</p>
+      <p>Everything stays in this browser on this device. There is no account, no upload and no server. Removing a word, or resetting, changes only your own copy here, so use Export to keep a copy or move your data to another machine.</p>
+    </details>
+    <div class="bar" id="statusbar"></div>
+  </header>
+
+  <nav id="tabs" role="tablist" aria-label="Sections">
+    <button role="tab" data-view="collect" aria-selected="true">Collect</button>
+    <button role="tab" data-view="explore" aria-selected="false">Explore</button>
+    <button role="tab" data-view="manage" aria-selected="false">Build &amp; manage</button>
+  </nav>
+
+  <main>
+    <section class="view active" id="view-collect" role="tabpanel" aria-label="Collect">
+      <h2>Collect ratings and names</h2>
+      <div class="row">
+        <div><label for="c-language">Language</label><select id="c-language"></select></div>
+        <div><label for="c-participant">Participant code</label><input id="c-participant" placeholder="e.g. P01" autocomplete="off"></div>
+        <div><label for="c-task">Task</label><select id="c-task"><option value="rating">Sensorimotor rating</option><option value="naming">Free naming</option></select></div>
+      </div>
+      <p class="help" id="c-help"></p>
+      <div class="progress" aria-hidden="true"><span id="c-progress"></span></div>
+      <div id="c-area"></div>
+    </section>
+
+    <section class="view" id="view-explore" role="tabpanel" aria-label="Explore">
+      <h2>Explore the norms</h2>
+      <div class="row">
+        <div><label for="e-language">Language</label><select id="e-language"></select></div>
+        <div class="narrow"><label for="e-concreteness">Concreteness</label><select id="e-concreteness"><option value="all">All</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></div>
+        <div class="narrow"><label for="e-frequency">Frequency</label><select id="e-frequency"><option value="all">All</option><option value="high">High</option><option value="mid">Mid</option><option value="low">Low</option></select></div>
+        <div style="align-self:end"><button class="ghost" id="e-download-csv" type="button">Download norms (CSV)</button></div>
+      </div>
+      <h3>Sensorimotor norms</h3>
+      <p class="help">Means across raters on each channel, with the dominant perceptual modality, the maximum perceptual strength, the modality-exclusivity score and a rater-spread figure as a reliability cue. Concreteness and Zipf frequency come from the word bank. Click a column heading to sort.</p>
+      <div id="e-status" role="status" aria-live="polite"></div>
+      <div class="table-wrap"><table id="e-norms"><thead></thead><tbody></tbody></table></div>
+      <h3>Codability from free naming</h3>
+      <p class="help">Agreement is the chance that two participants give a stimulus the same name. Shorter, more agreed responses mean higher codability.</p>
+      <div class="table-wrap"><table id="e-cod"><thead><tr><th>Concept</th><th>Responses</th><th>Distinct names</th><th>Agreement</th><th>Mean length</th></tr></thead><tbody></tbody></table></div>
+    </section>
+
+    <section class="view" id="view-manage" role="tabpanel" aria-label="Build and manage data">
+      <h2>Build a study from the word banks</h2>
+      <p class="help" id="bank-help"></p>
+      <div class="panel">
+        <div class="row">
+          <div><label for="b-language">Language</label><select id="b-language"></select></div>
+          <div class="narrow"><label for="b-count">Words</label><input id="b-count" type="number" min="1" max="500" value="40"></div>
+          <div class="narrow"><label for="b-zmin">Freq. min</label><input id="b-zmin" type="number" step="0.1" min="1" max="7.7" value="3"></div>
+          <div class="narrow"><label for="b-zmax">Freq. max</label><input id="b-zmax" type="number" step="0.1" min="1" max="7.7" value="5"></div>
+          <div class="narrow"><label for="b-cmin">Conc. min</label><input id="b-cmin" type="number" step="0.1" min="1" max="5" value="1"></div>
+          <div class="narrow"><label for="b-cmax">Conc. max</label><input id="b-cmax" type="number" step="0.1" min="1" max="5" value="5"></div>
+          <div style="align-self:end"><button class="act" id="b-add" type="button">Add to items</button></div>
+        </div>
+        <p class="help" id="b-match" style="margin:.5rem 0 0"></p>
+      </div>
+
+      <h3>Word and cue list</h3>
+      <p class="help">These are the items participants rate or name. Add your own item below, or paste a list where each line is <span class="pill">language, conceptId, gloss, word, concreteness</span> (the concreteness field is optional). Each row has a Remove button that takes that word out of your own list on this device only. Nothing is uploaded or shared, no other user is affected and any ratings you have already saved for it are kept in your data. Translations beyond English are a starting point and should be checked by a fluent speaker before live data collection.</p>
+      <div class="row">
+        <div><label for="m-lang">Language</label><select id="m-lang"></select></div>
+        <div><label for="m-concept">Concept id</label><input id="m-concept" placeholder="e.g. COFFEE" autocomplete="off"></div>
+        <div><label for="m-gloss">Gloss</label><input id="m-gloss" placeholder="e.g. coffee" autocomplete="off"></div>
+        <div><label for="m-word">Word</label><input id="m-word" placeholder="e.g. café" dir="auto" autocomplete="off"></div>
+        <div class="narrow"><label for="m-conc">Concreteness</label><select id="m-conc"><option value="">unset</option><option value="high">high</option><option value="medium">medium</option><option value="low">low</option></select></div>
+        <div style="align-self:end"><button class="act" id="m-add-item" type="button">Add item</button></div>
+      </div>
+      <details>
+        <summary>Paste a list of items</summary>
+        <label for="m-bulk">One item per line: language, conceptId, gloss, word, concreteness</label>
+        <textarea id="m-bulk" placeholder="ita, COFFEE, coffee, caffè, high&#10;ita, FREEDOM, freedom, libertà, low"></textarea>
+        <button class="ghost" id="m-import-items" type="button">Add pasted items</button>
+      </details>
+      <label for="m-filter">Filter the list</label>
+      <input id="m-filter" placeholder="type to filter by language, concept, gloss or word" autocomplete="off">
+      <div id="m-items"></div>
+
+      <div class="spacer"></div>
+      <h3>Languages</h3>
+      <div class="row">
+        <div><label for="m-newcode">Code</label><input id="m-newcode" placeholder="e.g. nld" autocomplete="off"></div>
+        <div><label for="m-newname">Name</label><input id="m-newname" placeholder="e.g. Dutch" autocomplete="off"></div>
+        <div><label for="m-newscript">Script</label><input id="m-newscript" placeholder="e.g. Latin" autocomplete="off"></div>
+        <div class="narrow"><label for="m-newdir">Direction</label><select id="m-newdir"><option value="ltr">left to right</option><option value="rtl">right to left</option></select></div>
+        <div style="align-self:end"><button class="act" id="m-add-lang" type="button">Add language</button></div>
+      </div>
+      <div id="m-langs"></div>
+
+      <div class="spacer"></div>
+      <h3>Back up, restore and reset</h3>
+      <p class="help">Your data lives only in this browser. Export it to keep a copy, to move it to another machine or to load it into the full Atlas. Import merges a previously exported file without duplicating records.</p>
+      <div class="inline">
+        <button class="act" id="d-export" type="button">Export dataset (JSON)</button>
+        <button class="ghost" id="d-import-btn" type="button">Import dataset (JSON)</button>
+        <input id="d-import" type="file" accept="application/json,.json" style="display:none">
+        <button class="ghost" id="d-sample" type="button">Load a sample of ratings</button>
+        <button class="ghost" id="d-reset" type="button">Reset everything</button>
+      </div>
+      <div id="m-msg"></div>
+    </section>
+  </main>
+
+  <section class="refs" aria-label="References">
+    <h2>References</h2>
+    <p class="help">The app reuses the datasets, the rating instrument and the measures listed below. Please cite them if you use the words or the norms.</p>
+    <ul class="reflist">
+      <li>Brysbaert, M., Warriner, A. B., &amp; Kuperman, V. (2014). Concreteness ratings for 40 thousand generally known English word lemmas. <i>Behavior Research Methods, 46</i>(3), 904&ndash;911. <a href="https://doi.org/10.3758/s13428-013-0403-5">https://doi.org/10.3758/s13428-013-0403-5</a></li>
+      <li>Lynott, D., &amp; Connell, L. (2009). Modality exclusivity norms for 423 object properties. <i>Behavior Research Methods, 41</i>(2), 558&ndash;564. <a href="https://doi.org/10.3758/BRM.41.2.558">https://doi.org/10.3758/BRM.41.2.558</a></li>
+      <li>Lynott, D., Connell, L., Brysbaert, M., Brand, J., &amp; Carney, J. (2020). The Lancaster Sensorimotor Norms: Multidimensional measures of perceptual and action strength for 40,000 English words. <i>Behavior Research Methods, 52</i>(3), 1271&ndash;1291. <a href="https://doi.org/10.3758/s13428-019-01316-z">https://doi.org/10.3758/s13428-019-01316-z</a></li>
+      <li>Speer, R. (2022). <i>rspeer/wordfreq: v3.0</i> (Version v3.0.2) [Computer software]. Zenodo. <a href="https://doi.org/10.5281/zenodo.7199437">https://doi.org/10.5281/zenodo.7199437</a></li>
+      <li>van Heuven, W. J. B., Mandera, P., Keuleers, E., &amp; Brysbaert, M. (2014). SUBTLEX-UK: A new and improved word frequency database for British English. <i>Quarterly Journal of Experimental Psychology, 67</i>(6), 1176&ndash;1190. <a href="https://doi.org/10.1080/17470218.2013.850521">https://doi.org/10.1080/17470218.2013.850521</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>SenseLex is open-source research infrastructure. The word banks are a derived feature subset drawn from the sources cited above, curated to genuine content words rather than shipped as raw frequency lists. A few languages, including Arabic, Hebrew, Tamil, Vietnamese, Turkish and Japanese, currently use a small hand-checked core list instead of a full bank, because a repeated curation check found the derived bank still too noisy to ship; see the project repository for the audit figures. This single page is the lightweight, browser-only edition. The full Atlas adds shared online collection, an offline-first field client and a server database.</p>
+  </footer>
+
+  <script src="words.js"></script>
+  <script>
+  "use strict";
+
+  // ----- Scientific core, ported from the tested norms module -----
+  const PERCEPTUAL = ["touch","hearing","smell","taste","vision","interoception"];
+  const ACTION = ["mouth_throat","hand_arm","foot_leg","head","torso"];
+  const ALL = [...PERCEPTUAL, ...ACTION];
+  const LABELS = { touch:"Touch", hearing:"Hearing", smell:"Smell", taste:"Taste", vision:"Vision",
+    interoception:"Interoception", mouth_throat:"Mouth / throat", hand_arm:"Hand / arm",
+    foot_leg:"Foot / leg", head:"Head", torso:"Torso" };
+
+  const mean = xs => xs.length ? xs.reduce((a,b)=>a+b,0)/xs.length : 0;
+  const sd = xs => { if (xs.length<2) return 0; const m=mean(xs); return Math.sqrt(xs.reduce((a,b)=>a+(b-m)**2,0)/(xs.length-1)); };
+  function averageRatings(vectors, dims){ const r={}; for (const d of dims){ const c=[]; for (const v of vectors){ const x=v[d]; if (typeof x==="number"&&isFinite(x)) c.push(x);} r[d]=mean(c);} return r; }
+  function dominantModality(avg, dims){ let best=null,bv=-Infinity; for (const d of dims){ const v=avg[d]??0; if (v>bv){bv=v;best=d;}} return {modality:best,strength:bv===-Infinity?0:bv}; }
+  function modalityExclusivity(avg, dims){ let mx=-Infinity,mn=Infinity,s=0; for (const d of dims){ const v=avg[d]??0; if (v>mx)mx=v; if (v<mn)mn=v; s+=v;} return s===0?0:(mx-mn)/s; }
+  function simpsonDiversity(counts){ const c=Object.values(counts); let t=0; for (const n of c) t+=n; if (t<2) return 0; let same=0; for (const n of c) same+=n*(n-1); return 1-(same/(t*(t-1))); }
+  function agreement(counts){ const t=Object.values(counts).reduce((a,b)=>a+b,0); if (t<2) return t===0?0:1; return 1-simpsonDiversity(counts); }
+  const tally = items => { const c={}; for (const i of items){ const k=String(i).trim().toLowerCase(); if (k) c[k]=(c[k]||0)+1; } return c; };
+
+  // ----- The word banks (one per language; loaded from words.js) -----
+  // Each entry is [word, concreteness 1-5 or null, zipf frequency]. Concreteness
+  // is present for English only; every language carries a Zipf frequency.
+  const BANKS = (window.SENSELEX_WORDBANK && window.SENSELEX_WORDBANK.banks) ? window.SENSELEX_WORDBANK.banks : {};
+  const bankFor = code => (BANKS[code] && BANKS[code].words) || [];
+  const bankHasConc = code => !!(BANKS[code] && BANKS[code].concreteness);
+  const bankTotal = Object.values(BANKS).reduce((t,b)=>t+((b.words&&b.words.length)||0),0);
+  const displayBand = c => c>=3.5 ? "high" : c<=2.5 ? "low" : "medium";
+  const freqBand = z => z>=4.7 ? "high" : z>=3.5 ? "mid" : "low";
+  // Concept ids preserve the word's own letters (accented or non-Latin) rather
+  // than replacing them with underscores; only spaces and punctuation collapse to
+  // a single underscore. So "acción" yields ACCIÓN, not ACCI_N.
+  const sanitiseId = w => w.toUpperCase().normalize("NFC").replace(/[^\p{L}\p{N}]+/gu,"_").replace(/^_+|_+$/g,"") || "ITEM";
+
+  // Draw an evenly spread sample across the frequency range (and concreteness too,
+  // where a word carries it), so the whole space is covered rather than skewed.
+  function stratifiedSample(words, n){
+    if (words.length<=n) return words.slice();
+    const zB=z=>z<2.5?0:z<3.5?1:z<4.5?2:z<5.5?3:4, cB=c=>(typeof c!=="number")?0:c<2?0:c<3?1:c<4?2:3;
+    const cells=new Map();
+    for (const w of words){ const k=zB(w[2])+","+cB(w[1]); if (!cells.has(k)) cells.set(k,[]); cells.get(k).push(w); }
+    const keys=[...cells.keys()], per=Math.max(1,Math.ceil(n/keys.length)), out=[];
+    for (const k of keys){ const list=cells.get(k).sort((a,b)=>a[2]-b[2]); const take=Math.min(per,list.length), step=list.length/take;
+      for (let i=0;i<take;i++) out.push(list[Math.floor(i*step)]); }
+    out.sort((a,b)=>a[0].localeCompare(b[0]));
+    return out.slice(0,n);
+  }
+  // Even sample by frequency from an already-filtered list (used by the builder).
+  function evenSample(words, n){ if (words.length<=n) return words.slice(); const s=[...words].sort((a,b)=>a[2]-b[2]), step=s.length/n, out=[]; for (let i=0;i<n;i++) out.push(s[Math.floor(i*step)]); return out; }
+  const bankItem = (code,w) => ({ language:code, conceptId:sanitiseId(w[0]), gloss:w[0], word:w[0], concreteness:(typeof w[1]==="number"?displayBand(w[1]):undefined), concretenessValue:(typeof w[1]==="number"?w[1]:undefined), frequency:w[2] });
+
+  // ----- Reference content: languages and a multilingual concrete core -----
+  const LANGS = [
+    {code:"eng",name:"English",family:"Indo-European",script:"Latin",direction:"ltr"},
+    {code:"spa",name:"Spanish",family:"Indo-European",script:"Latin",direction:"ltr"},
+    {code:"fra",name:"French",family:"Indo-European",script:"Latin",direction:"ltr"},
+    {code:"deu",name:"German",family:"Indo-European",script:"Latin",direction:"ltr"},
+    {code:"ita",name:"Italian",family:"Indo-European",script:"Latin",direction:"ltr"},
+    {code:"por",name:"Portuguese",family:"Indo-European",script:"Latin",direction:"ltr"},
+    {code:"rus",name:"Russian",family:"Indo-European",script:"Cyrillic",direction:"ltr"},
+    {code:"ell",name:"Greek",family:"Indo-European",script:"Greek",direction:"ltr"},
+    {code:"hin",name:"Hindi",family:"Indo-European",script:"Devanagari",direction:"ltr"},
+    {code:"arb",name:"Modern Standard Arabic",family:"Afro-Asiatic",script:"Arabic",direction:"rtl"},
+    {code:"heb",name:"Hebrew",family:"Afro-Asiatic",script:"Hebrew",direction:"rtl"},
+    {code:"cmn",name:"Mandarin Chinese",family:"Sino-Tibetan",script:"Han",direction:"ltr"},
+    {code:"jpn",name:"Japanese",family:"Japonic",script:"Japanese",direction:"ltr"},
+    {code:"kor",name:"Korean",family:"Koreanic",script:"Hangul",direction:"ltr"},
+    {code:"tur",name:"Turkish",family:"Turkic",script:"Latin",direction:"ltr"},
+    {code:"fin",name:"Finnish",family:"Uralic",script:"Latin",direction:"ltr"},
+    {code:"hun",name:"Hungarian",family:"Uralic",script:"Latin",direction:"ltr"},
+    {code:"swh",name:"Swahili",family:"Niger-Congo",script:"Latin",direction:"ltr"},
+    {code:"yor",name:"Yoruba",family:"Niger-Congo",script:"Latin",direction:"ltr"},
+    {code:"tam",name:"Tamil",family:"Dravidian",script:"Tamil",direction:"ltr"},
+    {code:"ind",name:"Indonesian",family:"Austronesian",script:"Latin",direction:"ltr"},
+    {code:"vie",name:"Vietnamese",family:"Austroasiatic",script:"Latin",direction:"ltr"},
+    {code:"tha",name:"Thai",family:"Kra-Dai",script:"Thai",direction:"ltr"},
+    {code:"eus",name:"Basque",family:"isolate",script:"Latin",direction:"ltr"}
+  ];
+  const CORE = [
+    {id:"WATER", gloss:"water", words:{eng:"water",spa:"agua",fra:"eau",deu:"Wasser",ita:"acqua",por:"água",rus:"вода",ell:"νερό",hin:"पानी",arb:"ماء",heb:"מים",cmn:"水",jpn:"水",kor:"물",tur:"su",fin:"vesi",hun:"víz",swh:"maji",yor:"omi",tam:"தண்ணீர்",ind:"air",vie:"nước",tha:"น้ำ",eus:"ur"}},
+    {id:"FIRE", gloss:"fire", words:{eng:"fire",spa:"fuego",fra:"feu",deu:"Feuer",ita:"fuoco",por:"fogo",rus:"огонь",ell:"φωτιά",hin:"आग",arb:"نار",heb:"אש",cmn:"火",jpn:"火",kor:"불",tur:"ateş",fin:"tuli",hun:"tűz",swh:"moto",yor:"iná",tam:"நெருப்பு",ind:"api",vie:"lửa",tha:"ไฟ",eus:"su"}},
+    {id:"SUN", gloss:"sun", words:{eng:"sun",spa:"sol",fra:"soleil",deu:"Sonne",ita:"sole",por:"sol",rus:"солнце",ell:"ήλιος",hin:"सूरज",arb:"شمس",heb:"שמש",cmn:"太阳",jpn:"太陽",kor:"태양",tur:"güneş",fin:"aurinko",hun:"nap",swh:"jua",yor:"oòrùn",tam:"சூரியன்",ind:"matahari",vie:"mặt trời",tha:"ดวงอาทิตย์",eus:"eguzki"}},
+    {id:"HAND", gloss:"hand", words:{eng:"hand",spa:"mano",fra:"main",deu:"Hand",ita:"mano",por:"mão",rus:"рука",ell:"χέρι",hin:"हाथ",arb:"يد",heb:"יד",cmn:"手",jpn:"手",kor:"손",tur:"el",fin:"käsi",hun:"kéz",swh:"mkono",yor:"ọwọ́",tam:"கை",ind:"tangan",vie:"tay",tha:"มือ",eus:"esku"}},
+    {id:"FISH", gloss:"fish", words:{eng:"fish",spa:"pez",fra:"poisson",deu:"Fisch",ita:"pesce",por:"peixe",rus:"рыба",ell:"ψάρι",hin:"मछली",arb:"سمك",heb:"דג",cmn:"鱼",jpn:"魚",kor:"물고기",tur:"balık",fin:"kala",hun:"hal",swh:"samaki",yor:"ẹja",tam:"மீன்",ind:"ikan",vie:"cá",tha:"ปลา",eus:"arrain"}},
+    {id:"MILK", gloss:"milk", words:{eng:"milk",spa:"leche",fra:"lait",deu:"Milch",ita:"latte",por:"leite",rus:"молоко",ell:"γάλα",hin:"दूध",arb:"حليب",heb:"חלב",cmn:"牛奶",jpn:"牛乳",kor:"우유",tur:"süt",fin:"maito",hun:"tej",swh:"maziwa",tam:"பால்",ind:"susu",vie:"sữa",tha:"นม",eus:"esne"}}
+  ];
+  const FALLBACK_ENG = [["COFFEE","coffee","high"],["THUNDER","thunder","high"],["VELVET","velvet","high"],["LEMON","lemon","high"],["JUSTICE","justice","low"],["IDEA","idea","low"],["HOPE","hope","low"],["RAIN","rain","medium"],["ECHO","echo","medium"]];
+
+  function defaultDataset(){
+    const items=[]; const banked=new Set(Object.keys(BANKS));
+    if (banked.size){
+      // Every language with a frequency bank gets a frequency-spanning starter set.
+      for (const code of banked){ for (const w of stratifiedSample(bankFor(code), 60)) items.push(bankItem(code, w)); }
+      // Languages with no frequency corpus keep their hand-checked core words.
+      for (const c of CORE) for (const [lang,word] of Object.entries(c.words)) if (!banked.has(lang)) items.push({language:lang,conceptId:c.id,gloss:c.gloss,word,concreteness:"high"});
+    } else {
+      for (const c of CORE) for (const [lang,word] of Object.entries(c.words)) items.push({language:lang,conceptId:c.id,gloss:c.gloss,word,concreteness:"high"});
+      for (const [id,word,band] of FALLBACK_ENG) items.push({language:"eng",conceptId:id,gloss:word,word,concreteness:band});
+    }
+    return { version:5, languages:LANGS.map(l=>({code:l.code,name:l.name,script:l.script,direction:l.direction,family:l.family})), items, ratings:[], responses:[] };
+  }
+
+  // ----- Persistence -----
+  // Bumped v4 -> v5 when the word banks were re-curated, so returning visitors are
+  // rebuilt from the clean banks rather than keeping a stale starter set in storage.
+  const KEY = "senselex.dataset.v5";
+  const ID_RE = /^[\p{L}\p{N}_.:-]{1,128}$/u;
+  const uuid = () => (crypto.randomUUID ? crypto.randomUUID() : "id-"+Math.random().toString(16).slice(2)+Date.now());
+
+  let data;
+  function load(){ try { const raw=localStorage.getItem(KEY); data = raw ? JSON.parse(raw) : defaultDataset(); } catch { data=defaultDataset(); }
+    if (!data || !Array.isArray(data.languages)) data=defaultDataset();
+    for (const k of ["languages","items","ratings","responses"]) if (!Array.isArray(data[k])) data[k]=[]; }
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(data)); } catch { flash("manage","Could not save to this browser's storage; the dataset may be too large. Export your data to be safe.","warn"); } renderStatus(); }
+
+  // ----- Helpers -----
+  const $ = s => document.querySelector(s);
+  const el = (tag, props={}, kids=[]) => { const n=document.createElement(tag); Object.assign(n,props); for (const k of [].concat(kids)) if (k!=null) n.append(k); return n; };
+  function fillLangSelect(sel){ const cur=sel.value; sel.replaceChildren(); for (const l of data.languages) sel.append(el("option",{value:l.code,textContent:`${l.name} (${l.code})`})); if (cur && data.languages.some(l=>l.code===cur)) sel.value=cur; }
+  const itemsFor = code => data.items.filter(i=>i.language===code);
+  function featureOf(code,conceptId,word){ const it=data.items.find(i=>i.language===code&&i.conceptId===conceptId&&i.word===word); return it ? {band:it.concreteness||"", conc:it.concretenessValue, freq:it.frequency} : {band:"",conc:undefined,freq:undefined}; }
+
+  function flash(view, text, kind="ok"){ if (view!=="manage") return; const host=$("#m-msg"); const m=el("div",{className:`msg ${kind}`,textContent:text}); host.replaceChildren(m); setTimeout(()=>{ if (host.contains(m)) host.removeChild(m); },4500); }
+
+  function renderStatus(){
+    const parts=[ ["languages",data.languages.length],["items",data.items.length],["ratings",data.ratings.length],["naming responses",data.responses.length] ];
+    if (bankTotal) parts.push(["words in banks",bankTotal]);
+    $("#statusbar").replaceChildren(...parts.map(([label,n])=>el("span",{}, [el("b",{textContent:String(n)}), document.createTextNode(" "+label)])));
+  }
+
+  // ----- Speech -----
+  // The read-aloud prompt is offered only when the browser actually carries a
+  // voice for the item's language. Without a matching voice, browsers fall back
+  // to a default (usually English) voice that mispronounces the word or spells it
+  // out letter by letter, so for languages such as Arabic or Yoruba, where most
+  // systems have no voice installed, the button is hidden rather than wrong.
+  const SPEECH_LANG = { eng:"en-GB",spa:"es-ES",fra:"fr-FR",deu:"de-DE",ita:"it-IT",por:"pt-PT",rus:"ru-RU",ell:"el-GR",hin:"hi-IN",arb:"ar-SA",heb:"he-IL",cmn:"zh-CN",jpn:"ja-JP",kor:"ko-KR",tur:"tr-TR",fin:"fi-FI",hun:"hu-HU",swh:"sw",yor:"yo",tam:"ta-IN",ind:"id-ID",vie:"vi-VN",tha:"th-TH",eus:"eu-ES" };
+  const baseTag = s => String(s||"").toLowerCase().split(/[-_]/)[0];
+  function voices(){ try { return ("speechSynthesis" in window) && typeof SpeechSynthesisUtterance!=="undefined" ? window.speechSynthesis.getVoices() : []; } catch { return []; } }
+  function hasVoiceFor(code){ const base=baseTag(SPEECH_LANG[code]); if (!base) return false; return voices().some(v=>baseTag(v.lang)===base); }
+  function speak(text, code){ if (!hasVoiceFor(code)) return; try { const u=new SpeechSynthesisUtterance(text); u.lang=SPEECH_LANG[code]||"en-GB"; u.rate=0.95; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch {} }
+
+  // ===================== COLLECT =====================
+  let collectIndex=0;
+  function collectHelp(){ $("#c-help").textContent = $("#c-task").value==="rating"
+    ? "Rate how strongly the word is experienced through each channel, from 0 (not at all) to 5 (very strongly). Leave a channel blank if it does not apply. Press Enter on a field to save and move to the next word."
+    : "Read the cue, then type the first single word the participant gives for it. Agreement across participants becomes the codability of that concept."; }
+  const ratedSet = (code,p) => new Set(data.ratings.filter(r=>r.language===code&&r.participant===p).map(r=>r.conceptId+"|"+r.word));
+  const namedSet = (code,p) => new Set(data.responses.filter(r=>r.language===code&&r.participant===p).map(r=>r.conceptId));
+
+  function renderCollect(){
+    fillLangSelect($("#c-language")); collectHelp();
+    const code=$("#c-language").value, participant=$("#c-participant").value.trim(), task=$("#c-task").value;
+    const items=itemsFor(code), area=$("#c-area"); area.replaceChildren();
+    if (!items.length){ area.append(el("p",{className:"empty",textContent:"This language has no items yet. Build a study or add items under Build & manage."})); $("#c-progress").style.width="0%"; return; }
+    if (!ID_RE.test(participant)){ area.append(el("p",{className:"empty",textContent:"Enter a participant code (letters, digits and -_.: only) to begin."})); $("#c-progress").style.width="0%"; return; }
+    const done = task==="rating" ? ratedSet(code,participant) : namedSet(code,participant);
+    const doneCount = task==="rating" ? items.filter(i=>done.has(i.conceptId+"|"+i.word)).length : items.filter(i=>done.has(i.conceptId)).length;
+    $("#c-progress").style.width = Math.round(100*doneCount/items.length)+"%";
+    if (collectIndex>=items.length) collectIndex=0;
+    const item=items[collectIndex];
+
+    const stim=el("div",{className:"stimulus"});
+    if (task==="rating"){ const w=el("div",{className:"word",textContent:item.word}); w.setAttribute("dir","auto"); w.lang=code; stim.append(w); }
+    else { stim.append(el("div",{className:"word",textContent:item.gloss})); }
+    const meta=[item.conceptId];
+    if (item.concreteness) meta.push(item.concreteness+" concreteness"+(typeof item.concretenessValue==="number"?` (${item.concretenessValue})`:""));
+    if (typeof item.frequency==="number") meta.push("Zipf "+item.frequency);
+    meta.push(`item ${collectIndex+1} of ${items.length}`, `${doneCount} done by ${participant}`);
+    stim.append(el("span",{className:"gloss",textContent:meta.join(" · ")}));
+    area.append(stim);
+
+    const controls=el("div",{className:"inline"});
+    controls.append(el("button",{className:"ghost",type:"button",textContent:"◀ Previous",onclick:()=>{ collectIndex=(collectIndex-1+items.length)%items.length; renderCollect(); }}));
+    // Rating reads the word in its own language; naming reads the English cue. The
+    // button appears only if a voice exists for whichever language is being read.
+    const speakCode = task==="rating" ? code : "eng";
+    const speakText = task==="rating" ? item.word : item.gloss;
+    if (hasVoiceFor(speakCode)) controls.append(el("button",{className:"ghost",type:"button",textContent:"🔊 Read aloud",onclick:()=>speak(speakText, speakCode)}));
+    controls.append(el("button",{className:"ghost",type:"button",textContent:"Skip ▶",onclick:()=>{ collectIndex=(collectIndex+1)%items.length; renderCollect(); }}));
+    area.append(controls);
+
+    if (task==="rating"){
+      const existing=data.ratings.find(r=>r.language===code&&r.participant===participant&&r.conceptId===item.conceptId&&r.word===item.word);
+      const grid=el("div",{className:"rating-grid"}), inputs={};
+      for (const dim of ALL){ const id="cr-"+dim; const inp=el("input",{type:"number",id,min:"0",max:"5",step:"0.5",inputMode:"decimal"});
+        if (existing && typeof existing.dims[dim]==="number") inp.value=existing.dims[dim];
+        inp.addEventListener("keydown",ev=>{ if (ev.key==="Enter") saveRating(); }); inputs[dim]=inp;
+        grid.append(el("div",{className:"rating-row"},[el("label",{htmlFor:id,textContent:LABELS[dim]}), inp])); }
+      area.append(grid);
+      const btn=el("button",{className:"act",type:"button",textContent:existing?"Update and next":"Save and next"}); area.append(btn);
+      function saveRating(){ const dims={}; let any=false;
+        for (const dim of ALL){ const v=inputs[dim].value; if (v!==""){ const n=Number(v); if (isFinite(n)&&n>=0&&n<=5){ dims[dim]=n; any=true; } } }
+        if (!any){ $("#c-help").textContent="Enter at least one rating between 0 and 5 before saving."; return; }
+        if (existing){ existing.dims=dims; existing.ts=Date.now(); } else data.ratings.push({id:uuid(),language:code,conceptId:item.conceptId,word:item.word,participant,dims,source:"browser",ts:Date.now()});
+        save(); collectIndex=(collectIndex+1)%items.length; renderCollect(); }
+      btn.onclick=saveRating;
+    } else {
+      const existing=data.responses.find(r=>r.language===code&&r.participant===participant&&r.conceptId===item.conceptId);
+      const inp=el("input",{type:"text",id:"cn-name",placeholder:"name given",autocomplete:"off"}); inp.setAttribute("dir","auto"); inp.lang=code; if (existing) inp.value=existing.name;
+      area.append(el("label",{htmlFor:"cn-name",textContent:"Name"}), inp);
+      const btn=el("button",{className:"act",type:"button",textContent:existing?"Update and next":"Save and next"}); area.append(el("div",{},[btn]));
+      function saveName(){ const name=inp.value.trim(); if (!name){ $("#c-help").textContent="Type a name before saving."; return; }
+        const length=name.split(/\s+/).filter(Boolean).length;
+        if (existing){ existing.name=name; existing.length=length; existing.ts=Date.now(); } else data.responses.push({id:uuid(),language:code,conceptId:item.conceptId,cue:item.gloss,name,length,participant,source:"browser",ts:Date.now()});
+        save(); collectIndex=(collectIndex+1)%items.length; renderCollect(); }
+      inp.addEventListener("keydown",ev=>{ if (ev.key==="Enter") saveName(); }); btn.onclick=saveName;
+    }
+  }
+
+  // ===================== EXPLORE =====================
+  let sortKey="word", sortDir=1;
+  function normRows(code){
+    const groups={};
+    for (const r of data.ratings){ if (r.language!==code) continue; const key=r.conceptId+"|"+r.word; (groups[key]=groups[key]||{conceptId:r.conceptId,word:r.word,vectors:[]}).vectors.push(r.dims); }
+    return Object.values(groups).map(g=>{ const avg=averageRatings(g.vectors,ALL); const dom=dominantModality(avg,PERCEPTUAL), f=featureOf(code,g.conceptId,g.word);
+      const spread=mean(PERCEPTUAL.map(d=>sd(g.vectors.map(v=>v[d]).filter(x=>typeof x==="number"))));
+      return {conceptId:g.conceptId,word:g.word,n:g.vectors.length,avg,dominant:dom.modality,maxStrength:dom.strength,exclusivity:modalityExclusivity(avg,PERCEPTUAL),spread,band:f.band,conc:f.conc,freq:f.freq}; });
+  }
+  function renderExplore(){
+    fillLangSelect($("#e-language"));
+    const code=$("#e-language").value, cband=$("#e-concreteness").value, fband=$("#e-frequency").value;
+    let rows=normRows(code);
+    if (cband!=="all") rows=rows.filter(r=>r.band===cband);
+    if (fband!=="all") rows=rows.filter(r=>typeof r.freq==="number" && freqBand(r.freq)===fband);
+    const cols=[["concept","Concept"],["word","Word"],["conc","Concreteness"],["freq","Zipf freq."],["n","Raters"],["dominant","Dominant"],["maxStrength","Max strength"],["exclusivity","Exclusivity"],["spread","Rater spread"]];
+    const thead=$("#e-norms thead"), tbody=$("#e-norms tbody");
+    thead.replaceChildren(el("tr",{}, cols.map(([k,l])=>{ const th=el("th",{textContent:l+(sortKey===k?(sortDir>0?" ▲":" ▼"):"")}); th.onclick=()=>{ sortDir=sortKey===k?-sortDir:1; sortKey=k; renderExplore(); }; return th; })));
+    const parts=new Set(data.ratings.filter(r=>r.language===code).map(r=>r.participant));
+    $("#e-status").textContent = rows.length ? `${rows.length} word${rows.length===1?"":"s"} shown, from ${parts.size} participant(s).` : "No ratings to show. Collect some, or load a sample of ratings under Build & manage.";
+    const get=(r,k)=> k==="concept"?r.conceptId : k==="word"?r.word : (r[k]??-1);
+    rows.sort((a,b)=>{ const x=get(a,sortKey),y=get(b,sortKey); return (typeof x==="number"?x-y:String(x).localeCompare(String(y)))*sortDir; });
+    tbody.replaceChildren(...rows.map(r=>{ const tr=el("tr"); const w=el("td",{className:"word",textContent:r.word}); w.setAttribute("dir","auto");
+      const conc = typeof r.conc==="number" ? el("span",{className:"pill "+r.band,textContent:`${r.conc} ${r.band}`}) : (r.band?el("span",{className:"pill "+r.band,textContent:r.band}):document.createTextNode(""));
+      tr.append(el("td",{textContent:r.conceptId}), w, el("td",{},[conc]), el("td",{textContent:typeof r.freq==="number"?r.freq.toFixed(2):""}),
+        el("td",{textContent:r.n}), el("td",{textContent:LABELS[r.dominant]||""}), el("td",{textContent:r.maxStrength.toFixed(2)}), el("td",{textContent:r.exclusivity.toFixed(2)}), el("td",{textContent:r.spread.toFixed(2)})); return tr; }));
+
+    const cg={}; for (const r of data.responses){ if (r.language!==code) continue; (cg[r.conceptId]=cg[r.conceptId]||[]).push(r); }
+    const cbody=$("#e-cod tbody");
+    const crows=Object.entries(cg).map(([concept,rs])=>{ const counts=tally(rs.map(r=>r.name)); return {concept,n:rs.length,distinct:Object.keys(counts).length,agreement:agreement(counts),len:mean(rs.map(r=>r.length||0))}; });
+    cbody.replaceChildren(...(crows.length ? crows.map(c=>el("tr",{},[el("td",{textContent:c.concept}),el("td",{textContent:c.n}),el("td",{textContent:c.distinct}),el("td",{textContent:c.agreement.toFixed(2)}),el("td",{textContent:c.len.toFixed(2)})])) : [el("tr",{},[el("td",{colSpan:5,className:"empty",textContent:"No naming responses yet for this language."})])]));
+  }
+  function downloadCsv(){
+    const code=$("#e-language").value, rows=normRows(code);
+    const header=["concept_id","word","concreteness","zipf_frequency","n",...ALL.map(d=>"mean_"+d),"dominant_modality","max_perceptual_strength","modality_exclusivity"];
+    const lines=[header.join(",")];
+    for (const r of rows){ const cells=[r.conceptId,r.word,typeof r.conc==="number"?r.conc:r.band,typeof r.freq==="number"?r.freq:"",r.n,...ALL.map(d=>(r.avg[d]??0).toFixed(3)),r.dominant,r.maxStrength.toFixed(3),r.exclusivity.toFixed(3)];
+      lines.push(cells.map(c=>/[",\n]/.test(String(c))?`"${String(c).replace(/"/g,'""')}"`:c).join(",")); }
+    downloadBlob(lines.join("\n")+"\n","text/csv",`senselex-sensorimotor-${code}.csv`);
+  }
+  function downloadBlob(text,type,name){ const b=new Blob([text],{type}); const a=el("a",{href:URL.createObjectURL(b),download:name}); document.body.append(a); a.click(); a.remove(); URL.revokeObjectURL(a.href); }
+
+  // ===================== BUILD & MANAGE =====================
+  const builderLang = () => $("#b-language").value || "eng";
+  function bankMatches(){
+    const code=builderLang(), useConc=bankHasConc(code);
+    const z0=Number($("#b-zmin").value), z1=Number($("#b-zmax").value), c0=Number($("#b-cmin").value), c1=Number($("#b-cmax").value);
+    return bankFor(code).filter(w => w[2]>=z0 && w[2]<=z1 && (!useConc || (typeof w[1]==="number" && w[1]>=c0 && w[1]<=c1)));
+  }
+  function renderBuilder(){
+    const panel=document.querySelector(".panel");
+    if (!bankTotal){ $("#bank-help").textContent="The word banks are not loaded (words.js is missing). You can still add items by hand below."; if (panel) panel.style.display="none"; return; }
+    fillLangSelect($("#b-language"));
+    const code=builderLang();
+    if (!BANKS[code]){
+      // No frequency bank for this language: either wordfreq has no data for it, or
+      // (for Arabic, Hebrew, Tamil, Vietnamese, Turkish and Japanese) a repeated
+      // curation audit found the derived bank still held too much non-content
+      // material (proper nouns, foreign intrusions, unresolved inflected forms) to
+      // ship. Collect and Explore already use this language's small, hand-checked
+      // core word list instead; see software/data/README.md for the audit figures.
+      $("#bank-help").textContent="This language has no frequency bank to draw from here, either because the underlying frequency data does not cover it, or because a curation check found the derived bank still too noisy to ship. It uses a small, hand-checked set of core words instead, already loaded in Collect and Explore. Add further items by hand below.";
+      if (panel) panel.style.display="none";
+      return;
+    }
+    if (panel) panel.style.display="";
+    const hasC=bankHasConc(code);
+    for (const id of ["#b-cmin","#b-cmax"]) $(id).disabled = !hasC;
+    $("#bank-help").innerHTML = `Draw a sample of words from a frequency bank, controlling word frequency${hasC?" and concreteness":""}. Frequency is on the Zipf scale (about 1 for rare words to 7 for the commonest)${hasC?", and concreteness runs from 1 (abstract) to 5 (concrete)":". Concreteness ratings are available for English only, so the concreteness limits do not apply to this language"}. The sample is added to the items for the chosen language and appears in Collect and Explore.`;
+    const m=bankMatches();
+    $("#b-match").textContent = `${m.length} of ${bankFor(code).length} bank words match the current ranges.`;
+  }
+  function addFromBank(){
+    const code=builderLang();
+    const count=Math.max(1,Math.min(500,Number($("#b-count").value)||40));
+    const m=bankMatches();
+    if (!m.length){ flash("manage","No bank words match those ranges. Widen the frequency"+(bankHasConc(code)?" or concreteness":"")+" limits.","warn"); return; }
+    const chosen=evenSample(m, count);
+    const have=new Set(data.items.filter(i=>i.language===code).map(i=>i.conceptId+"|"+i.word));
+    let added=0;
+    for (const w of chosen){ const it=bankItem(code, w); if (!have.has(it.conceptId+"|"+it.word)){ data.items.push(it); have.add(it.conceptId+"|"+it.word); added++; } }
+    save(); refreshSelectors(); renderManage();
+    const name=(data.languages.find(l=>l.code===code)||{}).name||code;
+    flash("manage",`Added ${added} word(s) to the ${name} items${added<chosen.length?` (the rest were already present)`:""}. Open Collect or Explore to use them.`,"ok");
+  }
+
+  function renderManage(){
+    fillLangSelect($("#m-lang")); renderBuilder();
+    const filter=$("#m-filter").value.trim().toLowerCase();
+    const nameOf=code=>(data.languages.find(l=>l.code===code)||{}).name||"";
+    const host=$("#m-items"); host.replaceChildren();
+    const shown=data.items.map((it,idx)=>({it,idx})).filter(({it})=> !filter || [it.language,nameOf(it.language),it.conceptId,it.gloss,it.word].some(v=>String(v).toLowerCase().includes(filter)));
+    host.append(el("p",{className:"help",textContent:`${shown.length} of ${data.items.length} items shown.`}));
+    if (!shown.length){ host.append(el("p",{className:"empty",textContent:"No items match."})); }
+    else { const tbl=el("table"); tbl.append(el("thead",{},el("tr",{},["Language","Concept","Gloss","Word","Conc.","Zipf",""].map(h=>el("th",{textContent:h})))));
+      const tb=el("tbody");
+      for (const {it,idx} of shown.slice(0,400)){ const w=el("td",{className:"word",textContent:it.word}); w.setAttribute("dir","auto");
+        const del=el("button",{className:"ghost",type:"button",title:"Remove this word from your list on this device only. Nothing is shared, and saved ratings are kept.",textContent:"Remove",onclick:()=>{ data.items.splice(idx,1); save(); renderManage(); refreshSelectors(); }});
+        tb.append(el("tr",{},[el("td",{textContent:it.language}),el("td",{textContent:it.conceptId}),el("td",{textContent:it.gloss}),w,el("td",{textContent:typeof it.concretenessValue==="number"?it.concretenessValue:(it.concreteness||"")}),el("td",{textContent:typeof it.frequency==="number"?it.frequency:""}),el("td",{},[del])])); }
+      tbl.append(tb); host.append(el("div",{className:"table-wrap"},[tbl]));
+      if (shown.length>400) host.append(el("p",{className:"help",textContent:"Showing the first 400. Filter to narrow the list."}));
+    }
+    const lhost=$("#m-langs"); lhost.replaceChildren();
+    const ltbl=el("table"); ltbl.append(el("thead",{},el("tr",{},["Code","Name","Family","Script","Direction","Items"].map(h=>el("th",{textContent:h})))));
+    const ltb=el("tbody");
+    for (const l of data.languages) ltb.append(el("tr",{},[el("td",{textContent:l.code}),el("td",{textContent:l.name}),el("td",{textContent:l.family||""}),el("td",{textContent:l.script||""}),el("td",{textContent:l.direction||"ltr"}),el("td",{textContent:String(itemsFor(l.code).length)})]));
+    ltbl.append(ltb); lhost.append(el("div",{className:"table-wrap"},[ltbl]));
+  }
+  function addItem(){ const language=$("#m-lang").value, conceptId=$("#m-concept").value.trim().toUpperCase(), gloss=$("#m-gloss").value.trim(), word=$("#m-word").value.trim(), concreteness=$("#m-conc").value;
+    if (!ID_RE.test(conceptId)){ flash("manage","Concept id may use letters, digits and -_.: only.","warn"); return; }
+    if (!gloss||!word){ flash("manage","Gloss and word are both required.","warn"); return; }
+    data.items.push({language,conceptId,gloss,word,concreteness}); save(); $("#m-concept").value=$("#m-gloss").value=$("#m-word").value=""; renderManage(); refreshSelectors(); flash("manage","Item added.","ok"); }
+  function importItems(){ const text=$("#m-bulk").value.trim(); if (!text) return; let added=0,skipped=0;
+    for (const line of text.split(/\r?\n/)){ const parts=line.split(",").map(s=>s.trim()); if (parts.length<4){ if (line.trim()) skipped++; continue; }
+      const language=parts[0], conceptId=(parts[1]||"").toUpperCase(), gloss=parts[2], word=parts[3], concreteness=["high","medium","low"].includes((parts[4]||"").toLowerCase())?parts[4].toLowerCase():"";
+      if (!data.languages.some(l=>l.code===language)||!ID_RE.test(conceptId)||!gloss||!word){ skipped++; continue; }
+      data.items.push({language,conceptId,gloss,word,concreteness}); added++; }
+    save(); $("#m-bulk").value=""; renderManage(); refreshSelectors(); flash("manage",`Added ${added} item(s)${skipped?`, skipped ${skipped} that did not parse or named an unknown language`:""}.`, skipped?"warn":"ok"); }
+  function addLang(){ const code=$("#m-newcode").value.trim().toLowerCase(), name=$("#m-newname").value.trim(), script=$("#m-newscript").value.trim()||"Latin", direction=$("#m-newdir").value;
+    if (!ID_RE.test(code)||!name){ flash("manage","A code and a name are required.","warn"); return; }
+    if (data.languages.some(l=>l.code===code)){ flash("manage","That language code already exists.","warn"); return; }
+    data.languages.push({code,name,script,direction,family:"added"}); save(); $("#m-newcode").value=$("#m-newname").value=$("#m-newscript").value=""; renderManage(); refreshSelectors(); flash("manage","Language added.","ok"); }
+
+  function exportData(){ downloadBlob(JSON.stringify(data,null,2),"application/json",`senselex-dataset-${new Date().toISOString().slice(0,10)}.json`); }
+  function importData(file){ const reader=new FileReader();
+    reader.onload=()=>{ try { const inc=JSON.parse(reader.result); if (!inc||!Array.isArray(inc.languages)) throw new Error("shape");
+      const seenL=new Set(data.languages.map(l=>l.code)); for (const l of inc.languages||[]) if (!seenL.has(l.code)) data.languages.push(l);
+      const ik=i=>i.language+"|"+i.conceptId+"|"+i.word; const seenI=new Set(data.items.map(ik)); for (const i of inc.items||[]) if (!seenI.has(ik(i))) data.items.push(i);
+      const seenR=new Set(data.ratings.map(r=>r.id)); for (const r of inc.ratings||[]) if (!seenR.has(r.id)) data.ratings.push(r);
+      const seenN=new Set(data.responses.map(r=>r.id)); for (const r of inc.responses||[]) if (!seenN.has(r.id)) data.responses.push(r);
+      save(); refreshSelectors(); renderManage(); flash("manage","Dataset imported and merged.","ok");
+    } catch { flash("manage","That file could not be read as a SenseLex dataset.","warn"); } };
+    reader.readAsText(file); }
+  function loadSample(){
+    const ex=[
+      ["eng","COFFEE","coffee",[{smell:5,taste:5,vision:3,touch:2,interoception:2},{smell:5,taste:4,vision:3,interoception:1},{smell:4,taste:5,vision:2,touch:1,interoception:2}]],
+      ["eng","THUNDER","thunder",[{hearing:5,vision:3,touch:1,interoception:2},{hearing:5,vision:4,interoception:1},{hearing:5,vision:3,touch:1}]],
+      ["eng","JUSTICE","justice",[{vision:1,hearing:1,interoception:2},{interoception:2},{vision:1,interoception:1}]],
+      ["eng","WATER","water",[{taste:3,touch:4,vision:3,interoception:2},{touch:4,vision:3,taste:2,smell:1}]],
+      ["spa","WATER","agua",[{taste:3,touch:4,vision:3},{touch:4,vision:3,taste:2}]]
+    ];
+    let added=0;
+    for (const [language,conceptId,word,vectors] of ex){ if (!data.items.some(i=>i.language===language&&i.conceptId===conceptId&&i.word===word)) data.items.push({language,conceptId,gloss:word,word,concreteness:displayBand(conceptId==="JUSTICE"?1.5:conceptId==="WATER"?4.5:4)});
+      vectors.forEach((dims,i)=>{ const id=`sample-${language}-${conceptId}-${i}`; if (!data.ratings.some(r=>r.id===id)){ data.ratings.push({id,language,conceptId,word,participant:`S${i+1}`,dims,source:"sample",ts:Date.now()}); added++; } }); }
+    const names=[["eng","SMOKE",["smoky","burnt","bonfire","acrid","woody","sharp"]],["eng","ROSE",["floral","floral","sweet","floral","perfume","floral"]]];
+    for (const [language,conceptId,list] of names){ if (!data.items.some(i=>i.language===language&&i.conceptId===conceptId)) data.items.push({language,conceptId,gloss:conceptId.toLowerCase(),word:conceptId.toLowerCase(),concreteness:"high"});
+      list.forEach((nm,i)=>{ const id=`sampn-${language}-${conceptId}-${i}`; if (!data.responses.some(r=>r.id===id)) data.responses.push({id,language,conceptId,cue:conceptId.toLowerCase(),name:nm,length:nm.split(/\s+/).length,participant:`S${i+1}`,source:"sample",ts:Date.now()}); }); }
+    save(); refreshSelectors(); renderManage(); flash("manage",`Loaded a sample of ${added} ratings and some naming responses. Open the Explore tab to see the norms.`,"ok");
+  }
+  function resetAll(){ if (!confirm("Remove all languages, items and collected data from this browser and return to the starter set?")) return; data=defaultDataset(); save(); refreshSelectors(); renderManage(); renderCollect(); flash("manage","Reset to the starter set.","ok"); }
+
+  // ----- wiring -----
+  function refreshSelectors(){ for (const id of ["#c-language","#e-language","#m-lang"]) fillLangSelect($(id)); renderStatus(); }
+  let currentView="collect";
+  function showView(v){ currentView=v;
+    for (const b of document.querySelectorAll("#tabs button")) b.setAttribute("aria-selected", String(b.dataset.view===v));
+    for (const s of document.querySelectorAll(".view")) s.classList.toggle("active", s.id==="view-"+v);
+    if (v==="collect") renderCollect(); else if (v==="explore") renderExplore(); else renderManage(); }
+
+  load(); renderStatus(); refreshSelectors();
+  document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
+  $("#c-language").addEventListener("change",()=>{ collectIndex=0; renderCollect(); });
+  $("#c-participant").addEventListener("input",renderCollect);
+  $("#c-task").addEventListener("change",()=>{ collectIndex=0; renderCollect(); });
+  $("#e-language").addEventListener("change",renderExplore);
+  $("#e-concreteness").addEventListener("change",renderExplore);
+  $("#e-frequency").addEventListener("change",renderExplore);
+  $("#e-download-csv").addEventListener("click",downloadCsv);
+  for (const id of ["#b-count","#b-zmin","#b-zmax","#b-cmin","#b-cmax"]) $(id).addEventListener("input",renderBuilder);
+  $("#b-language").addEventListener("change",renderBuilder);
+  $("#b-add").addEventListener("click",addFromBank);
+  $("#m-add-item").addEventListener("click",addItem);
+  $("#m-import-items").addEventListener("click",importItems);
+  $("#m-filter").addEventListener("input",renderManage);
+  $("#m-add-lang").addEventListener("click",addLang);
+  $("#d-export").addEventListener("click",exportData);
+  $("#d-import-btn").addEventListener("click",()=>$("#d-import").click());
+  $("#d-import").addEventListener("change",e=>{ if (e.target.files[0]) importData(e.target.files[0]); e.target.value=""; });
+  $("#d-sample").addEventListener("click",loadSample);
+  $("#d-reset").addEventListener("click",resetAll);
+  if ("speechSynthesis" in window) window.speechSynthesis.onvoiceschanged = () => { if (currentView==="collect") renderCollect(); };
+
+  // ----- Theme (light/dark toggle, remembered on this device) -----
+  const THEME_KEY = "senselex.theme";
+  const themeBtn = $("#theme-toggle");
+  let theme = null; try { theme = localStorage.getItem(THEME_KEY); } catch {}
+  const systemDark = () => !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  function applyTheme(){
+    const root=document.documentElement;
+    if (theme==="light"||theme==="dark") root.setAttribute("data-theme",theme); else root.removeAttribute("data-theme");
+    const dark = theme==="dark" || (theme!=="light" && systemDark());
+    themeBtn.textContent = dark ? "☀ Light" : "🌙 Dark";
+    themeBtn.setAttribute("aria-pressed", String(dark));
+    themeBtn.title = dark ? "Switch to the light theme" : "Switch to the dark theme";
+  }
+  themeBtn.addEventListener("click",()=>{ const dark = theme==="dark" || (theme!=="light" && systemDark()); theme = dark ? "light" : "dark"; try { localStorage.setItem(THEME_KEY, theme); } catch {} applyTheme(); });
+  if (window.matchMedia) try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", ()=>{ if (theme!=="light"&&theme!=="dark") applyTheme(); }); } catch {}
+  applyTheme();
+
+  renderCollect();
+  </script>
+</body>
+</html>

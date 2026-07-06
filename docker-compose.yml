@@ -1,0 +1,22 @@
+# A single-service deployment for the Atlas. The data directory is a named volume
+# so the database survives container restarts. Set the write tokens in a .env file
+# beside this one before bringing it up.
+
+services:
+  atlas:
+    build: .
+    image: senselex:0.1.0
+    restart: unless-stopped
+    ports:
+      - "8787:8787"
+    environment:
+      NODE_ENV: production
+      SENSELEX_HOST: 0.0.0.0
+      SENSELEX_DATABASE_PATH: /app/data/senselex.db
+      SENSELEX_API_TOKENS: ${SENSELEX_API_TOKENS}
+      SENSELEX_CORS_ORIGINS: ${SENSELEX_CORS_ORIGINS:-}
+    volumes:
+      - atlas-data:/app/data
+
+volumes:
+  atlas-data:

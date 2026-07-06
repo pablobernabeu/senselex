@@ -1,0 +1,81 @@
+:root {
+  --bg: #fbfaf7;
+  --ink: #1d1c1a;
+  --muted: #5c574f;
+  --line: #d9d4ca;
+  --accent: #5a4f8c;
+  --accent-ink: #ffffff;
+  --focus: #1668c0;
+  /* A broad font stack so target scripts render even where a system font is
+     missing. Bundle the Noto families with the deployment for full offline
+     coverage of Latin, Arabic, Devanagari, Kannada, and Han scripts. */
+  --font: "Noto Sans", "Noto Sans Arabic", "Noto Sans Devanagari", "Noto Sans Kannada", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+  font-size: 18px;
+}
+
+header, main, footer { max-width: 60rem; margin: 0 auto; padding: 1.5rem; }
+header { padding-bottom: 0; }
+h1 { font-size: 1.9rem; margin: 0 0 0.25rem; }
+h2 { font-size: 1.3rem; margin-top: 2.5rem; border-bottom: 2px solid var(--line); padding-bottom: 0.3rem; }
+.lede { color: var(--muted); max-width: 46rem; }
+.help { color: var(--muted); font-size: 0.95rem; margin: 0.25rem 0 0; }
+
+.field { margin: 1rem 0; }
+label, legend { display: block; font-weight: 600; margin-bottom: 0.35rem; }
+
+input, select, button {
+  font: inherit;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 0.4rem;
+  background: #fff;
+  color: inherit;
+  min-height: 2.75rem;
+}
+input, select { width: 100%; max-width: 28rem; }
+
+button {
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  padding-inline: 1.2rem;
+  margin-top: 0.5rem;
+}
+button:hover { filter: brightness(1.08); }
+
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; margin-top: 0.75rem; }
+th, td { text-align: left; padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--line); }
+th { background: #f1eee7; }
+td.word { font-size: 1.1rem; }
+
+fieldset { border: 1px solid var(--line); border-radius: 0.5rem; margin: 1rem 0; }
+.rating-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 0.5rem 1.5rem; }
+.rating-row { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+.rating-row label { margin: 0; font-weight: 500; }
+.rating-row input { width: 5rem; }
+
+.downloads { margin-top: 1rem; }
+.downloads a { margin-right: 1.5rem; }
+
+footer { color: var(--muted); border-top: 1px solid var(--line); margin-top: 3rem; font-size: 0.95rem; }
+
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #171614; --ink: #f3efe7; --muted: #aaa399; --line: #38342d; --accent: #b8aee8; --accent-ink: #171614; --focus: #7db1ff; }
+  input, select, button { background: #221f1b; }
+  th { background: #221f1b; }
+}
