@@ -10,7 +10,9 @@ The field client is an offline-first layer for data collection where there is li
 
 The shared core holds the science: the rating dimensions, the norm computations, and the validation rules, written as pure functions so that the same logic runs on the server, in the field client, and in batch re-analysis.
 
-Alongside these, the `web-static/` folder holds a browser edition: a single self-contained page that runs the same study building, rating, and norm computation in the browser alone, with no server and no account, saving data to the device. It suits quick use, demonstration, and low-connectivity settings. See `web-static/README.md`.
+Alongside these, the `web-static/` folder holds a browser edition: a single self-contained page that runs the same study building, rating, and norm computation in the browser alone, with no server and no account, saving data to the device. It suits quick use, demonstration, and low-connectivity settings, and it doubles as a recruitable study runner through URL study links (Prolific parameters, completion codes, and optional submission to a hosted Atlas). See `web-static/README.md`.
+
+The `integrations/` folder holds the bridges to the wider ecosystem, currently a jsPsych plugin implementing the sensorimotor rating trial and documentation of the two-way jsPsych workflow (export a study, import its data).
 
 ## Why it is built this way
 

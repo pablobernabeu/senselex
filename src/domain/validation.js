@@ -21,10 +21,14 @@ function isPlainObject(value) {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
-// A conservative pattern for client-supplied identifiers. Allowing only these
-// characters keeps identifiers safe to use in URLs, filenames, and logs, and
-// removes a class of injection and traversal risks at the door.
-const IDENTIFIER = /^[A-Za-z0-9_.:-]{1,128}$/;
+// A conservative pattern for client-supplied identifiers: letters and digits in
+// any script, plus _.:- as separators. Concept identifiers arrive from
+// multilingual clients and legitimately carry non-Latin letters (the browser
+// edition derives ACCIÓN from acción rather than mangling it to ACCI_N), so
+// the class is Unicode-aware; it still excludes whitespace, quoting, path and
+// control characters, every value is bound as a SQL parameter rather than
+// concatenated, and nothing but ASCII language codes ever reaches a filename.
+const IDENTIFIER = /^[\p{L}\p{N}_.:-]{1,128}$/u;
 
 export function isIdentifier(value) {
   return typeof value === 'string' && IDENTIFIER.test(value);

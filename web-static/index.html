@@ -109,7 +109,8 @@
     <details class="how" open>
       <summary>How this works</summary>
       <p>The work runs across three tabs. Build &amp; manage is where you assemble the word list: draw a frequency-controlled sample from the built-in banks, add your own words and manage languages and backups. Collect presents those words one at a time for sensorimotor rating or free naming. Explore turns the collected ratings into norms you can sort and download.</p>
-      <p>Everything stays in this browser on this device. There is no account, no upload and no server. Removing a word, or resetting, changes only your own copy here, so use Export to keep a copy or move your data to another machine.</p>
+      <p>Everything stays in this browser on this device, with one exception you control: a study link that names an Atlas address submits ratings there as they are saved, and says so on screen. There is otherwise no account, no upload and no server. Removing a word, or resetting, changes only your own copy here, so use Export to keep a copy or move your data to another machine.</p>
+      <p>A study link preconfigures a session through the address, so a recruitment platform such as Prolific can send participants straight into a task: <span class="pill">?lang=spa&amp;task=rating</span> selects the language and task, <span class="pill">&amp;cc=CODE</span> shows a Return to Prolific button when every item is done, and <span class="pill">&amp;atlas=…&amp;token=…</span> submits ratings to a hosted Atlas. Prolific's own PROLIFIC_PID, STUDY_ID and SESSION_ID parameters are picked up automatically.</p>
     </details>
     <div class="bar" id="statusbar"></div>
   </header>
@@ -129,6 +130,7 @@
         <div><label for="c-task">Task</label><select id="c-task"><option value="rating">Sensorimotor rating</option><option value="naming">Free naming</option></select></div>
       </div>
       <p class="help" id="c-help"></p>
+      <div id="c-study" role="status" aria-live="polite"></div>
       <div class="progress" aria-hidden="true"><span id="c-progress"></span></div>
       <div id="c-area"></div>
     </section>
@@ -139,7 +141,7 @@
         <div><label for="e-language">Language</label><select id="e-language"></select></div>
         <div class="narrow"><label for="e-concreteness">Concreteness</label><select id="e-concreteness"><option value="all">All</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></div>
         <div class="narrow"><label for="e-frequency">Frequency</label><select id="e-frequency"><option value="all">All</option><option value="high">High</option><option value="mid">Mid</option><option value="low">Low</option></select></div>
-        <div style="align-self:end"><button class="ghost" id="e-download-csv" type="button">Download norms (CSV)</button></div>
+        <div style="align-self:end" class="inline"><button class="ghost" id="e-download-csv" type="button">Download norms (CSV)</button><button class="ghost" id="e-download-long" type="button">Download trial-level ratings (CSV)</button></div>
       </div>
       <h3>Sensorimotor norms</h3>
       <p class="help">Means across raters on each channel, with the dominant perceptual modality, the maximum perceptual strength, the modality-exclusivity score and a rater-spread figure as a reliability cue. Concreteness and Zipf frequency come from the word bank. Click a column heading to sort.</p>
@@ -196,6 +198,14 @@
         <div style="align-self:end"><button class="act" id="m-add-lang" type="button">Add language</button></div>
       </div>
       <div id="m-langs"></div>
+
+      <div class="spacer"></div>
+      <h3>Run the study elsewhere</h3>
+      <p class="help">Export the items for one language as a ready-to-run jsPsych experiment. The file runs on any static host or jsPsych-compatible platform, carries Prolific's participant parameters through, and saves its data both as a jsPsych CSV and as a SenseLex dataset file that imports straight back here, or into the full Atlas, through Import below. Free naming is not exported, because naming responses need an analyst's coding before they can enter the norms.</p>
+      <div class="row">
+        <div><label for="j-lang">Language</label><select id="j-lang"></select></div>
+        <div style="align-self:end"><button class="act" id="j-export" type="button">Download jsPsych experiment (HTML)</button></div>
+      </div>
 
       <div class="spacer"></div>
       <h3>Back up, restore and reset</h3>
@@ -346,11 +356,82 @@
   // ----- Helpers -----
   const $ = s => document.querySelector(s);
   const el = (tag, props={}, kids=[]) => { const n=document.createElement(tag); Object.assign(n,props); for (const k of [].concat(kids)) if (k!=null) n.append(k); return n; };
-  function fillLangSelect(sel){ const cur=sel.value; sel.replaceChildren(); for (const l of data.languages) sel.append(el("option",{value:l.code,textContent:`${l.name} (${l.code})`})); if (cur && data.languages.some(l=>l.code===cur)) sel.value=cur; }
+  // Languages are always presented in alphabetical order by name, so the dropdowns
+  // and the management table stay predictable however the stored order was built up.
+  const languagesSorted = () => [...data.languages].sort((a,b)=>a.name.localeCompare(b.name));
+  function fillLangSelect(sel){ const cur=sel.value; sel.replaceChildren(); for (const l of languagesSorted()) sel.append(el("option",{value:l.code,textContent:`${l.name} (${l.code})`})); if (cur && data.languages.some(l=>l.code===cur)) sel.value=cur; }
   const itemsFor = code => data.items.filter(i=>i.language===code);
   function featureOf(code,conceptId,word){ const it=data.items.find(i=>i.language===code&&i.conceptId===conceptId&&i.word===word); return it ? {band:it.concreteness||"", conc:it.concretenessValue, freq:it.frequency} : {band:"",conc:undefined,freq:undefined}; }
 
   function flash(view, text, kind="ok"){ if (view!=="manage") return; const host=$("#m-msg"); const m=el("div",{className:`msg ${kind}`,textContent:text}); host.replaceChildren(m); setTimeout(()=>{ if (host.contains(m)) host.removeChild(m); },4500); }
+
+  // ----- Study links (recruitment and hosted-Atlas integration) -----
+  // A study link preconfigures the session through URL parameters, so a
+  // recruitment platform can send a participant straight into a task:
+  //   ?lang=spa&task=rating       preselect the language and the task
+  //   &cc=CODE                    Prolific completion code; when every item is
+  //                               done, a Return to Prolific button carries it back
+  //   &atlas=https://host&token=T submit ratings to a hosted Atlas as they are
+  //                               saved, idempotently and with retry, so the
+  //                               researcher receives the data without asking
+  //                               the participant to export anything
+  // Prolific appends PROLIFIC_PID, STUDY_ID and SESSION_ID itself: the PID
+  // becomes the participant code and all three are stored with each record.
+  const PARAMS = new URLSearchParams(location.search);
+  const STUDY = {
+    pid: PARAMS.get("PROLIFIC_PID"), sid: PARAMS.get("STUDY_ID"), ses: PARAMS.get("SESSION_ID"),
+    lang: PARAMS.get("lang"), task: PARAMS.get("task"), cc: PARAMS.get("cc"),
+    atlas: (PARAMS.get("atlas")||"").replace(/\/+$/,""), token: PARAMS.get("token"),
+    authFailed: false
+  };
+  const studyMode = !!(STUDY.pid || STUDY.lang || STUDY.task || STUDY.cc || STUDY.atlas);
+  const stamp = rec => { if (STUDY.sid) rec.study=STUDY.sid; if (STUDY.ses) rec.session=STUDY.ses; if (STUDY.atlas) rec.pending=true; return rec; };
+
+  // Ratings marked pending are submitted to the Atlas /v1/sync endpoint in
+  // idempotent batches. The record id doubles as the client id, so a retry
+  // after a lost response can never double-count: the server recognises the
+  // duplicate and discards it. Naming responses stay local, because the Atlas
+  // stores coded responses and coding (abstract, source-based, evaluative) is
+  // an analyst's judgement, not something to guess at submission time. A
+  // rating edited after successful submission stays local as well.
+  let syncing=false, syncTimer=null;
+  async function flushSync(){
+    if (!STUDY.atlas || syncing) return;
+    const pending = data.ratings.filter(r=>r.pending).slice(0,200);
+    if (!pending.length){ renderStudyNote(); return; }
+    syncing=true; renderStudyNote();
+    try {
+      const records = pending.map(r=>({kind:"rating",clientId:r.id,languageCode:r.language,conceptId:r.conceptId,word:r.word,participantRef:r.participant||null,ratings:r.dims}));
+      const headers = {"Content-Type":"application/json"};
+      if (STUDY.token) headers.Authorization = "Bearer "+STUDY.token;
+      const res = await fetch(STUDY.atlas+"/v1/sync",{method:"POST",headers,body:JSON.stringify({records})});
+      if (res.ok){ for (const r of pending) delete r.pending; STUDY.authFailed=false; save(); }
+      else if (res.status===401){ STUDY.authFailed=true; }
+      else if (res.status>=400 && res.status<500 && res.status!==429){ for (const r of pending){ delete r.pending; r.rejected=true; } save(); }
+    } catch {}
+    syncing=false; renderStudyNote();
+    clearTimeout(syncTimer);
+    if (data.ratings.some(r=>r.pending)) syncTimer=setTimeout(flushSync, 15000);
+  }
+  function renderStudyNote(){
+    const host=$("#c-study"); if (!host) return;
+    if (!studyMode){ host.replaceChildren(); return; }
+    const bits=[];
+    if (STUDY.pid) bits.push("Prolific session for participant "+STUDY.pid.slice(0,8)+"…");
+    if (STUDY.atlas){
+      const n=data.ratings.filter(r=>r.pending).length;
+      const hostname=(()=>{ try { return new URL(STUDY.atlas).host; } catch { return STUDY.atlas; } })();
+      bits.push("Ratings are submitted to "+hostname+(STUDY.authFailed?" (submission refused: the study token was not accepted; your ratings are kept safely on this device)":(n?` (${n} awaiting submission)`:" (all submitted)")));
+    } else if (STUDY.cc) bits.push("Data stay on this device; you will be returned to Prolific at the end");
+    host.replaceChildren(el("div",{className:"msg "+(STUDY.authFailed?"warn":"ok"),textContent:bits.join(". ")+"."}));
+  }
+  function completionPanel(total){
+    const wrap=el("div",{className:"msg ok"});
+    wrap.append(el("span",{textContent:`Every item is complete for this session (${total} of ${total}). Thank you.`}));
+    if (STUDY.atlas){ const n=data.ratings.filter(r=>r.pending).length; wrap.append(document.createTextNode(n?` ${n} rating(s) are still being submitted; please keep this page open a moment.`:" All ratings have been submitted.")); }
+    if (STUDY.cc){ const a=el("a",{href:"https://app.prolific.com/submissions/complete?cc="+encodeURIComponent(STUDY.cc),textContent:"Return to Prolific to complete your submission"}); a.style.marginLeft=".6rem"; a.style.fontWeight="600"; wrap.append(a); }
+    return wrap;
+  }
 
   function renderStatus(){
     const parts=[ ["languages",data.languages.length],["items",data.items.length],["ratings",data.ratings.length],["naming responses",data.responses.length] ];
@@ -379,7 +460,7 @@
   const namedSet = (code,p) => new Set(data.responses.filter(r=>r.language===code&&r.participant===p).map(r=>r.conceptId));
 
   function renderCollect(){
-    fillLangSelect($("#c-language")); collectHelp();
+    fillLangSelect($("#c-language")); collectHelp(); renderStudyNote();
     const code=$("#c-language").value, participant=$("#c-participant").value.trim(), task=$("#c-task").value;
     const items=itemsFor(code), area=$("#c-area"); area.replaceChildren();
     if (!items.length){ area.append(el("p",{className:"empty",textContent:"This language has no items yet. Build a study or add items under Build & manage."})); $("#c-progress").style.width="0%"; return; }
@@ -387,6 +468,7 @@
     const done = task==="rating" ? ratedSet(code,participant) : namedSet(code,participant);
     const doneCount = task==="rating" ? items.filter(i=>done.has(i.conceptId+"|"+i.word)).length : items.filter(i=>done.has(i.conceptId)).length;
     $("#c-progress").style.width = Math.round(100*doneCount/items.length)+"%";
+    if (doneCount===items.length) area.append(completionPanel(items.length));
     if (collectIndex>=items.length) collectIndex=0;
     const item=items[collectIndex];
 
@@ -422,8 +504,8 @@
       function saveRating(){ const dims={}; let any=false;
         for (const dim of ALL){ const v=inputs[dim].value; if (v!==""){ const n=Number(v); if (isFinite(n)&&n>=0&&n<=5){ dims[dim]=n; any=true; } } }
         if (!any){ $("#c-help").textContent="Enter at least one rating between 0 and 5 before saving."; return; }
-        if (existing){ existing.dims=dims; existing.ts=Date.now(); } else data.ratings.push({id:uuid(),language:code,conceptId:item.conceptId,word:item.word,participant,dims,source:"browser",ts:Date.now()});
-        save(); collectIndex=(collectIndex+1)%items.length; renderCollect(); }
+        if (existing){ existing.dims=dims; existing.ts=Date.now(); } else data.ratings.push(stamp({id:uuid(),language:code,conceptId:item.conceptId,word:item.word,participant,dims,source:"browser",ts:Date.now()}));
+        save(); if (STUDY.atlas) flushSync(); collectIndex=(collectIndex+1)%items.length; renderCollect(); }
       btn.onclick=saveRating;
     } else {
       const existing=data.responses.find(r=>r.language===code&&r.participant===participant&&r.conceptId===item.conceptId);
@@ -432,7 +514,7 @@
       const btn=el("button",{className:"act",type:"button",textContent:existing?"Update and next":"Save and next"}); area.append(el("div",{},[btn]));
       function saveName(){ const name=inp.value.trim(); if (!name){ $("#c-help").textContent="Type a name before saving."; return; }
         const length=name.split(/\s+/).filter(Boolean).length;
-        if (existing){ existing.name=name; existing.length=length; existing.ts=Date.now(); } else data.responses.push({id:uuid(),language:code,conceptId:item.conceptId,cue:item.gloss,name,length,participant,source:"browser",ts:Date.now()});
+        if (existing){ existing.name=name; existing.length=length; existing.ts=Date.now(); } else { const rec={id:uuid(),language:code,conceptId:item.conceptId,cue:item.gloss,name,length,participant,source:"browser",ts:Date.now()}; if (STUDY.sid) rec.study=STUDY.sid; if (STUDY.ses) rec.session=STUDY.ses; data.responses.push(rec); }
         save(); collectIndex=(collectIndex+1)%items.length; renderCollect(); }
       inp.addEventListener("keydown",ev=>{ if (ev.key==="Enter") saveName(); }); btn.onclick=saveName;
     }
@@ -470,15 +552,113 @@
     const crows=Object.entries(cg).map(([concept,rs])=>{ const counts=tally(rs.map(r=>r.name)); return {concept,n:rs.length,distinct:Object.keys(counts).length,agreement:agreement(counts),len:mean(rs.map(r=>r.length||0))}; });
     cbody.replaceChildren(...(crows.length ? crows.map(c=>el("tr",{},[el("td",{textContent:c.concept}),el("td",{textContent:c.n}),el("td",{textContent:c.distinct}),el("td",{textContent:c.agreement.toFixed(2)}),el("td",{textContent:c.len.toFixed(2)})])) : [el("tr",{},[el("td",{colSpan:5,className:"empty",textContent:"No naming responses yet for this language."})])]));
   }
+  const csvq = c => /[",\n]/.test(String(c)) ? `"${String(c).replace(/"/g,'""')}"` : String(c);
   function downloadCsv(){
     const code=$("#e-language").value, rows=normRows(code);
     const header=["concept_id","word","concreteness","zipf_frequency","n",...ALL.map(d=>"mean_"+d),"dominant_modality","max_perceptual_strength","modality_exclusivity"];
     const lines=[header.join(",")];
     for (const r of rows){ const cells=[r.conceptId,r.word,typeof r.conc==="number"?r.conc:r.band,typeof r.freq==="number"?r.freq:"",r.n,...ALL.map(d=>(r.avg[d]??0).toFixed(3)),r.dominant,r.maxStrength.toFixed(3),r.exclusivity.toFixed(3)];
-      lines.push(cells.map(c=>/[",\n]/.test(String(c))?`"${String(c).replace(/"/g,'""')}"`:c).join(",")); }
+      lines.push(cells.map(csvq).join(",")); }
     downloadBlob(lines.join("\n")+"\n","text/csv",`senselex-sensorimotor-${code}.csv`);
   }
+  // Trial-level ratings in long format, one row per participant, word and
+  // dimension, for archiving and independent reanalysis alongside the norms.
+  function downloadLongCsv(){
+    const code=$("#e-language").value;
+    const lines=[["participant","language","concept_id","word","dimension","rating","study","session","timestamp"].join(",")];
+    for (const r of data.ratings){ if (r.language!==code) continue;
+      for (const d of ALL){ const v=r.dims[d]; if (typeof v!=="number") continue;
+        lines.push([r.participant,r.language,r.conceptId,r.word,d,v,r.study||"",r.session||"",r.ts?new Date(r.ts).toISOString():""].map(csvq).join(",")); } }
+    downloadBlob(lines.join("\n")+"\n","text/csv",`senselex-ratings-long-${code}.csv`);
+  }
   function downloadBlob(text,type,name){ const b=new Blob([text],{type}); const a=el("a",{href:URL.createObjectURL(b),download:name}); document.body.append(a); a.click(); a.remove(); URL.revokeObjectURL(a.href); }
+
+  // ----- jsPsych export -----
+  // Generates a jsPsych 8 experiment for one language's items. The rating trial
+  // mirrors this app's grid exactly (same dimensions, same 0-5 scale, partial
+  // vectors allowed), Prolific's parameters pass through at run time, and the
+  // data save in two forms: the native jsPsych CSV and a SenseLex dataset JSON
+  // that imports straight back here or into the full Atlas. jsPsych itself
+  // loads from a pinned CDN copy, the one respect in which the exported file
+  // is not self-contained.
+  function buildJsPsychHtml(code){
+    const lm = data.languages.find(l=>l.code===code) || {code,name:code,direction:"ltr"};
+    const payload = {
+      language: {code:lm.code, name:lm.name||code, script:lm.script||"", direction:lm.direction||"ltr"},
+      dims: ALL, labels: LABELS,
+      items: itemsFor(code).map(i=>({conceptId:i.conceptId, word:i.word, gloss:i.gloss}))
+    };
+    const json = JSON.stringify(payload).replace(/</g,"\\u003c");
+    return [
+'<!DOCTYPE html>','<html lang="en">','<head>','<meta charset="utf-8">',
+'<title>SenseLex sensorimotor rating ('+(lm.name||code)+')</title>',
+'<script src="https://cdn.jsdelivr.net/npm/jspsych@8"><\/script>',
+'<script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-html-button-response@2"><\/script>',
+'<link href="https://cdn.jsdelivr.net/npm/jspsych@8/css/jspsych.css" rel="stylesheet">',
+'<style>.sx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.3rem 1.4rem;max-width:46rem;margin:1rem auto;text-align:left}.sx-row{display:flex;justify-content:space-between;align-items:center;gap:.6rem}.sx-row input{width:4.6rem;font:inherit;padding:.25rem}.sx-word{font-size:2.2rem;font-weight:600;margin:.6rem 0}<\/style>',
+'</head>','<body>','<script>',
+'var SENSELEX = '+json+';',
+'var SenselexRatingPlugin = (function(){',
+'  var info = { name: "senselex-rating", version: "1.0.0",',
+'    parameters: { word:{type:"STRING"}, concept_id:{type:"STRING"}, direction:{type:"STRING", default:"ltr"} },',
+'    data: { concept_id:{type:"STRING"}, word:{type:"STRING"}, dims:{type:"OBJECT"}, rt:{type:"INT"} } };',
+'  function P(jsPsych){ this.jsPsych = jsPsych; }',
+'  P.info = info;',
+'  P.prototype.trial = function(el, trial){',
+'    var t0 = performance.now(), jsPsych = this.jsPsych;',
+'    var h = "<div class=\\"sx-word\\" dir=\\""+trial.direction+"\\">"+trial.word+"</div>";',
+'    h += "<p>Rate how strongly this word is experienced through each channel, from 0 (not at all) to 5 (very strongly). Leave a channel blank if it does not apply.</p>";',
+'    h += "<div class=\\"sx-grid\\">";',
+'    for (var i=0;i<SENSELEX.dims.length;i++){ var d=SENSELEX.dims[i];',
+'      h += "<div class=\\"sx-row\\"><label for=\\"sx-"+d+"\\">"+SENSELEX.labels[d]+"</label><input id=\\"sx-"+d+"\\" type=\\"number\\" min=\\"0\\" max=\\"5\\" step=\\"0.5\\"></div>"; }',
+'    h += "</div><button id=\\"sx-save\\" class=\\"jspsych-btn\\">Save and continue</button><p id=\\"sx-msg\\"></p>";',
+'    el.innerHTML = h;',
+'    document.getElementById("sx-save").addEventListener("click", function(){',
+'      var dims = {}, any = false;',
+'      for (var i=0;i<SENSELEX.dims.length;i++){ var d=SENSELEX.dims[i], v=document.getElementById("sx-"+d).value;',
+'        if (v!==""){ var n=Number(v); if (isFinite(n)&&n>=0&&n<=5){ dims[d]=n; any=true; } } }',
+'      if (!any){ document.getElementById("sx-msg").textContent = "Enter at least one rating between 0 and 5 before saving."; return; }',
+'      el.innerHTML = "";',
+'      jsPsych.finishTrial({ concept_id: trial.concept_id, word: trial.word, dims: dims, rt: Math.round(performance.now()-t0) });',
+'    });',
+'  };',
+'  return P;',
+'})();',
+'var Q = new URLSearchParams(location.search);',
+'var participant = Q.get("PROLIFIC_PID") || ("web-" + Math.random().toString(16).slice(2,10));',
+'var cc = Q.get("cc");',
+'var jsPsych = initJsPsych();',
+'var timeline = [];',
+'timeline.push({ type: jsPsychHtmlButtonResponse, choices: ["Begin"],',
+'  stimulus: "<h2>Word rating study</h2><p>You will see "+SENSELEX.items.length+" words in "+SENSELEX.language.name+", one at a time, and rate how strongly each is experienced through eleven perceptual and action channels.</p>" });',
+'for (var i=0;i<SENSELEX.items.length;i++){ var it=SENSELEX.items[i];',
+'  timeline.push({ type: SenselexRatingPlugin, word: it.word, concept_id: it.conceptId, direction: SENSELEX.language.direction }); }',
+'timeline.push({ type: jsPsychHtmlButtonResponse, choices: ["Download my data (SenseLex JSON)", "Download my data (CSV)"],',
+'  stimulus: "<h2>Thank you</h2><p>Your ratings are complete."+(cc?" Use the link below to return to Prolific once you have finished.":"")+"</p>"+(cc?"<p><a href=\\"https://app.prolific.com/submissions/complete?cc="+encodeURIComponent(cc)+"\\">Return to Prolific to complete your submission</a></p>":""),',
+'  on_finish: function(d){',
+'    if (d.response === 0){',
+'      var trials = jsPsych.data.get().filter({trial_type:"senselex-rating"}).values();',
+'      var now = Date.now();',
+'      var dataset = { version:5, languages:[SENSELEX.language],',
+'        items: SENSELEX.items.map(function(it){ return {language:SENSELEX.language.code, conceptId:it.conceptId, gloss:it.gloss, word:it.word}; }),',
+'        ratings: trials.map(function(t,i){ return { id:(crypto.randomUUID?crypto.randomUUID():"jsx-"+now+"-"+i), language:SENSELEX.language.code, conceptId:t.concept_id, word:t.word, participant:participant, dims:t.dims, source:"jspsych", ts:now }; }),',
+'        responses: [] };',
+'      var b = new Blob([JSON.stringify(dataset,null,2)],{type:"application/json"});',
+'      var a = document.createElement("a"); a.href=URL.createObjectURL(b); a.download="senselex-jspsych-"+SENSELEX.language.code+"-"+participant+".json";',
+'      document.body.appendChild(a); a.click(); a.remove();',
+'    } else { jsPsych.data.get().localSave("csv","senselex-jspsych-"+SENSELEX.language.code+"-"+participant+".csv"); }',
+'  }, });',
+'jsPsych.run(timeline);',
+'<\/script>','</body>','</html>'
+    ].join("\n");
+  }
+  function exportJsPsych(){
+    const code=$("#j-lang").value;
+    const n=itemsFor(code).length;
+    if (!n){ flash("manage","This language has no items yet. Build a study or add items first.","warn"); return; }
+    downloadBlob(buildJsPsychHtml(code),"text/html",`senselex-jspsych-${code}.html`);
+    flash("manage",`Exported ${n} item(s) as a jsPsych experiment. Host the file anywhere static, or adapt it for a jsPsych-compatible platform; its data import back here through Import.`,"ok");
+  }
 
   // ===================== BUILD & MANAGE =====================
   const builderLang = () => $("#b-language").value || "eng";
@@ -543,7 +723,7 @@
     const lhost=$("#m-langs"); lhost.replaceChildren();
     const ltbl=el("table"); ltbl.append(el("thead",{},el("tr",{},["Code","Name","Family","Script","Direction","Items"].map(h=>el("th",{textContent:h})))));
     const ltb=el("tbody");
-    for (const l of data.languages) ltb.append(el("tr",{},[el("td",{textContent:l.code}),el("td",{textContent:l.name}),el("td",{textContent:l.family||""}),el("td",{textContent:l.script||""}),el("td",{textContent:l.direction||"ltr"}),el("td",{textContent:String(itemsFor(l.code).length)})]));
+    for (const l of languagesSorted()) ltb.append(el("tr",{},[el("td",{textContent:l.code}),el("td",{textContent:l.name}),el("td",{textContent:l.family||""}),el("td",{textContent:l.script||""}),el("td",{textContent:l.direction||"ltr"}),el("td",{textContent:String(itemsFor(l.code).length)})]));
     ltbl.append(ltb); lhost.append(el("div",{className:"table-wrap"},[ltbl]));
   }
   function addItem(){ const language=$("#m-lang").value, conceptId=$("#m-concept").value.trim().toUpperCase(), gloss=$("#m-gloss").value.trim(), word=$("#m-word").value.trim(), concreteness=$("#m-conc").value;
@@ -590,7 +770,7 @@
   function resetAll(){ if (!confirm("Remove all languages, items and collected data from this browser and return to the starter set?")) return; data=defaultDataset(); save(); refreshSelectors(); renderManage(); renderCollect(); flash("manage","Reset to the starter set.","ok"); }
 
   // ----- wiring -----
-  function refreshSelectors(){ for (const id of ["#c-language","#e-language","#m-lang"]) fillLangSelect($(id)); renderStatus(); }
+  function refreshSelectors(){ for (const id of ["#c-language","#e-language","#m-lang","#j-lang"]) fillLangSelect($(id)); renderStatus(); }
   let currentView="collect";
   function showView(v){ currentView=v;
     for (const b of document.querySelectorAll("#tabs button")) b.setAttribute("aria-selected", String(b.dataset.view===v));
@@ -598,6 +778,13 @@
     if (v==="collect") renderCollect(); else if (v==="explore") renderExplore(); else renderManage(); }
 
   load(); renderStatus(); refreshSelectors();
+  // Apply the study link, if any: preselect the language and task, fix the
+  // participant code to the Prolific id, and start submitting any backlog.
+  if (STUDY.lang && data.languages.some(l=>l.code===STUDY.lang)) $("#c-language").value=STUDY.lang;
+  if (STUDY.task==="rating"||STUDY.task==="naming") $("#c-task").value=STUDY.task;
+  if (STUDY.pid && ID_RE.test(STUDY.pid)){ const p=$("#c-participant"); p.value=STUDY.pid; p.readOnly=true; }
+  if (STUDY.atlas) flushSync();
+  window.addEventListener("online",()=>{ if (STUDY.atlas) flushSync(); });
   document.querySelectorAll("#tabs button").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
   $("#c-language").addEventListener("change",()=>{ collectIndex=0; renderCollect(); });
   $("#c-participant").addEventListener("input",renderCollect);
@@ -606,6 +793,8 @@
   $("#e-concreteness").addEventListener("change",renderExplore);
   $("#e-frequency").addEventListener("change",renderExplore);
   $("#e-download-csv").addEventListener("click",downloadCsv);
+  $("#e-download-long").addEventListener("click",downloadLongCsv);
+  $("#j-export").addEventListener("click",exportJsPsych);
   for (const id of ["#b-count","#b-zmin","#b-zmax","#b-cmin","#b-cmax"]) $(id).addEventListener("input",renderBuilder);
   $("#b-language").addEventListener("change",renderBuilder);
   $("#b-add").addEventListener("click",addFromBank);

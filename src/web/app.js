@@ -64,7 +64,7 @@ async function loadLanguages() {
       select.append(option);
       return;
     }
-    for (const language of data.rows) {
+    for (const language of [...data.rows].sort((a, b) => a.name.localeCompare(b.name))) {
       const option = document.createElement('option');
       option.value = language.code;
       option.textContent = `${language.name} (${language.code})`;
