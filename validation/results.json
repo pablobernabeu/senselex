@@ -1,0 +1,90 @@
+{
+  "design": {
+    "raters": 12,
+    "words": 60,
+    "recordsValidated": 720,
+    "dimensions": 11,
+    "ratingsPerCell": 12
+  },
+  "reliability": {
+    "perDimension": {
+      "touch": {
+        "splitHalf": 0.9920803429164988,
+        "spearmanBrown": 0.9960244288782517
+      },
+      "hearing": {
+        "splitHalf": 0.9947279072398463,
+        "spearmanBrown": 0.9973569865137903
+      },
+      "smell": {
+        "splitHalf": 0.9933565790025375,
+        "spearmanBrown": 0.9966672189675232
+      },
+      "taste": {
+        "splitHalf": 0.9976123054450876,
+        "spearmanBrown": 0.9988047257476318
+      },
+      "vision": {
+        "splitHalf": 0.9933176295294135,
+        "spearmanBrown": 0.9966476138215041
+      },
+      "interoception": {
+        "splitHalf": 0.9930638852816973,
+        "spearmanBrown": 0.9965198733620512
+      },
+      "mouth_throat": {
+        "splitHalf": 0.9942433427074568,
+        "spearmanBrown": 0.9971133626627894
+      },
+      "hand_arm": {
+        "splitHalf": 0.9902757609863301,
+        "spearmanBrown": 0.9951141247839693
+      },
+      "foot_leg": {
+        "splitHalf": 0.990970889159102,
+        "spearmanBrown": 0.9954649709395241
+      },
+      "head": {
+        "splitHalf": 0.9730098463749688,
+        "spearmanBrown": 0.9863203147847334
+      },
+      "torso": {
+        "splitHalf": 0.9845368500553463,
+        "spearmanBrown": 0.9922081820026559
+      }
+    },
+    "spearmanBrown": {
+      "min": 0.9863203147847334,
+      "median": 0.9965198733620512,
+      "max": 0.9988047257476318,
+      "mean": 0.9952947093149477
+    }
+  },
+  "interRater": {
+    "meanPairwisePearson": 0.9711241948981636,
+    "sd": 0.006358459165906492
+  },
+  "convergence": {
+    "n": 60,
+    "pearson_maxPerceptual_vs_concreteness": 0.5764613474460477,
+    "spearman_maxPerceptual_vs_concreteness": 0.5696793995114839,
+    "pearson_visionMean_vs_concreteness": 0.6385094410008715
+  },
+  "structure": {
+    "dominantModalityCounts": {
+      "vision": 38,
+      "interoception": 9,
+      "touch": 3,
+      "hearing": 7,
+      "taste": 2,
+      "smell": 1
+    },
+    "visionDominantShare": 0.6333333333333333,
+    "modalityExclusivity": {
+      "mean": 0.4348754985360058,
+      "sd": 0.14998083165466583,
+      "min": 0.1345646437994723,
+      "max": 0.847328244274809
+    }
+  }
+}
