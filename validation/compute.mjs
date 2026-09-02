@@ -10,6 +10,7 @@
 //          validation/senselex-llm-validation-dataset.json  (imports into the app)
 //          validation/llm-norms-eng.csv                     (server export format)
 
+import process from 'node:process';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -80,6 +81,14 @@ const norms = words.map((word) => {
 
 // ---- statistics helpers -----------------------------------------------------
 const mean = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length;
+// Averages the two middle values at even length rather than taking the upper one.
+// The dimension set is odd-sized today, so this is latent, but it would bite the
+// moment a dimension is added or the measure is applied to another vector.
+const median = (xs) => {
+  const s = [...xs].sort((a, b) => a - b);
+  const mid = Math.floor(s.length / 2);
+  return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+};
 const sd = (xs) => {
   const m = mean(xs);
   return Math.sqrt(xs.reduce((a, b) => a + (b - m) ** 2, 0) / (xs.length - 1));
@@ -177,7 +186,7 @@ const results = {
     perDimension: reliability,
     spearmanBrown: {
       min: sbValues[0],
-      median: sbValues[Math.floor(sbValues.length / 2)],
+      median: median(sbValues),
       max: sbValues[sbValues.length - 1],
       mean: mean(sbValues),
     },
@@ -192,7 +201,11 @@ const results = {
 };
 
 // ---- 7. Artefacts -----------------------------------------------------------
-const now = Date.now();
+// A fixed stamp rather than the wall clock, so re-running the script reproduces
+// the artefacts byte for byte and a reader can verify them. Stamping Date.now()
+// rewrote all 720 records on every run, which buried any real change in noise.
+// Override with SENSELEX_VALIDATION_TIMESTAMP when generating a new panel.
+const now = Number(process.env.SENSELEX_VALIDATION_TIMESTAMP ?? Date.parse('2026-07-17T00:00:00Z'));
 const dataset = {
   version: 5,
   languages: [{ code: 'eng', name: 'English', script: 'Latin', direction: 'ltr', family: 'Indo-European' }],

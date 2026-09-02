@@ -1,0 +1,268 @@
+{
+  "source": {
+    "dataset": "Lancaster Sensorimotor Norms (Lynott et al., 2020)",
+    "doi": "10.3758/s13428-019-01316-z",
+    "osf": "https://osf.io/7emr6/",
+    "wordsRead": 39707
+  },
+  "reproduction": {
+    "words": 39707,
+    "maximumPerceptualStrength": {
+      "exact": 39707,
+      "worstAbsoluteDelta": 0
+    },
+    "modalityExclusivity": {
+      "exact": 39707,
+      "worstAbsoluteDelta": 8.264462447726828e-10
+    },
+    "dominantPerceptualModality": {
+      "exact": 39404,
+      "differingByTieBreak": 303,
+      "differingGenuinely": 0,
+      "mismatchExamples": [
+        {
+          "word": "acquittal",
+          "ours": "hearing",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "adversity",
+          "ours": "vision",
+          "theirs": "interoception",
+          "tied": true
+        },
+        {
+          "word": "agreeably",
+          "ours": "hearing",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "ambition",
+          "ours": "vision",
+          "theirs": "interoception",
+          "tied": true
+        },
+        {
+          "word": "ambivalence",
+          "ours": "hearing",
+          "theirs": "interoception",
+          "tied": true
+        },
+        {
+          "word": "amusable",
+          "ours": "hearing",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "analogical",
+          "ours": "hearing",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "anarchic",
+          "ours": "hearing",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "antioxidant",
+          "ours": "taste",
+          "theirs": "interoception",
+          "tied": true
+        },
+        {
+          "word": "arbitrarily",
+          "ours": "vision",
+          "theirs": "interoception",
+          "tied": true
+        },
+        {
+          "word": "aspirer",
+          "ours": "vision",
+          "theirs": "interoception",
+          "tied": true
+        },
+        {
+          "word": "asthmatically",
+          "ours": "vision",
+          "theirs": "interoception",
+          "tied": true
+        },
+        {
+          "word": "awareness",
+          "ours": "vision",
+          "theirs": "interoception",
+          "tied": true
+        },
+        {
+          "word": "barbless",
+          "ours": "touch",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "bath",
+          "ours": "touch",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "bathing",
+          "ours": "touch",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "bedding",
+          "ours": "touch",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "befuddled",
+          "ours": "hearing",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "begging",
+          "ours": "hearing",
+          "theirs": "vision",
+          "tied": true
+        },
+        {
+          "word": "believability",
+          "ours": "hearing",
+          "theirs": "vision",
+          "tied": true
+        }
+      ]
+    },
+    "tolerance": 0.0005
+  },
+  "criterion": {
+    "matchedWords": 60,
+    "perDimension": {
+      "touch": {
+        "n": 60,
+        "r": 0.680954919167538,
+        "ci": [
+          0.5163017100775898,
+          0.7970608535262368
+        ]
+      },
+      "hearing": {
+        "n": 60,
+        "r": 0.7600588866715874,
+        "ci": [
+          0.6271752453972778,
+          0.8499472767130142
+        ]
+      },
+      "smell": {
+        "n": 60,
+        "r": 0.6737325397983548,
+        "ci": [
+          0.5064463971307658,
+          0.7921418131588999
+        ]
+      },
+      "taste": {
+        "n": 60,
+        "r": 0.8024630569181133,
+        "ci": [
+          0.68891281064485,
+          0.8775707135797032
+        ]
+      },
+      "vision": {
+        "n": 60,
+        "r": 0.6629024786404166,
+        "ci": [
+          0.4917496695856302,
+          0.7847367007535032
+        ]
+      },
+      "interoception": {
+        "n": 60,
+        "r": 0.6142638336855278,
+        "ci": [
+          0.4269264426222369,
+          0.7510453230344681
+        ]
+      },
+      "mouth_throat": {
+        "n": 60,
+        "r": 0.8392414332417462,
+        "ci": [
+          0.7438278394217068,
+          0.9011322237488989
+        ]
+      },
+      "hand_arm": {
+        "n": 60,
+        "r": 0.7305555292629665,
+        "ci": [
+          0.5851833503492602,
+          0.8304318221878606
+        ]
+      },
+      "foot_leg": {
+        "n": 60,
+        "r": 0.7725004378898681,
+        "ci": [
+          0.6451178407883084,
+          0.8581036544439845
+        ]
+      },
+      "head": {
+        "n": 60,
+        "r": 0.4451047804169351,
+        "ci": [
+          0.21553666520598183,
+          0.6280486889523839
+        ]
+      },
+      "torso": {
+        "n": 60,
+        "r": 0.45066936628149024,
+        "ci": [
+          0.22216425548472837,
+          0.6322455540807511
+        ]
+      }
+    },
+    "maximumPerceptualStrength": {
+      "r": 0.6380133210722534,
+      "ci": [
+        0.4583398882701538,
+        0.7675857698450069
+      ]
+    },
+    "modalityExclusivity": {
+      "r": 0.4885682792067902,
+      "ci": [
+        0.267871747898608,
+        0.660548634554435
+      ]
+    },
+    "dominantModalityAgreement": {
+      "matches": 45,
+      "of": 60,
+      "proportion": 0.75
+    },
+    "means": {
+      "machineExclusivity": 0.3609813889596991,
+      "humanExclusivity": 0.4592904816950902,
+      "machineMaxStrength": 3.5784722222222225,
+      "humanMaxStrength": 3.1214365138500004
+    }
+  },
+  "machinePanel": {
+    "interRaterMeanPairwise": 0.9589601446173929
+  }
+}

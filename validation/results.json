@@ -9,82 +9,82 @@
   "reliability": {
     "perDimension": {
       "touch": {
-        "splitHalf": 0.9920803429164988,
-        "spearmanBrown": 0.9960244288782517
+        "splitHalf": 0.9943711760987605,
+        "spearmanBrown": 0.9971776447791176
       },
       "hearing": {
-        "splitHalf": 0.9947279072398463,
-        "spearmanBrown": 0.9973569865137903
+        "splitHalf": 0.9936657201437781,
+        "spearmanBrown": 0.9968227974267597
       },
       "smell": {
-        "splitHalf": 0.9933565790025375,
-        "spearmanBrown": 0.9966672189675232
+        "splitHalf": 0.9893656332901034,
+        "spearmanBrown": 0.9946543930728767
       },
       "taste": {
-        "splitHalf": 0.9976123054450876,
-        "spearmanBrown": 0.9988047257476318
+        "splitHalf": 0.9949007475265391,
+        "spearmanBrown": 0.9974438565528718
       },
       "vision": {
-        "splitHalf": 0.9933176295294135,
-        "spearmanBrown": 0.9966476138215041
+        "splitHalf": 0.9893733126514191,
+        "spearmanBrown": 0.9946582738991218
       },
       "interoception": {
-        "splitHalf": 0.9930638852816973,
-        "spearmanBrown": 0.9965198733620512
+        "splitHalf": 0.9939832527200382,
+        "spearmanBrown": 0.9969825487391861
       },
       "mouth_throat": {
-        "splitHalf": 0.9942433427074568,
-        "spearmanBrown": 0.9971133626627894
+        "splitHalf": 0.9949041440106808,
+        "spearmanBrown": 0.9974455634850334
       },
       "hand_arm": {
-        "splitHalf": 0.9902757609863301,
-        "spearmanBrown": 0.9951141247839693
+        "splitHalf": 0.9915326726571544,
+        "spearmanBrown": 0.9957483362140637
       },
       "foot_leg": {
-        "splitHalf": 0.990970889159102,
-        "spearmanBrown": 0.9954649709395241
+        "splitHalf": 0.982658909820758,
+        "spearmanBrown": 0.9912536190197184
       },
       "head": {
-        "splitHalf": 0.9730098463749688,
-        "spearmanBrown": 0.9863203147847334
+        "splitHalf": 0.9778568616076297,
+        "spearmanBrown": 0.9888044788163427
       },
       "torso": {
-        "splitHalf": 0.9845368500553463,
-        "spearmanBrown": 0.9922081820026559
+        "splitHalf": 0.9771042925666941,
+        "spearmanBrown": 0.9884195752751198
       }
     },
     "spearmanBrown": {
-      "min": 0.9863203147847334,
-      "median": 0.9965198733620512,
-      "max": 0.9988047257476318,
-      "mean": 0.9952947093149477
+      "min": 0.9884195752751198,
+      "median": 0.9957483362140637,
+      "max": 0.9974455634850334,
+      "mean": 0.9944919170254739
     }
   },
   "interRater": {
-    "meanPairwisePearson": 0.9711241948981636,
-    "sd": 0.006358459165906492
+    "meanPairwisePearson": 0.9589601446173929,
+    "sd": 0.01144220482826094
   },
   "convergence": {
     "n": 60,
-    "pearson_maxPerceptual_vs_concreteness": 0.5764613474460477,
-    "spearman_maxPerceptual_vs_concreteness": 0.5696793995114839,
-    "pearson_visionMean_vs_concreteness": 0.6385094410008715
+    "pearson_maxPerceptual_vs_concreteness": 0.5235468427840541,
+    "spearman_maxPerceptual_vs_concreteness": 0.5190204537853707,
+    "pearson_visionMean_vs_concreteness": 0.5711848408308401
   },
   "structure": {
     "dominantModalityCounts": {
-      "vision": 38,
-      "interoception": 9,
-      "touch": 3,
+      "vision": 37,
+      "interoception": 8,
+      "touch": 4,
       "hearing": 7,
-      "taste": 2,
+      "taste": 3,
       "smell": 1
     },
-    "visionDominantShare": 0.6333333333333333,
+    "visionDominantShare": 0.6166666666666667,
     "modalityExclusivity": {
-      "mean": 0.4348754985360058,
-      "sd": 0.14998083165466583,
-      "min": 0.1345646437994723,
-      "max": 0.847328244274809
+      "mean": 0.3609813889596991,
+      "sd": 0.13722302691916116,
+      "min": 0.12903225806451613,
+      "max": 0.7936046511627908
     }
   }
 }

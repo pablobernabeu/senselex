@@ -1,0 +1,53 @@
+{
+  "note": "Personas for the simulated-rater panel. All UK-resident, which is a stated limitation of the panel. See rater-prompt.md.",
+  "personas": [
+    {
+      "id": "LLM01",
+      "persona": "a 24-year-old shop assistant from Manchester"
+    },
+    {
+      "id": "LLM02",
+      "persona": "a 68-year-old retired plumber from Glasgow"
+    },
+    {
+      "id": "LLM03",
+      "persona": "a 41-year-old primary school teacher from Cardiff"
+    },
+    {
+      "id": "LLM04",
+      "persona": "a 33-year-old delivery driver from Birmingham"
+    },
+    {
+      "id": "LLM05",
+      "persona": "a 55-year-old nurse from Leeds"
+    },
+    {
+      "id": "LLM06",
+      "persona": "a 19-year-old student of history from Bristol"
+    },
+    {
+      "id": "LLM07",
+      "persona": "a 47-year-old farmer from Norfolk"
+    },
+    {
+      "id": "LLM08",
+      "persona": "a 29-year-old graphic designer from London"
+    },
+    {
+      "id": "LLM09",
+      "persona": "a 62-year-old librarian from Edinburgh"
+    },
+    {
+      "id": "LLM10",
+      "persona": "a 36-year-old chef from Liverpool"
+    },
+    {
+      "id": "LLM11",
+      "persona": "a 51-year-old accountant from Sheffield"
+    },
+    {
+      "id": "LLM12",
+      "persona": "a 22-year-old apprentice electrician from Newcastle"
+    }
+  ]
+}
