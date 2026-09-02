@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 import { openDatabase } from '../db/connection.js';
 import { createRepository } from '../db/repository.js';
-import { createAuthenticator, hashIp } from './auth.js';
+import { createAuthenticator, createAddressDigest } from './auth.js';
 import {
   securityHeaders,
   applyCors,
@@ -18,7 +18,15 @@ import {
   createRateLimiter,
   clientAddress,
 } from './middleware.js';
-import { ValidationError, validateRating, validateResponse, validateSyncBatch } from '../domain/validation.js';
+import {
+  ValidationError,
+  validateRating,
+  validateResponse,
+  validateSyncBatch,
+  validateLanguage,
+  validateConcept,
+  isIdentifier,
+} from '../domain/validation.js';
 import { DomainError } from '../domain/errors.js';
 import { ALL_DIMENSIONS } from '../domain/dimensions.js';
 import { toSensorimotorCsv, datasetMetadata } from './export.js';
@@ -60,6 +68,7 @@ export function buildApp(config) {
   const repo = createRepository(db);
   const auth = createAuthenticator(config.writeTokens);
   const rateLimiter = createRateLimiter(config.rateLimit);
+  const hashIp = createAddressDigest(config.auditSecret);
 
   // Guards a write handler: enforces auth (when tokens are configured) and writes
   // an audit entry for every attempt, successful or not.
@@ -193,7 +202,7 @@ export function buildApp(config) {
         return;
       }
       if (req.method === 'POST' && pathname === '/v1/languages') {
-        await handleWrite(req, res, pathname, (body) => body, (body) => {
+        await handleWrite(req, res, pathname, validateLanguage, (body) => {
           repo.upsertLanguage(body);
           return { code: body.code };
         });
@@ -206,7 +215,7 @@ export function buildApp(config) {
         return;
       }
       if (req.method === 'POST' && pathname === '/v1/concepts') {
-        await handleWrite(req, res, pathname, (body) => body, (body) => {
+        await handleWrite(req, res, pathname, validateConcept, (body) => {
           repo.upsertConcept(body);
           return { id: body.id };
         });
@@ -249,11 +258,26 @@ export function buildApp(config) {
       if (req.method === 'GET' && pathname === '/v1/export/sensorimotor.csv') {
         const language = url.searchParams.get('language');
         if (!language) { sendError(res, 400, 'language query parameter is required'); return; }
-        const all = repo.sensorimotorNorms(language, { limit: config.maxPageSize, offset: 0, maxPageSize: config.maxPageSize });
-        const csv = toSensorimotorCsv(all.rows, ALL_DIMENSIONS);
+        // The language code reaches a response header, so it is checked against
+        // the identifier pattern first. Without that, a crafted value could close
+        // the quoted filename and append a second header parameter.
+        if (!isIdentifier(language)) { sendError(res, 400, 'language must be a valid identifier'); return; }
+        // Page through to the end rather than returning one page. An export that
+        // silently stopped at maxPageSize dropped most of a large language's
+        // norms while still presenting itself as the complete dataset.
+        const rows = [];
+        let total = 0;
+        for (let offset = 0; ; offset += config.maxPageSize) {
+          const page = repo.sensorimotorNorms(language, { limit: config.maxPageSize, offset, maxPageSize: config.maxPageSize });
+          total = page.total;
+          rows.push(...page.rows);
+          if (rows.length >= total || page.rows.length === 0) break;
+        }
+        const csv = toSensorimotorCsv(rows, ALL_DIMENSIONS);
         res.writeHead(200, {
           'Content-Type': 'text/csv; charset=utf-8',
-          'Content-Disposition': `attachment; filename="senselex-sensorimotor-${language}.csv"`,
+          'Content-Disposition': `attachment; filename="senselex-sensorimotor-${language.replace(/[^A-Za-z0-9_-]/g, '')}.csv"`,
+          'X-Total-Rows': String(total),
         });
         res.end(csv);
         return;
@@ -261,7 +285,13 @@ export function buildApp(config) {
       if (req.method === 'GET' && pathname === '/v1/export/metadata.json') {
         const language = url.searchParams.get('language');
         if (!language) { sendError(res, 400, 'language query parameter is required'); return; }
-        sendJson(res, 200, datasetMetadata(repo.getLanguage(language) || { code: language }, ALL_DIMENSIONS));
+        if (!isIdentifier(language)) { sendError(res, 400, 'language must be a valid identifier'); return; }
+        const counted = repo.sensorimotorNorms(language, { limit: 1, offset: 0, maxPageSize: config.maxPageSize });
+        sendJson(res, 200, datasetMetadata(
+          repo.getLanguage(language) || { code: language },
+          ALL_DIMENSIONS,
+          { total: counted.total, returned: counted.total },
+        ));
         return;
       }
 

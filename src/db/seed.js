@@ -14,12 +14,21 @@ const LANGUAGES = [
   { code: 'jhi', name: 'Jahai', script: 'Latin', orthographicDepth: 'shallow', direction: 'ltr' },
 ];
 
+// A concept's own id is local to the study; concepticonId is the optional link
+// out to the Concepticon catalogue (https://concepticon.clld.org), which is what
+// lets norms from different languages be compared concept by concept.
+//
+// Only SMOKE carries an id here, checked against concepticon.clld.org/parameters/778
+// (concept set SMOKE (EXHAUST)). The others are null on purpose. An unverified
+// identifier is worse than an absent one, because a wrong link silently joins two
+// unrelated concepts in any later merge, and nothing in the suite validates the
+// field. Resolve these against the catalogue before using them for anything real.
 const CONCEPTS = [
-  { id: 'COFFEE', gloss: 'coffee', concepticonId: '1456' },
-  { id: 'SMOKE', gloss: 'smoke', concepticonId: '903' },
-  { id: 'LEMON', gloss: 'lemon', concepticonId: 'husk' },
-  { id: 'THUNDER', gloss: 'thunder', concepticonId: '662' },
-  { id: 'SOFT', gloss: 'soft', concepticonId: '1369' },
+  { id: 'COFFEE', gloss: 'coffee', concepticonId: null },
+  { id: 'SMOKE', gloss: 'smoke', concepticonId: '778' },
+  { id: 'LEMON', gloss: 'lemon', concepticonId: null },
+  { id: 'THUNDER', gloss: 'thunder', concepticonId: null },
+  { id: 'SOFT', gloss: 'soft', concepticonId: null },
 ];
 
 // A handful of words with several rater vectors each. Strengths are plausible

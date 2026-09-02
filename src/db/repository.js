@@ -8,6 +8,7 @@ import {
   modalityExclusivity,
   dominantModality,
   maximumPerceptualStrength,
+  ratedChannelCount,
   codability,
 } from '../domain/norms.js';
 import { ReferenceIntegrityError } from '../domain/errors.js';
@@ -15,8 +16,12 @@ import { ReferenceIntegrityError } from '../domain/errors.js';
 const RATING_COLUMNS = ALL_DIMENSIONS.join(', ');
 // Per-dimension unweighted mean over a (concept, word) group. SQL AVG skips NULL
 // cells, so partial rating vectors (allowed by validateRating) contribute only to
-// the dimensions they filled.
-const AVG_COLUMNS = ALL_DIMENSIONS.map((d) => `AVG(${d}) AS ${d}`).join(', ');
+// the dimensions they filled, and a dimension nobody filled averages to NULL.
+// The matching COUNT records how many raters stood behind each mean, which with
+// partial vectors can differ between dimensions of the same word.
+const AVG_COLUMNS = ALL_DIMENSIONS
+  .map((d) => `AVG(${d}) AS ${d}, SUM(${d} IS NOT NULL) AS n_${d}`)
+  .join(', ');
 
 // Distinguishes the two constraint failures that a write can hit. A repeated
 // primary key is an idempotent duplicate and is harmless; a foreign-key failure
@@ -62,6 +67,17 @@ export function createRepository(db) {
         group_label = excluded.group_label
     `),
 
+    // Measurements carry a pseudonymous participant reference minted by the
+    // client, and there is no route by which a client registers a participant
+    // first. Without this the foreign key rejected every submission that named a
+    // participant, which is every submission in the documented recruitment
+    // pipeline, since that locks the reference to the panel's identifier.
+    // OR IGNORE leaves an existing row untouched, so a participant who already
+    // has recorded study variables does not have them erased by a later batch.
+    ensureParticipant: db.prepare(`
+      INSERT OR IGNORE INTO participants (ref, language_code) VALUES (?, ?)
+    `),
+
     // A plain insert, so that a duplicate primary key and a foreign-key failure
     // surface as distinct errors rather than being silently ignored. Idempotency
     // is handled in the wrapper by catching the duplicate case.
@@ -77,7 +93,7 @@ export function createRepository(db) {
     `),
 
     aggregateRatings: db.prepare(`
-      SELECT concept_id, word, COUNT(*) AS n, ${AVG_COLUMNS}
+      SELECT concept_id, word, COUNT(*) AS n_records, ${AVG_COLUMNS}
       FROM ratings
       WHERE language_code = ?
       GROUP BY concept_id, word
@@ -172,6 +188,7 @@ export function createRepository(db) {
     // already present (an idempotent duplicate). Throws ReferenceIntegrityError
     // when the language or concept does not exist.
     insertRating(rating) {
+      if (rating.participantRef) statements.ensureParticipant.run(rating.participantRef, rating.languageCode);
       const params = [
         rating.clientId,
         rating.languageCode,
@@ -192,6 +209,7 @@ export function createRepository(db) {
       }
     },
     insertResponse(response) {
+      if (response.participantRef) statements.ensureParticipant.run(response.participantRef, response.languageCode);
       try {
         statements.insertResponse.run(
           response.clientId,
@@ -238,17 +256,29 @@ export function createRepository(db) {
       const rows = statements.aggregateRatings.all(languageCode, page.limit, page.offset);
       const total = statements.countRatingGroups.get(languageCode).n;
       const norms = rows.map((row) => {
+        // SQL AVG returns NULL for a dimension no rater filled, and that null is
+        // carried through rather than coerced to zero: see the note in
+        // domain/norms.js on why an absent judgement is not a zero one.
         const averaged = {};
-        for (const dimension of ALL_DIMENSIONS) averaged[dimension] = row[dimension] ?? 0;
+        const counts = {};
+        for (const dimension of ALL_DIMENSIONS) {
+          averaged[dimension] = row[dimension] ?? null;
+          counts[dimension] = row[`n_${dimension}`] ?? 0;
+        }
         const dominant = dominantModality(averaged, PERCEPTUAL_DIMENSIONS);
         return {
           conceptId: row.concept_id,
           word: row.word,
-          n: row.n,
+          // Records contributing to this word, which is not the same as the
+          // number of raters behind any one dimension once partial vectors are
+          // allowed. Per-dimension counts travel in `n`.
+          nRecords: row.n_records,
           mean: averaged,
+          n: counts,
           dominantModality: dominant.modality,
           maximumPerceptualStrength: maximumPerceptualStrength(averaged),
           modalityExclusivity: modalityExclusivity(averaged),
+          perceptualChannels: ratedChannelCount(averaged, PERCEPTUAL_DIMENSIONS),
         };
       });
       return { rows: norms, total, ...page };

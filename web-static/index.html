@@ -104,7 +104,9 @@
       <h3>Legal disclaimer</h3>
       <p>This app is being developed by Dr Pablo Bernabeu in a personal capacity during spare time. The employer is not affiliated with, does not endorse, and bears no liability for this app.</p>
       <h3>Usage and licence</h3>
-      <p>This app is in early development and is not suitable for use at the current time. All rights reserved. No part of this software may be used, copied, modified, merged, distributed, sublicensed, or otherwise exploited without the prior written permission of the author. No warranty is provided and no liability is accepted for any use of this software.</p>
+      <p>SenseLex is open-source software released under the MIT licence, so you may use, copy, modify and redistribute it, including commercially, provided the copyright notice and the licence text travel with it. The full text ships with the source. No warranty is provided and no liability is accepted for any use of this software.</p>
+      <p>Norms you export carry a Creative Commons Attribution 4.0 licence in their metadata, stated separately because the data and the code are licensed apart.</p>
+      <p>This is an early release. The interface and the export formats may still change between versions, so record which version produced any data you intend to keep.</p>
     </div>
     <details class="how" open>
       <summary>How this works</summary>
@@ -144,7 +146,7 @@
         <div style="align-self:end" class="inline"><button class="ghost" id="e-download-csv" type="button">Download norms (CSV)</button><button class="ghost" id="e-download-long" type="button">Download trial-level ratings (CSV)</button></div>
       </div>
       <h3>Sensorimotor norms</h3>
-      <p class="help">Means across raters on each channel, with the dominant perceptual modality, the maximum perceptual strength, the modality-exclusivity score and a rater-spread figure as a reliability cue. Concreteness and Zipf frequency come from the word bank. Click a column heading to sort.</p>
+      <p class="help">Means across raters on each channel, with the dominant perceptual modality, the maximum perceptual strength, the modality-exclusivity score and the mean between-rater dispersion. Dispersion is the average standard deviation across raters on the perceptual channels, so a low figure means raters agreed closely; it describes spread rather than reliability. Exclusivity is bounded by how many channels were rated, so it is not comparable across words rated on different numbers of channels. Concreteness and Zipf frequency come from the word bank. Click a column heading to sort.</p>
       <div id="e-status" role="status" aria-live="polite"></div>
       <div class="table-wrap"><table id="e-norms"><thead></thead><tbody></tbody></table></div>
       <h3>Codability from free naming</h3>
@@ -241,7 +243,19 @@
   <script>
   "use strict";
 
-  // ----- Scientific core, ported from the tested norms module -----
+  // ----- SENSELEX-CORE-BEGIN -----
+  // A copy of src/domain/norms.js, kept here because this page has to run from a
+  // file:// URL with no build step and so cannot import a module. The copy is not
+  // trusted to stay in step by inspection: test/browser-core.test.js extracts
+  // everything between these two markers, evaluates it, and asserts that each
+  // function agrees with the domain core over a fixture set, so a change to one
+  // side that is not mirrored on the other fails the suite.
+  //
+  // A channel nobody rated is null, not zero. Zero is a substantive judgement in
+  // this protocol ("not experienced at all through this channel"), and because
+  // exclusivity is a range over a sum, reading an absent channel as zero would
+  // drive the minimum to zero and shrink the denominator at once, inflating the
+  // score for exactly the words where raters used the partial-vector option.
   const PERCEPTUAL = ["touch","hearing","smell","taste","vision","interoception"];
   const ACTION = ["mouth_throat","hand_arm","foot_leg","head","torso"];
   const ALL = [...PERCEPTUAL, ...ACTION];
@@ -249,14 +263,22 @@
     interoception:"Interoception", mouth_throat:"Mouth / throat", hand_arm:"Hand / arm",
     foot_leg:"Foot / leg", head:"Head", torso:"Torso" };
 
-  const mean = xs => xs.length ? xs.reduce((a,b)=>a+b,0)/xs.length : 0;
-  const sd = xs => { if (xs.length<2) return 0; const m=mean(xs); return Math.sqrt(xs.reduce((a,b)=>a+(b-m)**2,0)/(xs.length-1)); };
+  const mean = xs => xs.length ? xs.reduce((a,b)=>a+b,0)/xs.length : null;
+  const sd = xs => { if (xs.length<2) return null; const m=mean(xs); return Math.sqrt(xs.reduce((a,b)=>a+(b-m)**2,0)/(xs.length-1)); };
+  const rated = (avg,d) => { const v=avg[d]; return typeof v==="number"&&isFinite(v) ? v : null; };
   function averageRatings(vectors, dims){ const r={}; for (const d of dims){ const c=[]; for (const v of vectors){ const x=v[d]; if (typeof x==="number"&&isFinite(x)) c.push(x);} r[d]=mean(c);} return r; }
-  function dominantModality(avg, dims){ let best=null,bv=-Infinity; for (const d of dims){ const v=avg[d]??0; if (v>bv){bv=v;best=d;}} return {modality:best,strength:bv===-Infinity?0:bv}; }
-  function modalityExclusivity(avg, dims){ let mx=-Infinity,mn=Infinity,s=0; for (const d of dims){ const v=avg[d]??0; if (v>mx)mx=v; if (v<mn)mn=v; s+=v;} return s===0?0:(mx-mn)/s; }
-  function simpsonDiversity(counts){ const c=Object.values(counts); let t=0; for (const n of c) t+=n; if (t<2) return 0; let same=0; for (const n of c) same+=n*(n-1); return 1-(same/(t*(t-1))); }
-  function agreement(counts){ const t=Object.values(counts).reduce((a,b)=>a+b,0); if (t<2) return t===0?0:1; return 1-simpsonDiversity(counts); }
+  function ratedCounts(vectors, dims){ const r={}; for (const d of dims){ let n=0; for (const v of vectors){ const x=v[d]; if (typeof x==="number"&&isFinite(x)) n++; } r[d]=n;} return r; }
+  function dominantModality(avg, dims){ let best=null,bv=null; for (const d of dims){ const v=rated(avg,d); if (v===null) continue; if (bv===null||v>bv){bv=v;best=d;}} if (bv===null||bv===0) return {modality:null,strength:bv}; return {modality:best,strength:bv}; }
+  function modalityExclusivity(avg, dims){ const vs=[]; for (const d of dims){ const v=rated(avg,d); if (v!==null) vs.push(v);} if (vs.length<2) return null; let mx=-Infinity,mn=Infinity,s=0; for (const v of vs){ if (v>mx)mx=v; if (v<mn)mn=v; s+=v;} return s===0?0:(mx-mn)/s; }
+  function ratedChannelCount(avg, dims){ let n=0; for (const d of dims){ if (rated(avg,d)!==null) n++; } return n; }
+  function simpsonDiversity(counts){ const c=Object.values(counts); let t=0; for (const n of c) t+=n; if (t<2) return null; let same=0; for (const n of c) same+=n*(n-1); return 1-(same/(t*(t-1))); }
+  function agreement(counts){ const d=simpsonDiversity(counts); return d===null?null:1-d; }
   const tally = items => { const c={}; for (const i of items){ const k=String(i).trim().toLowerCase(); if (k) c[k]=(c[k]||0)+1; } return c; };
+  // ----- SENSELEX-CORE-END -----
+
+  // Norms are legitimately absent when too few channels or raters contributed, so
+  // display and export blank rather than printing a zero that would read as data.
+  const show = (v,dp=2) => (typeof v==="number"&&isFinite(v)) ? v.toFixed(dp) : "";
 
   // ----- The word banks (one per language; loaded from words.js) -----
   // Each entry is [word, concreteness 1-5 or null, zipf frequency]. Concreteness
@@ -405,9 +427,18 @@
       const headers = {"Content-Type":"application/json"};
       if (STUDY.token) headers.Authorization = "Bearer "+STUDY.token;
       const res = await fetch(STUDY.atlas+"/v1/sync",{method:"POST",headers,body:JSON.stringify({records})});
-      if (res.ok){ for (const r of pending) delete r.pending; STUDY.authFailed=false; save(); }
+      if (res.ok){ for (const r of pending){ delete r.pending; delete r.rejected; } STUDY.authFailed=false; save(); }
       else if (res.status===401){ STUDY.authFailed=true; }
-      else if (res.status>=400 && res.status<500 && res.status!==429){ for (const r of pending){ delete r.pending; r.rejected=true; } save(); }
+      else if (res.status>=400 && res.status<500 && res.status!==429){
+        // A rejected batch is flagged but stays pending. Clearing the flag on a
+        // 4xx used to drop the record from the queue while the interface went on
+        // to report that everything had been submitted, so a participant whose
+        // ratings the server refused was told they had arrived. The data is
+        // still safe on the device either way, and keeping it queued means a
+        // fixed server configuration picks it up on the next attempt.
+        for (const r of pending) r.rejected=true;
+        save();
+      }
     } catch {}
     syncing=false; renderStudyNote();
     clearTimeout(syncTimer);
@@ -421,14 +452,30 @@
     if (STUDY.atlas){
       const n=data.ratings.filter(r=>r.pending).length;
       const hostname=(()=>{ try { return new URL(STUDY.atlas).host; } catch { return STUDY.atlas; } })();
-      bits.push("Ratings are submitted to "+hostname+(STUDY.authFailed?" (submission refused: the study token was not accepted; your ratings are kept safely on this device)":(n?` (${n} awaiting submission)`:" (all submitted)")));
+      // Rejected records are reported separately from merely queued ones, so the
+      // participant is never told that refused data arrived.
+      const rejected = data.ratings.filter(r=>r.rejected).length;
+      let state;
+      if (STUDY.authFailed) state = " (submission refused: the study token was not accepted; your ratings are kept safely on this device)";
+      else if (rejected) state = ` (${rejected} rating(s) were refused by the server and are kept on this device; please tell the study contact)`;
+      else if (n) state = ` (${n} awaiting submission)`;
+      else state = " (all submitted)";
+      bits.push("Ratings are submitted to "+hostname+state);
     } else if (STUDY.cc) bits.push("Data stay on this device; you will be returned to Prolific at the end");
     host.replaceChildren(el("div",{className:"msg "+(STUDY.authFailed?"warn":"ok"),textContent:bits.join(". ")+"."}));
   }
   function completionPanel(total){
     const wrap=el("div",{className:"msg ok"});
     wrap.append(el("span",{textContent:`Every item is complete for this session (${total} of ${total}). Thank you.`}));
-    if (STUDY.atlas){ const n=data.ratings.filter(r=>r.pending).length; wrap.append(document.createTextNode(n?` ${n} rating(s) are still being submitted; please keep this page open a moment.`:" All ratings have been submitted.")); }
+    if (STUDY.atlas){
+      const n=data.ratings.filter(r=>r.pending&&!r.rejected).length;
+      const rejected=data.ratings.filter(r=>r.rejected).length;
+      let msg;
+      if (rejected) msg = ` ${rejected} rating(s) could not be submitted and are stored on this device. Your work is not lost; please tell the study contact.`;
+      else if (n) msg = ` ${n} rating(s) are still being submitted; please keep this page open a moment.`;
+      else msg = " All ratings have been submitted.";
+      wrap.append(document.createTextNode(msg));
+    }
     if (STUDY.cc){ const a=el("a",{href:"https://app.prolific.com/submissions/complete?cc="+encodeURIComponent(STUDY.cc),textContent:"Return to Prolific to complete your submission"}); a.style.marginLeft=".6rem"; a.style.fontWeight="600"; wrap.append(a); }
     return wrap;
   }
@@ -526,8 +573,11 @@
     const groups={};
     for (const r of data.ratings){ if (r.language!==code) continue; const key=r.conceptId+"|"+r.word; (groups[key]=groups[key]||{conceptId:r.conceptId,word:r.word,vectors:[]}).vectors.push(r.dims); }
     return Object.values(groups).map(g=>{ const avg=averageRatings(g.vectors,ALL); const dom=dominantModality(avg,PERCEPTUAL), f=featureOf(code,g.conceptId,g.word);
-      const spread=mean(PERCEPTUAL.map(d=>sd(g.vectors.map(v=>v[d]).filter(x=>typeof x==="number"))));
-      return {conceptId:g.conceptId,word:g.word,n:g.vectors.length,avg,dominant:dom.modality,maxStrength:dom.strength,exclusivity:modalityExclusivity(avg,PERCEPTUAL),spread,band:f.band,conc:f.conc,freq:f.freq}; });
+      // Between-rater dispersion, averaged over the perceptual channels that
+      // more than one person rated. It describes how far raters spread, which is
+      // not a reliability coefficient and runs in the opposite direction to one.
+      const spreads=PERCEPTUAL.map(d=>sd(g.vectors.map(v=>v[d]).filter(x=>typeof x==="number"))).filter(x=>x!==null);
+      return {conceptId:g.conceptId,word:g.word,n:g.vectors.length,avg,counts:ratedCounts(g.vectors,ALL),dominant:dom.modality,maxStrength:dom.strength,exclusivity:modalityExclusivity(avg,PERCEPTUAL),channels:ratedChannelCount(avg,PERCEPTUAL),spread:mean(spreads),band:f.band,conc:f.conc,freq:f.freq}; });
   }
   function renderExplore(){
     fillLangSelect($("#e-language"));
@@ -535,7 +585,7 @@
     let rows=normRows(code);
     if (cband!=="all") rows=rows.filter(r=>r.band===cband);
     if (fband!=="all") rows=rows.filter(r=>typeof r.freq==="number" && freqBand(r.freq)===fband);
-    const cols=[["concept","Concept"],["word","Word"],["conc","Concreteness"],["freq","Zipf freq."],["n","Raters"],["dominant","Dominant"],["maxStrength","Max strength"],["exclusivity","Exclusivity"],["spread","Rater spread"]];
+    const cols=[["concept","Concept"],["word","Word"],["conc","Concreteness"],["freq","Zipf freq."],["n","Raters"],["dominant","Dominant"],["maxStrength","Max strength"],["exclusivity","Exclusivity"],["spread","Rater dispersion"]];
     const thead=$("#e-norms thead"), tbody=$("#e-norms tbody");
     thead.replaceChildren(el("tr",{}, cols.map(([k,l])=>{ const th=el("th",{textContent:l+(sortKey===k?(sortDir>0?" ▲":" ▼"):"")}); th.onclick=()=>{ sortDir=sortKey===k?-sortDir:1; sortKey=k; renderExplore(); }; return th; })));
     const parts=new Set(data.ratings.filter(r=>r.language===code).map(r=>r.participant));
@@ -545,7 +595,7 @@
     tbody.replaceChildren(...rows.map(r=>{ const tr=el("tr"); const w=el("td",{className:"word",textContent:r.word}); w.setAttribute("dir","auto");
       const conc = typeof r.conc==="number" ? el("span",{className:"pill "+r.band,textContent:`${r.conc} ${r.band}`}) : (r.band?el("span",{className:"pill "+r.band,textContent:r.band}):document.createTextNode(""));
       tr.append(el("td",{textContent:r.conceptId}), w, el("td",{},[conc]), el("td",{textContent:typeof r.freq==="number"?r.freq.toFixed(2):""}),
-        el("td",{textContent:r.n}), el("td",{textContent:LABELS[r.dominant]||""}), el("td",{textContent:r.maxStrength.toFixed(2)}), el("td",{textContent:r.exclusivity.toFixed(2)}), el("td",{textContent:r.spread.toFixed(2)})); return tr; }));
+        el("td",{textContent:r.n}), el("td",{textContent:LABELS[r.dominant]||""}), el("td",{textContent:show(r.maxStrength)}), el("td",{textContent:show(r.exclusivity)}), el("td",{textContent:show(r.spread)})); return tr; }));
 
     const cg={}; for (const r of data.responses){ if (r.language!==code) continue; (cg[r.conceptId]=cg[r.conceptId]||[]).push(r); }
     const cbody=$("#e-cod tbody");
@@ -555,9 +605,9 @@
   const csvq = c => /[",\n]/.test(String(c)) ? `"${String(c).replace(/"/g,'""')}"` : String(c);
   function downloadCsv(){
     const code=$("#e-language").value, rows=normRows(code);
-    const header=["concept_id","word","concreteness","zipf_frequency","n",...ALL.map(d=>"mean_"+d),"dominant_modality","max_perceptual_strength","modality_exclusivity"];
+    const header=["concept_id","word","concreteness","zipf_frequency","n_records",...ALL.flatMap(d=>["mean_"+d,"n_"+d]),"dominant_modality","max_perceptual_strength","modality_exclusivity","n_perceptual_channels"];
     const lines=[header.join(",")];
-    for (const r of rows){ const cells=[r.conceptId,r.word,typeof r.conc==="number"?r.conc:r.band,typeof r.freq==="number"?r.freq:"",r.n,...ALL.map(d=>(r.avg[d]??0).toFixed(3)),r.dominant,r.maxStrength.toFixed(3),r.exclusivity.toFixed(3)];
+    for (const r of rows){ const cells=[r.conceptId,r.word,typeof r.conc==="number"?r.conc:r.band,typeof r.freq==="number"?r.freq:"",r.n,...ALL.flatMap(d=>[show(r.avg[d],3),r.counts[d]]),r.dominant??"",show(r.maxStrength,3),show(r.exclusivity,3),r.channels];
       lines.push(cells.map(csvq).join(",")); }
     downloadBlob(lines.join("\n")+"\n","text/csv",`senselex-sensorimotor-${code}.csv`);
   }

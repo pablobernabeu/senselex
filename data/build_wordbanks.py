@@ -216,9 +216,19 @@ def stratify(entries, n, key_band):
 
 
 def build_english():
+    """Return (entries, has_concreteness) for the English bank.
+
+    Always a 2-tuple, matching the caller. build_frequency_only returns a
+    3-tuple, so the fallback below drops its third element rather than returning
+    it directly: passing it through unpacked three values into two and raised a
+    ValueError. That branch is taken whenever the concreteness file is absent,
+    which is every fresh clone, since data/source/ is not committed.
+    """
     if not BRYS.exists():
         print(f"  English concreteness file missing at {BRYS}; English will have frequency only.")
-        return build_frequency_only("en")
+        print("  Fetch it with the curl command in data/README.md to get concreteness-controlled sampling.")
+        entries, has_conc, _curated = build_frequency_only("en")
+        return entries, has_conc
     # Run the same content-word filter over English: the Brysbaert norms include
     # function words ("against", "may") and inflected forms ("bought", "sparks"),
     # which the stopword list and lemmatiser drop just as for the other languages.
@@ -318,8 +328,17 @@ def _strip_marks(s):
 
 def _zh_content(w):
     pg = _deep_cache.get("zh")
+    if pg is False:
+        return True                     # jieba absent: leave the word unfiltered
     if pg is None:
-        import jieba.posseg as pg
+        try:
+            import jieba.posseg as pg
+        except ImportError:
+            # jieba is documented as optional, so an absent install must degrade
+            # to the lighter filters rather than abort the whole build.
+            print("  jieba not installed; Chinese left on the lighter filters.")
+            _deep_cache["zh"] = False
+            return True
         _deep_cache["zh"] = pg
     toks = list(pg.cut(w))
     if len(toks) != 1:
@@ -333,7 +352,14 @@ def _load_stanza(wf_lang):
     network: the models are pre-downloaded, so this is offline-safe). Falls back
     through processor sets so a language without a lemma or NER model still gets
     what it has. Returns (pipeline_or_None, has_ner)."""
-    import stanza
+    try:
+        import stanza
+    except ImportError:
+        # Stanza is documented as optional. Without it the affected languages keep
+        # the script, cross-lingual, profanity and lemmatiser filters and simply
+        # miss the per-language pass, which is a weaker bank rather than no build.
+        print("  stanza not installed; per-language NLP pass skipped.")
+        return None, False
     for procs in ("tokenize,pos,lemma,ner", "tokenize,pos,lemma", "tokenize,pos,ner", "tokenize,pos"):
         try:
             nlp = stanza.Pipeline(wf_lang, processors=procs, verbose=False, download_method=None)

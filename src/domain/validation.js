@@ -7,6 +7,7 @@ import {
   RATING_MIN,
   RATING_MAX,
   RESPONSE_TYPES,
+  MAX_SYNC_BATCH,
 } from './dimensions.js';
 
 export class ValidationError extends Error {
@@ -120,6 +121,63 @@ export function validateResponse(input) {
   return { clientId, languageCode, conceptId, name, responseType, length, participantRef };
 }
 
+// Reference data is written by the same authenticated routes as measurements and
+// deserves the same treatment. The concept catalogue in particular is what every
+// rating keys on, so an unchecked identifier here would propagate into the
+// ratings table, the export filenames and the norms output.
+// Script is left as free text rather than a closed list, because ISO 15924 codes
+// and ordinary script names are both in circulation and rejecting either would
+// block legitimate entries.
+const DIRECTIONS = Object.freeze(['ltr', 'rtl']);
+const ORTHOGRAPHIC_DEPTHS = Object.freeze(['shallow', 'intermediate', 'deep', 'non_alphabetic']);
+
+export function validateLanguage(input) {
+  const issues = [];
+  if (!isPlainObject(input)) throw new ValidationError(['body must be an object']);
+
+  const code = requireIdentifier(input, 'code', issues);
+  const name = requireString(input, 'name', issues, { max: 200 });
+  const script = requireString(input, 'script', issues, { max: 100 });
+
+  const direction = input.direction === undefined || input.direction === null ? 'ltr' : input.direction;
+  if (!DIRECTIONS.includes(direction)) {
+    issues.push(`direction must be one of ${DIRECTIONS.join(', ')}`);
+  }
+
+  let orthographicDepth = input.orthographicDepth;
+  if (orthographicDepth === undefined || orthographicDepth === null) {
+    orthographicDepth = null;
+  } else if (!ORTHOGRAPHIC_DEPTHS.includes(orthographicDepth)) {
+    issues.push(`orthographicDepth must be one of ${ORTHOGRAPHIC_DEPTHS.join(', ')}`);
+  }
+
+  if (issues.length > 0) throw new ValidationError(issues);
+  return { code, name, script, direction, orthographicDepth, concepticonOk: input.concepticonOk !== false };
+}
+
+export function validateConcept(input) {
+  const issues = [];
+  if (!isPlainObject(input)) throw new ValidationError(['body must be an object']);
+
+  const id = requireIdentifier(input, 'id', issues);
+  const gloss = requireString(input, 'gloss', issues, { max: 500 });
+
+  // The Concepticon catalogue numbers its concept sets, so an id that is present
+  // must at least look like one. Nothing resolves it against the catalogue, so
+  // this checks shape only, and the field stays optional.
+  let concepticonId = input.concepticonId;
+  if (concepticonId === undefined || concepticonId === null || concepticonId === '') {
+    concepticonId = null;
+  } else if (!/^[0-9]{1,6}$/.test(String(concepticonId))) {
+    issues.push('concepticonId must be a Concepticon concept-set number, or omitted');
+  } else {
+    concepticonId = String(concepticonId);
+  }
+
+  if (issues.length > 0) throw new ValidationError(issues);
+  return { id, gloss, concepticonId };
+}
+
 // A sync batch is an array of typed records. Each record is validated by the
 // matching validator, and the whole batch is rejected if any record is invalid,
 // so a partial, inconsistent sync can never be committed.
@@ -127,10 +185,12 @@ export function validateSyncBatch(input) {
   if (!isPlainObject(input) || !Array.isArray(input.records)) {
     throw new ValidationError(['body must be an object with a records array']);
   }
-  // Cap the batch so one sync stays within maxBodyBytes and a single transaction;
-  // the offline client never queues more than this between syncs.
-  if (input.records.length > 1000) {
-    throw new ValidationError(['a sync batch may contain at most 1000 records']);
+  // Cap the batch so one sync stays within maxBodyBytes and commits as a single
+  // transaction. The offline client slices its queue to the same constant, so a
+  // queue larger than one batch syncs in several requests rather than being
+  // rejected outright.
+  if (input.records.length > MAX_SYNC_BATCH) {
+    throw new ValidationError([`a sync batch may contain at most ${MAX_SYNC_BATCH} records`]);
   }
   const validated = [];
   const issues = [];

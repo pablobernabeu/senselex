@@ -3,6 +3,8 @@ import assert from 'node:assert/strict';
 
 import { startTestServer } from './helpers.js';
 import { createOfflineClient, createMemoryStore } from '../src/offline/client.js';
+import { validateSyncBatch } from '../src/domain/validation.js';
+import { MAX_SYNC_BATCH } from '../src/domain/dimensions.js';
 
 test('queued field records survive offline and sync when a connection returns', async () => {
   const server = await startTestServer();
@@ -53,4 +55,89 @@ test('invalid field input is caught locally before it can be queued', async () =
     /Validation failed/,
   );
   assert.equal((await client.pending()).length, 0);
+});
+
+test('a queue larger than one batch syncs in slices instead of deadlocking', async () => {
+  // A field device accumulates far more than one batch between connections.
+  // Sending the whole queue at once was rejected on size and then retried at the
+  // same size for ever, so the queue could never drain. The client now slices to
+  // the size the server validator accepts.
+  const store = createMemoryStore();
+  const seen = [];
+  const client = createOfflineClient({
+    store,
+    endpoint: 'http://atlas.test',
+    token: 'field-token',
+    async fetchImpl(url, options) {
+      const body = JSON.parse(options.body);
+      try {
+        validateSyncBatch(body);
+      } catch (error) {
+        return {
+          ok: false,
+          status: 400,
+          json: async () => ({ issues: error.issues }),
+        };
+      }
+      seen.push(body.records.length);
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ received: body.records.length, inserted: body.records.length, duplicates: 0 }),
+      };
+    },
+  });
+
+  const queued = MAX_SYNC_BATCH + 1;
+  for (let i = 0; i < queued; i += 1) {
+    await client.enqueueRating({
+      clientId: `bulk-${i}`,
+      languageCode: 'tst',
+      conceptId: `C${i}`,
+      word: `w${i}`,
+      ratings: { vision: 3 },
+    });
+  }
+
+  const result = await client.sync();
+  assert.equal(result.received, queued);
+  assert.equal(result.batches, 2);
+  assert.deepEqual(seen, [MAX_SYNC_BATCH, 1]);
+  assert.equal((await client.pending()).length, 0);
+});
+
+test('an interrupted sync keeps the batches already confirmed', async () => {
+  // The second batch fails, so its records must stay queued while the first
+  // batch's records, which the server confirmed, must not be sent again.
+  const store = createMemoryStore();
+  let calls = 0;
+  const client = createOfflineClient({
+    store,
+    endpoint: 'http://atlas.test',
+    token: 'field-token',
+    async fetchImpl(url, options) {
+      calls += 1;
+      const body = JSON.parse(options.body);
+      if (calls === 2) return { ok: false, status: 503, json: async () => ({ error: 'unavailable' }) };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ received: body.records.length, inserted: body.records.length, duplicates: 0 }),
+      };
+    },
+  });
+
+  for (let i = 0; i < MAX_SYNC_BATCH + 5; i += 1) {
+    await client.enqueueRating({
+      clientId: `part-${i}`,
+      languageCode: 'tst',
+      conceptId: `C${i}`,
+      word: `w${i}`,
+      ratings: { vision: 2 },
+    });
+  }
+
+  await assert.rejects(() => client.sync(), /503/);
+  // The confirmed batch is gone; only the unconfirmed remainder is left.
+  assert.equal((await client.pending()).length, 5);
 });

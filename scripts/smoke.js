@@ -21,13 +21,16 @@ process.stdout.write(`health: ${JSON.stringify(health.summary)}\n`);
 const norms = await (await fetch(`${base}/v1/norms/sensorimotor?language=eng`)).json();
 process.stdout.write(`english sensorimotor norms: ${norms.rows.length} words\n`);
 for (const row of norms.rows) {
-  process.stdout.write(`  ${row.word}: dominant=${row.dominantModality} exclusivity=${row.modalityExclusivity.toFixed(2)} (n=${row.n})\n`);
+  // Exclusivity is null when fewer than two perceptual channels were rated, and
+  // the channel count is printed beside it because the measure is bounded by it.
+  const exclusivity = row.modalityExclusivity === null ? 'n/a' : row.modalityExclusivity.toFixed(2);
+  process.stdout.write(`  ${row.word}: dominant=${row.dominantModality ?? 'none'} exclusivity=${exclusivity} over ${row.perceptualChannels} channels (${row.nRecords} records)\n`);
 }
 
 const codability = await (await fetch(`${base}/v1/norms/codability?language=jhi`)).json();
 process.stdout.write(`jahai codability groups: ${codability.rows.length}\n`);
 for (const row of codability.rows) {
-  process.stdout.write(`  ${row.conceptId}: agreement=${row.agreement.toFixed(2)} distinctNames=${row.distinctNames} (n=${row.n})\n`);
+  process.stdout.write(`  ${row.conceptId}: agreement=${row.agreement === null ? "n/a" : row.agreement.toFixed(2)} distinctNames=${row.distinctNames} (n=${row.n})\n`);
 }
 
 const csv = await (await fetch(`${base}/v1/export/sensorimotor.csv?language=eng`)).text();

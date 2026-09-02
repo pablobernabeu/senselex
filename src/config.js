@@ -35,6 +35,10 @@ export function loadConfig(env = process.env) {
     writeTokens,
     // An empty allow list means same-origin only, which is the safe default.
     corsOrigins: parseList(env.SENSELEX_CORS_ORIGINS),
+    // Keys the audit log's client-address digest. Without it addresses are not
+    // recorded at all, because an unkeyed hash of an IP address is reversible by
+    // exhaustive search and so would still be personal data.
+    auditSecret: env.SENSELEX_AUDIT_SECRET || '',
     // 1 MB comfortably holds a full 1000-record sync batch while capping the memory any one request can claim.
     maxBodyBytes: parseInteger(env.SENSELEX_MAX_BODY_BYTES, 1_000_000),
     // 240 requests a minute, about four a second, is ample for a human-driven rating interface and its batch sync while throttling scripted abuse.
