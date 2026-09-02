@@ -1,7 +1,6 @@
 {
   "name": "senselex",
   "version": "0.1.0",
-  "private": true,
   "description": "SenseLex: open infrastructure for crosslinguistic multisensory lexical norms (Atlas web service, offline-first field client, FAIR export).",
   "type": "module",
   "engines": {
