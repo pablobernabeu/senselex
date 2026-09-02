@@ -19,15 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-Norms exported by the Atlas and the browser edition carry a Creative Commons
-Attribution 4.0 International licence (CC BY 4.0) in their metadata sidecar,
-which is stated separately because the data and the code are licensed apart.
-
-Word-bank sources retain their own terms. Zipf frequencies derive from wordfreq
-(Speer, 2022, https://doi.org/10.5281/zenodo.7199437), which is redistributable
-with attribution. English concreteness values derive from Brysbaert, Warriner
-and Kuperman (2014, https://doi.org/10.3758/s13428-013-0403-5), offered freely
-for research and redistributed here with attribution rather than relicensed.

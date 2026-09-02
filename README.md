@@ -57,4 +57,15 @@ Partial vectors are the reason norms carry a per-dimension count as well as a re
 
 ## Licence
 
-MIT for the code. Norms exported by the Atlas carry a Creative Commons Attribution licence in their metadata sidecar.
+MIT for the code; the full text is in `LICENSE`.
+
+The data are licensed separately from the code. Norms exported by the Atlas and
+the browser edition carry a Creative Commons Attribution 4.0 licence in their
+metadata sidecar.
+
+Word-bank sources keep their own terms. Zipf frequencies come from wordfreq
+(Speer, 2022, https://doi.org/10.5281/zenodo.7199437), which is redistributable
+with attribution. English concreteness values come from Brysbaert, Warriner and
+Kuperman (2014, https://doi.org/10.3758/s13428-013-0403-5), offered freely for
+research and redistributed here with attribution rather than relicensed. Cite
+both if you use the word banks.
