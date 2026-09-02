@@ -24,5 +24,5 @@ To turn it into a real application:
 
 Tauri is a lighter alternative to Electron for low-specification field hardware,
 at the cost of less deterministic rendering across the operating-system web views.
-The choice between them is noted in the research proposal as a design decision to
-be settled early, against the timing precision each task needs.
+The choice between them is a design decision to settle early, against the timing
+precision each task needs.
