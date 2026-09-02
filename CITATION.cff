@@ -1,0 +1,62 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "SenseLex: offline-first, browser-based collection of multisensory lexical norms across languages and scripts"
+abstract: >-
+  An open-source suite for collecting, analysing and sharing multisensory
+  lexical norms across languages and scripts. A self-contained browser edition
+  runs with no installation, account or server; a companion service adds shared
+  collection with idempotent synchronisation and FAIR exports; a jsPsych plugin
+  and exporter connect the instrument to existing experiment pipelines.
+type: software
+authors:
+  - given-names: Pablo
+    family-names: Bernabeu
+    affiliation: University of Oxford
+    orcid: "https://orcid.org/0000-0003-1083-2460"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/pablobernabeu/majid-grant-proposal"
+keywords:
+  - lexical norms
+  - sensorimotor
+  - modality exclusivity
+  - codability
+  - semantic typology
+  - crosslinguistic
+  - offline-first
+  - psycholinguistics
+references:
+  - type: article
+    title: "The Lancaster Sensorimotor Norms: Multidimensional measures of perceptual and action strength for 40,000 English words"
+    authors:
+      - family-names: Lynott
+        given-names: Dermot
+      - family-names: Connell
+        given-names: Louise
+      - family-names: Brysbaert
+        given-names: Marc
+      - family-names: Brand
+        given-names: James
+      - family-names: Carney
+        given-names: James
+    journal: Behavior Research Methods
+    year: 2020
+    volume: 52
+    start: 1271
+    end: 1291
+    doi: 10.3758/s13428-019-01316-z
+  - type: article
+    title: "Concreteness ratings for 40 thousand generally known English word lemmas"
+    authors:
+      - family-names: Brysbaert
+        given-names: Marc
+      - family-names: Warriner
+        given-names: Amy Beth
+      - family-names: Kuperman
+        given-names: Victor
+    journal: Behavior Research Methods
+    year: 2014
+    volume: 46
+    start: 904
+    end: 911
+    doi: 10.3758/s13428-013-0403-5
