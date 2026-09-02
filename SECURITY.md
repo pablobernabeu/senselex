@@ -8,11 +8,11 @@ The prototype has no third-party dependencies. It uses only the Node standard li
 
 ## Input handling
 
-Every write is validated before it reaches the database. Validation is centralised in the domain layer and rejects unknown fields, out-of-range ratings, malformed identifiers, and oversized batches. Client-supplied identifiers must match a conservative character pattern, which keeps them safe to place in URLs, filenames, and logs and removes a class of injection and path-traversal risks. Request bodies are read under a hard size cap, so a large or slow body cannot exhaust memory.
+Every write is validated before it reaches the database, reference data included: languages, concepts, ratings, responses and sync batches each pass a validator in the domain layer, which rejects unknown fields, out-of-range ratings, malformed identifiers, and oversized batches. The concept catalogue matters most here, because every rating keys on it. Client-supplied identifiers must match a conservative character pattern, which keeps them safe to place in URLs, filenames, and logs and removes a class of injection and path-traversal risks. Request bodies are read under a hard size cap, so a large or slow body cannot exhaust memory.
 
 ## Database access
 
-All SQL lives in the repository and every statement binds its parameters, so user input is never concatenated into a query and injection is structurally impossible. Foreign keys are enforced, so a measurement cannot refer to a language or concept that does not exist, and that failure is reported rather than silently dropped.
+All SQL lives in the repository and every statement binds its parameters, so user input is never concatenated into a query, which removes SQL injection as a risk. Foreign keys are enforced, so a measurement cannot refer to a language or concept that does not exist, and that failure is reported rather than silently dropped.
 
 ## Authentication
 
@@ -28,7 +28,9 @@ A fixed-window rate limiter, keyed by client address, caps how often any one cli
 
 ## Privacy
 
-Participants are pseudonymous. Only a hashed reference and coarse, non-identifying study variables are stored, and no names, contact details, or identifying free text are persisted. The audit log records a hash of the client address rather than the address itself, so that abuse can be investigated without retaining personal data. These choices match the consent and data-protection commitments in the research proposal and the requirements of the funders.
+Participants are pseudonymous. Only a client-supplied reference and coarse, non-identifying study variables are stored, and no names, contact details, or identifying free text are persisted. The reference is opaque to the service, which never learns who it belongs to, though a study that sets it from a recruitment panel identifier should treat it as pseudonymous rather than anonymous, because the panel can still resolve it.
+
+The audit log records a keyed digest of the client address rather than the address itself. The key matters: a plain hash of an IP address is not anonymisation, because the whole IPv4 space can be hashed and matched in seconds, which leaves the digest personal data under the UK GDPR. The digest is therefore an HMAC under `SENSELEX_AUDIT_SECRET`, and when that is unset the address is not recorded at all rather than stored under a guessable hash. Set a retention period for the audit table in any real deployment; nothing expires it automatically.
 
 ## Auditability
 
@@ -37,3 +39,7 @@ Every write attempt, successful or refused, is recorded in a separate audit tabl
 ## Reporting
 
 For a real deployment, security reports should go to a monitored address and be handled under a coordinated disclosure policy. Add that address here before publishing the repository.
+
+## What a study link exposes
+
+A study link may carry an Atlas address and a write token so that a browser session submits as it goes. Every participant can read that token from the address bar. It is therefore a low-trust credential: scope one token per study, expect it to become public, and revoke it when the study closes. It permits writes to the Atlas, not reads of anyone else's data, and the idempotent primary key limits what a replay can achieve.

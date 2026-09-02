@@ -10,7 +10,7 @@ The data layer wraps the database. A single connection module opens SQLite with 
 
 The server layer turns HTTP requests into repository calls. It is split into small pieces: authentication, the cross-cutting middleware for security headers, CORS, body reading, and rate limiting, the FAIR export helpers, and the application itself, which is a routing table dispatched in order. There is no web framework, and the routing is explicit so its behaviour can be read directly.
 
-The offline layer is a client rather than a server. It records measurements to a pluggable local store and synchronises them to the Atlas in idempotent batches. The store interface has three methods, so the same client runs against a file on the desktop and against IndexedDB in the browser.
+The offline layer is a client rather than a server. It records measurements to a pluggable local store and synchronises them to the Atlas in idempotent batches, slicing a queue larger than one batch rather than sending it whole, so a device that has been offline for a long time can still drain. The store interface has three methods, so the same client can run against a file on the desktop and against IndexedDB in the browser. Only the in-memory reference store ships today; the browser edition keeps its own records in localStorage rather than through this layer, and the packaged desktop build is a documented sketch rather than a working application.
 
 ## Request lifecycle
 
@@ -18,7 +18,7 @@ A request first receives the security headers and the CORS decision. A preflight
 
 ## Idempotency and the offline path
 
-Every measurement carries a client-generated identifier that becomes its primary key. A repeated insert of the same identifier is recognised as a duplicate and counted rather than stored again. This is what makes the field workflow safe: a sync that is interrupted and retried cannot create duplicates, and the queue is cleared only after the server confirms receipt.
+Every measurement carries a client-generated identifier that becomes its primary key. A repeated insert of the same identifier is recognised as a duplicate and counted rather than stored again. This is what makes the field workflow safe: a sync that is interrupted and retried cannot create duplicates, and each slice of the queue is cleared only after the server confirms that slice, so an interruption partway through keeps the progress already acknowledged and leaves the rest queued.
 
 ## Scaling path
 

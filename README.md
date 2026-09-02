@@ -41,7 +41,9 @@ cd software
 npm test
 ```
 
-The suite covers the norm mathematics against known values, the HTTP API including authentication, validation, pagination, idempotent sync, rate limiting, and CSV export, and the offline client including a retried sync that must not double-count.
+The suite covers the norm mathematics against known values, the HTTP API including authentication, validation, idempotent sync, rate limiting and CSV export, and the offline client including a retried sync that must not double-count and a queue larger than one batch that must not deadlock.
+
+It also checks the browser edition against the domain core. That edition runs from a file with no build step, so it cannot import the core and carries a copy instead. `test/browser-core.test.js` extracts the copy from between the markers in `web-static/index.html`, evaluates it, and asserts that every function agrees with `src/domain/norms.js` over a fixture set covering partial vectors, all-zero vectors, single raters and case-variant names. Before that test existed the two had already drifted on how naming responses are counted.
 
 ## Configuration
 
@@ -49,7 +51,9 @@ All configuration comes from the environment, so no secret is committed. See `.e
 
 ## The data model in brief
 
-A language carries a code, a script, an orthographic depth, and a text direction. A concept carries a stable identifier linkable to the Concepticon catalogue. A rating is one participant's strength vector for one word across the eleven sensorimotor dimensions. A response is one free-naming answer, coded for type and length so codability can be computed. Participants are pseudonymous, and no identifying information is stored.
+A language carries a code, a script, an orthographic depth and a text direction. A concept carries a stable local identifier and an optional Concepticon concept-set number, which the researcher supplies; nothing resolves it against the catalogue automatically, so an export is linkable only as far as that field has been filled in. A rating is one participant's strength vector for one word across the eleven sensorimotor dimensions, and the vector may be partial. A response is one free-naming answer, coded for type and length so codability can be computed. Participants are pseudonymous and no identifying information is stored.
+
+Partial vectors are the reason norms carry a per-dimension count as well as a record count. A channel nobody rated averages to nothing rather than to zero, because zero is a substantive judgement in this protocol, meaning the referent is not experienced through that channel at all. Reading an absent judgement as a zero one would inflate modality exclusivity, which is a range over a sum. Exports therefore carry `mean_<dimension>` beside `n_<dimension>`, an empty cell where no one judged a channel, and `n_perceptual_channels` beside the exclusivity score, since exclusivity is bounded by how many channels contributed and values computed over different numbers of channels are not comparable.
 
 ## Licence
 
