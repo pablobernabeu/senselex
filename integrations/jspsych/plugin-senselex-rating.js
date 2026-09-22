@@ -28,10 +28,14 @@ var jsPsychSenselexRating = (function (jspsych) {
   var PERCEPTUAL = ['touch', 'hearing', 'smell', 'taste', 'vision', 'interoception'];
   var ACTION = ['mouth_throat', 'hand_arm', 'foot_leg', 'head', 'torso'];
   var ALL = PERCEPTUAL.concat(ACTION);
+  // Worded as in the Lancaster Sensorimotor Norms questionnaires (Lynott et al.,
+  // 2020; osf.io/3m2yg). "Head excluding mouth" matters: without it, speaking and
+  // eating earn head credit that the published norms put under mouth alone.
   var LABELS = {
-    touch: 'Touch', hearing: 'Hearing', smell: 'Smell', taste: 'Taste',
-    vision: 'Vision', interoception: 'Interoception', mouth_throat: 'Mouth / throat',
-    hand_arm: 'Hand / arm', foot_leg: 'Foot / leg', head: 'Head', torso: 'Torso',
+    touch: 'By feeling through touch', hearing: 'By hearing', smell: 'By smelling',
+    taste: 'By tasting', vision: 'By seeing', interoception: 'By sensations inside your body',
+    mouth_throat: 'Mouth / throat', hand_arm: 'Hand / arm', foot_leg: 'Foot / leg',
+    head: 'Head excluding mouth', torso: 'Torso',
   };
 
   var info = {
@@ -51,8 +55,9 @@ var jsPsychSenselexRating = (function (jspsych) {
       /** Instruction shown above the rating grid. */
       preamble: {
         type: jspsych.ParameterType.HTML_STRING,
-        default: 'Rate how strongly this word is experienced through each channel, ' +
-          'from 0 (not at all) to 5 (very strongly). Leave a channel blank if it does not apply.',
+        default: 'To what extent do you experience this word? Rate every channel from 0 (not at all) ' +
+          'to 5 (greatly): the first six by each sense, the last five by performing an action with ' +
+          'that part of the body. A channel through which you do not experience the word at all is a 0, not a blank.',
       },
       /** Label of the save button. */
       button_label: { type: jspsych.ParameterType.STRING, default: 'Save and continue' },

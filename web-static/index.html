@@ -280,6 +280,16 @@
   // display and export blank rather than printing a zero that would read as data.
   const show = (v,dp=2) => (typeof v==="number"&&isFinite(v)) ? v.toFixed(dp) : "";
 
+  // Row labels for the rating task, worded as in the Lancaster Sensorimotor Norms
+  // questionnaires (Lynott et al., 2020; screens at osf.io/3m2yg). The wording is
+  // part of the instrument, not decoration: "head excluding mouth" in particular
+  // tells raters to put speaking and eating under mouth, and a bare "Head" lets
+  // those actions count twice, which the published norms would not reflect.
+  const RATING_LABELS = { touch:"By feeling through touch", hearing:"By hearing", smell:"By smelling",
+    taste:"By tasting", vision:"By seeing", interoception:"By sensations inside your body",
+    mouth_throat:"Mouth / throat", hand_arm:"Hand / arm", foot_leg:"Foot / leg",
+    head:"Head excluding mouth", torso:"Torso" };
+
   // ----- The word banks (one per language; loaded from words.js) -----
   // Each entry is [word, concreteness 1-5 or null, zipf frequency]. Concreteness
   // is present for English only; every language carries a Zipf frequency.
@@ -501,7 +511,7 @@
   // ===================== COLLECT =====================
   let collectIndex=0;
   function collectHelp(){ $("#c-help").textContent = $("#c-task").value==="rating"
-    ? "Rate how strongly the word is experienced through each channel, from 0 (not at all) to 5 (very strongly). Leave a channel blank if it does not apply. Press Enter on a field to save and move to the next word."
+    ? "To what extent do you experience this word? Rate every channel from 0 (not at all) to 5 (greatly): the first six by each sense, the last five by performing an action with that part of the body. A channel through which you do not experience the word at all is a 0, not a blank. If you do not know the meaning of the word, skip it. Press Enter on a field to save and move to the next word."
     : "Read the cue, then type the first single word the participant gives for it. Agreement across participants becomes the codability of that concept."; }
   const ratedSet = (code,p) => new Set(data.ratings.filter(r=>r.language===code&&r.participant===p).map(r=>r.conceptId+"|"+r.word));
   const namedSet = (code,p) => new Set(data.responses.filter(r=>r.language===code&&r.participant===p).map(r=>r.conceptId));
@@ -536,7 +546,7 @@
     const speakCode = task==="rating" ? code : "eng";
     const speakText = task==="rating" ? item.word : item.gloss;
     if (hasVoiceFor(speakCode)) controls.append(el("button",{className:"ghost",type:"button",textContent:"🔊 Read aloud",onclick:()=>speak(speakText, speakCode)}));
-    controls.append(el("button",{className:"ghost",type:"button",textContent:"Skip ▶",onclick:()=>{ collectIndex=(collectIndex+1)%items.length; renderCollect(); }}));
+    controls.append(el("button",{className:"ghost",type:"button",textContent:"Skip / don't know ▶",onclick:()=>{ collectIndex=(collectIndex+1)%items.length; renderCollect(); }}));
     area.append(controls);
 
     if (task==="rating"){
@@ -545,7 +555,7 @@
       for (const dim of ALL){ const id="cr-"+dim; const inp=el("input",{type:"number",id,min:"0",max:"5",step:"0.5",inputMode:"decimal"});
         if (existing && typeof existing.dims[dim]==="number") inp.value=existing.dims[dim];
         inp.addEventListener("keydown",ev=>{ if (ev.key==="Enter") saveRating(); }); inputs[dim]=inp;
-        grid.append(el("div",{className:"rating-row"},[el("label",{htmlFor:id,textContent:LABELS[dim]}), inp])); }
+        grid.append(el("div",{className:"rating-row"},[el("label",{htmlFor:id,textContent:RATING_LABELS[dim]}), inp])); }
       area.append(grid);
       const btn=el("button",{className:"act",type:"button",textContent:existing?"Update and next":"Save and next"}); area.append(btn);
       function saveRating(){ const dims={}; let any=false;
@@ -635,7 +645,7 @@
     const lm = data.languages.find(l=>l.code===code) || {code,name:code,direction:"ltr"};
     const payload = {
       language: {code:lm.code, name:lm.name||code, script:lm.script||"", direction:lm.direction||"ltr"},
-      dims: ALL, labels: LABELS,
+      dims: ALL, labels: RATING_LABELS,
       items: itemsFor(code).map(i=>({conceptId:i.conceptId, word:i.word, gloss:i.gloss}))
     };
     const json = JSON.stringify(payload).replace(/</g,"\\u003c");
@@ -657,7 +667,7 @@
 '  P.prototype.trial = function(el, trial){',
 '    var t0 = performance.now(), jsPsych = this.jsPsych;',
 '    var h = "<div class=\\"sx-word\\" dir=\\""+trial.direction+"\\">"+trial.word+"</div>";',
-'    h += "<p>Rate how strongly this word is experienced through each channel, from 0 (not at all) to 5 (very strongly). Leave a channel blank if it does not apply.</p>";',
+'    h += "<p>To what extent do you experience this word? Rate every channel from 0 (not at all) to 5 (greatly): the first six by each sense, the last five by performing an action with that part of the body. A channel through which you do not experience the word at all is a 0, not a blank.</p>";',
 '    h += "<div class=\\"sx-grid\\">";',
 '    for (var i=0;i<SENSELEX.dims.length;i++){ var d=SENSELEX.dims[i];',
 '      h += "<div class=\\"sx-row\\"><label for=\\"sx-"+d+"\\">"+SENSELEX.labels[d]+"</label><input id=\\"sx-"+d+"\\" type=\\"number\\" min=\\"0\\" max=\\"5\\" step=\\"0.5\\"></div>"; }',
