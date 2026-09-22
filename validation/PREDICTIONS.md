@@ -95,3 +95,44 @@ paired bootstrap intervals over words.
 Nothing in H1 to H3 tests SenseLex's correctness, which the reproduction analysis
 does. These hypotheses concern what simulated raters can and cannot stand in for.
 A result either way is reported.
+
+## Amendment 1, 23 September 2026, before any panel rating was collected
+
+Committed after the analyses of the human trial-level data had been run and
+before the machine panel was collected. Nothing below was informed by machine
+ratings; both changes were informed by the human data, as stated.
+
+**Estimator for H2.** The plan above split each word's raters in half. Run on the
+Lancaster trial data, that estimator proved biased: because words differ in how
+many raters they have, and a mean's reliability rises less than linearly with
+its rater count, the mixture of half sizes pulls the single-rater estimate down.
+The analysis's own check showed it, predicting .70 for an eight-rater mean of
+touch ratings where two disjoint eight-rater means correlated at .76. H2 is
+therefore computed with a fixed half size of six raters for both panels, using
+only words with at least twelve ratings, which the machine panel meets exactly.
+H2's prediction and its test are otherwise unchanged.
+
+**H1b, added: is the domain gradient a reliability artefact?** The same human
+data show that people agree with one another far less on the action channels than
+on the perceptual ones: on the 300 panel words, by the first estimator,
+single-rater reliability was .08 for head and .13 for torso against .37 for taste
+and .32 for smell. No measure can
+correlate with a criterion more strongly than the criterion's reliability allows,
+so a lower machine-human agreement on the action channels could come from the
+human norms rather than from what the model knows. H1 cannot tell these apart.
+
+Test: correct each channel's Pearson correlation between machine and human means
+for attenuation (Spearman, 1904), using the reliability of each set of means,
+taken as the single-rater reliability stepped up with Spearman-Brown to the
+harmonic mean number of raters per word. Recompute the domain gap on the
+corrected correlations, with a bootstrap interval over the 246 confirmatory words
+(10,000 resamples, seed 20260923) in which the reliabilities are held fixed at
+their full-sample values; the interval therefore ignores the uncertainty in the
+reliabilities and will be somewhat too narrow, which is stated wherever it is
+reported.
+
+Prediction, stated both ways because the human data make neither outcome safe:
+if the gradient is a reliability artefact, the corrected gap will be smaller than
+the uncorrected Pearson gap and its interval will include zero; if the gradient
+reflects what the model recovers, the corrected gap will stay positive with an
+interval excluding zero.
