@@ -1,73 +1,83 @@
-// Draw the word sample for the computational validation study: 60 English
-// words from the app's own curated bank, stratified across the concreteness
-// range (six bands) and spread across the frequency range within each band,
-// so the sample spans the space the instrument is meant to measure rather
-// than clustering at concrete, common words. Every word carries its human
-// concreteness rating (Brysbaert, Warriner & Kuperman, 2014) from the bank,
-// which is what the machine-generated norms are later correlated against.
+// Draw the word sample for the simulated-rater panel: 300 English words from the
+// app's own curated bank, six concreteness bands of 50, spread across the
+// frequency range within each band. PREDICTIONS.md sets out why.
 //
-// Run:  node validation/sample_words.mjs   (from the software directory)
-// Writes: validation/words-sample.json
+// Three filters apply before sampling. A word must carry a concreteness rating
+// (Brysbaert, Warriner & Kuperman, 2014) and a Zipf frequency, it must appear in
+// the Lancaster Sensorimotor Norms so that every machine rating has a human
+// counterpart, and its Zipf frequency must be above zero. The last filter drops
+// words absent from the wordfreq corpus: a Zipf of zero marks a word the corpus
+// never saw, not a rare one, so keeping them would put a floor artefact at the
+// bottom of the frequency range the sample claims to span.
+//
+// The pilot's 60 words are retained where they pass the filters (54 of them), as
+// the overlap set that measures stability across model versions; the rest of
+// each band is new (the confirmatory set). Selection is deterministic, taking
+// evenly spaced words from each band sorted by frequency, so rerunning the
+// script reproduces the sample exactly.
+//
+// Run from the software directory:  node validation/sample_words.mjs
+// Reads the pilot sample from validation/pilot/words-sample-pilot.json and the
+// Lancaster norms from SENSELEX_DATA_DIR (default: validation/).
+// Writes validation/words-sample.json.
 
-import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import process from 'node:process';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const bankSource = readFileSync(resolve(here, '../web-static/words.js'), 'utf8');
-
-const windowShim = {};
-new Function('window', bankSource)(windowShim);
-const bank = windowShim.SENSELEX_WORDBANK?.banks?.eng?.words;
-if (!Array.isArray(bank) || bank.length === 0) {
-  throw new Error('English bank not found in web-static/words.js');
-}
-
-// Entries are [word, concreteness, zipf]; keep only words with both features.
-const usable = bank.filter(
-  (w) => typeof w[1] === 'number' && typeof w[2] === 'number',
-);
+const dataDir = process.env.SENSELEX_DATA_DIR || here;
 
 const BANDS = 6;
-const PER_BAND = 10;
-const lo = 1;
-const hi = 5;
-const width = (hi - lo) / BANDS;
+const PER_BAND = 50;
+const LO = 1;
+const HI = 5;
+const WIDTH = (HI - LO) / BANDS;
 
-const sample = [];
+const windowShim = {};
+new Function('window', readFileSync(resolve(here, '../web-static/words.js'), 'utf8'))(windowShim);
+const bank = windowShim.SENSELEX_WORDBANK?.banks?.eng?.words;
+if (!Array.isArray(bank) || bank.length === 0) throw new Error('English bank not found in web-static/words.js');
+
+const lancaster = new Set(
+  readFileSync(resolve(dataDir, 'lancaster-sensorimotor-norms.csv'), 'utf8')
+    .split(/\r?\n/).slice(1).filter(Boolean).map((line) => line.split(',')[0].toLowerCase()),
+);
+
+const pilot = new Set(
+  JSON.parse(readFileSync(resolve(here, 'pilot/words-sample-pilot.json'), 'utf8')).items.map((i) => i.word),
+);
+
+// Entries are [word, concreteness, zipf].
+const eligible = bank.filter((w) =>
+  typeof w[1] === 'number' && typeof w[2] === 'number' && w[2] > 0 && lancaster.has(w[0].toLowerCase()));
+
+function evenlySpaced(list, n) {
+  const sorted = [...list].sort((a, b) => a[2] - b[2] || a[0].localeCompare(b[0]));
+  if (n >= sorted.length) return sorted;
+  const step = sorted.length / n;
+  return Array.from({ length: n }, (_, i) => sorted[Math.floor(i * step + step / 2)]);
+}
+
+const items = [];
 for (let b = 0; b < BANDS; b += 1) {
-  const min = lo + b * width;
-  const max = b === BANDS - 1 ? hi + 0.001 : lo + (b + 1) * width;
-  const band = usable
-    .filter((w) => w[1] >= min && w[1] < max)
-    .sort((a, c) => a[2] - c[2]);
-  const take = Math.min(PER_BAND, band.length);
-  const step = band.length / Math.max(1, take);
-  for (let i = 0; i < take; i += 1) sample.push(band[Math.floor(i * step)]);
+  const min = LO + b * WIDTH;
+  const max = b === BANDS - 1 ? HI + 0.001 : LO + (b + 1) * WIDTH;
+  const band = eligible.filter((w) => w[1] >= min && w[1] < max);
+  const kept = band.filter((w) => pilot.has(w[0]));
+  const fresh = evenlySpaced(band.filter((w) => !pilot.has(w[0])), PER_BAND - kept.length);
+  for (const w of kept) items.push({ word: w[0], concreteness: w[1], zipf: w[2], band: b + 1, set: 'overlap' });
+  for (const w of fresh) items.push({ word: w[0], concreteness: w[1], zipf: w[2], band: b + 1, set: 'confirmatory' });
 }
+items.sort((a, b) => a.word.localeCompare(b.word));
 
-// Top up from the whole pool if any band ran short, preferring unused words
-// spread across concreteness.
-if (sample.length < BANDS * PER_BAND) {
-  const used = new Set(sample.map((w) => w[0]));
-  const rest = usable
-    .filter((w) => !used.has(w[0]))
-    .sort((a, c) => a[1] - c[1]);
-  const need = BANDS * PER_BAND - sample.length;
-  const step = rest.length / need;
-  for (let i = 0; i < need; i += 1) sample.push(rest[Math.floor(i * step)]);
-}
-
-sample.sort((a, c) => a[0].localeCompare(c[0]));
-
+const counts = { overlap: items.filter((i) => i.set === 'overlap').length, confirmatory: items.filter((i) => i.set === 'confirmatory').length };
 const out = {
   language: 'eng',
-  source: 'web-static/words.js (curated bank; concreteness from Brysbaert et al., 2014; Zipf from wordfreq)',
-  design: `${BANDS} concreteness bands x ${PER_BAND} words, frequency-spread within band`,
-  items: sample.map(([word, concreteness, zipf]) => ({ word, concreteness, zipf })),
+  source: 'web-static/words.js (curated bank; concreteness from Brysbaert et al., 2014; Zipf from wordfreq), restricted to words in the Lancaster Sensorimotor Norms with Zipf > 0',
+  design: `${BANDS} concreteness bands x ${PER_BAND} words, frequency-spread within band; ${counts.overlap} overlap words from the pilot, ${counts.confirmatory} confirmatory words`,
+  items,
 };
-
-mkdirSync(here, { recursive: true });
 writeFileSync(resolve(here, 'words-sample.json'), `${JSON.stringify(out, null, 2)}\n`);
-console.log(`wrote words-sample.json with ${out.items.length} words`);
-console.log('concreteness range:', sample[0] && Math.min(...sample.map((w) => w[1])), 'to', Math.max(...sample.map((w) => w[1])));
+console.log(`wrote words-sample.json: ${items.length} words (${counts.overlap} overlap, ${counts.confirmatory} confirmatory)`);

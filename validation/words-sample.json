@@ -1,307 +1,2107 @@
 {
   "language": "eng",
-  "source": "web-static/words.js (curated bank; concreteness from Brysbaert et al., 2014; Zipf from wordfreq)",
-  "design": "6 concreteness bands x 10 words, frequency-spread within band",
+  "source": "web-static/words.js (curated bank; concreteness from Brysbaert et al., 2014; Zipf from wordfreq), restricted to words in the Lancaster Sensorimotor Norms with Zipf > 0",
+  "design": "6 concreteness bands x 50 words, frequency-spread within band; 54 overlap words from the pilot, 246 confirmatory words",
   "items": [
     {
-      "word": "antiquate",
-      "concreteness": 1.8,
-      "zipf": 0
+      "word": "ability",
+      "concreteness": 1.81,
+      "zipf": 4.96,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "abominable",
+      "concreteness": 1.89,
+      "zipf": 2.85,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "abomination",
+      "concreteness": 2.23,
+      "zipf": 3.13,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "acceptor",
+      "concreteness": 2.79,
+      "zipf": 2.75,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "acetylene",
+      "concreteness": 3.58,
+      "zipf": 2.44,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "actor",
+      "concreteness": 4.57,
+      "zipf": 4.65,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "acute",
+      "concreteness": 1.92,
+      "zipf": 4,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "airworthiness",
+      "concreteness": 2.07,
+      "zipf": 2.31,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "alarm",
+      "concreteness": 4.47,
+      "zipf": 4.28,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "amphibian",
+      "concreteness": 3.77,
+      "zipf": 2.72,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "anticipatory",
+      "concreteness": 1.69,
+      "zipf": 2.39,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "antitrust",
+      "concreteness": 1.63,
+      "zipf": 3.37,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "approve",
+      "concreteness": 1.85,
+      "zipf": 4.08,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "asparagus",
+      "concreteness": 4.96,
+      "zipf": 3.25,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "assistant",
+      "concreteness": 4.07,
+      "zipf": 4.72,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "bad",
+      "concreteness": 1.68,
+      "zipf": 5.53,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "basis",
+      "concreteness": 1.83,
+      "zipf": 4.81,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "bear",
+      "concreteness": 4.88,
+      "zipf": 4.71,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "bedpan",
+      "concreteness": 5,
+      "zipf": 1.82,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "biblical",
+      "concreteness": 1.97,
+      "zipf": 3.92,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "bifocals",
+      "concreteness": 4.64,
+      "zipf": 1.94,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "binary",
+      "concreteness": 3,
+      "zipf": 3.95,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "bioreactor",
+      "concreteness": 3.35,
+      "zipf": 2.1,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "bloom",
+      "concreteness": 4,
+      "zipf": 3.93,
+      "band": 5,
+      "set": "confirmatory"
     },
     {
       "word": "boost",
       "concreteness": 2.89,
-      "zipf": 4.41
+      "zipf": 4.41,
+      "band": 3,
+      "set": "overlap"
+    },
+    {
+      "word": "bra",
+      "concreteness": 4.54,
+      "zipf": 3.85,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "breeches",
+      "concreteness": 4.07,
+      "zipf": 2.67,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "bridge",
+      "concreteness": 4.97,
+      "zipf": 4.77,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "bubble",
+      "concreteness": 4.6,
+      "zipf": 4.16,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "bumble",
+      "concreteness": 2.44,
+      "zipf": 2.97,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "bump",
       "concreteness": 4.1,
-      "zipf": 3.98
+      "zipf": 3.98,
+      "band": 5,
+      "set": "overlap"
+    },
+    {
+      "word": "burly",
+      "concreteness": 3.04,
+      "zipf": 2.82,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "burn",
+      "concreteness": 4.11,
+      "zipf": 4.53,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "canopy",
+      "concreteness": 4.52,
+      "zipf": 3.52,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "category",
+      "concreteness": 2.82,
+      "zipf": 4.57,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "celery",
+      "concreteness": 4.8,
+      "zipf": 3.32,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "cellar",
+      "concreteness": 4.68,
+      "zipf": 3.6,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "centrifuge",
+      "concreteness": 4.38,
+      "zipf": 2.81,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "change",
+      "concreteness": 2.89,
+      "zipf": 5.54,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "chastise",
+      "concreteness": 2.68,
+      "zipf": 2.53,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "city",
+      "concreteness": 4.79,
+      "zipf": 5.61,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "clientele",
+      "concreteness": 3.31,
+      "zipf": 3.22,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "coagulant",
       "concreteness": 3.56,
-      "zipf": 2.03
+      "zipf": 2.03,
+      "band": 4,
+      "set": "overlap"
+    },
+    {
+      "word": "coast",
+      "concreteness": 4.21,
+      "zipf": 4.87,
+      "band": 5,
+      "set": "confirmatory"
     },
     {
       "word": "code",
       "concreteness": 3,
-      "zipf": 5.08
+      "zipf": 5.08,
+      "band": 4,
+      "set": "overlap"
+    },
+    {
+      "word": "coincidence",
+      "concreteness": 1.57,
+      "zipf": 3.96,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "comedienne",
+      "concreteness": 3.92,
+      "zipf": 2.22,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "commentate",
+      "concreteness": 2.41,
+      "zipf": 2.23,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "compactor",
+      "concreteness": 4.57,
+      "zipf": 2.26,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "comparative",
+      "concreteness": 1.74,
+      "zipf": 3.77,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "compound",
+      "concreteness": 3.03,
+      "zipf": 4.18,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "condescend",
       "concreteness": 1.5,
-      "zipf": 2.25
+      "zipf": 2.25,
+      "band": 1,
+      "set": "overlap"
+    },
+    {
+      "word": "condition",
+      "concreteness": 2.15,
+      "zipf": 4.86,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "cooperator",
+      "concreteness": 3.32,
+      "zipf": 1.76,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "cover",
       "concreteness": 4.23,
-      "zipf": 5.08
+      "zipf": 5.08,
+      "band": 5,
+      "set": "overlap"
+    },
+    {
+      "word": "craft",
+      "concreteness": 3.48,
+      "zipf": 4.3,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "creep",
+      "concreteness": 3.38,
+      "zipf": 3.84,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "cult",
+      "concreteness": 2.71,
+      "zipf": 4.09,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "daily",
+      "concreteness": 3.15,
+      "zipf": 5.07,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "daughter",
       "concreteness": 4.79,
-      "zipf": 5.07
+      "zipf": 5.07,
+      "band": 6,
+      "set": "overlap"
+    },
+    {
+      "word": "decolonization",
+      "concreteness": 2.59,
+      "zipf": 2.43,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "degeneracy",
       "concreteness": 1.33,
-      "zipf": 2.62
+      "zipf": 2.62,
+      "band": 1,
+      "set": "overlap"
     },
     {
-      "word": "dehorn",
-      "concreteness": 3.2,
-      "zipf": 0
+      "word": "degrade",
+      "concreteness": 1.64,
+      "zipf": 3.28,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "democracy",
+      "concreteness": 1.78,
+      "zipf": 4.51,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "demon",
+      "concreteness": 3.32,
+      "zipf": 4.06,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "demystify",
+      "concreteness": 1.56,
+      "zipf": 2.15,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "desire",
+      "concreteness": 1.7,
+      "zipf": 4.61,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "determinative",
+      "concreteness": 1.8,
+      "zipf": 2.14,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "deviousness",
+      "concreteness": 1.46,
+      "zipf": 1.68,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "diabetes",
+      "concreteness": 3.83,
+      "zipf": 4.17,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "diameter",
+      "concreteness": 4.03,
+      "zipf": 4.08,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "digestive",
+      "concreteness": 2.67,
+      "zipf": 3.46,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "discretion",
+      "concreteness": 1.6,
+      "zipf": 3.9,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "distillation",
+      "concreteness": 3.11,
+      "zipf": 3.01,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "divine",
       "concreteness": 1.44,
-      "zipf": 4.24
+      "zipf": 4.24,
+      "band": 1,
+      "set": "overlap"
+    },
+    {
+      "word": "domestication",
+      "concreteness": 1.64,
+      "zipf": 2.74,
+      "band": 1,
+      "set": "confirmatory"
     },
     {
       "word": "doorway",
       "concreteness": 4.75,
-      "zipf": 3.51
+      "zipf": 3.51,
+      "band": 6,
+      "set": "overlap"
+    },
+    {
+      "word": "eccentric",
+      "concreteness": 1.81,
+      "zipf": 3.58,
+      "band": 2,
+      "set": "confirmatory"
     },
     {
       "word": "elbow",
       "concreteness": 5,
-      "zipf": 3.84
+      "zipf": 3.84,
+      "band": 6,
+      "set": "overlap"
+    },
+    {
+      "word": "endocrinologist",
+      "concreteness": 3.86,
+      "zipf": 2.45,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "entire",
+      "concreteness": 2.03,
+      "zipf": 5.09,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "entry",
+      "concreteness": 3.62,
+      "zipf": 4.67,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "equality",
+      "concreteness": 1.41,
+      "zipf": 4.26,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "era",
+      "concreteness": 2.24,
+      "zipf": 4.67,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "eternalize",
+      "concreteness": 1.57,
+      "zipf": 1.03,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "ethos",
+      "concreteness": 1.58,
+      "zipf": 3.32,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "evenness",
+      "concreteness": 2.43,
+      "zipf": 1.94,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "evolutionism",
+      "concreteness": 2.11,
+      "zipf": 1.72,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "expansion",
+      "concreteness": 3,
+      "zipf": 4.54,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "experience",
+      "concreteness": 1.8,
+      "zipf": 5.27,
+      "band": 2,
+      "set": "confirmatory"
     },
     {
       "word": "explain",
       "concreteness": 1.97,
-      "zipf": 4.89
+      "zipf": 4.89,
+      "band": 2,
+      "set": "overlap"
     },
     {
-      "word": "eyedrop",
-      "concreteness": 4.81,
-      "zipf": 0
+      "word": "faith",
+      "concreteness": 1.63,
+      "zipf": 4.82,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "fantasy",
+      "concreteness": 1.59,
+      "zipf": 4.52,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "fateful",
+      "concreteness": 1.31,
+      "zipf": 3.06,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "filetype",
+      "concreteness": 3.15,
+      "zipf": 1.37,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "film",
+      "concreteness": 4.71,
+      "zipf": 5.2,
+      "band": 6,
+      "set": "confirmatory"
     },
     {
       "word": "firefly",
       "concreteness": 4.9,
-      "zipf": 3.13
+      "zipf": 3.13,
+      "band": 6,
+      "set": "overlap"
+    },
+    {
+      "word": "firm",
+      "concreteness": 3.54,
+      "zipf": 4.79,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "flapjack",
       "concreteness": 4.89,
-      "zipf": 2.13
+      "zipf": 2.13,
+      "band": 6,
+      "set": "overlap"
+    },
+    {
+      "word": "foulness",
+      "concreteness": 1.84,
+      "zipf": 1.86,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "freestyle",
+      "concreteness": 2.73,
+      "zipf": 3.8,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "fruitful",
+      "concreteness": 2.38,
+      "zipf": 3.3,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "fur",
+      "concreteness": 4.69,
+      "zipf": 4.03,
+      "band": 6,
+      "set": "confirmatory"
     },
     {
       "word": "garage",
       "concreteness": 4.96,
-      "zipf": 4.25
+      "zipf": 4.25,
+      "band": 6,
+      "set": "overlap"
+    },
+    {
+      "word": "generalist",
+      "concreteness": 2.45,
+      "zipf": 2.63,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "generalization",
+      "concreteness": 1.93,
+      "zipf": 3.21,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "girl",
+      "concreteness": 4.85,
+      "zipf": 5.38,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "godfather",
+      "concreteness": 4.14,
+      "zipf": 3.44,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "guillotine",
+      "concreteness": 4.64,
+      "zipf": 3,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "hang",
+      "concreteness": 3.7,
+      "zipf": 4.6,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "harshness",
+      "concreteness": 2.19,
+      "zipf": 2.65,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "heathen",
+      "concreteness": 3.04,
+      "zipf": 3.1,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "hilarious",
+      "concreteness": 2.39,
+      "zipf": 4.27,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "hind",
+      "concreteness": 3.96,
+      "zipf": 3.5,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "hip",
+      "concreteness": 4.21,
+      "zipf": 4.46,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "homegrown",
+      "concreteness": 2.72,
+      "zipf": 3.06,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "honest",
       "concreteness": 1.66,
-      "zipf": 4.73
+      "zipf": 4.73,
+      "band": 1,
+      "set": "overlap"
+    },
+    {
+      "word": "housetop",
+      "concreteness": 4.62,
+      "zipf": 1.54,
+      "band": 6,
+      "set": "confirmatory"
     },
     {
       "word": "humiliate",
       "concreteness": 2.07,
-      "zipf": 3.08
+      "zipf": 3.08,
+      "band": 2,
+      "set": "overlap"
+    },
+    {
+      "word": "hurt",
+      "concreteness": 3.61,
+      "zipf": 4.94,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "hygienist",
+      "concreteness": 4.24,
+      "zipf": 2.55,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "idea",
+      "concreteness": 1.61,
+      "zipf": 5.36,
+      "band": 1,
+      "set": "confirmatory"
     },
     {
       "word": "imagine",
       "concreteness": 1.53,
-      "zipf": 4.92
+      "zipf": 4.92,
+      "band": 1,
+      "set": "overlap"
     },
     {
-      "word": "impassion",
-      "concreteness": 1.65,
-      "zipf": 0
+      "word": "imperative",
+      "concreteness": 1.36,
+      "zipf": 3.66,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "independence",
+      "concreteness": 1.87,
+      "zipf": 4.58,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "infiltrator",
+      "concreteness": 3,
+      "zipf": 2.17,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "infinite",
+      "concreteness": 1.59,
+      "zipf": 4.16,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "insulate",
+      "concreteness": 2.96,
+      "zipf": 2.83,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "integration",
       "concreteness": 1.89,
-      "zipf": 4.22
+      "zipf": 4.22,
+      "band": 2,
+      "set": "overlap"
+    },
+    {
+      "word": "interstate",
+      "concreteness": 3.93,
+      "zipf": 3.99,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "intractability",
+      "concreteness": 1.4,
+      "zipf": 1.55,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "invalidation",
+      "concreteness": 1.83,
+      "zipf": 2.23,
+      "band": 2,
+      "set": "confirmatory"
     },
     {
       "word": "irksome",
       "concreteness": 1.83,
-      "zipf": 2.33
+      "zipf": 2.33,
+      "band": 2,
+      "set": "overlap"
+    },
+    {
+      "word": "islamic",
+      "concreteness": 2.85,
+      "zipf": 4.44,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "island",
+      "concreteness": 4.96,
+      "zipf": 5.01,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "justice",
+      "concreteness": 1.45,
+      "zipf": 4.97,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "kennel",
+      "concreteness": 4.73,
+      "zipf": 3.16,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "kiss",
+      "concreteness": 4.48,
+      "zipf": 4.58,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "landowner",
+      "concreteness": 4.29,
+      "zipf": 3.11,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "leadership",
+      "concreteness": 2.43,
+      "zipf": 4.77,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "lectern",
+      "concreteness": 4.46,
+      "zipf": 2.44,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "lifeguard",
+      "concreteness": 4.47,
+      "zipf": 3.07,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "light",
+      "concreteness": 4.21,
+      "zipf": 5.33,
+      "band": 5,
+      "set": "confirmatory"
     },
     {
       "word": "litigation",
       "concreteness": 2.96,
-      "zipf": 3.93
+      "zipf": 3.93,
+      "band": 3,
+      "set": "overlap"
+    },
+    {
+      "word": "live",
+      "concreteness": 3.57,
+      "zipf": 5.54,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "living",
+      "concreteness": 3.04,
+      "zipf": 5.3,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "lot",
+      "concreteness": 3.7,
+      "zipf": 5.61,
+      "band": 5,
+      "set": "confirmatory"
     },
     {
       "word": "loud",
       "concreteness": 3.73,
-      "zipf": 4.53
+      "zipf": 4.53,
+      "band": 5,
+      "set": "overlap"
+    },
+    {
+      "word": "magnetometer",
+      "concreteness": 4.25,
+      "zipf": 2.29,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "malcontent",
+      "concreteness": 2.16,
+      "zipf": 2.05,
+      "band": 2,
+      "set": "confirmatory"
     },
     {
       "word": "manipulator",
       "concreteness": 2.96,
-      "zipf": 2.85
+      "zipf": 2.85,
+      "band": 3,
+      "set": "overlap"
+    },
+    {
+      "word": "marksman",
+      "concreteness": 4.12,
+      "zipf": 2.88,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "mass",
+      "concreteness": 3.44,
+      "zipf": 4.87,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "maximize",
+      "concreteness": 1.79,
+      "zipf": 3.63,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "meaningless",
+      "concreteness": 1.86,
+      "zipf": 3.7,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "message",
+      "concreteness": 3.97,
+      "zipf": 5,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "metabolize",
+      "concreteness": 2.24,
+      "zipf": 2.46,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "methane",
+      "concreteness": 4.32,
+      "zipf": 3.54,
+      "band": 5,
+      "set": "confirmatory"
     },
     {
       "word": "microbiology",
       "concreteness": 2.93,
-      "zipf": 3.25
+      "zipf": 3.25,
+      "band": 3,
+      "set": "overlap"
+    },
+    {
+      "word": "mischievous",
+      "concreteness": 2.37,
+      "zipf": 3.15,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "misconstrue",
+      "concreteness": 1.58,
+      "zipf": 2.04,
+      "band": 1,
+      "set": "confirmatory"
     },
     {
       "word": "misrepresentation",
       "concreteness": 1.55,
-      "zipf": 2.98
+      "zipf": 2.98,
+      "band": 1,
+      "set": "overlap"
+    },
+    {
+      "word": "misstep",
+      "concreteness": 3.21,
+      "zipf": 2.6,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "moment",
+      "concreteness": 1.61,
+      "zipf": 5.24,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "monthly",
+      "concreteness": 3.57,
+      "zipf": 4.5,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "monumentality",
       "concreteness": 1.62,
-      "zipf": 1.7
+      "zipf": 1.7,
+      "band": 1,
+      "set": "overlap"
+    },
+    {
+      "word": "moonscape",
+      "concreteness": 3.81,
+      "zipf": 1.59,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "morality",
+      "concreteness": 1.47,
+      "zipf": 3.86,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "multi",
+      "concreteness": 2.81,
+      "zipf": 4.54,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "music",
+      "concreteness": 4.31,
+      "zipf": 5.52,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "nanometer",
+      "concreteness": 3.96,
+      "zipf": 2.39,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "niche",
+      "concreteness": 2.52,
+      "zipf": 3.85,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "nightcap",
       "concreteness": 4.41,
-      "zipf": 2.4
+      "zipf": 2.4,
+      "band": 6,
+      "set": "overlap"
+    },
+    {
+      "word": "noncriminal",
+      "concreteness": 1.92,
+      "zipf": 1.36,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "normal",
+      "concreteness": 1.4,
+      "zipf": 5.01,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "novelization",
+      "concreteness": 2.45,
+      "zipf": 2.15,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "objectivism",
+      "concreteness": 1.26,
+      "zipf": 2.17,
+      "band": 1,
+      "set": "confirmatory"
     },
     {
       "word": "october",
       "concreteness": 2.81,
-      "zipf": 5.11
+      "zipf": 5.11,
+      "band": 3,
+      "set": "overlap"
+    },
+    {
+      "word": "offbeat",
+      "concreteness": 2.22,
+      "zipf": 2.77,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "omega",
+      "concreteness": 3.08,
+      "zipf": 3.78,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "online",
+      "concreteness": 3.35,
+      "zipf": 5.19,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "opalescent",
       "concreteness": 2.88,
-      "zipf": 1.98
+      "zipf": 1.98,
+      "band": 3,
+      "set": "overlap"
+    },
+    {
+      "word": "oppose",
+      "concreteness": 2.52,
+      "zipf": 3.94,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "optics",
       "concreteness": 3.29,
-      "zipf": 3.58
+      "zipf": 3.58,
+      "band": 4,
+      "set": "overlap"
+    },
+    {
+      "word": "overset",
+      "concreteness": 2.41,
+      "zipf": 1.38,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "pail",
       "concreteness": 4.93,
-      "zipf": 2.79
+      "zipf": 2.79,
+      "band": 6,
+      "set": "overlap"
+    },
+    {
+      "word": "passenger",
+      "concreteness": 4.34,
+      "zipf": 4.38,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "patriarch",
+      "concreteness": 3.54,
+      "zipf": 3.31,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "patroller",
+      "concreteness": 3.82,
+      "zipf": 1.69,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "peace",
+      "concreteness": 1.62,
+      "zipf": 5.02,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "pecan",
+      "concreteness": 4.87,
+      "zipf": 2.93,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "percent",
+      "concreteness": 2.7,
+      "zipf": 5.04,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "permissible",
+      "concreteness": 2.36,
+      "zipf": 3.2,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "persuasiveness",
+      "concreteness": 1.57,
+      "zipf": 1.75,
+      "band": 1,
+      "set": "confirmatory"
     },
     {
       "word": "pest",
       "concreteness": 3.96,
-      "zipf": 3.64
+      "zipf": 3.64,
+      "band": 5,
+      "set": "overlap"
     },
     {
       "word": "phenomenal",
       "concreteness": 1.78,
-      "zipf": 3.76
+      "zipf": 3.76,
+      "band": 2,
+      "set": "overlap"
+    },
+    {
+      "word": "piece",
+      "concreteness": 4.14,
+      "zipf": 5.04,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "pigtail",
+      "concreteness": 4.67,
+      "zipf": 2.19,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "pike",
+      "concreteness": 4.25,
+      "zipf": 3.68,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "pinhole",
+      "concreteness": 4.75,
+      "zipf": 2.49,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "polychromatic",
+      "concreteness": 3.16,
+      "zipf": 1.86,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "polymer",
+      "concreteness": 4.28,
+      "zipf": 3.64,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "possibility",
+      "concreteness": 1.33,
+      "zipf": 4.58,
+      "band": 1,
+      "set": "confirmatory"
     },
     {
       "word": "postcolonial",
       "concreteness": 2.15,
-      "zipf": 2.68
+      "zipf": 2.68,
+      "band": 2,
+      "set": "overlap"
     },
     {
-      "word": "preinstall",
-      "concreteness": 2.52,
-      "zipf": 0
+      "word": "preach",
+      "concreteness": 3.37,
+      "zipf": 3.69,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "predatory",
+      "concreteness": 2.58,
+      "zipf": 3.39,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "prefer",
+      "concreteness": 1.62,
+      "zipf": 4.57,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "priority",
+      "concreteness": 1.76,
+      "zipf": 4.41,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "probable",
+      "concreteness": 1.48,
+      "zipf": 3.79,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "process",
+      "concreteness": 2.93,
+      "zipf": 5.26,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "procurement",
+      "concreteness": 2.38,
+      "zipf": 3.68,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "pull",
+      "concreteness": 3.97,
+      "zipf": 4.82,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "purebred",
+      "concreteness": 3.04,
+      "zipf": 2.66,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "pushbutton",
+      "concreteness": 4.22,
+      "zipf": 1.89,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "qualify",
+      "concreteness": 1.93,
+      "zipf": 4.19,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "queen",
+      "concreteness": 4.45,
+      "zipf": 4.86,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "quick",
+      "concreteness": 2.89,
+      "zipf": 4.98,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "rationalize",
+      "concreteness": 1.52,
+      "zipf": 2.89,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "real",
+      "concreteness": 2.5,
+      "zipf": 5.6,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "recluse",
+      "concreteness": 3.28,
+      "zipf": 2.92,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "reconcile",
       "concreteness": 1.79,
-      "zipf": 3.5
+      "zipf": 3.5,
+      "band": 2,
+      "set": "overlap"
+    },
+    {
+      "word": "reconfirm",
+      "concreteness": 1.92,
+      "zipf": 1.95,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "rectification",
+      "concreteness": 2,
+      "zipf": 2.55,
+      "band": 2,
+      "set": "confirmatory"
     },
     {
       "word": "regeneration",
       "concreteness": 2.92,
-      "zipf": 3.61
+      "zipf": 3.61,
+      "band": 3,
+      "set": "overlap"
     },
     {
       "word": "regional",
       "concreteness": 2.76,
-      "zipf": 4.72
+      "zipf": 4.72,
+      "band": 3,
+      "set": "overlap"
+    },
+    {
+      "word": "repeatability",
+      "concreteness": 2.35,
+      "zipf": 2.27,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "replicator",
       "concreteness": 3.13,
-      "zipf": 2.34
+      "zipf": 2.34,
+      "band": 4,
+      "set": "overlap"
+    },
+    {
+      "word": "resist",
+      "concreteness": 2.78,
+      "zipf": 4.2,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "reunion",
       "concreteness": 3.22,
-      "zipf": 3.93
+      "zipf": 3.93,
+      "band": 4,
+      "set": "overlap"
+    },
+    {
+      "word": "rich",
+      "concreteness": 2.79,
+      "zipf": 4.91,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "robotics",
+      "concreteness": 3.65,
+      "zipf": 3.53,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "rotary",
+      "concreteness": 3.14,
+      "zipf": 3.61,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "ruthless",
+      "concreteness": 1.64,
+      "zipf": 3.65,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "salacious",
+      "concreteness": 1.57,
+      "zipf": 2.46,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "sanctimonious",
+      "concreteness": 1.28,
+      "zipf": 2.58,
+      "band": 1,
+      "set": "confirmatory"
     },
     {
       "word": "savings",
       "concreteness": 3.32,
-      "zipf": 4.44
+      "zipf": 4.44,
+      "band": 4,
+      "set": "overlap"
+    },
+    {
+      "word": "scamp",
+      "concreteness": 3.25,
+      "zipf": 2.32,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "scatter",
+      "concreteness": 3.55,
+      "zipf": 3.39,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "school",
+      "concreteness": 4.79,
+      "zipf": 5.71,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "scriptwriter",
+      "concreteness": 4.39,
+      "zipf": 2.37,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "sealable",
+      "concreteness": 2.79,
+      "zipf": 1.65,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "secure",
+      "concreteness": 2.69,
+      "zipf": 4.64,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "septic",
       "concreteness": 3.74,
-      "zipf": 3.21
+      "zipf": 3.21,
+      "band": 5,
+      "set": "overlap"
+    },
+    {
+      "word": "set",
+      "concreteness": 3.41,
+      "zipf": 5.59,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "shortchange",
+      "concreteness": 2.77,
+      "zipf": 1.81,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "sidetrack",
       "concreteness": 2.08,
-      "zipf": 1.96
+      "zipf": 1.96,
+      "band": 2,
+      "set": "overlap"
+    },
+    {
+      "word": "simmer",
+      "concreteness": 3.88,
+      "zipf": 3.27,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "simultaneous",
+      "concreteness": 2.25,
+      "zipf": 3.53,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "singer",
+      "concreteness": 4.62,
+      "zipf": 4.52,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "sixfold",
+      "concreteness": 3.81,
+      "zipf": 2,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "smite",
+      "concreteness": 2.31,
+      "zipf": 2.93,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "socioeconomic",
+      "concreteness": 2.31,
+      "zipf": 3.34,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "softener",
+      "concreteness": 3.38,
+      "zipf": 2.51,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "sorceress",
       "concreteness": 3.79,
-      "zipf": 2.76
+      "zipf": 2.76,
+      "band": 5,
+      "set": "overlap"
+    },
+    {
+      "word": "soulless",
+      "concreteness": 1.52,
+      "zipf": 2.88,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "spearmint",
+      "concreteness": 4.7,
+      "zipf": 2.32,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "spirituality",
+      "concreteness": 1.07,
+      "zipf": 3.55,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "sprayer",
+      "concreteness": 4.62,
+      "zipf": 2.57,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "sticker",
+      "concreteness": 4.67,
+      "zipf": 3.71,
+      "band": 6,
+      "set": "confirmatory"
     },
     {
       "word": "stillbirth",
       "concreteness": 3.93,
-      "zipf": 2.41
+      "zipf": 2.41,
+      "band": 5,
+      "set": "overlap"
+    },
+    {
+      "word": "stock",
+      "concreteness": 4.19,
+      "zipf": 4.93,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "strategy",
+      "concreteness": 1.93,
+      "zipf": 4.74,
+      "band": 2,
+      "set": "confirmatory"
     },
     {
       "word": "studio",
       "concreteness": 4.55,
-      "zipf": 4.66
+      "zipf": 4.66,
+      "band": 6,
+      "set": "overlap"
+    },
+    {
+      "word": "suicide",
+      "concreteness": 3.59,
+      "zipf": 4.62,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "sulphurous",
+      "concreteness": 3.42,
+      "zipf": 2.01,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "supercharger",
       "concreteness": 3.56,
-      "zipf": 2.69
+      "zipf": 2.69,
+      "band": 4,
+      "set": "overlap"
+    },
+    {
+      "word": "supersede",
+      "concreteness": 1.5,
+      "zipf": 2.68,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "sweetheart",
+      "concreteness": 2.79,
+      "zipf": 3.74,
+      "band": 3,
+      "set": "confirmatory"
     },
     {
       "word": "synthesis",
       "concreteness": 1.54,
-      "zipf": 3.84
+      "zipf": 3.84,
+      "band": 1,
+      "set": "overlap"
     },
     {
       "word": "target",
       "concreteness": 4.11,
-      "zipf": 4.82
+      "zipf": 4.82,
+      "band": 5,
+      "set": "overlap"
     },
     {
-      "word": "teacupful",
-      "concreteness": 3.81,
-      "zipf": 0
+      "word": "team",
+      "concreteness": 3.79,
+      "zipf": 5.67,
+      "band": 5,
+      "set": "confirmatory"
     },
     {
       "word": "tech",
       "concreteness": 3.03,
-      "zipf": 4.69
+      "zipf": 4.69,
+      "band": 4,
+      "set": "overlap"
+    },
+    {
+      "word": "theory",
+      "concreteness": 1.47,
+      "zipf": 4.88,
+      "band": 1,
+      "set": "confirmatory"
     },
     {
       "word": "timeless",
       "concreteness": 1.57,
-      "zipf": 3.53
+      "zipf": 3.53,
+      "band": 1,
+      "set": "overlap"
     },
     {
       "word": "tonality",
       "concreteness": 2.36,
-      "zipf": 2.45
+      "zipf": 2.45,
+      "band": 3,
+      "set": "overlap"
+    },
+    {
+      "word": "torso",
+      "concreteness": 4.83,
+      "zipf": 3.41,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "trader",
+      "concreteness": 3.89,
+      "zipf": 3.77,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "trapeze",
+      "concreteness": 4.55,
+      "zipf": 2.69,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "treat",
+      "concreteness": 3.79,
+      "zipf": 4.75,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "turtle",
+      "concreteness": 5,
+      "zipf": 3.91,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "typical",
+      "concreteness": 1.52,
+      "zipf": 4.59,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "typicality",
+      "concreteness": 1.53,
+      "zipf": 1.27,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "uncheck",
+      "concreteness": 3.14,
+      "zipf": 2.24,
+      "band": 4,
+      "set": "confirmatory"
     },
     {
       "word": "underbody",
       "concreteness": 4,
-      "zipf": 1.96
+      "zipf": 1.96,
+      "band": 5,
+      "set": "overlap"
+    },
+    {
+      "word": "undo",
+      "concreteness": 2.56,
+      "zipf": 3.57,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "upholster",
+      "concreteness": 4.24,
+      "zipf": 1.32,
+      "band": 5,
+      "set": "confirmatory"
     },
     {
       "word": "usual",
       "concreteness": 1.9,
-      "zipf": 4.62
+      "zipf": 4.62,
+      "band": 2,
+      "set": "overlap"
+    },
+    {
+      "word": "utilitarianism",
+      "concreteness": 1.63,
+      "zipf": 2.51,
+      "band": 1,
+      "set": "confirmatory"
     },
     {
       "word": "vacate",
       "concreteness": 3.39,
-      "zipf": 3.14
+      "zipf": 3.14,
+      "band": 4,
+      "set": "overlap"
+    },
+    {
+      "word": "variance",
+      "concreteness": 1.84,
+      "zipf": 3.45,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "veritable",
+      "concreteness": 1.82,
+      "zipf": 3.01,
+      "band": 2,
+      "set": "confirmatory"
+    },
+    {
+      "word": "vice",
+      "concreteness": 2.46,
+      "zipf": 4.71,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "vixen",
+      "concreteness": 3.8,
+      "zipf": 2.94,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "wastebasket",
+      "concreteness": 4.63,
+      "zipf": 2.08,
+      "band": 6,
+      "set": "confirmatory"
+    },
+    {
+      "word": "waterworks",
+      "concreteness": 4.07,
+      "zipf": 2.77,
+      "band": 5,
+      "set": "confirmatory"
+    },
+    {
+      "word": "weekly",
+      "concreteness": 3.28,
+      "zipf": 4.57,
+      "band": 4,
+      "set": "confirmatory"
+    },
+    {
+      "word": "weird",
+      "concreteness": 1.59,
+      "zipf": 4.81,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "whereof",
+      "concreteness": 1.32,
+      "zipf": 2.45,
+      "band": 1,
+      "set": "confirmatory"
+    },
+    {
+      "word": "win",
+      "concreteness": 2.67,
+      "zipf": 5.39,
+      "band": 3,
+      "set": "confirmatory"
+    },
+    {
+      "word": "worm",
+      "concreteness": 4.9,
+      "zipf": 3.77,
+      "band": 6,
+      "set": "confirmatory"
     }
   ]
 }

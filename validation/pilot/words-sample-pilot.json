@@ -1,0 +1,307 @@
+{
+  "language": "eng",
+  "source": "web-static/words.js (curated bank; concreteness from Brysbaert et al., 2014; Zipf from wordfreq)",
+  "design": "6 concreteness bands x 10 words, frequency-spread within band",
+  "items": [
+    {
+      "word": "antiquate",
+      "concreteness": 1.8,
+      "zipf": 0
+    },
+    {
+      "word": "boost",
+      "concreteness": 2.89,
+      "zipf": 4.41
+    },
+    {
+      "word": "bump",
+      "concreteness": 4.1,
+      "zipf": 3.98
+    },
+    {
+      "word": "coagulant",
+      "concreteness": 3.56,
+      "zipf": 2.03
+    },
+    {
+      "word": "code",
+      "concreteness": 3,
+      "zipf": 5.08
+    },
+    {
+      "word": "condescend",
+      "concreteness": 1.5,
+      "zipf": 2.25
+    },
+    {
+      "word": "cover",
+      "concreteness": 4.23,
+      "zipf": 5.08
+    },
+    {
+      "word": "daughter",
+      "concreteness": 4.79,
+      "zipf": 5.07
+    },
+    {
+      "word": "degeneracy",
+      "concreteness": 1.33,
+      "zipf": 2.62
+    },
+    {
+      "word": "dehorn",
+      "concreteness": 3.2,
+      "zipf": 0
+    },
+    {
+      "word": "divine",
+      "concreteness": 1.44,
+      "zipf": 4.24
+    },
+    {
+      "word": "doorway",
+      "concreteness": 4.75,
+      "zipf": 3.51
+    },
+    {
+      "word": "elbow",
+      "concreteness": 5,
+      "zipf": 3.84
+    },
+    {
+      "word": "explain",
+      "concreteness": 1.97,
+      "zipf": 4.89
+    },
+    {
+      "word": "eyedrop",
+      "concreteness": 4.81,
+      "zipf": 0
+    },
+    {
+      "word": "firefly",
+      "concreteness": 4.9,
+      "zipf": 3.13
+    },
+    {
+      "word": "flapjack",
+      "concreteness": 4.89,
+      "zipf": 2.13
+    },
+    {
+      "word": "garage",
+      "concreteness": 4.96,
+      "zipf": 4.25
+    },
+    {
+      "word": "honest",
+      "concreteness": 1.66,
+      "zipf": 4.73
+    },
+    {
+      "word": "humiliate",
+      "concreteness": 2.07,
+      "zipf": 3.08
+    },
+    {
+      "word": "imagine",
+      "concreteness": 1.53,
+      "zipf": 4.92
+    },
+    {
+      "word": "impassion",
+      "concreteness": 1.65,
+      "zipf": 0
+    },
+    {
+      "word": "integration",
+      "concreteness": 1.89,
+      "zipf": 4.22
+    },
+    {
+      "word": "irksome",
+      "concreteness": 1.83,
+      "zipf": 2.33
+    },
+    {
+      "word": "litigation",
+      "concreteness": 2.96,
+      "zipf": 3.93
+    },
+    {
+      "word": "loud",
+      "concreteness": 3.73,
+      "zipf": 4.53
+    },
+    {
+      "word": "manipulator",
+      "concreteness": 2.96,
+      "zipf": 2.85
+    },
+    {
+      "word": "microbiology",
+      "concreteness": 2.93,
+      "zipf": 3.25
+    },
+    {
+      "word": "misrepresentation",
+      "concreteness": 1.55,
+      "zipf": 2.98
+    },
+    {
+      "word": "monumentality",
+      "concreteness": 1.62,
+      "zipf": 1.7
+    },
+    {
+      "word": "nightcap",
+      "concreteness": 4.41,
+      "zipf": 2.4
+    },
+    {
+      "word": "october",
+      "concreteness": 2.81,
+      "zipf": 5.11
+    },
+    {
+      "word": "opalescent",
+      "concreteness": 2.88,
+      "zipf": 1.98
+    },
+    {
+      "word": "optics",
+      "concreteness": 3.29,
+      "zipf": 3.58
+    },
+    {
+      "word": "pail",
+      "concreteness": 4.93,
+      "zipf": 2.79
+    },
+    {
+      "word": "pest",
+      "concreteness": 3.96,
+      "zipf": 3.64
+    },
+    {
+      "word": "phenomenal",
+      "concreteness": 1.78,
+      "zipf": 3.76
+    },
+    {
+      "word": "postcolonial",
+      "concreteness": 2.15,
+      "zipf": 2.68
+    },
+    {
+      "word": "preinstall",
+      "concreteness": 2.52,
+      "zipf": 0
+    },
+    {
+      "word": "reconcile",
+      "concreteness": 1.79,
+      "zipf": 3.5
+    },
+    {
+      "word": "regeneration",
+      "concreteness": 2.92,
+      "zipf": 3.61
+    },
+    {
+      "word": "regional",
+      "concreteness": 2.76,
+      "zipf": 4.72
+    },
+    {
+      "word": "replicator",
+      "concreteness": 3.13,
+      "zipf": 2.34
+    },
+    {
+      "word": "reunion",
+      "concreteness": 3.22,
+      "zipf": 3.93
+    },
+    {
+      "word": "savings",
+      "concreteness": 3.32,
+      "zipf": 4.44
+    },
+    {
+      "word": "septic",
+      "concreteness": 3.74,
+      "zipf": 3.21
+    },
+    {
+      "word": "sidetrack",
+      "concreteness": 2.08,
+      "zipf": 1.96
+    },
+    {
+      "word": "sorceress",
+      "concreteness": 3.79,
+      "zipf": 2.76
+    },
+    {
+      "word": "stillbirth",
+      "concreteness": 3.93,
+      "zipf": 2.41
+    },
+    {
+      "word": "studio",
+      "concreteness": 4.55,
+      "zipf": 4.66
+    },
+    {
+      "word": "supercharger",
+      "concreteness": 3.56,
+      "zipf": 2.69
+    },
+    {
+      "word": "synthesis",
+      "concreteness": 1.54,
+      "zipf": 3.84
+    },
+    {
+      "word": "target",
+      "concreteness": 4.11,
+      "zipf": 4.82
+    },
+    {
+      "word": "teacupful",
+      "concreteness": 3.81,
+      "zipf": 0
+    },
+    {
+      "word": "tech",
+      "concreteness": 3.03,
+      "zipf": 4.69
+    },
+    {
+      "word": "timeless",
+      "concreteness": 1.57,
+      "zipf": 3.53
+    },
+    {
+      "word": "tonality",
+      "concreteness": 2.36,
+      "zipf": 2.45
+    },
+    {
+      "word": "underbody",
+      "concreteness": 4,
+      "zipf": 1.96
+    },
+    {
+      "word": "usual",
+      "concreteness": 1.9,
+      "zipf": 4.62
+    },
+    {
+      "word": "vacate",
+      "concreteness": 3.39,
+      "zipf": 3.14
+    }
+  ]
+}

@@ -15,3 +15,6 @@ data/field-token
 # Third-party norm datasets, fetched by the scripts that need them rather than
 # redistributed here: they carry their own citations and terms.
 validation/lancaster-sensorimotor-norms.csv
+validation/lancaster-trial-ratings.csv
+validation/lancaster-trial-README.txt
+validation/lancaster-excluded-items.csv
