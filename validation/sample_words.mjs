@@ -18,16 +18,17 @@
 //
 // Run from the software directory:  node validation/sample_words.mjs
 // Reads the pilot sample from validation/pilot/words-sample-pilot.json and the
-// Lancaster norms from SENSELEX_DATA_DIR (default: validation/).
+// Lancaster norms from SENSELEX_DATA_DIR (default: validation/), checked against
+// their published checksum (lancaster.mjs).
 // Writes validation/words-sample.json.
 
-import process from 'node:process';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { verifiedLancasterPath, readNormsCsv, columnIndex } from './lancaster.mjs';
+
 const here = dirname(fileURLToPath(import.meta.url));
-const dataDir = process.env.SENSELEX_DATA_DIR || here;
 
 const BANDS = 6;
 const PER_BAND = 50;
@@ -40,10 +41,9 @@ new Function('window', readFileSync(resolve(here, '../web-static/words.js'), 'ut
 const bank = windowShim.SENSELEX_WORDBANK?.banks?.eng?.words;
 if (!Array.isArray(bank) || bank.length === 0) throw new Error('English bank not found in web-static/words.js');
 
-const lancaster = new Set(
-  readFileSync(resolve(dataDir, 'lancaster-sensorimotor-norms.csv'), 'utf8')
-    .split(/\r?\n/).slice(1).filter(Boolean).map((line) => line.split(',')[0].toLowerCase()),
-);
+const norms = readNormsCsv(await verifiedLancasterPath('norms'));
+const wordColumn = columnIndex(norms.header, ['Word']).Word;
+const lancaster = new Set(norms.rows.map((cells) => cells[wordColumn].toLowerCase()));
 
 const pilot = new Set(
   JSON.parse(readFileSync(resolve(here, 'pilot/words-sample-pilot.json'), 'utf8')).items.map((i) => i.word),

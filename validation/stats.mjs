@@ -5,6 +5,11 @@
 //
 // No dependencies: the suite's zero-dependency rule extends to its analyses.
 
+// The seed for every random step in the validation: sampling lists, split halves
+// and bootstrap resamples. It is the one fixed in the preregistration
+// (PREDICTIONS.md), so it lives here once and every script imports it.
+export const SEED = 20260923;
+
 // mulberry32, a small deterministic generator. Its statistical quality is ample
 // for shuffling raters and resampling words, and a fixed seed makes every
 // random split and bootstrap reproducible.
@@ -87,7 +92,7 @@ export function fisherCi(r, n) {
 
 // Percentile bootstrap over the rows of a dataset. `statistic` receives an array
 // of resampled rows and returns a number.
-export function bootstrap(rows, statistic, { resamples = 10000, seed = 20260923 } = {}) {
+export function bootstrap(rows, statistic, { resamples = 10000, seed = SEED } = {}) {
   const rand = mulberry32(seed);
   const values = [];
   const sample = new Array(rows.length);
@@ -111,7 +116,11 @@ export const singleRaterFrom = (rk, k) => rk / (k - (k - 1) * rk);
 // finite panel would do, which the formula signals by a non-positive r1.
 export function ratersFor(r1, target) {
   if (!(r1 > 0) || r1 >= 1) return r1 >= 1 ? 1 : null;
-  return Math.ceil((target * (1 - r1)) / (r1 * (1 - target)));
+  // A quotient that is a whole number in exact arithmetic can come out a hair
+  // above it in floating point (.64 / .04 gives 16.000000000000004), which
+  // rounding up would turn into one rater too many. The tolerance is far below
+  // any fractional part a real reliability produces.
+  return Math.ceil((target * (1 - r1)) / (r1 * (1 - target)) - 1e-9);
 }
 
 // Single-rater reliability of one rating dimension, estimated the same way for
@@ -132,7 +141,7 @@ export function ratersFor(r1, target) {
 // mixture. Six is the default because the simulated panel has twelve raters.
 //
 // `ratingsByWord` holds one array per word of that word's individual ratings.
-export function singleRaterReliability(ratingsByWord, { halfSize = 6, splits = 200, seed = 20260923 } = {}) {
+export function singleRaterReliability(ratingsByWord, { halfSize = 6, splits = 200, seed = SEED } = {}) {
   const k = halfSize;
   const words = ratingsByWord.filter((r) => r.length >= 2 * k);
   if (words.length < 10) return null;

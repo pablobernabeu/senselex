@@ -39,6 +39,25 @@ const itemOf = new Map(sample.items.map((w) => [w.word, w]));
 
 const sanitiseId = (w) => w.toUpperCase().normalize('NFC').replace(/[^\p{L}\p{N}]+/gu, '_').replace(/^_+|_+$/g, '') || 'ITEM';
 
+// The panel must be complete and free of duplicates before anything is averaged:
+// a repeated record would silently double a rater's weight, and a missing one
+// would silently shrink a word's panel. Concept identifiers must also stay unique
+// after sanitising, since the exported dataset merges records by identifier.
+const sampleWords = sample.items.map((w) => w.word);
+for (const rater of panel.raters) {
+  const seen = rater.ratings.map((r) => r.word);
+  const extra = seen.filter((w) => !itemOf.has(w));
+  const repeated = seen.filter((w, i) => seen.indexOf(w) !== i);
+  const absent = sampleWords.filter((w) => !seen.includes(w));
+  if (extra.length || repeated.length || absent.length) {
+    throw new Error(`Rater ${rater.rater}: ${extra.length} words outside the sample, ${repeated.length} repeated, ${absent.length} missing`);
+  }
+}
+if (new Set(sampleWords.map(sanitiseId)).size !== sampleWords.length) {
+  throw new Error('Two sample words sanitise to the same concept identifier');
+}
+if (!panel.provenance?.runDate) throw new Error('raters.json lacks provenance.runDate, which dates the exported records');
+
 // ---- 1. Validate every record through the production validator --------------
 //
 // A word the rater marked as unknown produces no rating, as in the Lancaster
@@ -79,7 +98,7 @@ for (const rec of records) {
 const norms = [...byWord.keys()].sort().map((word) => {
   const vectors = byWord.get(word);
   const avg = averageRatings(vectors, ALL_DIMENSIONS);
-  const item = itemOf.get(word) || {};
+  const item = itemOf.get(word);
   return {
     word,
     conceptId: sanitiseId(word),
@@ -133,7 +152,7 @@ const results = {
 //
 // A fixed stamp instead of the wall clock, so rerunning the script reproduces the
 // artefacts byte for byte. It is the date the panel was collected.
-const stamp = Date.parse(panel.provenance?.runDate ? `${panel.provenance.runDate}T00:00:00Z` : '2026-09-23T00:00:00Z');
+const stamp = Date.parse(`${panel.provenance.runDate}T00:00:00Z`);
 const dataset = {
   version: 5,
   languages: [{ code: 'eng', name: 'English', script: 'Latin', direction: 'ltr', family: 'Indo-European' }],

@@ -28,11 +28,12 @@
 //
 // Run from the software directory, after compute.mjs and human_benchmark.mjs:
 //   node validation/criterion.mjs
-// Reads lancaster-sensorimotor-norms.csv from SENSELEX_DATA_DIR (default: validation/).
-// Writes validation/criterion-results.json.
+// Reads lancaster-sensorimotor-norms.csv from SENSELEX_DATA_DIR (default:
+// validation/), checked against its published checksum (lancaster.mjs).
+// Writes validation/criterion-results.json and validation/panel-vs-human.json.
 
 import process from 'node:process';
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -44,14 +45,10 @@ import {
 } from '../src/domain/norms.js';
 import { PERCEPTUAL_DIMENSIONS, ACTION_DIMENSIONS, ALL_DIMENSIONS } from '../src/domain/dimensions.js';
 import { pearson, spearman, fisherCi, bootstrap, mean, reliabilityOfMeans, disattenuate } from './stats.mjs';
+import { verifiedLancasterPath, readNormsCsv, columnIndex } from './lancaster.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const dataDir = process.env.SENSELEX_DATA_DIR || here;
-const LANCASTER = resolve(dataDir, 'lancaster-sensorimotor-norms.csv');
-if (!existsSync(LANCASTER)) {
-  process.stderr.write(`Lancaster norms not found at ${LANCASTER}.\nFetch them with:\n  curl -L -o "${LANCASTER}" "https://osf.io/download/48wsc/"\n`);
-  process.exit(1);
-}
+const LANCASTER = await verifiedLancasterPath('norms');
 
 const COLUMN_OF = {
   touch: 'Haptic', hearing: 'Auditory', smell: 'Olfactory', taste: 'Gustatory',
@@ -65,37 +62,25 @@ const DOMINANT_OF = {
 
 // ---- Read the Lancaster release --------------------------------------------
 
-function parseCsvLine(line) {
-  const cells = [];
-  let cur = '';
-  let quoted = false;
-  for (let i = 0; i < line.length; i += 1) {
-    const ch = line[i];
-    if (quoted) {
-      if (ch === '"') {
-        if (line[i + 1] === '"') { cur += '"'; i += 1; } else quoted = false;
-      } else cur += ch;
-    } else if (ch === '"') quoted = true;
-    else if (ch === ',') { cells.push(cur); cur = ''; } else cur += ch;
-  }
-  cells.push(cur);
-  return cells;
-}
-
-const raw = readFileSync(LANCASTER, 'utf8').split(/\r?\n/).filter(Boolean);
-const index = Object.fromEntries(parseCsvLine(raw[0]).map((h, i) => [h, i]));
+// Every published row must parse, and no two words may collide once trimmed and
+// lower-cased: either failure would otherwise drop or overwrite a word silently
+// and change the reproduction counts without any sign of it.
+const { header, rows: normRows } = readNormsCsv(LANCASTER);
+const index = columnIndex(header, [
+  'Word', 'Max_strength.perceptual', 'Exclusivity.perceptual', 'Dominant.perceptual',
+  ...Object.values(COLUMN_OF).map((col) => `${col}.mean`),
+]);
 const lancaster = new Map();
-for (const line of raw.slice(1)) {
-  const cells = parseCsvLine(line);
+for (const cells of normRows) {
+  const word = cells[index.Word].trim().toLowerCase();
   const means = {};
-  let usable = true;
   for (const [d, col] of Object.entries(COLUMN_OF)) {
     const v = Number(cells[index[`${col}.mean`]]);
-    if (!Number.isFinite(v)) { usable = false; break; }
+    if (cells[index[`${col}.mean`]] === '' || !Number.isFinite(v)) throw new Error(`Non-numeric ${col}.mean for ${word}`);
     means[d] = v;
   }
-  if (!usable) continue;
-  lancaster.set(cells[index.Word].trim().toLowerCase(), {
+  if (lancaster.has(word)) throw new Error(`Two published rows share the word ${word}`);
+  lancaster.set(word, {
     means,
     publishedMaxStrength: Number(cells[index['Max_strength.perceptual']]),
     publishedExclusivity: Number(cells[index['Exclusivity.perceptual']]),
@@ -136,6 +121,11 @@ process.stdout.write(`Reproduction over ${rep.words} words: max strength ${rep.m
 const panel = JSON.parse(readFileSync(resolve(here, 'raters.json'), 'utf8'));
 const sample = JSON.parse(readFileSync(resolve(here, 'words-sample.json'), 'utf8')).items;
 const setOf = new Map(sample.map((i) => [i.word, i.set]));
+// sample_words.mjs drew only words present in the Lancaster release, so every
+// sample word must find its human norms; a miss would silently shrink the
+// confirmatory set.
+const unmatched = sample.filter((i) => !lancaster.has(i.word));
+if (unmatched.length) throw new Error(`${unmatched.length} sample words are absent from the Lancaster norms, e.g. ${unmatched[0].word}`);
 const machineResults = JSON.parse(readFileSync(resolve(here, 'results.json'), 'utf8'));
 const humanBenchmark = JSON.parse(readFileSync(resolve(here, 'human-benchmark-results.json'), 'utf8'));
 
@@ -315,6 +305,7 @@ const allWords = {
 // 54 overlap words. Model and wording both changed, so this bounds how far
 // simulated norms move between versions; it cannot separate the two causes.
 const pilot = JSON.parse(readFileSync(resolve(here, 'pilot/raters-pilot.json'), 'utf8'));
+const pilotCriterion = JSON.parse(readFileSync(resolve(here, 'pilot/criterion-results-pilot.json'), 'utf8'));
 const pilotByWord = new Map();
 for (const rater of pilot.raters) {
   for (const r of rater.ratings) {
@@ -375,7 +366,8 @@ const summary = {
   },
   exploratory: {
     allWords,
-    headChannel: { all300: allWords.perChannel.head, pilotPearson60: 0.445 },
+    // The pilot's head correlation, to three places as the pilot reported it.
+    headChannel: { all300: allWords.perChannel.head, pilotPearson60: Math.round(pilotCriterion.criterion.perDimension.head.r * 1000) / 1000 },
     modelStabilityOnOverlap: { words: overlap.length, byChannel: stability },
     zerosAndLevels: {
       cells: zeroCells,

@@ -13,7 +13,9 @@
     "start": "node bin/senselex.js serve",
     "seed": "node bin/senselex.js seed",
     "smoke": "node scripts/smoke.js",
-    "test": "node --test"
+    "test": "node --test \"test/*.test.js\"",
+    "validate": "node validation/compute.mjs && node --max-old-space-size=6144 validation/human_benchmark.mjs && node validation/criterion.mjs",
+    "verify": "node validation/verify.mjs"
   },
   "license": "MIT",
   "author": "Pablo Bernabeu",

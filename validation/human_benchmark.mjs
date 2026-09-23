@@ -24,35 +24,23 @@
 //   node --max-old-space-size=6144 validation/human_benchmark.mjs
 // Reads lancaster-trial-ratings.csv and lancaster-sensorimotor-norms.csv from
 // SENSELEX_DATA_DIR (default: validation/). The trial file is about 1.4 GB, so
-// keep it outside any folder a cloud client synchronises. Its SHA-256 is checked
-// against the value OSF publishes before anything is computed.
+// keep it outside any folder a cloud client synchronises. Both files are checked
+// against the SHA-256 that OSF publishes before anything is computed
+// (lancaster.mjs).
 // Writes validation/human-benchmark-results.json.
 
 import process from 'node:process';
-import { createReadStream, readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { createHash } from 'node:crypto';
+import { createReadStream, readFileSync, writeFileSync } from 'node:fs';
 import { createInterface } from 'node:readline';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { averageRatings, maximumPerceptualStrength, modalityExclusivity } from '../src/domain/norms.js';
 import { PERCEPTUAL_DIMENSIONS, ACTION_DIMENSIONS, ALL_DIMENSIONS } from '../src/domain/dimensions.js';
-import { singleRaterReliability, reliabilityOfMeans, spearmanBrown, ratersFor, pearson, mean, mulberry32, shuffleInPlace } from './stats.mjs';
+import { SEED, singleRaterReliability, reliabilityOfMeans, spearmanBrown, ratersFor, pearson, mean, mulberry32, shuffleInPlace } from './stats.mjs';
+import { LANCASTER_FILES, verifiedLancasterPath, readNormsCsv, columnIndex } from './lancaster.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const dataDir = process.env.SENSELEX_DATA_DIR || here;
-const TRIAL = resolve(dataDir, 'lancaster-trial-ratings.csv');
-const NORMS = resolve(dataDir, 'lancaster-sensorimotor-norms.csv');
-// Published by OSF for Individual_participant_ratings_all_items_..._UPDATED.csv.
-const TRIAL_SHA256 = '3f418ae3a8234a8377f1a6c4cac1afd7ea3e5bd481705fe407997617d3ee7a65';
-const TRIAL_URL = 'https://files.de-1.osf.io/v1/resources/rwhs6/providers/osfstorage/667d8a53f112ce02e78a6034';
-
-for (const [path, fetch] of [[TRIAL, `curl -L -o "${TRIAL}" "${TRIAL_URL}"`], [NORMS, 'see criterion.mjs']]) {
-  if (!existsSync(path)) {
-    process.stderr.write(`Missing ${path}\nFetch with: ${fetch}\n`);
-    process.exit(1);
-  }
-}
 
 // Lancaster's column names for the same eleven channels.
 const DIM_OF = {
@@ -62,48 +50,51 @@ const DIM_OF = {
 };
 const COLUMN_OF = Object.fromEntries(Object.entries(DIM_OF).map(([k, v]) => [v, k]));
 
-async function sha256(path) {
-  const hash = createHash('sha256');
-  for await (const chunk of createReadStream(path)) hash.update(chunk);
-  return hash.digest('hex');
-}
-
-process.stdout.write('Checking the trial file against the published checksum...\n');
-const digest = await sha256(TRIAL);
-if (digest !== TRIAL_SHA256) {
-  process.stderr.write(`Checksum mismatch: got ${digest}\nexpected ${TRIAL_SHA256}\n`);
-  process.exit(1);
-}
-process.stdout.write('  matches\n');
+process.stdout.write('Checking both files against their published checksums...\n');
+const TRIAL = await verifiedLancasterPath('trial');
+const NORMS = await verifiedLancasterPath('norms');
+process.stdout.write('  both match\n');
 
 // ---- Read the trial data into per-response vectors --------------------------
 //
 // One row per participant, word and dimension. A rating of NA means the
 // participant did not know the word; SenseLex never receives such a rating, so
-// the vector is dropped rather than passed through as blanks.
+// the vector is dropped, not passed through as blanks.
+//
+// The file has no quoted fields, so a plain split on commas is safe and several
+// times faster than a full CSV parser over 10 million lines. A line with a quote
+// would break that, so it stops the run, as does an empty or non-numeric rating,
+// which Number() would otherwise read as 0 or NaN without complaint.
 
 process.stdout.write('Reading the trial data...\n');
 const vectors = new Map(); // word -> Map(responseId -> {component, dims})
 let rows = 0;
 let unknown = 0;
 const reader = createInterface({ input: createReadStream(TRIAL), crlfDelay: Infinity });
-let header = null;
+let col = null;
 for await (const line of reader) {
-  if (!header) { header = line.split(','); continue; }
+  if (!col) {
+    col = columnIndex(line.split(','), ['response_ID', 'Word', 'Dimension', 'Rating', 'Norming_Component']);
+    continue;
+  }
+  if (line.includes('"')) throw new Error(`Quoted field in ${LANCASTER_FILES.trial.local}: ${line}`);
   const c = line.split(',');
-  const word = c[2].trim();
-  const dimName = c[3];
+  const word = c[col.Word].trim();
+  const dimName = c[col.Dimension];
   if (dimName === 'Dont_know_word') continue;
   const dim = DIM_OF[dimName];
   if (!dim) continue;
   rows += 1;
-  const response = c[1];
+  const response = c[col.response_ID];
   let byResponse = vectors.get(word);
   if (!byResponse) { byResponse = new Map(); vectors.set(word, byResponse); }
   let v = byResponse.get(response);
-  if (!v) { v = { component: c[7], dims: {} }; byResponse.set(response, v); }
-  if (c[4] === 'NA') { v.unknown = true; unknown += 1; continue; }
-  v.dims[dim] = Number(c[4]);
+  if (!v) { v = { component: c[col.Norming_Component], dims: {} }; byResponse.set(response, v); }
+  const rating = c[col.Rating];
+  if (rating === 'NA') { v.unknown = true; unknown += 1; continue; }
+  const value = Number(rating);
+  if (rating === '' || !Number.isFinite(value)) throw new Error(`Rating "${rating}" for ${word} (${dimName}) is not a number`);
+  v.dims[dim] = value;
 }
 process.stdout.write(`  ${rows.toLocaleString()} ratings, ${vectors.size.toLocaleString()} words, ${unknown.toLocaleString()} marked unknown\n`);
 
@@ -118,20 +109,20 @@ function known(word, component) {
 
 // ---- Published norms ---------------------------------------------------------
 
-const normLines = readFileSync(NORMS, 'utf8').split(/\r?\n/).filter(Boolean);
-const nh = normLines[0].split(',');
-const ni = Object.fromEntries(nh.map((h, i) => [h, i]));
+const normsCsv = readNormsCsv(NORMS);
+const ni = columnIndex(normsCsv.header, ['Word', ...ALL_DIMENSIONS.map((d) => `${COLUMN_OF[d]}.mean`)]);
 const published = new Map();
 // The published file carries a few words with trailing whitespace that the trial
 // file does not; they are matched after trimming and listed, since a naive join
 // would silently drop them.
 const paddedInPublished = [];
-for (const line of normLines.slice(1)) {
-  const c = line.split(',');
+for (const c of normsCsv.rows) {
+  const word = c[ni.Word];
   const means = {};
   for (const d of ALL_DIMENSIONS) means[d] = Number(c[ni[`${COLUMN_OF[d]}.mean`]]);
-  if (c[0] !== c[0].trim()) paddedInPublished.push(c[0]);
-  published.set(c[0].trim(), means);
+  if (word !== word.trim()) paddedInPublished.push(word);
+  if (published.has(word.trim())) throw new Error(`Two published rows share the word ${word.trim()}`);
+  published.set(word.trim(), means);
 }
 
 // ---- 1. Raw-to-norm reproduction --------------------------------------------
@@ -201,7 +192,7 @@ for (const f of displaced.slice(0, 12)) process.stdout.write(`    ${f.word}: per
 if (paddedInPublished.length) {
   process.stdout.write(`  published words with trailing whitespace, matched after trimming: ${paddedInPublished.map((w) => JSON.stringify(w)).join(', ')}\n`);
 }
-process.stdout.write(`  ${inTrialNotPublished} words in the trial data are absent from the published norms (the low-N-known exclusions)\n`);
+process.stdout.write(`  ${inTrialNotPublished} words in the trial data are absent from the published norms (excluded by the authors for having fewer than ten valid ratings on a component; Lynott et al., 2020)\n`);
 
 // ---- 2. Human reliability on the panel's words -----------------------------
 
@@ -236,7 +227,7 @@ for (const d of ALL_DIMENSIONS) {
   // A direct check of the Spearman-Brown projection: correlate the means of two
   // disjoint groups of k raters across words, which estimates the reliability of
   // a k-rater mean without the formula.
-  const rand = mulberry32(20260923);
+  const rand = mulberry32(SEED);
   const empirical = {};
   for (const k of [2, 4, 6, 10]) {
     const a = [];
@@ -274,20 +265,26 @@ function derivedAtK(k, seed) {
     small.push(averageRatings(pool.slice(0, k), PERCEPTUAL_DIMENSIONS));
     full.push(averageRatings(pool.slice(k), PERCEPTUAL_DIMENSIONS));
   }
+  // Exclusivity is undefined (null) when fewer than two channels were rated. Such
+  // a pair is left out: reading it as 0 would treat "not measured" as "equally
+  // experienced through every channel".
+  const exclusivityPairs = small
+    .map((v, i) => [modalityExclusivity(v), modalityExclusivity(full[i])])
+    .filter(([a, b]) => a !== null && b !== null);
   return {
     k,
     words: small.length,
     maxStrength: pearson(small.map((v) => maximumPerceptualStrength(v)), full.map((v) => maximumPerceptualStrength(v))),
-    exclusivity: pearson(small.map((v) => modalityExclusivity(v) ?? 0), full.map((v) => modalityExclusivity(v) ?? 0)),
+    exclusivity: pearson(exclusivityPairs.map((p) => p[0]), exclusivityPairs.map((p) => p[1])),
   };
 }
-const derivedCurve = [3, 5, 8, 10, 12].map((k) => derivedAtK(k, 20260923 + k));
+const derivedCurve = [3, 5, 8, 10, 12].map((k) => derivedAtK(k, SEED + k));
 
 const results = {
   source: {
     dataset: 'Lancaster Sensorimotor Norms, trial-level ratings (Lynott et al., 2020)',
-    file: 'Individual_participant_ratings_all_items_sensorimotor_norms_for_39954_words.UPDATED.csv',
-    sha256: TRIAL_SHA256,
+    file: LANCASTER_FILES.trial.osfName,
+    sha256: LANCASTER_FILES.trial.sha256,
     osf: 'https://osf.io/rwhs6/',
   },
   reproduction: {
