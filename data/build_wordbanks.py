@@ -23,6 +23,9 @@ source/ (download it with build_wordbank notes if absent).
 Output: ../web-static/words.js, holding window.SENSELEX_WORDBANK with one bank per
 language. Each word is [word, concreteness or null, zipf].
 
+Pinned versions of everything below are in requirements.txt beside this file:
+python -m pip install -r requirements.txt
+
 Install: pip install wordfreq. Korean tokenisation additionally needs MeCab, so
 install that extra too: pip install "wordfreq[ko]" (which pulls in mecab-python3
 and mecab-ko-dic). Add the ja extra as well only if you re-enable Japanese in

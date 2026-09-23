@@ -1,8 +1,21 @@
+# SenseLex Atlas server image.
+#
+# Base image: node:24-alpine, pinned by digest
+#   sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+#   (resolved from Docker Hub on 23 September 2026; the tag was last updated on
+#   18 September 2026). Re-resolve and update the digest to take up security
+#   fixes: docker buildx imagetools inspect node:24-alpine
+# Purpose: run the Atlas web service and database. The validation analyses do not
+#   run in this image; they need only Node (see validation/README.md).
+# Build:   docker build -t senselex:0.1.0 .
+# Run:     docker run -p 8787:8787 -v senselex-data:/app/data #            -e SENSELEX_API_TOKENS=<comma-separated tokens> #            -e SENSELEX_CORS_ORIGINS=<allowed origins, optional> senselex:0.1.0
+#          or: docker compose up (reads the same variables from .env)
+#
 # A minimal, hardened image. There is nothing to install because the application
 # has no third-party dependencies, so the build is just the runtime plus the
 # source, run as an unprivileged user.
 
-FROM node:24-alpine
+FROM node:24-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
 
 ENV NODE_ENV=production
 WORKDIR /app

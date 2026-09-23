@@ -1,0 +1,17 @@
+# Python packages for build_wordbanks.py, which writes web-static/words.js.
+#
+# Install into a fresh environment with Python 3.13:
+#   python -m pip install -r data/requirements.txt
+#
+# These are the versions installed on the build machine on 23 September 2026.
+# The committed word banks were built in July 2026, and the versions used then
+# were not recorded, so a rebuild with these pins may not reproduce words.js
+# exactly (see ISSUES.md). Only the direct dependencies are pinned; a full lock
+# of their own dependencies is still to be made.
+wordfreq[ja,ko]==3.1.1
+mecab-python3==1.0.12
+mecab-ko-dic==1.0.0
+simplemma==1.2.0
+stopwordsiso==0.7.0
+stanza==1.13.0
+jieba==0.42.1

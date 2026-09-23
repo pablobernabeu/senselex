@@ -22,7 +22,7 @@ See `ARCHITECTURE.md` for the design and `SECURITY.md` for the security model.
 
 ## Requirements
 
-Node 22.5 or newer, for the built-in SQLite driver. The prototype was developed and tested on Node 24.
+Node 22.5 or newer, for the built-in SQLite driver. The prototype was developed and tested on Node 24, and the committed validation results were produced with Node 24.12.0, recorded in `.node-version`.
 
 ## Running it
 
@@ -45,6 +45,10 @@ The suite covers the norm mathematics against known values, the HTTP API includi
 
 It also checks the browser edition against the domain core. That edition runs from a file with no build step, so it cannot import the core and carries a copy instead. `test/browser-core.test.js` extracts the copy from between the markers in `web-static/index.html`, evaluates it, and asserts that every function agrees with `src/domain/norms.js` over a fixture set covering partial vectors, all-zero vectors, single raters and case-variant names. Before that test existed the two had already drifted on how naming responses are counted.
 
+## Validation
+
+The `validation/` folder holds the three studies reported in the paper. They reproduce the Lancaster Sensorimotor Norms from their individual ratings, estimate how many raters a norming study needs on each channel, and test a panel of simulated raters against a preregistered plan. `npm run verify` reruns all of them in a scratch copy and checks that every committed result reproduces byte for byte, without writing anything in the repository. The Lancaster files are fetched separately; `validation/README.md` gives the addresses, the checksums and the order of the steps.
+
 ## Configuration
 
 All configuration comes from the environment, so no secret is committed. See `.env.example` for the full list. The settings that matter most are `SENSELEX_API_TOKENS` (the bearer tokens allowed to write), `SENSELEX_CORS_ORIGINS` (the browser origins allowed to call the API), and `SENSELEX_DATABASE_PATH`.
@@ -53,7 +57,7 @@ All configuration comes from the environment, so no secret is committed. See `.e
 
 A language carries a code, a script, an orthographic depth and a text direction. A concept carries a stable local identifier and an optional Concepticon concept-set number, which the researcher supplies; nothing resolves it against the catalogue automatically, so an export is linkable only as far as that field has been filled in. A rating is one participant's strength vector for one word across the eleven sensorimotor dimensions, and the vector may be partial. A response is one free-naming answer, coded for type and length so codability can be computed. Participants are pseudonymous and no identifying information is stored.
 
-Partial vectors are the reason norms carry a per-dimension count as well as a record count. A channel nobody rated averages to nothing rather than to zero, because zero is a substantive judgement in this protocol, meaning the referent is not experienced through that channel at all. Reading an absent judgement as a zero one would inflate modality exclusivity, which is a range over a sum. Exports therefore carry `mean_<dimension>` beside `n_<dimension>`, an empty cell where no one judged a channel, and `n_perceptual_channels` beside the exclusivity score, since exclusivity is bounded by how many channels contributed and values computed over different numbers of channels are not comparable.
+Partial vectors are the reason norms carry a per-dimension count as well as a record count. A channel nobody rated averages to an empty value, because zero is a substantive judgement in this protocol, meaning the referent is not experienced through that channel at all. Reading an absent judgement as a zero one would inflate modality exclusivity, which is a range over a sum. Exports therefore carry `mean_<dimension>` beside `n_<dimension>`, an empty cell where no one judged a channel, and `n_perceptual_channels` beside the exclusivity score, since exclusivity is bounded by how many channels contributed and values computed over different numbers of channels are not comparable.
 
 ## Licence
 
@@ -67,5 +71,5 @@ Word-bank sources keep their own terms. Zipf frequencies come from wordfreq
 (Speer, 2022, https://doi.org/10.5281/zenodo.7199437), which is redistributable
 with attribution. English concreteness values come from Brysbaert, Warriner and
 Kuperman (2014, https://doi.org/10.3758/s13428-013-0403-5), offered freely for
-research and redistributed here with attribution rather than relicensed. Cite
+research and redistributed here with attribution under their original terms. Cite
 both if you use the word banks.

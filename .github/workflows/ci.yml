@@ -1,0 +1,47 @@
+# Continuous integration. The unit tests run on the newest Node 22 and on the
+# Node release that produced the committed validation results. The validation's
+# reproduction check then reruns every step and compares each output with the
+# committed file. The 1.4 GB Lancaster trial file is too large to fetch on every
+# run, so that check skips the one step that needs it and says so; the 17 MB norms
+# file is fetched and verified against the checksum OSF publishes.
+#
+# Actions are pinned by commit, with the release each commit belongs to noted
+# beside it, so that a moved tag cannot change what runs.
+
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['22', '24.12.0']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm test
+
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: Fetch the Lancaster Sensorimotor Norms
+        run: |
+          mkdir -p "$RUNNER_TEMP/lancaster"
+          curl -fsSL -o "$RUNNER_TEMP/lancaster/lancaster-sensorimotor-norms.csv" \
+            "https://files.de-1.osf.io/v1/resources/rwhs6/providers/osfstorage/5cc2d6441906ec0017056ba8"
+      - run: npm run verify
+        env:
+          SENSELEX_DATA_DIR: ${{ runner.temp }}/lancaster

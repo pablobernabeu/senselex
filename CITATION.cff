@@ -15,7 +15,8 @@ authors:
     orcid: "https://orcid.org/0000-0003-1083-2460"
 version: 0.1.0
 license: MIT
-repository-code: "https://github.com/pablobernabeu/majid-grant-proposal"
+repository-code: "https://github.com/pablobernabeu/senselex"
+doi: 10.5281/zenodo.22905873
 keywords:
   - lexical norms
   - sensorimotor
