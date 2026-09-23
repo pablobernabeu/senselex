@@ -332,6 +332,32 @@ for (const d of ALL_DIMENSIONS) {
   stability[d] = { n: pairs.length, pearson: pearson(pairs.map((p) => p[0]), pairs.map((p) => p[1])) };
 }
 
+// How often a channel's mean is exactly zero, and the mean level per channel, on
+// all 300 words. Exploratory: added after the scatterplots showed the panel's
+// means piling up at zero. A machine mean of zero means all twelve raters said
+// "not at all"; a human mean of zero means every one of about eighteen did, which
+// is rarer simply because more people must agree. The comparison is therefore
+// descriptive of how unanimous each panel is, not a test.
+const zerosAndLevels = {};
+let zeroMachine = 0;
+let zeroHuman = 0;
+let zeroCells = 0;
+for (const d of ALL_DIMENSIONS) {
+  const rows = allRows.filter((r) => typeof r.m[d] === 'number');
+  const zm = rows.filter((r) => r.m[d] === 0).length;
+  const zh = rows.filter((r) => r.h[d] === 0).length;
+  zeroMachine += zm;
+  zeroHuman += zh;
+  zeroCells += rows.length;
+  zerosAndLevels[d] = {
+    words: rows.length,
+    machineMeanZero: zm,
+    humanMeanZero: zh,
+    machineLevel: mean(rows.map((r) => r.m[d])),
+    humanLevel: mean(rows.map((r) => r.h[d])),
+  };
+}
+
 const summary = {
   source: { dataset: 'Lancaster Sensorimotor Norms (Lynott et al., 2020)', doi: '10.3758/s13428-019-01316-z', osf: 'https://osf.io/7emr6/' },
   reproduction: {
@@ -351,7 +377,24 @@ const summary = {
     allWords,
     headChannel: { all300: allWords.perChannel.head, pilotPearson60: 0.445 },
     modelStabilityOnOverlap: { words: overlap.length, byChannel: stability },
+    zerosAndLevels: {
+      cells: zeroCells,
+      machineMeanZero: zeroMachine,
+      humanMeanZero: zeroHuman,
+      byChannel: zerosAndLevels,
+    },
   },
 };
 writeFileSync(resolve(here, 'criterion-results.json'), `${JSON.stringify(summary, null, 2)}\n`);
+
+// The per-word values behind every correlation above, so a figure or a reader
+// can plot or recheck them without recomputing the panel's means.
+const round3 = (v) => (typeof v === 'number' ? Math.round(v * 1000) / 1000 : null);
+const perWord = allRows.map((r) => ({
+  word: r.word,
+  set: setOf.get(r.word),
+  machine: Object.fromEntries(ALL_DIMENSIONS.map((d) => [d, round3(r.m[d])])),
+  human: Object.fromEntries(ALL_DIMENSIONS.map((d) => [d, round3(r.h[d])])),
+})).sort((a, b) => a.word.localeCompare(b.word));
+writeFileSync(resolve(here, 'panel-vs-human.json'), `${JSON.stringify(perWord, null, 1)}\n`);
 process.stdout.write('\nWrote criterion-results.json\n');

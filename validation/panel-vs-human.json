@@ -1,0 +1,9002 @@
+[
+ {
+  "word": "ability",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.417,
+   "interoception": 1.25,
+   "mouth_throat": 0.333,
+   "hand_arm": 1.583,
+   "foot_leg": 1.167,
+   "head": 1.417,
+   "torso": 0.5
+  },
+  "human": {
+   "touch": 0.833,
+   "hearing": 1.222,
+   "smell": 0.167,
+   "taste": 0.278,
+   "vision": 2,
+   "interoception": 2.556,
+   "mouth_throat": 1.955,
+   "hand_arm": 2.545,
+   "foot_leg": 2.455,
+   "head": 2.727,
+   "torso": 1.955
+  }
+ },
+ {
+  "word": "abominable",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.917,
+   "smell": 1.167,
+   "taste": 0.333,
+   "vision": 2.917,
+   "interoception": 1.833,
+   "mouth_throat": 0.167,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.471,
+   "hearing": 1.882,
+   "smell": 0.118,
+   "taste": 0.294,
+   "vision": 2.471,
+   "interoception": 1.294,
+   "mouth_throat": 0.842,
+   "hand_arm": 0.579,
+   "foot_leg": 0.158,
+   "head": 1.737,
+   "torso": 0.526
+  }
+ },
+ {
+  "word": "abomination",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.75,
+   "smell": 1.083,
+   "taste": 0.083,
+   "vision": 3.083,
+   "interoception": 1.917,
+   "mouth_throat": 0.167,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.35,
+   "hearing": 1.75,
+   "smell": 0.15,
+   "taste": 0.05,
+   "vision": 3.2,
+   "interoception": 1.35,
+   "mouth_throat": 1.2,
+   "hand_arm": 1.05,
+   "foot_leg": 0.65,
+   "head": 2.8,
+   "torso": 0.75
+  }
+ },
+ {
+  "word": "acceptor",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.182,
+   "hearing": 0.364,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.909,
+   "interoception": 0.091,
+   "mouth_throat": 0.091,
+   "hand_arm": 0.909,
+   "foot_leg": 0,
+   "head": 0.273,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.533,
+   "hearing": 1.8,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.067,
+   "interoception": 0.267,
+   "mouth_throat": 1.684,
+   "hand_arm": 1.105,
+   "foot_leg": 0.263,
+   "head": 2.105,
+   "torso": 0.421
+  }
+ },
+ {
+  "word": "acetylene",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.667,
+   "hearing": 1.583,
+   "smell": 2.417,
+   "taste": 0,
+   "vision": 2.833,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.75,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.636,
+   "hearing": 0.818,
+   "smell": 1.909,
+   "taste": 0.545,
+   "vision": 1.545,
+   "interoception": 0,
+   "mouth_throat": 0.2,
+   "hand_arm": 0.7,
+   "foot_leg": 0.1,
+   "head": 1.4,
+   "torso": 0.1
+  }
+ },
+ {
+  "word": "actor",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 3.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.75,
+   "interoception": 0.333,
+   "mouth_throat": 2.833,
+   "hand_arm": 1.75,
+   "foot_leg": 1.167,
+   "head": 1.833,
+   "torso": 1.333
+  },
+  "human": {
+   "touch": 1.118,
+   "hearing": 4.235,
+   "smell": 0.235,
+   "taste": 0.235,
+   "vision": 4.647,
+   "interoception": 0.824,
+   "mouth_throat": 1.909,
+   "hand_arm": 1.818,
+   "foot_leg": 1.727,
+   "head": 3.682,
+   "torso": 1.636
+  }
+ },
+ {
+  "word": "acute",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.167,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.333,
+   "interoception": 3.083,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.667,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 1.176,
+   "hearing": 1.059,
+   "smell": 0.471,
+   "taste": 0.353,
+   "vision": 2,
+   "interoception": 1.471,
+   "mouth_throat": 1,
+   "hand_arm": 1.222,
+   "foot_leg": 0.944,
+   "head": 2.167,
+   "torso": 0.889
+  }
+ },
+ {
+  "word": "airworthiness",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 0.75,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.167,
+   "interoception": 0.083,
+   "mouth_throat": 0,
+   "hand_arm": 0.083,
+   "foot_leg": 0,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.818,
+   "hearing": 0.727,
+   "smell": 0.091,
+   "taste": 0,
+   "vision": 3.364,
+   "interoception": 0.182,
+   "mouth_throat": 1.056,
+   "hand_arm": 1,
+   "foot_leg": 0.333,
+   "head": 2.056,
+   "torso": 0.611
+  }
+ },
+ {
+  "word": "alarm",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 2.833,
+   "mouth_throat": 0,
+   "hand_arm": 1.75,
+   "foot_leg": 0.167,
+   "head": 1.5,
+   "torso": 0.25
+  },
+  "human": {
+   "touch": 0.45,
+   "hearing": 4.1,
+   "smell": 0.1,
+   "taste": 0,
+   "vision": 1.45,
+   "interoception": 2.05,
+   "mouth_throat": 1.947,
+   "hand_arm": 2.053,
+   "foot_leg": 1.263,
+   "head": 4.421,
+   "torso": 1.105
+  }
+ },
+ {
+  "word": "amphibian",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.917,
+   "hearing": 1.167,
+   "smell": 0.75,
+   "taste": 0,
+   "vision": 3.917,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.667,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.25,
+   "hearing": 1.85,
+   "smell": 0.5,
+   "taste": 0.4,
+   "vision": 4.3,
+   "interoception": 0.3,
+   "mouth_throat": 0.111,
+   "hand_arm": 0.944,
+   "foot_leg": 0.444,
+   "head": 1.444,
+   "torso": 0.222
+  }
+ },
+ {
+  "word": "anticipatory",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.75,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.917,
+   "interoception": 2.5,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.5,
+   "torso": 0.333
+  },
+  "human": {
+   "touch": 0.714,
+   "hearing": 1.929,
+   "smell": 0.5,
+   "taste": 0.357,
+   "vision": 2.143,
+   "interoception": 3.214,
+   "mouth_throat": 0.714,
+   "hand_arm": 0.381,
+   "foot_leg": 0.333,
+   "head": 2.619,
+   "torso": 0.476
+  }
+ },
+ {
+  "word": "antitrust",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.583,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.833,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.375,
+   "hearing": 2.188,
+   "smell": 0.313,
+   "taste": 0.313,
+   "vision": 2.188,
+   "interoception": 1.063,
+   "mouth_throat": 1,
+   "hand_arm": 0.941,
+   "foot_leg": 0.647,
+   "head": 2.412,
+   "torso": 0.647
+  }
+ },
+ {
+  "word": "approve",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 2,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.583,
+   "interoception": 0.417,
+   "mouth_throat": 2,
+   "hand_arm": 1.75,
+   "foot_leg": 0,
+   "head": 3,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.222,
+   "hearing": 1.833,
+   "smell": 0.556,
+   "taste": 0.556,
+   "vision": 1.778,
+   "interoception": 1,
+   "mouth_throat": 2.053,
+   "hand_arm": 0.684,
+   "foot_leg": 0.263,
+   "head": 3.368,
+   "torso": 0.316
+  }
+ },
+ {
+  "word": "asparagus",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.5,
+   "hearing": 0.083,
+   "smell": 3.833,
+   "taste": 4.667,
+   "vision": 4,
+   "interoception": 0.333,
+   "mouth_throat": 4,
+   "hand_arm": 2.167,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.35,
+   "hearing": 0.4,
+   "smell": 4,
+   "taste": 4.6,
+   "vision": 3.95,
+   "interoception": 0.75,
+   "mouth_throat": 4.05,
+   "hand_arm": 2.25,
+   "foot_leg": 0.4,
+   "head": 2.5,
+   "torso": 1.05
+  }
+ },
+ {
+  "word": "assistant",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 2.75,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.083,
+   "interoception": 0,
+   "mouth_throat": 1.25,
+   "hand_arm": 1.833,
+   "foot_leg": 0.333,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.882,
+   "hearing": 2,
+   "smell": 0.412,
+   "taste": 0.118,
+   "vision": 2.706,
+   "interoception": 0.294,
+   "mouth_throat": 1.75,
+   "hand_arm": 1.6,
+   "foot_leg": 1.05,
+   "head": 2.7,
+   "torso": 1.3
+  }
+ },
+ {
+  "word": "bad",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.667,
+   "hearing": 1,
+   "smell": 1.75,
+   "taste": 1.75,
+   "vision": 1.917,
+   "interoception": 2.083,
+   "mouth_throat": 0.333,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.1,
+   "hearing": 2.65,
+   "smell": 1.45,
+   "taste": 1.3,
+   "vision": 2.7,
+   "interoception": 2.5,
+   "mouth_throat": 2.105,
+   "hand_arm": 1.947,
+   "foot_leg": 1.421,
+   "head": 3.263,
+   "torso": 1.579
+  }
+ },
+ {
+  "word": "basis",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.667,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.595,
+   "hearing": 1.811,
+   "smell": 0.189,
+   "taste": 0.243,
+   "vision": 2.027,
+   "interoception": 0.595,
+   "mouth_throat": 1.211,
+   "hand_arm": 0.316,
+   "foot_leg": 0.211,
+   "head": 2.842,
+   "torso": 0.211
+  }
+ },
+ {
+  "word": "bear",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.667,
+   "hearing": 2.583,
+   "smell": 1.333,
+   "taste": 0,
+   "vision": 4.5,
+   "interoception": 0.667,
+   "mouth_throat": 0,
+   "hand_arm": 0.833,
+   "foot_leg": 0.167,
+   "head": 0.083,
+   "torso": 0.5
+  },
+  "human": {
+   "touch": 1.526,
+   "hearing": 3.263,
+   "smell": 0.632,
+   "taste": 0.368,
+   "vision": 4.316,
+   "interoception": 0.368,
+   "mouth_throat": 1.048,
+   "hand_arm": 1.143,
+   "foot_leg": 1.143,
+   "head": 2.286,
+   "torso": 0.952
+  }
+ },
+ {
+  "word": "bedpan",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3.083,
+   "hearing": 0.333,
+   "smell": 3.667,
+   "taste": 0,
+   "vision": 3.5,
+   "interoception": 1.917,
+   "mouth_throat": 0,
+   "hand_arm": 3.083,
+   "foot_leg": 0.583,
+   "head": 0,
+   "torso": 1.917
+  },
+  "human": {
+   "touch": 2.333,
+   "hearing": 0.611,
+   "smell": 1.667,
+   "taste": 0,
+   "vision": 3.889,
+   "interoception": 0.333,
+   "mouth_throat": 0.167,
+   "hand_arm": 1.556,
+   "foot_leg": 0.444,
+   "head": 1.611,
+   "torso": 2.444
+  }
+ },
+ {
+  "word": "biblical",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.333,
+   "hearing": 2.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.417,
+   "interoception": 0.167,
+   "mouth_throat": 0.75,
+   "hand_arm": 0.583,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.556,
+   "hearing": 2.222,
+   "smell": 0.056,
+   "taste": 0,
+   "vision": 2.167,
+   "interoception": 0.611,
+   "mouth_throat": 1.667,
+   "hand_arm": 0.722,
+   "foot_leg": 0.056,
+   "head": 2.167,
+   "torso": 0.111
+  }
+ },
+ {
+  "word": "bifocals",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 5,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.917,
+   "foot_leg": 0,
+   "head": 3,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.529,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.471,
+   "interoception": 0.059,
+   "mouth_throat": 0.1,
+   "hand_arm": 1.45,
+   "foot_leg": 0.1,
+   "head": 3.55,
+   "torso": 0.15
+  }
+ },
+ {
+  "word": "binary",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.167,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.167,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.344,
+   "hearing": 0.938,
+   "smell": 0.094,
+   "taste": 0.094,
+   "vision": 3.219,
+   "interoception": 0.219,
+   "mouth_throat": 0.294,
+   "hand_arm": 0.706,
+   "foot_leg": 0.059,
+   "head": 1.529,
+   "torso": 0.059
+  }
+ },
+ {
+  "word": "bioreactor",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 0.667,
+   "smell": 0.583,
+   "taste": 0,
+   "vision": 2.167,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.5,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.154,
+   "hearing": 0.923,
+   "smell": 0.692,
+   "taste": 0.077,
+   "vision": 2.154,
+   "interoception": 0.154,
+   "mouth_throat": 0.385,
+   "hand_arm": 1,
+   "foot_leg": 0.154,
+   "head": 1.615,
+   "torso": 0.231
+  }
+ },
+ {
+  "word": "bloom",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.5,
+   "hearing": 0,
+   "smell": 3.833,
+   "taste": 0,
+   "vision": 4.917,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.667,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.938,
+   "hearing": 0.125,
+   "smell": 2.375,
+   "taste": 0.25,
+   "vision": 4.125,
+   "interoception": 0.875,
+   "mouth_throat": 0.35,
+   "hand_arm": 1,
+   "foot_leg": 0.2,
+   "head": 2.75,
+   "torso": 0.3
+  }
+ },
+ {
+  "word": "boost",
+  "set": "overlap",
+  "machine": {
+   "touch": 1.667,
+   "hearing": 0.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.583,
+   "interoception": 2.583,
+   "mouth_throat": 0,
+   "hand_arm": 2.583,
+   "foot_leg": 1.667,
+   "head": 0.417,
+   "torso": 1.583
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 1.25,
+   "smell": 0.188,
+   "taste": 0.188,
+   "vision": 2.313,
+   "interoception": 1.5,
+   "mouth_throat": 0.389,
+   "hand_arm": 1.278,
+   "foot_leg": 1,
+   "head": 0.833,
+   "torso": 0.889
+  }
+ },
+ {
+  "word": "bra",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 4.083,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4,
+   "interoception": 1,
+   "mouth_throat": 0,
+   "hand_arm": 2.667,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 4.417
+  },
+  "human": {
+   "touch": 3.188,
+   "hearing": 0.25,
+   "smell": 0.25,
+   "taste": 0,
+   "vision": 3.938,
+   "interoception": 0.25,
+   "mouth_throat": 0,
+   "hand_arm": 2.111,
+   "foot_leg": 0,
+   "head": 1.611,
+   "torso": 2.667
+  }
+ },
+ {
+  "word": "breeches",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.5,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.083,
+   "foot_leg": 3.25,
+   "head": 0,
+   "torso": 1.333
+  },
+  "human": {
+   "touch": 1.125,
+   "hearing": 1.25,
+   "smell": 0.063,
+   "taste": 0,
+   "vision": 3.5,
+   "interoception": 0.188,
+   "mouth_throat": 0.714,
+   "hand_arm": 1.286,
+   "foot_leg": 2.5,
+   "head": 1,
+   "torso": 1.643
+  }
+ },
+ {
+  "word": "bridge",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.917,
+   "hearing": 1.25,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 4.833,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.833,
+   "foot_leg": 3.667,
+   "head": 0,
+   "torso": 0.417
+  },
+  "human": {
+   "touch": 1.176,
+   "hearing": 0.588,
+   "smell": 0.235,
+   "taste": 0.176,
+   "vision": 4.294,
+   "interoception": 0.353,
+   "mouth_throat": 0.263,
+   "hand_arm": 1.263,
+   "foot_leg": 2.421,
+   "head": 1.842,
+   "torso": 1.211
+  }
+ },
+ {
+  "word": "bubble",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.833,
+   "hearing": 1.917,
+   "smell": 0.333,
+   "taste": 0.5,
+   "vision": 4.75,
+   "interoception": 0,
+   "mouth_throat": 2.75,
+   "hand_arm": 2.083,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.059,
+   "hearing": 0.706,
+   "smell": 0.529,
+   "taste": 0.706,
+   "vision": 4.647,
+   "interoception": 0.412,
+   "mouth_throat": 2.19,
+   "hand_arm": 1.429,
+   "foot_leg": 0.095,
+   "head": 2,
+   "torso": 0.143
+  }
+ },
+ {
+  "word": "bumble",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.833,
+   "hearing": 2.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 0.167,
+   "mouth_throat": 0.25,
+   "hand_arm": 0.917,
+   "foot_leg": 2.5,
+   "head": 0.5,
+   "torso": 1.083
+  },
+  "human": {
+   "touch": 0.667,
+   "hearing": 1.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.583,
+   "interoception": 0.417,
+   "mouth_throat": 1.389,
+   "hand_arm": 2.278,
+   "foot_leg": 1.5,
+   "head": 2.056,
+   "torso": 0.778
+  }
+ },
+ {
+  "word": "bump",
+  "set": "overlap",
+  "machine": {
+   "touch": 4,
+   "hearing": 2.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.917,
+   "interoception": 2.667,
+   "mouth_throat": 0,
+   "hand_arm": 2.083,
+   "foot_leg": 2.083,
+   "head": 2.917,
+   "torso": 2
+  },
+  "human": {
+   "touch": 3.923,
+   "hearing": 1.346,
+   "smell": 0.192,
+   "taste": 0.154,
+   "vision": 2.423,
+   "interoception": 1.846,
+   "mouth_throat": 0.619,
+   "hand_arm": 3.048,
+   "foot_leg": 2.762,
+   "head": 2,
+   "torso": 2.81
+  }
+ },
+ {
+  "word": "burly",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.167,
+   "interoception": 0.167,
+   "mouth_throat": 0,
+   "hand_arm": 1.667,
+   "foot_leg": 0.583,
+   "head": 0,
+   "torso": 2.75
+  },
+  "human": {
+   "touch": 1.667,
+   "hearing": 0.556,
+   "smell": 0.611,
+   "taste": 0.278,
+   "vision": 3.778,
+   "interoception": 1,
+   "mouth_throat": 0.333,
+   "hand_arm": 2.056,
+   "foot_leg": 0.944,
+   "head": 1.111,
+   "torso": 2.278
+  }
+ },
+ {
+  "word": "burn",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 5,
+   "hearing": 1.333,
+   "smell": 3.75,
+   "taste": 1.5,
+   "vision": 3.833,
+   "interoception": 3.75,
+   "mouth_throat": 1.083,
+   "hand_arm": 3.667,
+   "foot_leg": 0.417,
+   "head": 0.083,
+   "torso": 0.5
+  },
+  "human": {
+   "touch": 3.05,
+   "hearing": 1.05,
+   "smell": 1.9,
+   "taste": 0.45,
+   "vision": 3.8,
+   "interoception": 3.2,
+   "mouth_throat": 1.762,
+   "hand_arm": 2.81,
+   "foot_leg": 1.571,
+   "head": 2.238,
+   "torso": 1.429
+  }
+ },
+ {
+  "word": "canopy",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1,
+   "hearing": 1.083,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 4.167,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.333,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.056,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0.167,
+   "vision": 3.833,
+   "interoception": 0,
+   "mouth_throat": 0.25,
+   "hand_arm": 1.75,
+   "foot_leg": 0.438,
+   "head": 2.25,
+   "torso": 0.813
+  }
+ },
+ {
+  "word": "category",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.917,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.5,
+   "foot_leg": 0,
+   "head": 1.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 1.222,
+   "smell": 0.722,
+   "taste": 0.778,
+   "vision": 2,
+   "interoception": 0.889,
+   "mouth_throat": 1.368,
+   "hand_arm": 0.842,
+   "foot_leg": 0.632,
+   "head": 2,
+   "torso": 0.737
+  }
+ },
+ {
+  "word": "celery",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3,
+   "hearing": 2.75,
+   "smell": 2.917,
+   "taste": 4.167,
+   "vision": 4,
+   "interoception": 0.25,
+   "mouth_throat": 4.417,
+   "hand_arm": 2.5,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 3.368,
+   "hearing": 0.895,
+   "smell": 2.895,
+   "taste": 4.421,
+   "vision": 3.684,
+   "interoception": 0.632,
+   "mouth_throat": 2.684,
+   "hand_arm": 1.684,
+   "foot_leg": 0.526,
+   "head": 1.263,
+   "torso": 0.789
+  }
+ },
+ {
+  "word": "cellar",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.917,
+   "hearing": 1,
+   "smell": 3.083,
+   "taste": 0,
+   "vision": 3.333,
+   "interoception": 0.833,
+   "mouth_throat": 0,
+   "hand_arm": 0.917,
+   "foot_leg": 2.333,
+   "head": 0.25,
+   "torso": 0.333
+  },
+  "human": {
+   "touch": 0.857,
+   "hearing": 1,
+   "smell": 1.929,
+   "taste": 0.071,
+   "vision": 4.143,
+   "interoception": 0.143,
+   "mouth_throat": 0.5,
+   "hand_arm": 1.75,
+   "foot_leg": 1.85,
+   "head": 2.65,
+   "torso": 0.95
+  }
+ },
+ {
+  "word": "centrifuge",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1,
+   "hearing": 2.583,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.167,
+   "interoception": 0.333,
+   "mouth_throat": 0,
+   "hand_arm": 1.333,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.947,
+   "hearing": 1.316,
+   "smell": 0.368,
+   "taste": 0.263,
+   "vision": 3.789,
+   "interoception": 1.105,
+   "mouth_throat": 0.267,
+   "hand_arm": 1.533,
+   "foot_leg": 0.8,
+   "head": 1.867,
+   "torso": 0.867
+  }
+ },
+ {
+  "word": "change",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.25,
+   "hearing": 1.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.75,
+   "interoception": 1.167,
+   "mouth_throat": 0,
+   "hand_arm": 1.5,
+   "foot_leg": 0.25,
+   "head": 0.5,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 1.778,
+   "hearing": 2.833,
+   "smell": 0.667,
+   "taste": 0.722,
+   "vision": 4.056,
+   "interoception": 1.778,
+   "mouth_throat": 2.05,
+   "hand_arm": 1.95,
+   "foot_leg": 1.8,
+   "head": 2.5,
+   "torso": 1.65
+  }
+ },
+ {
+  "word": "chastise",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 3.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.667,
+   "interoception": 1.917,
+   "mouth_throat": 3.5,
+   "hand_arm": 0.917,
+   "foot_leg": 0,
+   "head": 1.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.185,
+   "hearing": 3.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.333,
+   "interoception": 1.185,
+   "mouth_throat": 2.944,
+   "hand_arm": 0.611,
+   "foot_leg": 0.111,
+   "head": 1.667,
+   "torso": 0.167
+  }
+ },
+ {
+  "word": "city",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.333,
+   "hearing": 4.25,
+   "smell": 3,
+   "taste": 0.667,
+   "vision": 5,
+   "interoception": 0.333,
+   "mouth_throat": 0.083,
+   "hand_arm": 0.167,
+   "foot_leg": 3.083,
+   "head": 0.667,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 1.882,
+   "hearing": 4.118,
+   "smell": 2.588,
+   "taste": 0.824,
+   "vision": 4.529,
+   "interoception": 1.059,
+   "mouth_throat": 1.2,
+   "hand_arm": 1.85,
+   "foot_leg": 2.3,
+   "head": 3.4,
+   "torso": 1.25
+  }
+ },
+ {
+  "word": "clientele",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.583,
+   "interoception": 0,
+   "mouth_throat": 1.25,
+   "hand_arm": 0.25,
+   "foot_leg": 0,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.688,
+   "hearing": 2.563,
+   "smell": 0.25,
+   "taste": 0,
+   "vision": 3.5,
+   "interoception": 0.125,
+   "mouth_throat": 2,
+   "hand_arm": 1.353,
+   "foot_leg": 0.529,
+   "head": 2.706,
+   "torso": 0.471
+  }
+ },
+ {
+  "word": "coagulant",
+  "set": "overlap",
+  "machine": {
+   "touch": 1.667,
+   "hearing": 0,
+   "smell": 0.083,
+   "taste": 0.167,
+   "vision": 2.167,
+   "interoception": 1,
+   "mouth_throat": 0,
+   "hand_arm": 0.833,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.545,
+   "hearing": 0,
+   "smell": 0.091,
+   "taste": 0,
+   "vision": 1.455,
+   "interoception": 1.727,
+   "mouth_throat": 1.2,
+   "hand_arm": 1.65,
+   "foot_leg": 0.55,
+   "head": 1.55,
+   "torso": 0.85
+  }
+ },
+ {
+  "word": "coast",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.417,
+   "hearing": 3.75,
+   "smell": 3.667,
+   "taste": 1.333,
+   "vision": 4.917,
+   "interoception": 1,
+   "mouth_throat": 0,
+   "hand_arm": 0.167,
+   "foot_leg": 3,
+   "head": 0.667,
+   "torso": 0.583
+  },
+  "human": {
+   "touch": 0.688,
+   "hearing": 2.125,
+   "smell": 1.938,
+   "taste": 0.313,
+   "vision": 4,
+   "interoception": 0.938,
+   "mouth_throat": 0.211,
+   "hand_arm": 0.737,
+   "foot_leg": 1.526,
+   "head": 2,
+   "torso": 0.632
+  }
+ },
+ {
+  "word": "code",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.667,
+   "hearing": 0.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.5,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 2.75,
+   "foot_leg": 0,
+   "head": 1.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.471,
+   "hearing": 1.471,
+   "smell": 0.176,
+   "taste": 0.118,
+   "vision": 3.235,
+   "interoception": 0.294,
+   "mouth_throat": 1.043,
+   "hand_arm": 1.522,
+   "foot_leg": 0.087,
+   "head": 2.739,
+   "torso": 0.087
+  }
+ },
+ {
+  "word": "coincidence",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.75,
+   "interoception": 0.833,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.278,
+   "hearing": 2.778,
+   "smell": 0.111,
+   "taste": 0.167,
+   "vision": 2.944,
+   "interoception": 1.278,
+   "mouth_throat": 0.955,
+   "hand_arm": 0.409,
+   "foot_leg": 0.227,
+   "head": 2.909,
+   "torso": 0.273
+  }
+ },
+ {
+  "word": "comedienne",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 4.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4,
+   "interoception": 1.25,
+   "mouth_throat": 3,
+   "hand_arm": 0.667,
+   "foot_leg": 0,
+   "head": 1,
+   "torso": 0.667
+  },
+  "human": {
+   "touch": 0.2,
+   "hearing": 3.6,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.2,
+   "interoception": 0.45,
+   "mouth_throat": 2.867,
+   "hand_arm": 1.333,
+   "foot_leg": 0.533,
+   "head": 2.8,
+   "torso": 0.8
+  }
+ },
+ {
+  "word": "commentate",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 4.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.917,
+   "interoception": 0,
+   "mouth_throat": 4.75,
+   "hand_arm": 0.25,
+   "foot_leg": 0,
+   "head": 1.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.056,
+   "hearing": 3.889,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.222,
+   "interoception": 0.111,
+   "mouth_throat": 3.55,
+   "hand_arm": 0.65,
+   "foot_leg": 0.1,
+   "head": 2,
+   "torso": 0.45
+  }
+ },
+ {
+  "word": "compactor",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.5,
+   "hearing": 3.75,
+   "smell": 1.25,
+   "taste": 0,
+   "vision": 3.667,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 2.417,
+   "foot_leg": 0.917,
+   "head": 0,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 1.421,
+   "hearing": 2.158,
+   "smell": 0.526,
+   "taste": 0.474,
+   "vision": 3.632,
+   "interoception": 0.316,
+   "mouth_throat": 0.1,
+   "hand_arm": 2.4,
+   "foot_leg": 0.6,
+   "head": 2.1,
+   "torso": 1
+  }
+ },
+ {
+  "word": "comparative",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 0,
+   "mouth_throat": 0.083,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2,
+   "hearing": 2.438,
+   "smell": 1,
+   "taste": 1.063,
+   "vision": 3.188,
+   "interoception": 1.438,
+   "mouth_throat": 0.947,
+   "hand_arm": 1.421,
+   "foot_leg": 0.263,
+   "head": 3,
+   "torso": 0.263
+  }
+ },
+ {
+  "word": "compound",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1,
+   "hearing": 0,
+   "smell": 0.333,
+   "taste": 0,
+   "vision": 2.333,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.667,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.471,
+   "hearing": 0.529,
+   "smell": 0.412,
+   "taste": 1,
+   "vision": 3.118,
+   "interoception": 0.176,
+   "mouth_throat": 1.19,
+   "hand_arm": 2.048,
+   "foot_leg": 0.714,
+   "head": 2.286,
+   "torso": 0.524
+  }
+ },
+ {
+  "word": "condescend",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 3.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 1.833,
+   "mouth_throat": 2.333,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 2.083,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 0.15,
+   "hearing": 3.9,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.8,
+   "interoception": 1.3,
+   "mouth_throat": 2.7,
+   "hand_arm": 0.6,
+   "foot_leg": 0.25,
+   "head": 2.6,
+   "torso": 0.6
+  }
+ },
+ {
+  "word": "condition",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.667,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.833,
+   "interoception": 2.083,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.632,
+   "hearing": 1.526,
+   "smell": 0.421,
+   "taste": 0.211,
+   "vision": 3,
+   "interoception": 1.684,
+   "mouth_throat": 0.842,
+   "hand_arm": 1.526,
+   "foot_leg": 1.105,
+   "head": 2.211,
+   "torso": 1.158
+  }
+ },
+ {
+  "word": "cooperator",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.333,
+   "hearing": 1.75,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.75,
+   "interoception": 0,
+   "mouth_throat": 0.917,
+   "hand_arm": 1.667,
+   "foot_leg": 0,
+   "head": 0.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.714,
+   "hearing": 2.143,
+   "smell": 0.071,
+   "taste": 0,
+   "vision": 2.143,
+   "interoception": 0.786,
+   "mouth_throat": 1.857,
+   "hand_arm": 1.071,
+   "foot_leg": 0.571,
+   "head": 2.214,
+   "torso": 0.5
+  }
+ },
+ {
+  "word": "cover",
+  "set": "overlap",
+  "machine": {
+   "touch": 3.583,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.333,
+   "interoception": 0.167,
+   "mouth_throat": 0,
+   "hand_arm": 3.833,
+   "foot_leg": 0.083,
+   "head": 0.333,
+   "torso": 1.167
+  },
+  "human": {
+   "touch": 2.576,
+   "hearing": 0.758,
+   "smell": 0.182,
+   "taste": 0,
+   "vision": 3.212,
+   "interoception": 0.303,
+   "mouth_throat": 1.188,
+   "hand_arm": 3,
+   "foot_leg": 1.344,
+   "head": 2,
+   "torso": 1.344
+  }
+ },
+ {
+  "word": "craft",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 4,
+   "hearing": 0.333,
+   "smell": 0.25,
+   "taste": 0,
+   "vision": 3.917,
+   "interoception": 0.083,
+   "mouth_throat": 0,
+   "hand_arm": 5,
+   "foot_leg": 0,
+   "head": 1.083,
+   "torso": 0.25
+  },
+  "human": {
+   "touch": 2.053,
+   "hearing": 0.895,
+   "smell": 0.474,
+   "taste": 0.368,
+   "vision": 3.053,
+   "interoception": 0.263,
+   "mouth_throat": 0.579,
+   "hand_arm": 3.789,
+   "foot_leg": 0.474,
+   "head": 2.632,
+   "torso": 0.526
+  }
+ },
+ {
+  "word": "creep",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.5,
+   "hearing": 1.917,
+   "smell": 0.25,
+   "taste": 0,
+   "vision": 3.417,
+   "interoception": 2.583,
+   "mouth_throat": 0,
+   "hand_arm": 0.917,
+   "foot_leg": 3.333,
+   "head": 0.583,
+   "torso": 1.5
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 2.389,
+   "smell": 0,
+   "taste": 0.222,
+   "vision": 3.167,
+   "interoception": 1.722,
+   "mouth_throat": 1.19,
+   "hand_arm": 1.619,
+   "foot_leg": 2,
+   "head": 3.048,
+   "torso": 1.048
+  }
+ },
+ {
+  "word": "cult",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.083,
+   "interoception": 0.833,
+   "mouth_throat": 0.25,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.833,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.529,
+   "hearing": 2.294,
+   "smell": 0.588,
+   "taste": 0.353,
+   "vision": 3.176,
+   "interoception": 0.824,
+   "mouth_throat": 1.667,
+   "hand_arm": 1,
+   "foot_leg": 0.905,
+   "head": 2.714,
+   "torso": 1.238
+  }
+ },
+ {
+  "word": "daily",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.25,
+   "interoception": 0.333,
+   "mouth_throat": 0,
+   "hand_arm": 0.167,
+   "foot_leg": 0.083,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.294,
+   "hearing": 1.059,
+   "smell": 0.235,
+   "taste": 0.353,
+   "vision": 1.235,
+   "interoception": 1.235,
+   "mouth_throat": 1.762,
+   "hand_arm": 1.762,
+   "foot_leg": 1.714,
+   "head": 2.571,
+   "torso": 1.714
+  }
+ },
+ {
+  "word": "daughter",
+  "set": "overlap",
+  "machine": {
+   "touch": 3,
+   "hearing": 3.5,
+   "smell": 0.833,
+   "taste": 0,
+   "vision": 4.25,
+   "interoception": 2.583,
+   "mouth_throat": 1.417,
+   "hand_arm": 2.333,
+   "foot_leg": 0.25,
+   "head": 0.5,
+   "torso": 1.167
+  },
+  "human": {
+   "touch": 1.632,
+   "hearing": 2.789,
+   "smell": 0.632,
+   "taste": 0,
+   "vision": 3.737,
+   "interoception": 0.632,
+   "mouth_throat": 1.833,
+   "hand_arm": 1.778,
+   "foot_leg": 1.444,
+   "head": 1.889,
+   "torso": 1.111
+  }
+ },
+ {
+  "word": "decolonization",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.333,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.389,
+   "hearing": 1.278,
+   "smell": 0.278,
+   "taste": 0.222,
+   "vision": 2.333,
+   "interoception": 0.278,
+   "mouth_throat": 1,
+   "hand_arm": 0.625,
+   "foot_leg": 0.75,
+   "head": 2,
+   "torso": 0.75
+  }
+ },
+ {
+  "word": "degeneracy",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.667,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 1.417,
+   "interoception": 0.833,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0,
+   "hearing": 2.429,
+   "smell": 0.071,
+   "taste": 0,
+   "vision": 3.214,
+   "interoception": 0.643,
+   "mouth_throat": 1.316,
+   "hand_arm": 1.158,
+   "foot_leg": 1,
+   "head": 2.579,
+   "torso": 0.947
+  }
+ },
+ {
+  "word": "degrade",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.917,
+   "hearing": 0.833,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 2.25,
+   "interoception": 1,
+   "mouth_throat": 0.25,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.606,
+   "hearing": 1.424,
+   "smell": 0.455,
+   "taste": 0.212,
+   "vision": 2.545,
+   "interoception": 0.97,
+   "mouth_throat": 1.846,
+   "hand_arm": 0.949,
+   "foot_leg": 0.385,
+   "head": 2.795,
+   "torso": 0.462
+  }
+ },
+ {
+  "word": "democracy",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.917,
+   "interoception": 0,
+   "mouth_throat": 0.5,
+   "hand_arm": 1.333,
+   "foot_leg": 0,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.056,
+   "hearing": 1.944,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.222,
+   "interoception": 1.056,
+   "mouth_throat": 1.35,
+   "hand_arm": 0.35,
+   "foot_leg": 0.35,
+   "head": 2.05,
+   "torso": 0.25
+  }
+ },
+ {
+  "word": "demon",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.583,
+   "smell": 0.25,
+   "taste": 0,
+   "vision": 3.25,
+   "interoception": 2,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.813,
+   "hearing": 1.375,
+   "smell": 0.313,
+   "taste": 0.188,
+   "vision": 2.625,
+   "interoception": 0.938,
+   "mouth_throat": 0.85,
+   "hand_arm": 0.6,
+   "foot_leg": 0.55,
+   "head": 1.75,
+   "torso": 0.6
+  }
+ },
+ {
+  "word": "demystify",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.333,
+   "interoception": 0.083,
+   "mouth_throat": 0.583,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.348,
+   "hearing": 1.783,
+   "smell": 0.043,
+   "taste": 0,
+   "vision": 2.348,
+   "interoception": 0.957,
+   "mouth_throat": 1.111,
+   "hand_arm": 0.167,
+   "foot_leg": 0.167,
+   "head": 2.056,
+   "torso": 0.167
+  }
+ },
+ {
+  "word": "desire",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.5,
+   "hearing": 0.083,
+   "smell": 0.917,
+   "taste": 1.083,
+   "vision": 2.083,
+   "interoception": 4.083,
+   "mouth_throat": 0.5,
+   "hand_arm": 0.417,
+   "foot_leg": 0,
+   "head": 1.083,
+   "torso": 1
+  },
+  "human": {
+   "touch": 2.5,
+   "hearing": 1.667,
+   "smell": 1.444,
+   "taste": 1.444,
+   "vision": 2.444,
+   "interoception": 4.056,
+   "mouth_throat": 1.318,
+   "hand_arm": 0.909,
+   "foot_leg": 0.318,
+   "head": 3.773,
+   "torso": 1.864
+  }
+ },
+ {
+  "word": "determinative",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.444,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.667,
+   "interoception": 0,
+   "mouth_throat": 0.111,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.889,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.692,
+   "hearing": 1.846,
+   "smell": 0.308,
+   "taste": 0.308,
+   "vision": 2.154,
+   "interoception": 2.462,
+   "mouth_throat": 1.167,
+   "hand_arm": 0.944,
+   "foot_leg": 0.611,
+   "head": 3,
+   "torso": 0.944
+  }
+ },
+ {
+  "word": "deviousness",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.583,
+   "interoception": 0.833,
+   "mouth_throat": 0.833,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0,
+   "hearing": 1.947,
+   "smell": 0,
+   "taste": 0.053,
+   "vision": 2.684,
+   "interoception": 1.526,
+   "mouth_throat": 1.684,
+   "hand_arm": 0.737,
+   "foot_leg": 0.632,
+   "head": 2.474,
+   "torso": 0.789
+  }
+ },
+ {
+  "word": "diabetes",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.083,
+   "hearing": 0,
+   "smell": 0.083,
+   "taste": 2.333,
+   "vision": 1.333,
+   "interoception": 3.917,
+   "mouth_throat": 1.25,
+   "hand_arm": 1.417,
+   "foot_leg": 0.417,
+   "head": 0.083,
+   "torso": 0.583
+  },
+  "human": {
+   "touch": 0.105,
+   "hearing": 0.474,
+   "smell": 0.053,
+   "taste": 0.105,
+   "vision": 0.579,
+   "interoception": 2.842,
+   "mouth_throat": 1.611,
+   "hand_arm": 1.833,
+   "foot_leg": 1.889,
+   "head": 1.778,
+   "torso": 1.444
+  }
+ },
+ {
+  "word": "diameter",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.083,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.75,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.5,
+   "foot_leg": 0,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.625,
+   "hearing": 0.563,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.625,
+   "interoception": 0.188,
+   "mouth_throat": 0.35,
+   "hand_arm": 0.95,
+   "foot_leg": 0.2,
+   "head": 1.85,
+   "torso": 0.3
+  }
+ },
+ {
+  "word": "digestive",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.5,
+   "hearing": 0.417,
+   "smell": 1.583,
+   "taste": 3.75,
+   "vision": 2.25,
+   "interoception": 4.083,
+   "mouth_throat": 3.417,
+   "hand_arm": 1.25,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 3.083
+  },
+  "human": {
+   "touch": 0.316,
+   "hearing": 0.632,
+   "smell": 0.368,
+   "taste": 0.895,
+   "vision": 0.421,
+   "interoception": 3.474,
+   "mouth_throat": 2.6,
+   "hand_arm": 0.55,
+   "foot_leg": 0,
+   "head": 0.8,
+   "torso": 3.6
+  }
+ },
+ {
+  "word": "discretion",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 0.25,
+   "mouth_throat": 1,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.059,
+   "hearing": 2.529,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.647,
+   "interoception": 1.353,
+   "mouth_throat": 2.136,
+   "hand_arm": 0.727,
+   "foot_leg": 0.636,
+   "head": 2.045,
+   "torso": 0.455
+  }
+ },
+ {
+  "word": "distillation",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.417,
+   "hearing": 0.167,
+   "smell": 2.667,
+   "taste": 2.333,
+   "vision": 2.75,
+   "interoception": 0,
+   "mouth_throat": 0.333,
+   "hand_arm": 1.25,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.545,
+   "hearing": 0.091,
+   "smell": 0.727,
+   "taste": 1.364,
+   "vision": 3.455,
+   "interoception": 0,
+   "mouth_throat": 0.5,
+   "hand_arm": 1.125,
+   "foot_leg": 0.063,
+   "head": 1.188,
+   "torso": 0
+  }
+ },
+ {
+  "word": "divine",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.5,
+   "smell": 0.5,
+   "taste": 1.25,
+   "vision": 2.083,
+   "interoception": 1.917,
+   "mouth_throat": 0.167,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.4,
+   "hearing": 1.35,
+   "smell": 0.5,
+   "taste": 0.55,
+   "vision": 1.65,
+   "interoception": 2.2,
+   "mouth_throat": 0.762,
+   "hand_arm": 0.476,
+   "foot_leg": 0.286,
+   "head": 1.524,
+   "torso": 0.667
+  }
+ },
+ {
+  "word": "domestication",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.25,
+   "hearing": 1,
+   "smell": 0.667,
+   "taste": 0,
+   "vision": 2.333,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.333,
+   "foot_leg": 0.083,
+   "head": 0.083,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 0.467,
+   "hearing": 1.133,
+   "smell": 0.2,
+   "taste": 0.2,
+   "vision": 2.467,
+   "interoception": 0.933,
+   "mouth_throat": 1.2,
+   "hand_arm": 1.3,
+   "foot_leg": 0.75,
+   "head": 2.1,
+   "torso": 0.7
+  }
+ },
+ {
+  "word": "doorway",
+  "set": "overlap",
+  "machine": {
+   "touch": 1.583,
+   "hearing": 0.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.167,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.75,
+   "foot_leg": 3.25,
+   "head": 0.25,
+   "torso": 1.25
+  },
+  "human": {
+   "touch": 2.211,
+   "hearing": 0.474,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.211,
+   "interoception": 0.053,
+   "mouth_throat": 0.056,
+   "hand_arm": 2.333,
+   "foot_leg": 2.167,
+   "head": 1.833,
+   "torso": 1.389
+  }
+ },
+ {
+  "word": "eccentric",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 2.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.25,
+   "interoception": 0,
+   "mouth_throat": 0.417,
+   "hand_arm": 0.167,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.632,
+   "hearing": 2.474,
+   "smell": 0.368,
+   "taste": 0.368,
+   "vision": 3.211,
+   "interoception": 1.684,
+   "mouth_throat": 1.55,
+   "hand_arm": 0.8,
+   "foot_leg": 0.7,
+   "head": 2.7,
+   "torso": 0.75
+  }
+ },
+ {
+  "word": "elbow",
+  "set": "overlap",
+  "machine": {
+   "touch": 4,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.333,
+   "interoception": 2.167,
+   "mouth_throat": 0,
+   "hand_arm": 5,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0.833
+  },
+  "human": {
+   "touch": 3.857,
+   "hearing": 0.25,
+   "smell": 0.286,
+   "taste": 0.143,
+   "vision": 3.821,
+   "interoception": 1,
+   "mouth_throat": 0.25,
+   "hand_arm": 3.95,
+   "foot_leg": 0.2,
+   "head": 1.05,
+   "torso": 0.4
+  }
+ },
+ {
+  "word": "endocrinologist",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.333,
+   "hearing": 1.5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.083,
+   "interoception": 1.167,
+   "mouth_throat": 0.417,
+   "hand_arm": 0.083,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.692,
+   "hearing": 2,
+   "smell": 0.077,
+   "taste": 0,
+   "vision": 3.077,
+   "interoception": 0.385,
+   "mouth_throat": 1.389,
+   "hand_arm": 1.278,
+   "foot_leg": 0.556,
+   "head": 2.333,
+   "torso": 1.056
+  }
+ },
+ {
+  "word": "entire",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.833,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 1.45,
+   "smell": 0.65,
+   "taste": 0.75,
+   "vision": 2.3,
+   "interoception": 1.25,
+   "mouth_throat": 1.95,
+   "hand_arm": 2,
+   "foot_leg": 1.9,
+   "head": 2.3,
+   "torso": 1.8
+  }
+ },
+ {
+  "word": "entry",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.083,
+   "hearing": 0.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.083,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.917,
+   "foot_leg": 3.083,
+   "head": 0.083,
+   "torso": 0.667
+  },
+  "human": {
+   "touch": 1.056,
+   "hearing": 0.833,
+   "smell": 0.056,
+   "taste": 0,
+   "vision": 3.5,
+   "interoception": 0.556,
+   "mouth_throat": 0.7,
+   "hand_arm": 2.5,
+   "foot_leg": 2.15,
+   "head": 2.2,
+   "torso": 1.15
+  }
+ },
+ {
+  "word": "equality",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.167,
+   "interoception": 0.833,
+   "mouth_throat": 0.083,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.75,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.211,
+   "hearing": 2.105,
+   "smell": 0.053,
+   "taste": 0,
+   "vision": 2.526,
+   "interoception": 1.421,
+   "mouth_throat": 1.737,
+   "hand_arm": 0.684,
+   "foot_leg": 0.474,
+   "head": 3.053,
+   "torso": 0.684
+  }
+ },
+ {
+  "word": "era",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.083,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.471,
+   "hearing": 1.412,
+   "smell": 0.118,
+   "taste": 0.059,
+   "vision": 1.941,
+   "interoception": 1.059,
+   "mouth_throat": 1,
+   "hand_arm": 0.5,
+   "foot_leg": 0.444,
+   "head": 2.389,
+   "torso": 0.444
+  }
+ },
+ {
+  "word": "eternalize",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 0.167,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.053,
+   "hearing": 0.526,
+   "smell": 0.105,
+   "taste": 0,
+   "vision": 0.947,
+   "interoception": 1.842,
+   "mouth_throat": 1.5,
+   "hand_arm": 1.056,
+   "foot_leg": 0.722,
+   "head": 2.667,
+   "torso": 1.111
+  }
+ },
+ {
+  "word": "ethos",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.818,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.455,
+   "interoception": 0.364,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.909,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.182,
+   "hearing": 2,
+   "smell": 0.091,
+   "taste": 0.182,
+   "vision": 1.727,
+   "interoception": 0.818,
+   "mouth_throat": 1.357,
+   "hand_arm": 0.214,
+   "foot_leg": 0,
+   "head": 2.214,
+   "torso": 0.071
+  }
+ },
+ {
+  "word": "evenness",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.417,
+   "hearing": 0.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.083,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.167,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.118,
+   "hearing": 1.235,
+   "smell": 0.471,
+   "taste": 0.647,
+   "vision": 3.412,
+   "interoception": 1.412,
+   "mouth_throat": 0.684,
+   "hand_arm": 1.421,
+   "foot_leg": 0.526,
+   "head": 1.842,
+   "torso": 0.316
+  }
+ },
+ {
+  "word": "evolutionism",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.583,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.083,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.333,
+   "hearing": 1.111,
+   "smell": 0.167,
+   "taste": 0.056,
+   "vision": 2.722,
+   "interoception": 0.389,
+   "mouth_throat": 1.833,
+   "hand_arm": 1.389,
+   "foot_leg": 1.222,
+   "head": 2.5,
+   "torso": 1.278
+  }
+ },
+ {
+  "word": "expansion",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 0.5,
+   "mouth_throat": 0,
+   "hand_arm": 0.5,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0.75
+  },
+  "human": {
+   "touch": 1.789,
+   "hearing": 0.947,
+   "smell": 0.053,
+   "taste": 0.158,
+   "vision": 3.895,
+   "interoception": 0.737,
+   "mouth_throat": 1.474,
+   "hand_arm": 2.526,
+   "foot_leg": 0.947,
+   "head": 2.526,
+   "torso": 1.895
+  }
+ },
+ {
+  "word": "experience",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.667,
+   "hearing": 2.667,
+   "smell": 1.75,
+   "taste": 1.75,
+   "vision": 2.75,
+   "interoception": 2.75,
+   "mouth_throat": 1,
+   "hand_arm": 1.5,
+   "foot_leg": 1,
+   "head": 1.833,
+   "torso": 1
+  },
+  "human": {
+   "touch": 2.65,
+   "hearing": 3,
+   "smell": 2.55,
+   "taste": 2.45,
+   "vision": 3.45,
+   "interoception": 3,
+   "mouth_throat": 2.158,
+   "hand_arm": 2.526,
+   "foot_leg": 2.105,
+   "head": 3.632,
+   "torso": 2.368
+  }
+ },
+ {
+  "word": "explain",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 4,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.667,
+   "interoception": 0,
+   "mouth_throat": 4.333,
+   "hand_arm": 2.25,
+   "foot_leg": 0,
+   "head": 1.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.167,
+   "hearing": 4.222,
+   "smell": 0,
+   "taste": 0.167,
+   "vision": 2.167,
+   "interoception": 0.667,
+   "mouth_throat": 3.5,
+   "hand_arm": 0.8,
+   "foot_leg": 0.15,
+   "head": 2.6,
+   "torso": 0.25
+  }
+ },
+ {
+  "word": "faith",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.667,
+   "interoception": 2.917,
+   "mouth_throat": 0.583,
+   "hand_arm": 0.917,
+   "foot_leg": 0,
+   "head": 1.333,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 0.313,
+   "hearing": 1.875,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 3.438,
+   "mouth_throat": 1.8,
+   "hand_arm": 0.75,
+   "foot_leg": 0.4,
+   "head": 3.4,
+   "torso": 0.7
+  }
+ },
+ {
+  "word": "fantasy",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.25,
+   "interoception": 1.667,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 2.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.444,
+   "hearing": 2.611,
+   "smell": 0.167,
+   "taste": 0.111,
+   "vision": 3.111,
+   "interoception": 1.833,
+   "mouth_throat": 1.3,
+   "hand_arm": 0.6,
+   "foot_leg": 0.45,
+   "head": 3.85,
+   "torso": 0.6
+  }
+ },
+ {
+  "word": "fateful",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 1.75,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.429,
+   "hearing": 0.857,
+   "smell": 0,
+   "taste": 0.071,
+   "vision": 0.857,
+   "interoception": 1.929,
+   "mouth_throat": 0.813,
+   "hand_arm": 0.625,
+   "foot_leg": 0.375,
+   "head": 3.375,
+   "torso": 0.625
+  }
+ },
+ {
+  "word": "filetype",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.833,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.583,
+   "foot_leg": 0,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.278,
+   "hearing": 0.222,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.167,
+   "interoception": 0,
+   "mouth_throat": 0.235,
+   "hand_arm": 0.882,
+   "foot_leg": 0,
+   "head": 1.353,
+   "torso": 0
+  }
+ },
+ {
+  "word": "film",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 4.167,
+   "smell": 0.083,
+   "taste": 0.083,
+   "vision": 5,
+   "interoception": 0.333,
+   "mouth_throat": 0.083,
+   "hand_arm": 0.583,
+   "foot_leg": 0,
+   "head": 1.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 2.947,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.421,
+   "interoception": 0.316,
+   "mouth_throat": 0.526,
+   "hand_arm": 1.684,
+   "foot_leg": 0.316,
+   "head": 3.421,
+   "torso": 0.316
+  }
+ },
+ {
+  "word": "firefly",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.333,
+   "hearing": 0.583,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.833,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.333,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.556,
+   "hearing": 0.222,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.722,
+   "interoception": 0.056,
+   "mouth_throat": 0.263,
+   "hand_arm": 1.368,
+   "foot_leg": 0.158,
+   "head": 1.789,
+   "torso": 0.211
+  }
+ },
+ {
+  "word": "firm",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 4.167,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0.083,
+   "vision": 2,
+   "interoception": 0.5,
+   "mouth_throat": 0,
+   "hand_arm": 3.25,
+   "foot_leg": 0.25,
+   "head": 0,
+   "torso": 0.417
+  },
+  "human": {
+   "touch": 3.75,
+   "hearing": 0.95,
+   "smell": 0,
+   "taste": 0.65,
+   "vision": 2.7,
+   "interoception": 1.35,
+   "mouth_throat": 1.579,
+   "hand_arm": 3.579,
+   "foot_leg": 1.526,
+   "head": 1.842,
+   "torso": 1.105
+  }
+ },
+ {
+  "word": "flapjack",
+  "set": "overlap",
+  "machine": {
+   "touch": 3,
+   "hearing": 0.083,
+   "smell": 3.833,
+   "taste": 5,
+   "vision": 3.833,
+   "interoception": 0.917,
+   "mouth_throat": 4.5,
+   "hand_arm": 2.75,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.824,
+   "hearing": 0.412,
+   "smell": 2.824,
+   "taste": 3.294,
+   "vision": 3.588,
+   "interoception": 0.353,
+   "mouth_throat": 3.8,
+   "hand_arm": 2.45,
+   "foot_leg": 0.3,
+   "head": 2.05,
+   "torso": 0.9
+  }
+ },
+ {
+  "word": "foulness",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.583,
+   "hearing": 0.417,
+   "smell": 4.917,
+   "taste": 2.667,
+   "vision": 2,
+   "interoception": 1.917,
+   "mouth_throat": 1.167,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.786,
+   "hearing": 2.643,
+   "smell": 3.786,
+   "taste": 2.714,
+   "vision": 2.643,
+   "interoception": 1.214,
+   "mouth_throat": 3.158,
+   "hand_arm": 1.211,
+   "foot_leg": 0.842,
+   "head": 3.316,
+   "torso": 1.105
+  }
+ },
+ {
+  "word": "freestyle",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.083,
+   "hearing": 2,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 1.25,
+   "mouth_throat": 1.25,
+   "hand_arm": 3.333,
+   "foot_leg": 3,
+   "head": 1.5,
+   "torso": 2.833
+  },
+  "human": {
+   "touch": 0.25,
+   "hearing": 2.75,
+   "smell": 0,
+   "taste": 0.05,
+   "vision": 3.1,
+   "interoception": 0.3,
+   "mouth_throat": 1.368,
+   "hand_arm": 1.895,
+   "foot_leg": 1.947,
+   "head": 2.263,
+   "torso": 1.263
+  }
+ },
+ {
+  "word": "fruitful",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 0,
+   "smell": 0.25,
+   "taste": 1.25,
+   "vision": 1.833,
+   "interoception": 0.667,
+   "mouth_throat": 0,
+   "hand_arm": 0.25,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.353,
+   "hearing": 1.176,
+   "smell": 1.059,
+   "taste": 1.118,
+   "vision": 3.353,
+   "interoception": 0.941,
+   "mouth_throat": 1.1,
+   "hand_arm": 1.3,
+   "foot_leg": 0.9,
+   "head": 1.55,
+   "torso": 1.35
+  }
+ },
+ {
+  "word": "fur",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 5,
+   "hearing": 0,
+   "smell": 1.417,
+   "taste": 0,
+   "vision": 4,
+   "interoception": 0.083,
+   "mouth_throat": 0,
+   "hand_arm": 3.417,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0.333
+  },
+  "human": {
+   "touch": 3.8,
+   "hearing": 0.55,
+   "smell": 1.2,
+   "taste": 0,
+   "vision": 3.85,
+   "interoception": 0.3,
+   "mouth_throat": 0.947,
+   "hand_arm": 3,
+   "foot_leg": 1.105,
+   "head": 1.632,
+   "torso": 1.684
+  }
+ },
+ {
+  "word": "garage",
+  "set": "overlap",
+  "machine": {
+   "touch": 1.75,
+   "hearing": 2.083,
+   "smell": 2.75,
+   "taste": 0,
+   "vision": 4,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 2.167,
+   "foot_leg": 1.667,
+   "head": 0,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 1.278,
+   "hearing": 1.167,
+   "smell": 0.611,
+   "taste": 0,
+   "vision": 3.722,
+   "interoception": 0.5,
+   "mouth_throat": 0.056,
+   "hand_arm": 1.667,
+   "foot_leg": 1.944,
+   "head": 2.722,
+   "torso": 1.278
+  }
+ },
+ {
+  "word": "generalist",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 0,
+   "mouth_throat": 0.083,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.235,
+   "hearing": 1.588,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.765,
+   "interoception": 0.471,
+   "mouth_throat": 0.882,
+   "hand_arm": 0.353,
+   "foot_leg": 0.235,
+   "head": 1.412,
+   "torso": 0.412
+  }
+ },
+ {
+  "word": "generalization",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.417,
+   "interoception": 0,
+   "mouth_throat": 0.667,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.286,
+   "hearing": 1.771,
+   "smell": 0.371,
+   "taste": 0.343,
+   "vision": 1.6,
+   "interoception": 1.2,
+   "mouth_throat": 1.909,
+   "hand_arm": 0.485,
+   "foot_leg": 0.303,
+   "head": 2.727,
+   "torso": 0.303
+  }
+ },
+ {
+  "word": "girl",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.25,
+   "hearing": 3,
+   "smell": 0.417,
+   "taste": 0,
+   "vision": 4.5,
+   "interoception": 0.083,
+   "mouth_throat": 0.5,
+   "hand_arm": 0.5,
+   "foot_leg": 0,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.333,
+   "hearing": 3.5,
+   "smell": 1.722,
+   "taste": 0.444,
+   "vision": 4.5,
+   "interoception": 0.944,
+   "mouth_throat": 2.15,
+   "hand_arm": 1.85,
+   "foot_leg": 1.3,
+   "head": 2.75,
+   "torso": 1.75
+  }
+ },
+ {
+  "word": "godfather",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 2,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.083,
+   "interoception": 0.333,
+   "mouth_throat": 0.5,
+   "hand_arm": 0.667,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.647,
+   "hearing": 2.471,
+   "smell": 0.118,
+   "taste": 0,
+   "vision": 3.882,
+   "interoception": 0.529,
+   "mouth_throat": 1,
+   "hand_arm": 0.684,
+   "foot_leg": 0.684,
+   "head": 1.737,
+   "torso": 0.684
+  }
+ },
+ {
+  "word": "guillotine",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.5,
+   "hearing": 2.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.25,
+   "interoception": 1.417,
+   "mouth_throat": 0.083,
+   "hand_arm": 2.25,
+   "foot_leg": 0,
+   "head": 2.75,
+   "torso": 0.583
+  },
+  "human": {
+   "touch": 2.5,
+   "hearing": 2.125,
+   "smell": 0.313,
+   "taste": 0.313,
+   "vision": 3.75,
+   "interoception": 0.938,
+   "mouth_throat": 0.647,
+   "hand_arm": 1.118,
+   "foot_leg": 0.176,
+   "head": 3.294,
+   "torso": 0.882
+  }
+ },
+ {
+  "word": "hang",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.833,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.833,
+   "interoception": 1.333,
+   "mouth_throat": 0,
+   "hand_arm": 4.333,
+   "foot_leg": 1,
+   "head": 0.583,
+   "torso": 2
+  },
+  "human": {
+   "touch": 1.632,
+   "hearing": 0.842,
+   "smell": 0.684,
+   "taste": 0.421,
+   "vision": 3.895,
+   "interoception": 0.737,
+   "mouth_throat": 1.25,
+   "hand_arm": 2.875,
+   "foot_leg": 1.688,
+   "head": 2.125,
+   "torso": 1
+  }
+ },
+ {
+  "word": "harshness",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.583,
+   "hearing": 3.083,
+   "smell": 0.167,
+   "taste": 0.417,
+   "vision": 1.5,
+   "interoception": 2.167,
+   "mouth_throat": 1.25,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.143,
+   "hearing": 3.25,
+   "smell": 1,
+   "taste": 1.179,
+   "vision": 3.25,
+   "interoception": 2.036,
+   "mouth_throat": 2.211,
+   "hand_arm": 1.579,
+   "foot_leg": 0.842,
+   "head": 3.053,
+   "torso": 0.895
+  }
+ },
+ {
+  "word": "heathen",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.417,
+   "interoception": 0.083,
+   "mouth_throat": 0.25,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.294,
+   "hearing": 1.353,
+   "smell": 0.294,
+   "taste": 0.294,
+   "vision": 1.588,
+   "interoception": 0.353,
+   "mouth_throat": 1.563,
+   "hand_arm": 1.375,
+   "foot_leg": 0.375,
+   "head": 2.375,
+   "torso": 0.5
+  }
+ },
+ {
+  "word": "hilarious",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 4,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.167,
+   "interoception": 3.083,
+   "mouth_throat": 4.167,
+   "hand_arm": 0.167,
+   "foot_leg": 0,
+   "head": 1.917,
+   "torso": 3
+  },
+  "human": {
+   "touch": 0.118,
+   "hearing": 3.176,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.118,
+   "interoception": 1.882,
+   "mouth_throat": 3.143,
+   "hand_arm": 0.762,
+   "foot_leg": 0.19,
+   "head": 3.286,
+   "torso": 0.952
+  }
+ },
+ {
+  "word": "hind",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.667,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 2.417,
+   "head": 0,
+   "torso": 0.667
+  },
+  "human": {
+   "touch": 1.231,
+   "hearing": 0.308,
+   "smell": 0.154,
+   "taste": 0.077,
+   "vision": 2.385,
+   "interoception": 1.154,
+   "mouth_throat": 0.2,
+   "hand_arm": 1.4,
+   "foot_leg": 1.467,
+   "head": 0.933,
+   "torso": 0.933
+  }
+ },
+ {
+  "word": "hip",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.917,
+   "interoception": 2.917,
+   "mouth_throat": 0,
+   "hand_arm": 0.917,
+   "foot_leg": 3.417,
+   "head": 0,
+   "torso": 3.583
+  },
+  "human": {
+   "touch": 1.719,
+   "hearing": 1.188,
+   "smell": 0.156,
+   "taste": 0.125,
+   "vision": 3.281,
+   "interoception": 1.906,
+   "mouth_throat": 0.294,
+   "hand_arm": 0.824,
+   "foot_leg": 1.941,
+   "head": 1.353,
+   "torso": 2.176
+  }
+ },
+ {
+  "word": "homegrown",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.583,
+   "hearing": 0,
+   "smell": 2.75,
+   "taste": 3.667,
+   "vision": 3.5,
+   "interoception": 0.083,
+   "mouth_throat": 1.083,
+   "hand_arm": 3.167,
+   "foot_leg": 0.583,
+   "head": 0,
+   "torso": 0.667
+  },
+  "human": {
+   "touch": 0.722,
+   "hearing": 0.389,
+   "smell": 0.889,
+   "taste": 1.444,
+   "vision": 2.889,
+   "interoception": 0.111,
+   "mouth_throat": 2.222,
+   "hand_arm": 2.056,
+   "foot_leg": 0.778,
+   "head": 2.611,
+   "torso": 0.778
+  }
+ },
+ {
+  "word": "honest",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 2.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 1.417,
+   "mouth_throat": 2.083,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.833,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.294,
+   "hearing": 2.412,
+   "smell": 0.059,
+   "taste": 0.059,
+   "vision": 1.471,
+   "interoception": 2.765,
+   "mouth_throat": 2.278,
+   "hand_arm": 0.556,
+   "foot_leg": 0.333,
+   "head": 2.889,
+   "torso": 1.111
+  }
+ },
+ {
+  "word": "housetop",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.417,
+   "hearing": 0.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.167,
+   "foot_leg": 0.5,
+   "head": 0.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.706,
+   "hearing": 0.294,
+   "smell": 0.059,
+   "taste": 0.059,
+   "vision": 3.824,
+   "interoception": 0.118,
+   "mouth_throat": 0.167,
+   "hand_arm": 1.278,
+   "foot_leg": 1.167,
+   "head": 1.667,
+   "torso": 1
+  }
+ },
+ {
+  "word": "humiliate",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 2.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.417,
+   "interoception": 3.833,
+   "mouth_throat": 1.583,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 2.083,
+   "torso": 0.667
+  },
+  "human": {
+   "touch": 0.438,
+   "hearing": 3.375,
+   "smell": 0.188,
+   "taste": 0.188,
+   "vision": 3.625,
+   "interoception": 1.875,
+   "mouth_throat": 2.25,
+   "hand_arm": 1,
+   "foot_leg": 0.7,
+   "head": 2.05,
+   "torso": 0.7
+  }
+ },
+ {
+  "word": "hurt",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 4,
+   "hearing": 1.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.667,
+   "interoception": 5,
+   "mouth_throat": 0.833,
+   "hand_arm": 2.25,
+   "foot_leg": 2.167,
+   "head": 1.75,
+   "torso": 2.083
+  },
+  "human": {
+   "touch": 2.056,
+   "hearing": 1.722,
+   "smell": 0.333,
+   "taste": 0.333,
+   "vision": 2.611,
+   "interoception": 3.944,
+   "mouth_throat": 2.7,
+   "hand_arm": 2.85,
+   "foot_leg": 2.75,
+   "head": 2.9,
+   "torso": 2.8
+  }
+ },
+ {
+  "word": "hygienist",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.917,
+   "hearing": 2.167,
+   "smell": 1.583,
+   "taste": 1.833,
+   "vision": 3.167,
+   "interoception": 1.5,
+   "mouth_throat": 4.25,
+   "hand_arm": 1.417,
+   "foot_leg": 0,
+   "head": 1.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.353,
+   "hearing": 1.765,
+   "smell": 0.471,
+   "taste": 0.412,
+   "vision": 3.588,
+   "interoception": 0.882,
+   "mouth_throat": 2.842,
+   "hand_arm": 1.737,
+   "foot_leg": 0.526,
+   "head": 2.368,
+   "torso": 0.895
+  }
+ },
+ {
+  "word": "idea",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 1,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 3,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.333,
+   "hearing": 2.889,
+   "smell": 0.167,
+   "taste": 0.222,
+   "vision": 1.722,
+   "interoception": 2.667,
+   "mouth_throat": 1.095,
+   "hand_arm": 0.143,
+   "foot_leg": 0.048,
+   "head": 4.095,
+   "torso": 0
+  }
+ },
+ {
+  "word": "imagine",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 1,
+   "smell": 0.083,
+   "taste": 0.083,
+   "vision": 3,
+   "interoception": 1.167,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 3.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.474,
+   "hearing": 1.579,
+   "smell": 1.263,
+   "taste": 0.895,
+   "vision": 2.421,
+   "interoception": 2.842,
+   "mouth_throat": 0.211,
+   "hand_arm": 0.158,
+   "foot_leg": 0.053,
+   "head": 4.368,
+   "torso": 0.105
+  }
+ },
+ {
+  "word": "imperative",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.833,
+   "interoception": 0.333,
+   "mouth_throat": 0.583,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.75,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.071,
+   "hearing": 1.286,
+   "smell": 0.143,
+   "taste": 0.143,
+   "vision": 1.286,
+   "interoception": 0.643,
+   "mouth_throat": 1.053,
+   "hand_arm": 0.579,
+   "foot_leg": 0.316,
+   "head": 2.684,
+   "torso": 0.368
+  }
+ },
+ {
+  "word": "independence",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.083,
+   "interoception": 1.75,
+   "mouth_throat": 0.083,
+   "hand_arm": 0.417,
+   "foot_leg": 0.75,
+   "head": 1.25,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 0.5,
+   "hearing": 1.6,
+   "smell": 0.25,
+   "taste": 0.25,
+   "vision": 2.35,
+   "interoception": 2.55,
+   "mouth_throat": 1.778,
+   "hand_arm": 1.444,
+   "foot_leg": 1.667,
+   "head": 2.389,
+   "torso": 1.611
+  }
+ },
+ {
+  "word": "infiltrator",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 1.5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.667,
+   "interoception": 0.417,
+   "mouth_throat": 0,
+   "hand_arm": 0.667,
+   "foot_leg": 1.667,
+   "head": 0.417,
+   "torso": 0.25
+  },
+  "human": {
+   "touch": 0.5,
+   "hearing": 1.813,
+   "smell": 0.188,
+   "taste": 0,
+   "vision": 2.625,
+   "interoception": 1,
+   "mouth_throat": 1.5,
+   "hand_arm": 1.389,
+   "foot_leg": 1.389,
+   "head": 2.222,
+   "torso": 1
+  }
+ },
+ {
+  "word": "infinite",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.75,
+   "interoception": 0.167,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.36,
+   "hearing": 0.88,
+   "smell": 0.12,
+   "taste": 0.12,
+   "vision": 2.08,
+   "interoception": 1.08,
+   "mouth_throat": 1.045,
+   "hand_arm": 1,
+   "foot_leg": 0.682,
+   "head": 2.955,
+   "torso": 0.636
+  }
+ },
+ {
+  "word": "insulate",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3.333,
+   "hearing": 0.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.25,
+   "interoception": 1.167,
+   "mouth_throat": 0,
+   "hand_arm": 3.25,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0.667
+  },
+  "human": {
+   "touch": 2.647,
+   "hearing": 0.118,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.765,
+   "interoception": 1,
+   "mouth_throat": 0.81,
+   "hand_arm": 2.429,
+   "foot_leg": 1.19,
+   "head": 2,
+   "torso": 1.333
+  }
+ },
+ {
+  "word": "integration",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 0.75,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.083,
+   "interoception": 0.083,
+   "mouth_throat": 0,
+   "hand_arm": 0.167,
+   "foot_leg": 0,
+   "head": 0.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.333,
+   "hearing": 1.222,
+   "smell": 0.056,
+   "taste": 0,
+   "vision": 2.167,
+   "interoception": 0.5,
+   "mouth_throat": 0.889,
+   "hand_arm": 1.167,
+   "foot_leg": 0.778,
+   "head": 1.778,
+   "torso": 0.722
+  }
+ },
+ {
+  "word": "interstate",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.417,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.25,
+   "foot_leg": 1,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.286,
+   "hearing": 1.714,
+   "smell": 0.214,
+   "taste": 0.143,
+   "vision": 3.786,
+   "interoception": 0.143,
+   "mouth_throat": 0.588,
+   "hand_arm": 1.118,
+   "foot_leg": 1.294,
+   "head": 2.294,
+   "torso": 1
+  }
+ },
+ {
+  "word": "intractability",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.2,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.4,
+   "interoception": 0.8,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.308,
+   "hearing": 0.769,
+   "smell": 0.308,
+   "taste": 0.308,
+   "vision": 1.538,
+   "interoception": 1.462,
+   "mouth_throat": 0.917,
+   "hand_arm": 1,
+   "foot_leg": 0.25,
+   "head": 2.167,
+   "torso": 0.167
+  }
+ },
+ {
+  "word": "invalidation",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.833,
+   "interoception": 1.5,
+   "mouth_throat": 0.333,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.188,
+   "hearing": 2,
+   "smell": 0.188,
+   "taste": 0.188,
+   "vision": 1.313,
+   "interoception": 1.25,
+   "mouth_throat": 1.474,
+   "hand_arm": 0.421,
+   "foot_leg": 0.105,
+   "head": 2.263,
+   "torso": 0.526
+  }
+ },
+ {
+  "word": "irksome",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 2.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 2.667,
+   "mouth_throat": 0.417,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.833,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0,
+   "hearing": 2,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 2.333,
+   "mouth_throat": 1.85,
+   "hand_arm": 0.9,
+   "foot_leg": 0.5,
+   "head": 3.3,
+   "torso": 0.45
+  }
+ },
+ {
+  "word": "islamic",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 2.167,
+   "smell": 0.417,
+   "taste": 0.417,
+   "vision": 2.833,
+   "interoception": 0.083,
+   "mouth_throat": 0.25,
+   "hand_arm": 0.083,
+   "foot_leg": 0.083,
+   "head": 0.5,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 0.048,
+   "hearing": 2.476,
+   "smell": 0.095,
+   "taste": 0,
+   "vision": 2.857,
+   "interoception": 0.524,
+   "mouth_throat": 1.25,
+   "hand_arm": 0.75,
+   "foot_leg": 0.85,
+   "head": 2.5,
+   "torso": 0.65
+  }
+ },
+ {
+  "word": "island",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.917,
+   "hearing": 2.083,
+   "smell": 2.167,
+   "taste": 0.5,
+   "vision": 4.833,
+   "interoception": 0.25,
+   "mouth_throat": 0,
+   "hand_arm": 0.083,
+   "foot_leg": 1.917,
+   "head": 0.25,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 0.944,
+   "hearing": 0.944,
+   "smell": 0.833,
+   "taste": 0.278,
+   "vision": 4.333,
+   "interoception": 0.444,
+   "mouth_throat": 0.4,
+   "hand_arm": 1.05,
+   "foot_leg": 1.45,
+   "head": 2.25,
+   "torso": 0.65
+  }
+ },
+ {
+  "word": "justice",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.583,
+   "interoception": 1.167,
+   "mouth_throat": 0.417,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.25,
+   "hearing": 2,
+   "smell": 0,
+   "taste": 0.25,
+   "vision": 3,
+   "interoception": 0.875,
+   "mouth_throat": 1.15,
+   "hand_arm": 0.45,
+   "foot_leg": 0.2,
+   "head": 1.8,
+   "torso": 0.15
+  }
+ },
+ {
+  "word": "kennel",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.917,
+   "hearing": 3.417,
+   "smell": 3.75,
+   "taste": 0,
+   "vision": 4,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.417,
+   "foot_leg": 0.583,
+   "head": 0,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 1.294,
+   "hearing": 3.529,
+   "smell": 2,
+   "taste": 0.471,
+   "vision": 4.118,
+   "interoception": 0.529,
+   "mouth_throat": 0.3,
+   "hand_arm": 1.5,
+   "foot_leg": 0.75,
+   "head": 1.85,
+   "torso": 0.35
+  }
+ },
+ {
+  "word": "kiss",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 5,
+   "hearing": 1.417,
+   "smell": 2.583,
+   "taste": 3,
+   "vision": 2.5,
+   "interoception": 3.333,
+   "mouth_throat": 5,
+   "hand_arm": 1.333,
+   "foot_leg": 0,
+   "head": 3.083,
+   "torso": 1.083
+  },
+  "human": {
+   "touch": 3.833,
+   "hearing": 1.611,
+   "smell": 0.333,
+   "taste": 2.167,
+   "vision": 3.722,
+   "interoception": 2.389,
+   "mouth_throat": 4.286,
+   "hand_arm": 0.857,
+   "foot_leg": 0.381,
+   "head": 1.143,
+   "torso": 0.429
+  }
+ },
+ {
+  "word": "landowner",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 0.333,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 2.417,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.083,
+   "foot_leg": 0.25,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0,
+   "hearing": 1.048,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.952,
+   "interoception": 0.048,
+   "mouth_throat": 1.45,
+   "hand_arm": 1.35,
+   "foot_leg": 1,
+   "head": 2.2,
+   "torso": 0.8
+  }
+ },
+ {
+  "word": "leadership",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 2.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.25,
+   "interoception": 0.333,
+   "mouth_throat": 2.083,
+   "hand_arm": 0.5,
+   "foot_leg": 0,
+   "head": 1.667,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 0.235,
+   "hearing": 2.353,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.765,
+   "interoception": 1.294,
+   "mouth_throat": 2.579,
+   "hand_arm": 1.421,
+   "foot_leg": 0.895,
+   "head": 2.526,
+   "torso": 1
+  }
+ },
+ {
+  "word": "lectern",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.273,
+   "hearing": 0.545,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.909,
+   "interoception": 0,
+   "mouth_throat": 0.909,
+   "hand_arm": 2.455,
+   "foot_leg": 0.727,
+   "head": 0.364,
+   "torso": 0.636
+  },
+  "human": {
+   "touch": 2.615,
+   "hearing": 1,
+   "smell": 0.308,
+   "taste": 0,
+   "vision": 3.538,
+   "interoception": 0.154,
+   "mouth_throat": 1.385,
+   "hand_arm": 1.462,
+   "foot_leg": 0.923,
+   "head": 1.615,
+   "torso": 0.846
+  }
+ },
+ {
+  "word": "lifeguard",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.083,
+   "hearing": 2.417,
+   "smell": 0.333,
+   "taste": 0,
+   "vision": 4.417,
+   "interoception": 0.083,
+   "mouth_throat": 0.917,
+   "hand_arm": 3.167,
+   "foot_leg": 3.25,
+   "head": 1.5,
+   "torso": 2.417
+  },
+  "human": {
+   "touch": 0.588,
+   "hearing": 1.824,
+   "smell": 0.294,
+   "taste": 0.118,
+   "vision": 3.588,
+   "interoception": 0.294,
+   "mouth_throat": 1.524,
+   "hand_arm": 2.333,
+   "foot_leg": 1.81,
+   "head": 2.667,
+   "torso": 2
+  }
+ },
+ {
+  "word": "light",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.25,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 5,
+   "interoception": 0.5,
+   "mouth_throat": 0,
+   "hand_arm": 1.333,
+   "foot_leg": 0,
+   "head": 0.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.6,
+   "hearing": 0.2,
+   "smell": 0.05,
+   "taste": 0.05,
+   "vision": 4.6,
+   "interoception": 0.4,
+   "mouth_throat": 0.368,
+   "hand_arm": 0.842,
+   "foot_leg": 0.211,
+   "head": 3.579,
+   "torso": 0.211
+  }
+ },
+ {
+  "word": "litigation",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 2.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.083,
+   "interoception": 0.417,
+   "mouth_throat": 1.5,
+   "hand_arm": 0.667,
+   "foot_leg": 0,
+   "head": 0.75,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.286,
+   "hearing": 2.929,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.429,
+   "interoception": 0.143,
+   "mouth_throat": 1.824,
+   "hand_arm": 0.294,
+   "foot_leg": 0.118,
+   "head": 2.176,
+   "torso": 0.353
+  }
+ },
+ {
+  "word": "live",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.167,
+   "hearing": 2.667,
+   "smell": 1.083,
+   "taste": 1.083,
+   "vision": 3.083,
+   "interoception": 3.083,
+   "mouth_throat": 1.833,
+   "hand_arm": 1.917,
+   "foot_leg": 1.833,
+   "head": 1.5,
+   "torso": 1.833
+  },
+  "human": {
+   "touch": 2.071,
+   "hearing": 3.286,
+   "smell": 1.143,
+   "taste": 1.071,
+   "vision": 3.571,
+   "interoception": 2.714,
+   "mouth_throat": 2.737,
+   "hand_arm": 2.789,
+   "foot_leg": 2.684,
+   "head": 3.579,
+   "torso": 2.789
+  }
+ },
+ {
+  "word": "living",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.583,
+   "hearing": 2.583,
+   "smell": 2,
+   "taste": 1.917,
+   "vision": 3.417,
+   "interoception": 3.75,
+   "mouth_throat": 2,
+   "hand_arm": 2.167,
+   "foot_leg": 2.167,
+   "head": 1.917,
+   "torso": 2.417
+  },
+  "human": {
+   "touch": 2.85,
+   "hearing": 3.2,
+   "smell": 2.4,
+   "taste": 2.2,
+   "vision": 3.8,
+   "interoception": 3.8,
+   "mouth_throat": 3.316,
+   "hand_arm": 3.158,
+   "foot_leg": 2.737,
+   "head": 4,
+   "torso": 2.895
+  }
+ },
+ {
+  "word": "lot",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 0.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.083,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.25,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.412,
+   "hearing": 1.647,
+   "smell": 0.765,
+   "taste": 0.824,
+   "vision": 3.471,
+   "interoception": 1,
+   "mouth_throat": 0.526,
+   "hand_arm": 1.158,
+   "foot_leg": 0.632,
+   "head": 2.263,
+   "torso": 0.526
+  }
+ },
+ {
+  "word": "loud",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.333,
+   "interoception": 1.333,
+   "mouth_throat": 2.833,
+   "hand_arm": 0.083,
+   "foot_leg": 0,
+   "head": 1.333,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 0.08,
+   "hearing": 4.68,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.96,
+   "interoception": 0.96,
+   "mouth_throat": 3,
+   "hand_arm": 1.182,
+   "foot_leg": 0.864,
+   "head": 3.045,
+   "torso": 0.773
+  }
+ },
+ {
+  "word": "magnetometer",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.1,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.3,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.5,
+   "foot_leg": 0,
+   "head": 0.3,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.636,
+   "hearing": 0.182,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.455,
+   "interoception": 0,
+   "mouth_throat": 0.5,
+   "hand_arm": 2.25,
+   "foot_leg": 0.167,
+   "head": 2.417,
+   "torso": 0.333
+  }
+ },
+ {
+  "word": "malcontent",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.818,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.545,
+   "interoception": 1.273,
+   "mouth_throat": 1,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.727,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.077,
+   "hearing": 2.154,
+   "smell": 0.154,
+   "taste": 0.077,
+   "vision": 2.846,
+   "interoception": 2.077,
+   "mouth_throat": 1.5,
+   "hand_arm": 1.056,
+   "foot_leg": 0.389,
+   "head": 2.556,
+   "torso": 0.222
+  }
+ },
+ {
+  "word": "manipulator",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.333,
+   "hearing": 2.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 1.167,
+   "mouth_throat": 1.5,
+   "hand_arm": 1.417,
+   "foot_leg": 0,
+   "head": 1.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.476,
+   "hearing": 1.81,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 0.905,
+   "mouth_throat": 2.5,
+   "hand_arm": 0.7,
+   "foot_leg": 0.4,
+   "head": 2.75,
+   "torso": 0.55
+  }
+ },
+ {
+  "word": "marksman",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.833,
+   "hearing": 2.667,
+   "smell": 0.167,
+   "taste": 0,
+   "vision": 4.5,
+   "interoception": 0.5,
+   "mouth_throat": 0,
+   "hand_arm": 4.333,
+   "foot_leg": 0.5,
+   "head": 2.5,
+   "torso": 1.167
+  },
+  "human": {
+   "touch": 0.444,
+   "hearing": 1.556,
+   "smell": 0,
+   "taste": 0.056,
+   "vision": 3.667,
+   "interoception": 0.278,
+   "mouth_throat": 0.5,
+   "hand_arm": 3.278,
+   "foot_leg": 0.5,
+   "head": 3.389,
+   "torso": 0.556
+  }
+ },
+ {
+  "word": "mass",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.25,
+   "hearing": 0.75,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 2.5,
+   "interoception": 0.667,
+   "mouth_throat": 0,
+   "hand_arm": 1.583,
+   "foot_leg": 0.167,
+   "head": 0,
+   "torso": 0.75
+  },
+  "human": {
+   "touch": 2.118,
+   "hearing": 1.118,
+   "smell": 0.294,
+   "taste": 0.176,
+   "vision": 3.353,
+   "interoception": 0.941,
+   "mouth_throat": 0.75,
+   "hand_arm": 1.125,
+   "foot_leg": 1.25,
+   "head": 2.625,
+   "torso": 1.375
+  }
+ },
+ {
+  "word": "maximize",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.583,
+   "interoception": 0.083,
+   "mouth_throat": 0,
+   "hand_arm": 1,
+   "foot_leg": 0,
+   "head": 1,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.889,
+   "hearing": 2.167,
+   "smell": 0.722,
+   "taste": 0.5,
+   "vision": 2.889,
+   "interoception": 1.111,
+   "mouth_throat": 0.909,
+   "hand_arm": 0.864,
+   "foot_leg": 0.727,
+   "head": 1.909,
+   "torso": 0.727
+  }
+ },
+ {
+  "word": "meaningless",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.667,
+   "interoception": 0.833,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.389,
+   "hearing": 2.111,
+   "smell": 0.333,
+   "taste": 0.278,
+   "vision": 1.722,
+   "interoception": 1.5,
+   "mouth_throat": 0.474,
+   "hand_arm": 0.368,
+   "foot_leg": 0.263,
+   "head": 2.526,
+   "torso": 0.263
+  }
+ },
+ {
+  "word": "message",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.917,
+   "hearing": 2.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.667,
+   "interoception": 0,
+   "mouth_throat": 1.667,
+   "hand_arm": 3.083,
+   "foot_leg": 0,
+   "head": 0.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.389,
+   "hearing": 4.056,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.111,
+   "interoception": 0.278,
+   "mouth_throat": 2,
+   "hand_arm": 1.9,
+   "foot_leg": 0.45,
+   "head": 2.35,
+   "torso": 0.4
+  }
+ },
+ {
+  "word": "metabolize",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 1,
+   "vision": 0,
+   "interoception": 3.833,
+   "mouth_throat": 0.833,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 2.167
+  },
+  "human": {
+   "touch": 0.286,
+   "hearing": 0.571,
+   "smell": 0.571,
+   "taste": 0.429,
+   "vision": 0.643,
+   "interoception": 3.643,
+   "mouth_throat": 1.571,
+   "hand_arm": 1.095,
+   "foot_leg": 1.048,
+   "head": 1.286,
+   "torso": 2.667
+  }
+ },
+ {
+  "word": "methane",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.083,
+   "smell": 3.75,
+   "taste": 0,
+   "vision": 0.833,
+   "interoception": 0.75,
+   "mouth_throat": 0.083,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 0.176,
+   "hearing": 0.353,
+   "smell": 4,
+   "taste": 0.412,
+   "vision": 0.765,
+   "interoception": 0.529,
+   "mouth_throat": 1.579,
+   "hand_arm": 0.211,
+   "foot_leg": 0.158,
+   "head": 2.368,
+   "torso": 0.895
+  }
+ },
+ {
+  "word": "microbiology",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.417,
+   "hearing": 0,
+   "smell": 0.417,
+   "taste": 0,
+   "vision": 2.917,
+   "interoception": 0.083,
+   "mouth_throat": 0,
+   "hand_arm": 1.083,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.143,
+   "hearing": 1.643,
+   "smell": 0.429,
+   "taste": 0.286,
+   "vision": 3.429,
+   "interoception": 0.5,
+   "mouth_throat": 0.176,
+   "hand_arm": 0.706,
+   "foot_leg": 0.118,
+   "head": 1.941,
+   "torso": 0.294
+  }
+ },
+ {
+  "word": "mischievous",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 2.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.083,
+   "interoception": 0.917,
+   "mouth_throat": 1.417,
+   "hand_arm": 1.167,
+   "foot_leg": 0.333,
+   "head": 1.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.313,
+   "hearing": 1.438,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.875,
+   "interoception": 1.75,
+   "mouth_throat": 1.778,
+   "hand_arm": 1.389,
+   "foot_leg": 0.778,
+   "head": 3.056,
+   "torso": 0.667
+  }
+ },
+ {
+  "word": "misconstrue",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 2.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.167,
+   "interoception": 0.25,
+   "mouth_throat": 0.833,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 2.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.5,
+   "hearing": 2.938,
+   "smell": 0.438,
+   "taste": 0.375,
+   "vision": 1.938,
+   "interoception": 1.438,
+   "mouth_throat": 0.813,
+   "hand_arm": 0.375,
+   "foot_leg": 0.313,
+   "head": 2.438,
+   "torso": 0.125
+  }
+ },
+ {
+  "word": "misrepresentation",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 2,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.75,
+   "interoception": 0.417,
+   "mouth_throat": 1.5,
+   "hand_arm": 0.083,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.235,
+   "hearing": 3.471,
+   "smell": 0.118,
+   "taste": 0.118,
+   "vision": 3.294,
+   "interoception": 0.706,
+   "mouth_throat": 2,
+   "hand_arm": 0.421,
+   "foot_leg": 0.158,
+   "head": 2.158,
+   "torso": 0.158
+  }
+ },
+ {
+  "word": "misstep",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.167,
+   "hearing": 0.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.083,
+   "interoception": 1.75,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 4.5,
+   "head": 0.167,
+   "torso": 1.333
+  },
+  "human": {
+   "touch": 0.412,
+   "hearing": 1.294,
+   "smell": 0.059,
+   "taste": 0.294,
+   "vision": 2.941,
+   "interoception": 1.824,
+   "mouth_throat": 1.35,
+   "hand_arm": 1.1,
+   "foot_leg": 3.65,
+   "head": 2.2,
+   "torso": 1
+  }
+ },
+ {
+  "word": "moment",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.333,
+   "interoception": 0.917,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.471,
+   "hearing": 1.118,
+   "smell": 0.412,
+   "taste": 0.412,
+   "vision": 1.588,
+   "interoception": 1,
+   "mouth_throat": 0.6,
+   "hand_arm": 0.9,
+   "foot_leg": 0.65,
+   "head": 2.7,
+   "torso": 0.75
+  }
+ },
+ {
+  "word": "monthly",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.25,
+   "interoception": 0.417,
+   "mouth_throat": 0,
+   "hand_arm": 0.167,
+   "foot_leg": 0,
+   "head": 0.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.059,
+   "hearing": 0.765,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.412,
+   "interoception": 0.882,
+   "mouth_throat": 0.579,
+   "hand_arm": 0.632,
+   "foot_leg": 0.474,
+   "head": 2.105,
+   "torso": 0.737
+  }
+ },
+ {
+  "word": "monumentality",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.583,
+   "interoception": 0.083,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0.083,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.526,
+   "hearing": 1,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.263,
+   "interoception": 1.211,
+   "mouth_throat": 1.063,
+   "hand_arm": 1,
+   "foot_leg": 0.938,
+   "head": 1.688,
+   "torso": 0.688
+  }
+ },
+ {
+  "word": "moonscape",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.833,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0.167,
+   "head": 0.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.313,
+   "hearing": 0.188,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.938,
+   "interoception": 0.25,
+   "mouth_throat": 0,
+   "hand_arm": 0.333,
+   "foot_leg": 0.389,
+   "head": 1.778,
+   "torso": 0.056
+  }
+ },
+ {
+  "word": "morality",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.75,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.417,
+   "interoception": 1.5,
+   "mouth_throat": 0.083,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.278,
+   "hearing": 1.667,
+   "smell": 0.444,
+   "taste": 0.167,
+   "vision": 2.056,
+   "interoception": 2.167,
+   "mouth_throat": 1.8,
+   "hand_arm": 0.8,
+   "foot_leg": 0.65,
+   "head": 3.45,
+   "torso": 1.15
+  }
+ },
+ {
+  "word": "multi",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.167,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.5,
+   "hearing": 0.5,
+   "smell": 0,
+   "taste": 0.188,
+   "vision": 3.063,
+   "interoception": 0.25,
+   "mouth_throat": 0.947,
+   "hand_arm": 1.526,
+   "foot_leg": 1.053,
+   "head": 1.737,
+   "torso": 0.684
+  }
+ },
+ {
+  "word": "music",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.5,
+   "hearing": 5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.25,
+   "interoception": 2.5,
+   "mouth_throat": 2.833,
+   "hand_arm": 2.5,
+   "foot_leg": 2.833,
+   "head": 2.75,
+   "torso": 2.083
+  },
+  "human": {
+   "touch": 0.111,
+   "hearing": 4.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 1.944,
+   "mouth_throat": 2.1,
+   "hand_arm": 1.65,
+   "foot_leg": 1.25,
+   "head": 4.45,
+   "torso": 1.15
+  }
+ },
+ {
+  "word": "nanometer",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.688,
+   "hearing": 0.688,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.25,
+   "interoception": 0.25,
+   "mouth_throat": 0.214,
+   "hand_arm": 0.643,
+   "foot_leg": 0.143,
+   "head": 2,
+   "torso": 0.143
+  }
+ },
+ {
+  "word": "niche",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.917,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.167,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.75,
+   "hearing": 1.406,
+   "smell": 0.094,
+   "taste": 0.063,
+   "vision": 3.063,
+   "interoception": 0.688,
+   "mouth_throat": 1,
+   "hand_arm": 0.75,
+   "foot_leg": 0.125,
+   "head": 1.688,
+   "torso": 0.125
+  }
+ },
+ {
+  "word": "nightcap",
+  "set": "overlap",
+  "machine": {
+   "touch": 1.333,
+   "hearing": 0,
+   "smell": 3.083,
+   "taste": 4.083,
+   "vision": 2,
+   "interoception": 2.917,
+   "mouth_throat": 4.083,
+   "hand_arm": 2.083,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 1.176,
+   "hearing": 0.529,
+   "smell": 0.765,
+   "taste": 2.294,
+   "vision": 3.176,
+   "interoception": 1.235,
+   "mouth_throat": 2.4,
+   "hand_arm": 1.2,
+   "foot_leg": 0.05,
+   "head": 1.55,
+   "torso": 0.9
+  }
+ },
+ {
+  "word": "noncriminal",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.36,
+   "hearing": 1.52,
+   "smell": 0.48,
+   "taste": 0.48,
+   "vision": 2.64,
+   "interoception": 0.84,
+   "mouth_throat": 1.842,
+   "hand_arm": 1.947,
+   "foot_leg": 1.842,
+   "head": 3.158,
+   "torso": 1.421
+  }
+ },
+ {
+  "word": "normal",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.417,
+   "interoception": 0.583,
+   "mouth_throat": 0.083,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.813,
+   "hearing": 2.438,
+   "smell": 1.375,
+   "taste": 1.625,
+   "vision": 2.75,
+   "interoception": 2,
+   "mouth_throat": 1.579,
+   "hand_arm": 1.789,
+   "foot_leg": 1.526,
+   "head": 3.053,
+   "torso": 1.474
+  }
+ },
+ {
+  "word": "novelization",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.75,
+   "hearing": 0.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.417,
+   "foot_leg": 0,
+   "head": 0.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.133,
+   "hearing": 1.4,
+   "smell": 0.2,
+   "taste": 0.133,
+   "vision": 3.067,
+   "interoception": 0.667,
+   "mouth_throat": 0.824,
+   "hand_arm": 0.647,
+   "foot_leg": 0.059,
+   "head": 2.176,
+   "torso": 0
+  }
+ },
+ {
+  "word": "objectivism",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.571,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.571,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.143,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.421,
+   "hearing": 2.684,
+   "smell": 0.263,
+   "taste": 0.421,
+   "vision": 1.842,
+   "interoception": 1.474,
+   "mouth_throat": 0.944,
+   "hand_arm": 0.222,
+   "foot_leg": 0.389,
+   "head": 1.833,
+   "torso": 0.222
+  }
+ },
+ {
+  "word": "october",
+  "set": "overlap",
+  "machine": {
+   "touch": 1.25,
+   "hearing": 0.5,
+   "smell": 1.333,
+   "taste": 0.167,
+   "vision": 2.75,
+   "interoception": 0.75,
+   "mouth_throat": 0,
+   "hand_arm": 0.083,
+   "foot_leg": 0.167,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.65,
+   "hearing": 1.5,
+   "smell": 1.5,
+   "taste": 0.5,
+   "vision": 2.75,
+   "interoception": 0.75,
+   "mouth_throat": 0.737,
+   "hand_arm": 0.842,
+   "foot_leg": 0.789,
+   "head": 1.526,
+   "torso": 0.737
+  }
+ },
+ {
+  "word": "offbeat",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 3.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.917,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.417,
+   "foot_leg": 1.25,
+   "head": 1.333,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 0.059,
+   "hearing": 2.882,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.882,
+   "interoception": 1.294,
+   "mouth_throat": 1.632,
+   "hand_arm": 1.632,
+   "foot_leg": 1.421,
+   "head": 1.947,
+   "torso": 0.684
+  }
+ },
+ {
+  "word": "omega",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.583,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.583,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.333,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.647,
+   "hearing": 1.588,
+   "smell": 0.588,
+   "taste": 0.529,
+   "vision": 2.294,
+   "interoception": 0.765,
+   "mouth_throat": 0.375,
+   "hand_arm": 0.313,
+   "foot_leg": 0.125,
+   "head": 1.125,
+   "torso": 0.188
+  }
+ },
+ {
+  "word": "online",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.75,
+   "hearing": 1.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.417,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 3.25,
+   "foot_leg": 0,
+   "head": 1.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.176,
+   "hearing": 1.353,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.941,
+   "interoception": 0.353,
+   "mouth_throat": 0.3,
+   "hand_arm": 2.1,
+   "foot_leg": 0.3,
+   "head": 3.55,
+   "torso": 0.4
+  }
+ },
+ {
+  "word": "opalescent",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.9,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.8,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.3,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.667,
+   "hearing": 0.417,
+   "smell": 0.333,
+   "taste": 0.25,
+   "vision": 3.583,
+   "interoception": 0.333,
+   "mouth_throat": 0,
+   "hand_arm": 0.154,
+   "foot_leg": 0,
+   "head": 2.692,
+   "torso": 0
+  }
+ },
+ {
+  "word": "oppose",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 1.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.083,
+   "interoception": 1.25,
+   "mouth_throat": 1.917,
+   "hand_arm": 1,
+   "foot_leg": 0.083,
+   "head": 1.833,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 0.667,
+   "hearing": 2.5,
+   "smell": 0.333,
+   "taste": 0.278,
+   "vision": 2.444,
+   "interoception": 1.778,
+   "mouth_throat": 3,
+   "hand_arm": 1.65,
+   "foot_leg": 1,
+   "head": 2.9,
+   "torso": 0.95
+  }
+ },
+ {
+  "word": "optics",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.667,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.333,
+   "foot_leg": 0,
+   "head": 1.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.667,
+   "hearing": 0.444,
+   "smell": 0.167,
+   "taste": 0.167,
+   "vision": 4.056,
+   "interoception": 0.444,
+   "mouth_throat": 0.263,
+   "hand_arm": 0.474,
+   "foot_leg": 0.105,
+   "head": 3.895,
+   "torso": 0.105
+  }
+ },
+ {
+  "word": "overset",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.5,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 0.5,
+   "mouth_throat": 0,
+   "hand_arm": 2,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.941,
+   "hearing": 0.941,
+   "smell": 0.176,
+   "taste": 0.176,
+   "vision": 2.118,
+   "interoception": 0.941,
+   "mouth_throat": 0.188,
+   "hand_arm": 1.813,
+   "foot_leg": 1,
+   "head": 1.313,
+   "torso": 0.875
+  }
+ },
+ {
+  "word": "pail",
+  "set": "overlap",
+  "machine": {
+   "touch": 3.25,
+   "hearing": 1.417,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 4,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 4.333,
+   "foot_leg": 0.25,
+   "head": 0,
+   "torso": 0.667
+  },
+  "human": {
+   "touch": 2.647,
+   "hearing": 0.765,
+   "smell": 0.412,
+   "taste": 0.235,
+   "vision": 4.176,
+   "interoception": 0.294,
+   "mouth_throat": 0.2,
+   "hand_arm": 2.3,
+   "foot_leg": 0.25,
+   "head": 0.75,
+   "torso": 0.5
+  }
+ },
+ {
+  "word": "passenger",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.417,
+   "hearing": 1.833,
+   "smell": 0.25,
+   "taste": 0,
+   "vision": 3.5,
+   "interoception": 1,
+   "mouth_throat": 0.083,
+   "hand_arm": 0.5,
+   "foot_leg": 1.083,
+   "head": 0.417,
+   "torso": 1.833
+  },
+  "human": {
+   "touch": 1.833,
+   "hearing": 2.556,
+   "smell": 0.611,
+   "taste": 0,
+   "vision": 4.444,
+   "interoception": 0.444,
+   "mouth_throat": 1.5,
+   "hand_arm": 2.167,
+   "foot_leg": 2.167,
+   "head": 2.444,
+   "torso": 2.222
+  }
+ },
+ {
+  "word": "patriarch",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.583,
+   "interoception": 0.083,
+   "mouth_throat": 0.333,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.529,
+   "hearing": 1.765,
+   "smell": 0.176,
+   "taste": 0.176,
+   "vision": 2.471,
+   "interoception": 0.471,
+   "mouth_throat": 0.85,
+   "hand_arm": 0.4,
+   "foot_leg": 0.3,
+   "head": 1.7,
+   "torso": 0.45
+  }
+ },
+ {
+  "word": "patroller",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 1.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.667,
+   "interoception": 0,
+   "mouth_throat": 0.333,
+   "hand_arm": 0.583,
+   "foot_leg": 3.583,
+   "head": 1.333,
+   "torso": 0.583
+  },
+  "human": {
+   "touch": 0.229,
+   "hearing": 1.629,
+   "smell": 0.086,
+   "taste": 0.029,
+   "vision": 3.514,
+   "interoception": 0.229,
+   "mouth_throat": 0.8,
+   "hand_arm": 1.75,
+   "foot_leg": 2.45,
+   "head": 2.3,
+   "torso": 1.6
+  }
+ },
+ {
+  "word": "peace",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 2.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.167,
+   "interoception": 3.417,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.75,
+   "torso": 1
+  },
+  "human": {
+   "touch": 0.235,
+   "hearing": 1.588,
+   "smell": 0.235,
+   "taste": 0.059,
+   "vision": 2.353,
+   "interoception": 2.235,
+   "mouth_throat": 1.684,
+   "hand_arm": 1.158,
+   "foot_leg": 0.632,
+   "head": 2.737,
+   "torso": 0.579
+  }
+ },
+ {
+  "word": "pecan",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.667,
+   "hearing": 0.75,
+   "smell": 2.583,
+   "taste": 4.5,
+   "vision": 3.333,
+   "interoception": 0.083,
+   "mouth_throat": 3.917,
+   "hand_arm": 1.833,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.188,
+   "hearing": 0.25,
+   "smell": 1.813,
+   "taste": 4.438,
+   "vision": 3.563,
+   "interoception": 0.25,
+   "mouth_throat": 3.35,
+   "hand_arm": 1.85,
+   "foot_leg": 0.35,
+   "head": 1.9,
+   "torso": 0.95
+  }
+ },
+ {
+  "word": "percent",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.75,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.583,
+   "foot_leg": 0,
+   "head": 0.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.528,
+   "hearing": 0.639,
+   "smell": 0.222,
+   "taste": 0.194,
+   "vision": 2.667,
+   "interoception": 0.444,
+   "mouth_throat": 0.947,
+   "hand_arm": 0.526,
+   "foot_leg": 0.053,
+   "head": 2.421,
+   "torso": 0.053
+  }
+ },
+ {
+  "word": "permissible",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.833,
+   "interoception": 0,
+   "mouth_throat": 0.167,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.75,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.238,
+   "hearing": 1.429,
+   "smell": 0.095,
+   "taste": 0,
+   "vision": 1.333,
+   "interoception": 1.19,
+   "mouth_throat": 0.471,
+   "hand_arm": 0.471,
+   "foot_leg": 0.235,
+   "head": 1.529,
+   "torso": 0.235
+  }
+ },
+ {
+  "word": "persuasiveness",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 3.583,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.417,
+   "interoception": 0.167,
+   "mouth_throat": 3.167,
+   "hand_arm": 0.75,
+   "foot_leg": 0,
+   "head": 1.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.353,
+   "hearing": 2.471,
+   "smell": 0.176,
+   "taste": 0.059,
+   "vision": 2,
+   "interoception": 0.882,
+   "mouth_throat": 2.947,
+   "hand_arm": 1.211,
+   "foot_leg": 0.737,
+   "head": 3,
+   "torso": 0.895
+  }
+ },
+ {
+  "word": "pest",
+  "set": "overlap",
+  "machine": {
+   "touch": 1.5,
+   "hearing": 2.25,
+   "smell": 0.333,
+   "taste": 0,
+   "vision": 3.583,
+   "interoception": 0.667,
+   "mouth_throat": 0,
+   "hand_arm": 2.25,
+   "foot_leg": 0.417,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 1.9,
+   "smell": 0.3,
+   "taste": 0,
+   "vision": 3.65,
+   "interoception": 0.3,
+   "mouth_throat": 2.1,
+   "hand_arm": 2.2,
+   "foot_leg": 1.75,
+   "head": 3.4,
+   "torso": 1
+  }
+ },
+ {
+  "word": "phenomenal",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 2.25,
+   "smell": 0.083,
+   "taste": 0.25,
+   "vision": 2.833,
+   "interoception": 1.917,
+   "mouth_throat": 0.917,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.824,
+   "hearing": 2.059,
+   "smell": 0.824,
+   "taste": 0.765,
+   "vision": 2.941,
+   "interoception": 2.412,
+   "mouth_throat": 1.737,
+   "hand_arm": 0.737,
+   "foot_leg": 0.684,
+   "head": 2.737,
+   "torso": 0.684
+  }
+ },
+ {
+  "word": "piece",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.917,
+   "hearing": 0,
+   "smell": 0.167,
+   "taste": 0.667,
+   "vision": 3.083,
+   "interoception": 0.083,
+   "mouth_throat": 0.417,
+   "hand_arm": 2.833,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.889,
+   "hearing": 1.222,
+   "smell": 0.667,
+   "taste": 0.667,
+   "vision": 3.667,
+   "interoception": 0.944,
+   "mouth_throat": 1,
+   "hand_arm": 2.056,
+   "foot_leg": 0.667,
+   "head": 2,
+   "torso": 0.667
+  }
+ },
+ {
+  "word": "pigtail",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.333,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 3.083,
+   "foot_leg": 0,
+   "head": 2.833,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.529,
+   "hearing": 0.294,
+   "smell": 0.353,
+   "taste": 0,
+   "vision": 3.706,
+   "interoception": 0.647,
+   "mouth_throat": 0.056,
+   "hand_arm": 1.889,
+   "foot_leg": 0.056,
+   "head": 3.667,
+   "torso": 0.056
+  }
+ },
+ {
+  "word": "pike",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2,
+   "hearing": 0,
+   "smell": 1.833,
+   "taste": 1.583,
+   "vision": 3.917,
+   "interoception": 0,
+   "mouth_throat": 0.417,
+   "hand_arm": 2.25,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.813,
+   "hearing": 0.25,
+   "smell": 0.375,
+   "taste": 0.563,
+   "vision": 3,
+   "interoception": 0.25,
+   "mouth_throat": 0.636,
+   "hand_arm": 2.364,
+   "foot_leg": 0.818,
+   "head": 1.818,
+   "torso": 0.636
+  }
+ },
+ {
+  "word": "pinhole",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.667,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.167,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.667,
+   "foot_leg": 0,
+   "head": 0.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.063,
+   "hearing": 0,
+   "smell": 0.063,
+   "taste": 0,
+   "vision": 4.125,
+   "interoception": 0.063,
+   "mouth_throat": 0.2,
+   "hand_arm": 1.15,
+   "foot_leg": 0.15,
+   "head": 2.95,
+   "torso": 0.2
+  }
+ },
+ {
+  "word": "polychromatic",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.8,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.4,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0,
+   "hearing": 0.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.625,
+   "interoception": 0,
+   "mouth_throat": 0.429,
+   "hand_arm": 0.286,
+   "foot_leg": 0,
+   "head": 3.071,
+   "torso": 0
+  }
+ },
+ {
+  "word": "polymer",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.25,
+   "hearing": 0,
+   "smell": 0.167,
+   "taste": 0,
+   "vision": 2.167,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.083,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2,
+   "hearing": 0.25,
+   "smell": 1.25,
+   "taste": 0.417,
+   "vision": 2.417,
+   "interoception": 0.167,
+   "mouth_throat": 0.313,
+   "hand_arm": 1.938,
+   "foot_leg": 0.563,
+   "head": 1.438,
+   "torso": 0.75
+  }
+ },
+ {
+  "word": "possibility",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.833,
+   "interoception": 0.75,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.118,
+   "hearing": 1.765,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 1.471,
+   "mouth_throat": 1.316,
+   "hand_arm": 0.526,
+   "foot_leg": 0.526,
+   "head": 2.684,
+   "torso": 0.526
+  }
+ },
+ {
+  "word": "postcolonial",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 1,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.167,
+   "interoception": 0,
+   "mouth_throat": 0.083,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.75,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.583,
+   "hearing": 0.917,
+   "smell": 0.25,
+   "taste": 0,
+   "vision": 2.833,
+   "interoception": 0.583,
+   "mouth_throat": 0.467,
+   "hand_arm": 0.2,
+   "foot_leg": 0.2,
+   "head": 1.667,
+   "torso": 0.133
+  }
+ },
+ {
+  "word": "preach",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 4.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.417,
+   "interoception": 0.333,
+   "mouth_throat": 4.5,
+   "hand_arm": 1.667,
+   "foot_leg": 0,
+   "head": 1.333,
+   "torso": 0.25
+  },
+  "human": {
+   "touch": 0.444,
+   "hearing": 4.611,
+   "smell": 0.278,
+   "taste": 0.278,
+   "vision": 3.056,
+   "interoception": 1.5,
+   "mouth_throat": 3.611,
+   "hand_arm": 1.111,
+   "foot_leg": 0.444,
+   "head": 2.056,
+   "torso": 0.778
+  }
+ },
+ {
+  "word": "predatory",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.333,
+   "hearing": 1.5,
+   "smell": 0.333,
+   "taste": 0,
+   "vision": 3.25,
+   "interoception": 2.083,
+   "mouth_throat": 0.583,
+   "hand_arm": 0.583,
+   "foot_leg": 0.667,
+   "head": 0.833,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 0.35,
+   "hearing": 2.25,
+   "smell": 0.25,
+   "taste": 0.05,
+   "vision": 3.75,
+   "interoception": 1.15,
+   "mouth_throat": 1.333,
+   "hand_arm": 1.19,
+   "foot_leg": 0.905,
+   "head": 2.238,
+   "torso": 0.952
+  }
+ },
+ {
+  "word": "prefer",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 0.167,
+   "smell": 0.25,
+   "taste": 1.333,
+   "vision": 0.917,
+   "interoception": 1,
+   "mouth_throat": 0.417,
+   "hand_arm": 0.167,
+   "foot_leg": 0,
+   "head": 1.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.313,
+   "hearing": 0.813,
+   "smell": 0.063,
+   "taste": 0.063,
+   "vision": 1.125,
+   "interoception": 2.125,
+   "mouth_throat": 2.158,
+   "hand_arm": 1.105,
+   "foot_leg": 0.632,
+   "head": 2.895,
+   "torso": 0.632
+  }
+ },
+ {
+  "word": "priority",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.083,
+   "interoception": 0.5,
+   "mouth_throat": 0,
+   "hand_arm": 0.167,
+   "foot_leg": 0,
+   "head": 1.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.5,
+   "hearing": 1.75,
+   "smell": 0.063,
+   "taste": 0.063,
+   "vision": 2.063,
+   "interoception": 2.125,
+   "mouth_throat": 0.944,
+   "hand_arm": 1,
+   "foot_leg": 0.722,
+   "head": 2.222,
+   "torso": 0.611
+  }
+ },
+ {
+  "word": "probable",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.5,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.833,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.263,
+   "hearing": 1.474,
+   "smell": 0.263,
+   "taste": 0.263,
+   "vision": 2.053,
+   "interoception": 0.895,
+   "mouth_throat": 0.81,
+   "hand_arm": 0.524,
+   "foot_leg": 0.143,
+   "head": 2.952,
+   "torso": 0.143
+  }
+ },
+ {
+  "word": "process",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 0.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.333,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1,
+   "foot_leg": 0,
+   "head": 1.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.579,
+   "hearing": 1.211,
+   "smell": 0.211,
+   "taste": 0.053,
+   "vision": 1.789,
+   "interoception": 0.684,
+   "mouth_throat": 1.286,
+   "hand_arm": 1.81,
+   "foot_leg": 0.952,
+   "head": 2.905,
+   "torso": 0.667
+  }
+ },
+ {
+  "word": "procurement",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 0.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.583,
+   "interoception": 0,
+   "mouth_throat": 0.083,
+   "hand_arm": 1.167,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.438,
+   "hearing": 0.938,
+   "smell": 0.25,
+   "taste": 0.063,
+   "vision": 2.563,
+   "interoception": 0.25,
+   "mouth_throat": 1.474,
+   "hand_arm": 2.421,
+   "foot_leg": 0.842,
+   "head": 2.158,
+   "torso": 0.684
+  }
+ },
+ {
+  "word": "pull",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3.833,
+   "hearing": 0.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.333,
+   "interoception": 1.75,
+   "mouth_throat": 0,
+   "hand_arm": 5,
+   "foot_leg": 1.833,
+   "head": 0,
+   "torso": 2.833
+  },
+  "human": {
+   "touch": 4.389,
+   "hearing": 1,
+   "smell": 0.056,
+   "taste": 0.056,
+   "vision": 2.389,
+   "interoception": 2.222,
+   "mouth_throat": 0.095,
+   "hand_arm": 4,
+   "foot_leg": 1.571,
+   "head": 0.857,
+   "torso": 1.143
+  }
+ },
+ {
+  "word": "purebred",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.583,
+   "hearing": 0.5,
+   "smell": 0.417,
+   "taste": 0,
+   "vision": 3.583,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.583,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.854,
+   "hearing": 0.878,
+   "smell": 0.317,
+   "taste": 0.244,
+   "vision": 3.293,
+   "interoception": 0.512,
+   "mouth_throat": 0.75,
+   "hand_arm": 1.25,
+   "foot_leg": 0.5,
+   "head": 1.95,
+   "torso": 0.55
+  }
+ },
+ {
+  "word": "pushbutton",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 4,
+   "hearing": 2,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.25,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 5,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 3.65,
+   "hearing": 1.1,
+   "smell": 0,
+   "taste": 0.25,
+   "vision": 2.95,
+   "interoception": 0.15,
+   "mouth_throat": 0,
+   "hand_arm": 3.053,
+   "foot_leg": 0.158,
+   "head": 1.421,
+   "torso": 0
+  }
+ },
+ {
+  "word": "qualify",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.333,
+   "interoception": 0.5,
+   "mouth_throat": 0.25,
+   "hand_arm": 0.667,
+   "foot_leg": 0.083,
+   "head": 1.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.412,
+   "hearing": 1.824,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.588,
+   "interoception": 1.235,
+   "mouth_throat": 0.85,
+   "hand_arm": 0.7,
+   "foot_leg": 0.25,
+   "head": 2.15,
+   "torso": 0.15
+  }
+ },
+ {
+  "word": "queen",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 2.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.333,
+   "interoception": 0,
+   "mouth_throat": 0.083,
+   "hand_arm": 0.833,
+   "foot_leg": 0,
+   "head": 1.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.389,
+   "hearing": 1.944,
+   "smell": 0.167,
+   "taste": 0.167,
+   "vision": 3.889,
+   "interoception": 0.222,
+   "mouth_throat": 1.091,
+   "hand_arm": 1.045,
+   "foot_leg": 0.636,
+   "head": 2.318,
+   "torso": 0.636
+  }
+ },
+ {
+  "word": "quick",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 0.75,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.917,
+   "interoception": 1.5,
+   "mouth_throat": 0.083,
+   "hand_arm": 2.333,
+   "foot_leg": 3.5,
+   "head": 0.583,
+   "torso": 0.75
+  },
+  "human": {
+   "touch": 0.688,
+   "hearing": 2.125,
+   "smell": 0.375,
+   "taste": 0.375,
+   "vision": 3.938,
+   "interoception": 1.25,
+   "mouth_throat": 1.19,
+   "hand_arm": 2.286,
+   "foot_leg": 2.905,
+   "head": 1.571,
+   "torso": 1.048
+  }
+ },
+ {
+  "word": "rationalize",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0,
+   "interoception": 0.333,
+   "mouth_throat": 0.667,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 2.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.222,
+   "hearing": 2.556,
+   "smell": 0.056,
+   "taste": 0,
+   "vision": 1.444,
+   "interoception": 1.611,
+   "mouth_throat": 1.65,
+   "hand_arm": 0.5,
+   "foot_leg": 0.15,
+   "head": 3.55,
+   "torso": 0.2
+  }
+ },
+ {
+  "word": "real",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.417,
+   "hearing": 1.583,
+   "smell": 0.417,
+   "taste": 0.417,
+   "vision": 2.583,
+   "interoception": 0.917,
+   "mouth_throat": 0,
+   "hand_arm": 0.333,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 4.182,
+   "hearing": 3.818,
+   "smell": 3.818,
+   "taste": 3.727,
+   "vision": 4.182,
+   "interoception": 3.273,
+   "mouth_throat": 2.632,
+   "hand_arm": 2.789,
+   "foot_leg": 2.474,
+   "head": 3.895,
+   "torso": 2.158
+  }
+ },
+ {
+  "word": "recluse",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.917,
+   "interoception": 1.083,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0,
+   "hearing": 0.889,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.833,
+   "interoception": 1.056,
+   "mouth_throat": 0.684,
+   "hand_arm": 0.632,
+   "foot_leg": 0.579,
+   "head": 2.474,
+   "torso": 0.526
+  }
+ },
+ {
+  "word": "reconcile",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 2,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 1.5,
+   "mouth_throat": 1.75,
+   "hand_arm": 1.083,
+   "foot_leg": 0,
+   "head": 1,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.611,
+   "hearing": 2,
+   "smell": 0.222,
+   "taste": 0,
+   "vision": 2.333,
+   "interoception": 1.167,
+   "mouth_throat": 2.2,
+   "hand_arm": 0.85,
+   "foot_leg": 0.45,
+   "head": 2.95,
+   "torso": 0.9
+  }
+ },
+ {
+  "word": "reconfirm",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 2,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.833,
+   "interoception": 0,
+   "mouth_throat": 1.917,
+   "hand_arm": 1,
+   "foot_leg": 0,
+   "head": 1.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.438,
+   "hearing": 2.063,
+   "smell": 0.188,
+   "taste": 0.125,
+   "vision": 1.063,
+   "interoception": 1.063,
+   "mouth_throat": 2.9,
+   "hand_arm": 1.3,
+   "foot_leg": 0.5,
+   "head": 2.6,
+   "torso": 0.55
+  }
+ },
+ {
+  "word": "rectification",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 0.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.333,
+   "interoception": 0,
+   "mouth_throat": 0.083,
+   "hand_arm": 1.167,
+   "foot_leg": 0,
+   "head": 0.833,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.273,
+   "hearing": 2.364,
+   "smell": 0.182,
+   "taste": 0.273,
+   "vision": 3,
+   "interoception": 1,
+   "mouth_throat": 0.882,
+   "hand_arm": 0.824,
+   "foot_leg": 0.176,
+   "head": 1,
+   "torso": 0.176
+  }
+ },
+ {
+  "word": "regeneration",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.833,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.583,
+   "interoception": 2,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0.167
+  },
+  "human": {
+   "touch": 1.067,
+   "hearing": 0.533,
+   "smell": 0.333,
+   "taste": 0,
+   "vision": 2.667,
+   "interoception": 1.8,
+   "mouth_throat": 0.353,
+   "hand_arm": 0.529,
+   "foot_leg": 0.471,
+   "head": 1,
+   "torso": 0.588
+  }
+ },
+ {
+  "word": "regional",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.833,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0.167,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.5,
+   "hearing": 0.875,
+   "smell": 0.25,
+   "taste": 0.5,
+   "vision": 3.063,
+   "interoception": 1.188,
+   "mouth_throat": 1.316,
+   "hand_arm": 0.842,
+   "foot_leg": 0.789,
+   "head": 2.053,
+   "torso": 0.737
+  }
+ },
+ {
+  "word": "repeatability",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.083,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.75,
+   "foot_leg": 0,
+   "head": 1.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.944,
+   "hearing": 2.389,
+   "smell": 0.5,
+   "taste": 0.5,
+   "vision": 2.167,
+   "interoception": 0.722,
+   "mouth_throat": 1.579,
+   "hand_arm": 0.632,
+   "foot_leg": 0.368,
+   "head": 2.158,
+   "torso": 0.316
+  }
+ },
+ {
+  "word": "replicator",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.167,
+   "hearing": 0.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.417,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.667,
+   "foot_leg": 0,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.765,
+   "hearing": 0.882,
+   "smell": 0.412,
+   "taste": 0.706,
+   "vision": 2.824,
+   "interoception": 0.706,
+   "mouth_throat": 0.5,
+   "hand_arm": 1.5,
+   "foot_leg": 0.5,
+   "head": 1.278,
+   "torso": 0.5
+  }
+ },
+ {
+  "word": "resist",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.167,
+   "hearing": 0.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.083,
+   "interoception": 2.417,
+   "mouth_throat": 0.667,
+   "hand_arm": 3,
+   "foot_leg": 2,
+   "head": 1.417,
+   "torso": 2.5
+  },
+  "human": {
+   "touch": 1.889,
+   "hearing": 2.389,
+   "smell": 0.278,
+   "taste": 0.333,
+   "vision": 2.333,
+   "interoception": 2.056,
+   "mouth_throat": 1.526,
+   "hand_arm": 2.316,
+   "foot_leg": 2.053,
+   "head": 2.947,
+   "torso": 1.263
+  }
+ },
+ {
+  "word": "reunion",
+  "set": "overlap",
+  "machine": {
+   "touch": 3.083,
+   "hearing": 3.667,
+   "smell": 0.667,
+   "taste": 0.75,
+   "vision": 4.083,
+   "interoception": 3.083,
+   "mouth_throat": 2.25,
+   "hand_arm": 3,
+   "foot_leg": 0.75,
+   "head": 0.75,
+   "torso": 2.333
+  },
+  "human": {
+   "touch": 0.778,
+   "hearing": 1.556,
+   "smell": 0.333,
+   "taste": 0.222,
+   "vision": 3,
+   "interoception": 1.167,
+   "mouth_throat": 1.947,
+   "hand_arm": 1.737,
+   "foot_leg": 1.316,
+   "head": 2.579,
+   "torso": 1.105
+  }
+ },
+ {
+  "word": "rich",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.333,
+   "hearing": 0.167,
+   "smell": 1.417,
+   "taste": 3.167,
+   "vision": 3.083,
+   "interoception": 1.167,
+   "mouth_throat": 0.917,
+   "hand_arm": 0.667,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.579,
+   "hearing": 1.737,
+   "smell": 0.895,
+   "taste": 1.789,
+   "vision": 3.526,
+   "interoception": 2.105,
+   "mouth_throat": 1.2,
+   "hand_arm": 1.08,
+   "foot_leg": 0.64,
+   "head": 2.32,
+   "torso": 0.68
+  }
+ },
+ {
+  "word": "robotics",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.417,
+   "hearing": 2.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.75,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 2.333,
+   "foot_leg": 0.083,
+   "head": 0.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2,
+   "hearing": 1.611,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.444,
+   "interoception": 0.056,
+   "mouth_throat": 0.824,
+   "hand_arm": 2.176,
+   "foot_leg": 1.235,
+   "head": 2.059,
+   "torso": 0.706
+  }
+ },
+ {
+  "word": "rotary",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2,
+   "hearing": 1.917,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 2.833,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 1.412,
+   "hearing": 0.882,
+   "smell": 0.059,
+   "taste": 0,
+   "vision": 2.471,
+   "interoception": 0.118,
+   "mouth_throat": 0.789,
+   "hand_arm": 2.211,
+   "foot_leg": 0.684,
+   "head": 1.895,
+   "torso": 0.895
+  }
+ },
+ {
+  "word": "ruthless",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.667,
+   "interoception": 1.333,
+   "mouth_throat": 0.25,
+   "hand_arm": 0.667,
+   "foot_leg": 0,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0,
+   "hearing": 2.706,
+   "smell": 0,
+   "taste": 0.235,
+   "vision": 3.647,
+   "interoception": 1.706,
+   "mouth_throat": 2.333,
+   "hand_arm": 1.278,
+   "foot_leg": 0.611,
+   "head": 2.667,
+   "torso": 0.722
+  }
+ },
+ {
+  "word": "salacious",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.5,
+   "hearing": 2.1,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.5,
+   "interoception": 1.4,
+   "mouth_throat": 0.7,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0.1
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 1.889,
+   "smell": 0.389,
+   "taste": 0.611,
+   "vision": 2.389,
+   "interoception": 1.722,
+   "mouth_throat": 1.905,
+   "hand_arm": 1.238,
+   "foot_leg": 0.619,
+   "head": 2.714,
+   "torso": 0.905
+  }
+ },
+ {
+  "word": "sanctimonious",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 2.8,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 0.8,
+   "mouth_throat": 1.9,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.3,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.636,
+   "hearing": 2.909,
+   "smell": 0.364,
+   "taste": 0.364,
+   "vision": 3,
+   "interoception": 1.636,
+   "mouth_throat": 2.5,
+   "hand_arm": 0.786,
+   "foot_leg": 0.5,
+   "head": 2.571,
+   "torso": 0.5
+  }
+ },
+ {
+  "word": "savings",
+  "set": "overlap",
+  "machine": {
+   "touch": 1,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.25,
+   "interoception": 0.5,
+   "mouth_throat": 0,
+   "hand_arm": 1.083,
+   "foot_leg": 0,
+   "head": 0.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 0.947,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 0.421,
+   "mouth_throat": 0.471,
+   "hand_arm": 1.294,
+   "foot_leg": 0.176,
+   "head": 1.765,
+   "torso": 0.176
+  }
+ },
+ {
+  "word": "scamp",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 2.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 0,
+   "mouth_throat": 0.083,
+   "hand_arm": 0.5,
+   "foot_leg": 1.167,
+   "head": 0.167,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 0.308,
+   "hearing": 1.231,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.385,
+   "interoception": 0.462,
+   "mouth_throat": 0.688,
+   "hand_arm": 0.313,
+   "foot_leg": 0.375,
+   "head": 1.625,
+   "torso": 0.25
+  }
+ },
+ {
+  "word": "scatter",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.5,
+   "hearing": 1.5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.917,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 3.75,
+   "foot_leg": 1.5,
+   "head": 0,
+   "torso": 0.25
+  },
+  "human": {
+   "touch": 0.905,
+   "hearing": 1.524,
+   "smell": 0.048,
+   "taste": 0.095,
+   "vision": 3.762,
+   "interoception": 0.048,
+   "mouth_throat": 0.263,
+   "hand_arm": 1.895,
+   "foot_leg": 1.105,
+   "head": 1.368,
+   "torso": 0.737
+  }
+ },
+ {
+  "word": "school",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.333,
+   "hearing": 4,
+   "smell": 1.667,
+   "taste": 0.583,
+   "vision": 4.083,
+   "interoception": 0.75,
+   "mouth_throat": 2,
+   "hand_arm": 2.333,
+   "foot_leg": 1.75,
+   "head": 1.583,
+   "torso": 0.583
+  },
+  "human": {
+   "touch": 1.167,
+   "hearing": 2.556,
+   "smell": 0.833,
+   "taste": 0.056,
+   "vision": 3.5,
+   "interoception": 0.778,
+   "mouth_throat": 1.85,
+   "hand_arm": 2.25,
+   "foot_leg": 2.05,
+   "head": 3,
+   "torso": 1.7
+  }
+ },
+ {
+  "word": "scriptwriter",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.583,
+   "hearing": 0.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.667,
+   "interoception": 0,
+   "mouth_throat": 0.083,
+   "hand_arm": 3.25,
+   "foot_leg": 0,
+   "head": 1.917,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.895,
+   "hearing": 2.158,
+   "smell": 0.158,
+   "taste": 0.053,
+   "vision": 3.105,
+   "interoception": 0.105,
+   "mouth_throat": 1.524,
+   "hand_arm": 3.905,
+   "foot_leg": 0.333,
+   "head": 3.905,
+   "torso": 0.381
+  }
+ },
+ {
+  "word": "sealable",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3.167,
+   "hearing": 0.417,
+   "smell": 0.333,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 3.917,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.176,
+   "hearing": 0.412,
+   "smell": 0.059,
+   "taste": 0.059,
+   "vision": 3.824,
+   "interoception": 0.294,
+   "mouth_throat": 0.947,
+   "hand_arm": 2.368,
+   "foot_leg": 0.053,
+   "head": 2.158,
+   "torso": 0.211
+  }
+ },
+ {
+  "word": "secure",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.083,
+   "hearing": 0.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.083,
+   "interoception": 2.25,
+   "mouth_throat": 0,
+   "hand_arm": 2.25,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0.333
+  },
+  "human": {
+   "touch": 1.45,
+   "hearing": 1.1,
+   "smell": 0.25,
+   "taste": 0.25,
+   "vision": 2.9,
+   "interoception": 2.4,
+   "mouth_throat": 0.722,
+   "hand_arm": 2.333,
+   "foot_leg": 0.611,
+   "head": 2,
+   "torso": 0.778
+  }
+ },
+ {
+  "word": "septic",
+  "set": "overlap",
+  "machine": {
+   "touch": 1.5,
+   "hearing": 0,
+   "smell": 3.917,
+   "taste": 0.333,
+   "vision": 2.75,
+   "interoception": 2.417,
+   "mouth_throat": 0,
+   "hand_arm": 0.583,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 0.769,
+   "hearing": 1,
+   "smell": 2.692,
+   "taste": 0.231,
+   "vision": 3.308,
+   "interoception": 1.385,
+   "mouth_throat": 0.316,
+   "hand_arm": 0.316,
+   "foot_leg": 0.421,
+   "head": 1.368,
+   "torso": 0.737
+  }
+ },
+ {
+  "word": "set",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.583,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.167,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 2.583,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.684,
+   "hearing": 1,
+   "smell": 0.053,
+   "taste": 0.053,
+   "vision": 2.526,
+   "interoception": 0.579,
+   "mouth_throat": 0.6,
+   "hand_arm": 1.75,
+   "foot_leg": 0.75,
+   "head": 1.5,
+   "torso": 0.8
+  }
+ },
+ {
+  "word": "shortchange",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.667,
+   "hearing": 0.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.5,
+   "interoception": 1.417,
+   "mouth_throat": 0.25,
+   "hand_arm": 2.75,
+   "foot_leg": 0,
+   "head": 0.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.176,
+   "hearing": 1.294,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.824,
+   "interoception": 0.706,
+   "mouth_throat": 0.947,
+   "hand_arm": 1.684,
+   "foot_leg": 0.263,
+   "head": 2.632,
+   "torso": 0.211
+  }
+ },
+ {
+  "word": "sidetrack",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.25,
+   "interoception": 0.667,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0.5,
+   "head": 1.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.211,
+   "hearing": 0.684,
+   "smell": 0.263,
+   "taste": 0.053,
+   "vision": 1.895,
+   "interoception": 0.789,
+   "mouth_throat": 0.85,
+   "hand_arm": 0.7,
+   "foot_leg": 1.15,
+   "head": 1.55,
+   "torso": 0.35
+  }
+ },
+ {
+  "word": "simmer",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.083,
+   "hearing": 2.75,
+   "smell": 3.75,
+   "taste": 2.417,
+   "vision": 3.667,
+   "interoception": 0.417,
+   "mouth_throat": 0.083,
+   "hand_arm": 1.917,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.632,
+   "hearing": 2.421,
+   "smell": 1.053,
+   "taste": 0.105,
+   "vision": 3.737,
+   "interoception": 0.579,
+   "mouth_throat": 0.429,
+   "hand_arm": 1.143,
+   "foot_leg": 0.286,
+   "head": 1.952,
+   "torso": 0.238
+  }
+ },
+ {
+  "word": "simultaneous",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 2,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.25,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.5,
+   "foot_leg": 0,
+   "head": 0.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.667,
+   "hearing": 1.933,
+   "smell": 0.333,
+   "taste": 0.267,
+   "vision": 2.8,
+   "interoception": 0.733,
+   "mouth_throat": 1.632,
+   "hand_arm": 1.684,
+   "foot_leg": 1.789,
+   "head": 2.368,
+   "torso": 1.474
+  }
+ },
+ {
+  "word": "singer",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.5,
+   "interoception": 0.667,
+   "mouth_throat": 4.667,
+   "hand_arm": 0.417,
+   "foot_leg": 0.083,
+   "head": 1.083,
+   "torso": 1.5
+  },
+  "human": {
+   "touch": 0.528,
+   "hearing": 4.556,
+   "smell": 0.194,
+   "taste": 0.111,
+   "vision": 3.639,
+   "interoception": 0.833,
+   "mouth_throat": 3.355,
+   "hand_arm": 0.613,
+   "foot_leg": 0.097,
+   "head": 3.387,
+   "torso": 1.226
+  }
+ },
+ {
+  "word": "sixfold",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.25,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.083,
+   "foot_leg": 0,
+   "head": 0.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.8,
+   "hearing": 0.467,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.867,
+   "interoception": 0.267,
+   "mouth_throat": 0.263,
+   "hand_arm": 0.421,
+   "foot_leg": 0.053,
+   "head": 1.737,
+   "torso": 0
+  }
+ },
+ {
+  "word": "smite",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.333,
+   "hearing": 1.583,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.417,
+   "interoception": 0.5,
+   "mouth_throat": 0,
+   "hand_arm": 4,
+   "foot_leg": 0.083,
+   "head": 0.333,
+   "torso": 1.417
+  },
+  "human": {
+   "touch": 0.625,
+   "hearing": 2.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 1.25,
+   "mouth_throat": 1.095,
+   "hand_arm": 2.048,
+   "foot_leg": 0.857,
+   "head": 1.381,
+   "torso": 0.476
+  }
+ },
+ {
+  "word": "socioeconomic",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 0,
+   "mouth_throat": 0.083,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.5,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.294,
+   "hearing": 2.118,
+   "smell": 0.353,
+   "taste": 0.059,
+   "vision": 3.529,
+   "interoception": 0.706,
+   "mouth_throat": 0.889,
+   "hand_arm": 0.333,
+   "foot_leg": 0.333,
+   "head": 1.944,
+   "torso": 0.333
+  }
+ },
+ {
+  "word": "softener",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 4.083,
+   "hearing": 0,
+   "smell": 3.75,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 2.583,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.529,
+   "hearing": 0.235,
+   "smell": 1.706,
+   "taste": 0,
+   "vision": 1.824,
+   "interoception": 0.412,
+   "mouth_throat": 0.15,
+   "hand_arm": 1.5,
+   "foot_leg": 0.6,
+   "head": 1.15,
+   "torso": 0.5
+  }
+ },
+ {
+  "word": "sorceress",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.333,
+   "interoception": 0.083,
+   "mouth_throat": 0.083,
+   "hand_arm": 0.917,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.733,
+   "hearing": 1.867,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.333,
+   "interoception": 0.133,
+   "mouth_throat": 0.167,
+   "hand_arm": 0.667,
+   "foot_leg": 0.056,
+   "head": 1.111,
+   "torso": 0.111
+  }
+ },
+ {
+  "word": "soulless",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.25,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 2.083,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.15,
+   "hearing": 1.05,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.25,
+   "interoception": 2.7,
+   "mouth_throat": 1.238,
+   "hand_arm": 0.095,
+   "foot_leg": 0.095,
+   "head": 1.524,
+   "torso": 0.333
+  }
+ },
+ {
+  "word": "spearmint",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.583,
+   "hearing": 0,
+   "smell": 5,
+   "taste": 4.917,
+   "vision": 1.917,
+   "interoception": 0.833,
+   "mouth_throat": 4,
+   "hand_arm": 0.083,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.842,
+   "hearing": 0.211,
+   "smell": 3.947,
+   "taste": 4.737,
+   "vision": 1.421,
+   "interoception": 0.211,
+   "mouth_throat": 4.158,
+   "hand_arm": 1.316,
+   "foot_leg": 0.474,
+   "head": 2.105,
+   "torso": 0.684
+  }
+ },
+ {
+  "word": "spirituality",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.167,
+   "smell": 0.5,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 2.917,
+   "mouth_throat": 0.25,
+   "hand_arm": 0.417,
+   "foot_leg": 0,
+   "head": 1.667,
+   "torso": 0.417
+  },
+  "human": {
+   "touch": 0.235,
+   "hearing": 2.235,
+   "smell": 0,
+   "taste": 0.059,
+   "vision": 2.059,
+   "interoception": 3.412,
+   "mouth_throat": 1.19,
+   "hand_arm": 0.714,
+   "foot_leg": 0.381,
+   "head": 2.333,
+   "torso": 0.762
+  }
+ },
+ {
+  "word": "sprayer",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.75,
+   "hearing": 2.25,
+   "smell": 2.583,
+   "taste": 0,
+   "vision": 3.25,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 4.167,
+   "foot_leg": 0.083,
+   "head": 0,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 2.5,
+   "hearing": 1.2,
+   "smell": 0.3,
+   "taste": 0.2,
+   "vision": 2.95,
+   "interoception": 0.25,
+   "mouth_throat": 0.895,
+   "hand_arm": 2.895,
+   "foot_leg": 0.789,
+   "head": 1.579,
+   "torso": 0.737
+  }
+ },
+ {
+  "word": "sticker",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3.667,
+   "hearing": 0.083,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 4.167,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 3.917,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 3.105,
+   "hearing": 0.053,
+   "smell": 0.263,
+   "taste": 0.211,
+   "vision": 4.474,
+   "interoception": 0,
+   "mouth_throat": 0.35,
+   "hand_arm": 2.45,
+   "foot_leg": 0.35,
+   "head": 2.1,
+   "torso": 0.35
+  }
+ },
+ {
+  "word": "stillbirth",
+  "set": "overlap",
+  "machine": {
+   "touch": 1.833,
+   "hearing": 0.917,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 2.25,
+   "interoception": 3.75,
+   "mouth_throat": 0,
+   "hand_arm": 0.333,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 2.583
+  },
+  "human": {
+   "touch": 0.813,
+   "hearing": 0.625,
+   "smell": 0.063,
+   "taste": 0,
+   "vision": 3.813,
+   "interoception": 1,
+   "mouth_throat": 0.474,
+   "hand_arm": 0.526,
+   "foot_leg": 0.474,
+   "head": 1.368,
+   "torso": 1
+  }
+ },
+ {
+  "word": "stock",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.667,
+   "hearing": 0.333,
+   "smell": 1.917,
+   "taste": 1.75,
+   "vision": 2.917,
+   "interoception": 0.083,
+   "mouth_throat": 0.5,
+   "hand_arm": 2.417,
+   "foot_leg": 0.5,
+   "head": 0.25,
+   "torso": 0.5
+  },
+  "human": {
+   "touch": 1.211,
+   "hearing": 0.895,
+   "smell": 0.263,
+   "taste": 0.211,
+   "vision": 3.211,
+   "interoception": 0.105,
+   "mouth_throat": 1.167,
+   "hand_arm": 2.222,
+   "foot_leg": 0.833,
+   "head": 3.611,
+   "torso": 0.944
+  }
+ },
+ {
+  "word": "strategy",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.833,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.083,
+   "interoception": 0.167,
+   "mouth_throat": 0.167,
+   "hand_arm": 0.083,
+   "foot_leg": 0,
+   "head": 2.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.55,
+   "hearing": 2.6,
+   "smell": 0.15,
+   "taste": 0.2,
+   "vision": 2.55,
+   "interoception": 1.05,
+   "mouth_throat": 2.895,
+   "hand_arm": 1.211,
+   "foot_leg": 0.947,
+   "head": 3.737,
+   "torso": 0.842
+  }
+ },
+ {
+  "word": "studio",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.917,
+   "hearing": 2.75,
+   "smell": 0.25,
+   "taste": 0,
+   "vision": 3.917,
+   "interoception": 0,
+   "mouth_throat": 0.083,
+   "hand_arm": 1.083,
+   "foot_leg": 0.5,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.95,
+   "hearing": 2.05,
+   "smell": 0.8,
+   "taste": 0.05,
+   "vision": 3.75,
+   "interoception": 0.2,
+   "mouth_throat": 1.632,
+   "hand_arm": 2.211,
+   "foot_leg": 1.947,
+   "head": 3.737,
+   "torso": 1.474
+  }
+ },
+ {
+  "word": "suicide",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.5,
+   "hearing": 1,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2,
+   "interoception": 3.75,
+   "mouth_throat": 0.083,
+   "hand_arm": 0.25,
+   "foot_leg": 0.083,
+   "head": 0.75,
+   "torso": 0.417
+  },
+  "human": {
+   "touch": 0.7,
+   "hearing": 1.75,
+   "smell": 0.05,
+   "taste": 0.25,
+   "vision": 2.3,
+   "interoception": 1.8,
+   "mouth_throat": 2.389,
+   "hand_arm": 2.889,
+   "foot_leg": 2.056,
+   "head": 3.5,
+   "torso": 2.111
+  }
+ },
+ {
+  "word": "sulphurous",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0,
+   "smell": 5,
+   "taste": 1.917,
+   "vision": 1.917,
+   "interoception": 0.833,
+   "mouth_throat": 1,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.75,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.5,
+   "hearing": 0,
+   "smell": 3.111,
+   "taste": 0.722,
+   "vision": 1.556,
+   "interoception": 0.111,
+   "mouth_throat": 0.563,
+   "hand_arm": 0.375,
+   "foot_leg": 0,
+   "head": 2.438,
+   "torso": 0
+  }
+ },
+ {
+  "word": "supercharger",
+  "set": "overlap",
+  "machine": {
+   "touch": 1,
+   "hearing": 3.833,
+   "smell": 0.75,
+   "taste": 0,
+   "vision": 2.917,
+   "interoception": 0.167,
+   "mouth_throat": 0,
+   "hand_arm": 1.083,
+   "foot_leg": 1.25,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.143,
+   "hearing": 1.786,
+   "smell": 0.429,
+   "taste": 0,
+   "vision": 2.786,
+   "interoception": 0.429,
+   "mouth_throat": 0.444,
+   "hand_arm": 1,
+   "foot_leg": 1,
+   "head": 1.389,
+   "torso": 0.611
+  }
+ },
+ {
+  "word": "supersede",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.667,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.385,
+   "hearing": 0.615,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.923,
+   "interoception": 1.154,
+   "mouth_throat": 1,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.833,
+   "torso": 0
+  }
+ },
+ {
+  "word": "sweetheart",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3.167,
+   "hearing": 2.25,
+   "smell": 1.083,
+   "taste": 0.5,
+   "vision": 3.25,
+   "interoception": 3.5,
+   "mouth_throat": 2.25,
+   "hand_arm": 2.25,
+   "foot_leg": 0,
+   "head": 0.75,
+   "torso": 1.5
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 2.375,
+   "smell": 0.75,
+   "taste": 0.25,
+   "vision": 2.188,
+   "interoception": 1.813,
+   "mouth_throat": 2.409,
+   "hand_arm": 1.182,
+   "foot_leg": 0.955,
+   "head": 2.682,
+   "torso": 1.409
+  }
+ },
+ {
+  "word": "synthesis",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.083,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.333,
+   "foot_leg": 0,
+   "head": 1.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.4,
+   "hearing": 1.067,
+   "smell": 0.267,
+   "taste": 0.2,
+   "vision": 2.6,
+   "interoception": 0.733,
+   "mouth_throat": 0.765,
+   "hand_arm": 0.706,
+   "foot_leg": 0.647,
+   "head": 2,
+   "torso": 0.529
+  }
+ },
+ {
+  "word": "target",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.417,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.667,
+   "interoception": 0.083,
+   "mouth_throat": 0,
+   "hand_arm": 3,
+   "foot_leg": 0.417,
+   "head": 1.583,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.105,
+   "hearing": 0.895,
+   "smell": 0.211,
+   "taste": 0.053,
+   "vision": 3.684,
+   "interoception": 1,
+   "mouth_throat": 0.526,
+   "hand_arm": 2.316,
+   "foot_leg": 1.526,
+   "head": 3.158,
+   "torso": 1.421
+  }
+ },
+ {
+  "word": "team",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.167,
+   "hearing": 2.917,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.583,
+   "interoception": 0.75,
+   "mouth_throat": 1.5,
+   "hand_arm": 2.333,
+   "foot_leg": 2.333,
+   "head": 0.667,
+   "torso": 0.917
+  },
+  "human": {
+   "touch": 0.412,
+   "hearing": 2.176,
+   "smell": 0.118,
+   "taste": 0,
+   "vision": 4.059,
+   "interoception": 0.647,
+   "mouth_throat": 1.421,
+   "hand_arm": 1.211,
+   "foot_leg": 1,
+   "head": 1.526,
+   "torso": 0.895
+  }
+ },
+ {
+  "word": "tech",
+  "set": "overlap",
+  "machine": {
+   "touch": 2.417,
+   "hearing": 1.583,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.583,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 3.417,
+   "foot_leg": 0,
+   "head": 0.833,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.895,
+   "hearing": 2,
+   "smell": 0.316,
+   "taste": 0.158,
+   "vision": 3.316,
+   "interoception": 0.316,
+   "mouth_throat": 1.75,
+   "hand_arm": 2.75,
+   "foot_leg": 1.2,
+   "head": 3.15,
+   "torso": 1.2
+  }
+ },
+ {
+  "word": "theory",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 2,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.368,
+   "hearing": 2.842,
+   "smell": 0.368,
+   "taste": 0.316,
+   "vision": 1.895,
+   "interoception": 0.842,
+   "mouth_throat": 2.238,
+   "hand_arm": 0.333,
+   "foot_leg": 0.143,
+   "head": 3.857,
+   "torso": 0.143
+  }
+ },
+ {
+  "word": "timeless",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 1,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.083,
+   "interoception": 0.583,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.125,
+   "hearing": 0.625,
+   "smell": 0.063,
+   "taste": 0.188,
+   "vision": 2,
+   "interoception": 1.5,
+   "mouth_throat": 0.25,
+   "hand_arm": 0.2,
+   "foot_leg": 0.1,
+   "head": 1.85,
+   "torso": 0.15
+  }
+ },
+ {
+  "word": "tonality",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 4.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.667,
+   "interoception": 0,
+   "mouth_throat": 0.833,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0,
+   "hearing": 4.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.5,
+   "interoception": 0.333,
+   "mouth_throat": 1.929,
+   "hand_arm": 0.643,
+   "foot_leg": 0.214,
+   "head": 2.643,
+   "torso": 0.429
+  }
+ },
+ {
+  "word": "torso",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3.333,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.083,
+   "interoception": 2.667,
+   "mouth_throat": 0,
+   "hand_arm": 0.917,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 4.833
+  },
+  "human": {
+   "touch": 2.889,
+   "hearing": 0.056,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4,
+   "interoception": 0.944,
+   "mouth_throat": 0.158,
+   "hand_arm": 0.737,
+   "foot_leg": 0.158,
+   "head": 0.842,
+   "torso": 3.947
+  }
+ },
+ {
+  "word": "trader",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.5,
+   "hearing": 2.583,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 3,
+   "interoception": 0,
+   "mouth_throat": 1.917,
+   "hand_arm": 2.083,
+   "foot_leg": 0.083,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.667,
+   "hearing": 2.333,
+   "smell": 0.278,
+   "taste": 0.222,
+   "vision": 3.167,
+   "interoception": 0.222,
+   "mouth_throat": 1.9,
+   "hand_arm": 2.15,
+   "foot_leg": 0.6,
+   "head": 2.5,
+   "torso": 0.45
+  }
+ },
+ {
+  "word": "trapeze",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.5,
+   "hearing": 0.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 4.5,
+   "interoception": 2.083,
+   "mouth_throat": 0,
+   "hand_arm": 4.667,
+   "foot_leg": 3.083,
+   "head": 0.917,
+   "torso": 3.417
+  },
+  "human": {
+   "touch": 1.667,
+   "hearing": 0.556,
+   "smell": 0.611,
+   "taste": 0.278,
+   "vision": 3.833,
+   "interoception": 0.722,
+   "mouth_throat": 0.353,
+   "hand_arm": 2.765,
+   "foot_leg": 2,
+   "head": 1.294,
+   "torso": 1.824
+  }
+ },
+ {
+  "word": "treat",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.833,
+   "hearing": 0.417,
+   "smell": 3,
+   "taste": 4.167,
+   "vision": 2.917,
+   "interoception": 2.25,
+   "mouth_throat": 3.833,
+   "hand_arm": 2.25,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.5,
+   "hearing": 0.938,
+   "smell": 1.063,
+   "taste": 2.938,
+   "vision": 2.75,
+   "interoception": 0.5,
+   "mouth_throat": 3.7,
+   "hand_arm": 1.5,
+   "foot_leg": 0.2,
+   "head": 2.15,
+   "torso": 0.45
+  }
+ },
+ {
+  "word": "turtle",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.583,
+   "hearing": 0,
+   "smell": 0.583,
+   "taste": 0,
+   "vision": 4.833,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.083,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.944,
+   "hearing": 0.556,
+   "smell": 0.5,
+   "taste": 0.278,
+   "vision": 4.278,
+   "interoception": 0.111,
+   "mouth_throat": 0.263,
+   "hand_arm": 1.632,
+   "foot_leg": 0.789,
+   "head": 1.684,
+   "torso": 0.316
+  }
+ },
+ {
+  "word": "typical",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.667,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.167,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.789,
+   "hearing": 2.474,
+   "smell": 0.895,
+   "taste": 0.947,
+   "vision": 2.895,
+   "interoception": 1.368,
+   "mouth_throat": 0.81,
+   "hand_arm": 0.762,
+   "foot_leg": 0.762,
+   "head": 2,
+   "torso": 0.714
+  }
+ },
+ {
+  "word": "typicality",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.917,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.75,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.882,
+   "hearing": 2.176,
+   "smell": 0.647,
+   "taste": 0.647,
+   "vision": 2.235,
+   "interoception": 0.824,
+   "mouth_throat": 0.421,
+   "hand_arm": 0.579,
+   "foot_leg": 0.368,
+   "head": 1.211,
+   "torso": 0.368
+  }
+ },
+ {
+  "word": "uncheck",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.833,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.25,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 3.667,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 0.176,
+   "smell": 0.059,
+   "taste": 0.059,
+   "vision": 3.294,
+   "interoception": 0.647,
+   "mouth_throat": 0.15,
+   "hand_arm": 1.75,
+   "foot_leg": 0.05,
+   "head": 1.25,
+   "torso": 0.25
+  }
+ },
+ {
+  "word": "underbody",
+  "set": "overlap",
+  "machine": {
+   "touch": 1.917,
+   "hearing": 0,
+   "smell": 0.083,
+   "taste": 0,
+   "vision": 2.917,
+   "interoception": 0.083,
+   "mouth_throat": 0,
+   "hand_arm": 1.083,
+   "foot_leg": 0,
+   "head": 0,
+   "torso": 1.333
+  },
+  "human": {
+   "touch": 1,
+   "hearing": 0.059,
+   "smell": 0.059,
+   "taste": 0,
+   "vision": 3.176,
+   "interoception": 0.529,
+   "mouth_throat": 0,
+   "hand_arm": 0.632,
+   "foot_leg": 0.684,
+   "head": 1.316,
+   "torso": 1.316
+  }
+ },
+ {
+  "word": "undo",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.167,
+   "hearing": 0,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.25,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 3.333,
+   "foot_leg": 0,
+   "head": 0.333,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.944,
+   "hearing": 1.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 3.056,
+   "interoception": 0.167,
+   "mouth_throat": 1.471,
+   "hand_arm": 1.706,
+   "foot_leg": 0.412,
+   "head": 1.176,
+   "torso": 0.353
+  }
+ },
+ {
+  "word": "upholster",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 4,
+   "hearing": 0.333,
+   "smell": 0.917,
+   "taste": 0,
+   "vision": 3.5,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 4.583,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0.5
+  },
+  "human": {
+   "touch": 2.688,
+   "hearing": 0.688,
+   "smell": 0.438,
+   "taste": 0,
+   "vision": 3.875,
+   "interoception": 0.125,
+   "mouth_throat": 0.294,
+   "hand_arm": 2.471,
+   "foot_leg": 0.412,
+   "head": 1.882,
+   "torso": 0.235
+  }
+ },
+ {
+  "word": "usual",
+  "set": "overlap",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1,
+   "interoception": 0.083,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.563,
+   "hearing": 1.625,
+   "smell": 0.375,
+   "taste": 0.563,
+   "vision": 2.063,
+   "interoception": 1.688,
+   "mouth_throat": 1.714,
+   "hand_arm": 1.524,
+   "foot_leg": 1.381,
+   "head": 2.429,
+   "torso": 1.333
+  }
+ },
+ {
+  "word": "utilitarianism",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.286,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.286,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.143,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.615,
+   "hearing": 1.538,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.538,
+   "interoception": 1.154,
+   "mouth_throat": 0.75,
+   "hand_arm": 1.313,
+   "foot_leg": 1.125,
+   "head": 2.188,
+   "torso": 1.063
+  }
+ },
+ {
+  "word": "vacate",
+  "set": "overlap",
+  "machine": {
+   "touch": 0.083,
+   "hearing": 0.417,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.083,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 1.083,
+   "foot_leg": 3.083,
+   "head": 0,
+   "torso": 0.583
+  },
+  "human": {
+   "touch": 1.125,
+   "hearing": 1.75,
+   "smell": 0.5,
+   "taste": 0.688,
+   "vision": 3.125,
+   "interoception": 1.063,
+   "mouth_throat": 0.421,
+   "hand_arm": 1,
+   "foot_leg": 2.632,
+   "head": 1.789,
+   "torso": 1.105
+  }
+ },
+ {
+  "word": "variance",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.083,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.25,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.083,
+   "foot_leg": 0,
+   "head": 1,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.125,
+   "hearing": 1.813,
+   "smell": 0.563,
+   "taste": 0.563,
+   "vision": 2.75,
+   "interoception": 0.75,
+   "mouth_throat": 1.765,
+   "hand_arm": 1.647,
+   "foot_leg": 0.588,
+   "head": 3.059,
+   "torso": 0.529
+  }
+ },
+ {
+  "word": "veritable",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.545,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.636,
+   "interoception": 0,
+   "mouth_throat": 0.182,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.455,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.2,
+   "hearing": 1.667,
+   "smell": 0.067,
+   "taste": 0.067,
+   "vision": 1.933,
+   "interoception": 0.733,
+   "mouth_throat": 0.8,
+   "hand_arm": 0.333,
+   "foot_leg": 0.133,
+   "head": 1.867,
+   "torso": 0.267
+  }
+ },
+ {
+  "word": "vice",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2,
+   "hearing": 0.083,
+   "smell": 0.667,
+   "taste": 0.917,
+   "vision": 2.167,
+   "interoception": 1.167,
+   "mouth_throat": 0.75,
+   "hand_arm": 2.417,
+   "foot_leg": 0,
+   "head": 0.167,
+   "torso": 0.083
+  },
+  "human": {
+   "touch": 1.44,
+   "hearing": 1.48,
+   "smell": 1.16,
+   "taste": 1.36,
+   "vision": 2.04,
+   "interoception": 1.88,
+   "mouth_throat": 1.632,
+   "hand_arm": 1.579,
+   "foot_leg": 0.842,
+   "head": 2.579,
+   "torso": 0.842
+  }
+ },
+ {
+  "word": "vixen",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.333,
+   "hearing": 1.75,
+   "smell": 1,
+   "taste": 0,
+   "vision": 3.667,
+   "interoception": 0.167,
+   "mouth_throat": 0.083,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.083,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.375,
+   "hearing": 2.313,
+   "smell": 0.25,
+   "taste": 0.125,
+   "vision": 3.313,
+   "interoception": 0.625,
+   "mouth_throat": 1.211,
+   "hand_arm": 1.211,
+   "foot_leg": 0.421,
+   "head": 2.474,
+   "torso": 0.895
+  }
+ },
+ {
+  "word": "wastebasket",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 2.5,
+   "hearing": 0.833,
+   "smell": 2,
+   "taste": 0,
+   "vision": 3.833,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 3.417,
+   "foot_leg": 1.333,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.235,
+   "hearing": 0.588,
+   "smell": 1.471,
+   "taste": 0.118,
+   "vision": 3.706,
+   "interoception": 0.294,
+   "mouth_throat": 0.526,
+   "hand_arm": 2.316,
+   "foot_leg": 0.895,
+   "head": 1.947,
+   "torso": 0.579
+  }
+ },
+ {
+  "word": "waterworks",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 1.333,
+   "hearing": 2.167,
+   "smell": 0.583,
+   "taste": 0,
+   "vision": 3.083,
+   "interoception": 2.5,
+   "mouth_throat": 0.167,
+   "hand_arm": 0.583,
+   "foot_leg": 0,
+   "head": 0.75,
+   "torso": 0.667
+  },
+  "human": {
+   "touch": 1.267,
+   "hearing": 1.533,
+   "smell": 0.467,
+   "taste": 0,
+   "vision": 3.933,
+   "interoception": 0.6,
+   "mouth_throat": 1.316,
+   "hand_arm": 1.684,
+   "foot_leg": 1.053,
+   "head": 3.421,
+   "torso": 1.316
+  }
+ },
+ {
+  "word": "weekly",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 0.167,
+   "smell": 0,
+   "taste": 0,
+   "vision": 1.333,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 0.083,
+   "foot_leg": 0,
+   "head": 0.25,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.5,
+   "hearing": 1.3,
+   "smell": 0.4,
+   "taste": 0.25,
+   "vision": 1.8,
+   "interoception": 0.85,
+   "mouth_throat": 1.05,
+   "hand_arm": 1,
+   "foot_leg": 0.85,
+   "head": 2.25,
+   "torso": 0.8
+  }
+ },
+ {
+  "word": "weird",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0.25,
+   "hearing": 2.083,
+   "smell": 0.417,
+   "taste": 0.417,
+   "vision": 3,
+   "interoception": 2.083,
+   "mouth_throat": 0.167,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 1.417,
+   "torso": 0
+  },
+  "human": {
+   "touch": 1.579,
+   "hearing": 2.421,
+   "smell": 1.737,
+   "taste": 1.474,
+   "vision": 2.684,
+   "interoception": 2.737,
+   "mouth_throat": 1,
+   "hand_arm": 1.211,
+   "foot_leg": 0.579,
+   "head": 3,
+   "torso": 1
+  }
+ },
+ {
+  "word": "whereof",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 1.333,
+   "smell": 0,
+   "taste": 0,
+   "vision": 0.778,
+   "interoception": 0,
+   "mouth_throat": 0.667,
+   "hand_arm": 0,
+   "foot_leg": 0,
+   "head": 0.222,
+   "torso": 0
+  },
+  "human": {
+   "touch": 0.077,
+   "hearing": 0.769,
+   "smell": 0.077,
+   "taste": 0.077,
+   "vision": 0.308,
+   "interoception": 0.077,
+   "mouth_throat": 1.059,
+   "hand_arm": 0.529,
+   "foot_leg": 0.706,
+   "head": 1.882,
+   "torso": 0.294
+  }
+ },
+ {
+  "word": "win",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 0,
+   "hearing": 2.5,
+   "smell": 0,
+   "taste": 0,
+   "vision": 2.75,
+   "interoception": 3.417,
+   "mouth_throat": 1.5,
+   "hand_arm": 2.167,
+   "foot_leg": 1,
+   "head": 1,
+   "torso": 1.083
+  },
+  "human": {
+   "touch": 0.35,
+   "hearing": 2.55,
+   "smell": 0,
+   "taste": 0.05,
+   "vision": 3.35,
+   "interoception": 2.65,
+   "mouth_throat": 1.053,
+   "hand_arm": 1.368,
+   "foot_leg": 1.105,
+   "head": 3.105,
+   "torso": 1.105
+  }
+ },
+ {
+  "word": "worm",
+  "set": "confirmatory",
+  "machine": {
+   "touch": 3,
+   "hearing": 0,
+   "smell": 1.083,
+   "taste": 0,
+   "vision": 4.083,
+   "interoception": 0,
+   "mouth_throat": 0,
+   "hand_arm": 2,
+   "foot_leg": 0.167,
+   "head": 0,
+   "torso": 0
+  },
+  "human": {
+   "touch": 2.45,
+   "hearing": 0.15,
+   "smell": 1,
+   "taste": 0.2,
+   "vision": 3.9,
+   "interoception": 0.35,
+   "mouth_throat": 0.5,
+   "hand_arm": 2,
+   "foot_leg": 1.05,
+   "head": 1.8,
+   "torso": 0.95
+  }
+ }
+]

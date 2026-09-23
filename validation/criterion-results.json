@@ -653,6 +653,90 @@
           "pearson": 0.8351876608405661
         }
       }
+    },
+    "zerosAndLevels": {
+      "cells": 3300,
+      "machineMeanZero": 1446,
+      "humanMeanZero": 201,
+      "byChannel": {
+        "touch": {
+          "words": 300,
+          "machineMeanZero": 114,
+          "humanMeanZero": 8,
+          "machineLevel": 0.9604040404040404,
+          "humanLevel": 1.0043703777633324
+        },
+        "hearing": {
+          "words": 300,
+          "machineMeanZero": 53,
+          "humanMeanZero": 5,
+          "machineLevel": 1.185808321308321,
+          "humanLevel": 1.6036691116699997
+        },
+        "smell": {
+          "words": 300,
+          "machineMeanZero": 199,
+          "humanMeanZero": 65,
+          "machineLevel": 0.4622222222222222,
+          "humanLevel": 0.4636463614533334
+        },
+        "taste": {
+          "words": 300,
+          "machineMeanZero": 249,
+          "humanMeanZero": 92,
+          "machineLevel": 0.28500000000000003,
+          "humanLevel": 0.3595533019066668
+        },
+        "vision": {
+          "words": 300,
+          "machineMeanZero": 2,
+          "humanMeanZero": 0,
+          "machineLevel": 2.499631553631553,
+          "humanLevel": 2.881074842883335
+        },
+        "interoception": {
+          "words": 300,
+          "machineMeanZero": 116,
+          "humanMeanZero": 7,
+          "machineLevel": 0.7943686868686868,
+          "humanLevel": 1.0209203697900007
+        },
+        "mouth_throat": {
+          "words": 300,
+          "machineMeanZero": 161,
+          "humanMeanZero": 5,
+          "machineLevel": 0.5643653198653199,
+          "humanLevel": 1.2584991978833342
+        },
+        "hand_arm": {
+          "words": 300,
+          "machineMeanZero": 91,
+          "humanMeanZero": 1,
+          "machineLevel": 1.0989898989898996,
+          "humanLevel": 1.3367401271599997
+        },
+        "foot_leg": {
+          "words": 300,
+          "machineMeanZero": 212,
+          "humanMeanZero": 8,
+          "machineLevel": 0.3721464646464646,
+          "humanLevel": 0.7721480628699997
+        },
+        "head": {
+          "words": 300,
+          "machineMeanZero": 54,
+          "humanMeanZero": 0,
+          "machineLevel": 0.6997469937469941,
+          "humanLevel": 2.3114147050599994
+        },
+        "torso": {
+          "words": 300,
+          "machineMeanZero": 195,
+          "humanMeanZero": 10,
+          "machineLevel": 0.35356565656565664,
+          "humanLevel": 0.8002976468933333
+        }
+      }
     }
   }
 }
