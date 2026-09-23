@@ -91,4 +91,6 @@ const results = await parallel(jobs.map((j) => async () => {
 
 const failed = results.filter((x) => !x || !x.ratings || x.ratings.length !== x.words.length)
 log(`${results.length - failed.length} of ${jobs.length} lists complete; ${results.filter((x) => x && x.retried).length} re-requested once`)
-return { collected: new Date().toISOString(), results }
+// The runtime forbids reading the clock, so the collection date is recorded in
+// raters.json's provenance block after the run returns.
+return { results }
