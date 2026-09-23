@@ -1,0 +1,658 @@
+{
+  "source": {
+    "dataset": "Lancaster Sensorimotor Norms (Lynott et al., 2020)",
+    "doi": "10.3758/s13428-019-01316-z",
+    "osf": "https://osf.io/7emr6/"
+  },
+  "reproduction": {
+    "words": 39707,
+    "maximumPerceptualStrength": {
+      "exact": 39707,
+      "worstAbsoluteDelta": 0
+    },
+    "modalityExclusivity": {
+      "exact": 39707,
+      "worstAbsoluteDelta": 8.264462447726828e-10
+    },
+    "dominantPerceptualModality": {
+      "exact": 39404,
+      "differingByTieBreak": 303,
+      "differingGenuinely": 0
+    },
+    "tolerance": 0.0005
+  },
+  "reliabilityOfMeans": {
+    "touch": {
+      "machine": 0.9922706380605292,
+      "human": 0.8576370912810123
+    },
+    "hearing": {
+      "machine": 0.9898881261030779,
+      "human": 0.8484009043384754
+    },
+    "smell": {
+      "machine": 0.9933646511044487,
+      "human": 0.8953992180249127
+    },
+    "taste": {
+      "machine": 0.9941709947089953,
+      "human": 0.9168887376403686
+    },
+    "vision": {
+      "machine": 0.988971781367839,
+      "human": 0.7841304215918692
+    },
+    "interoception": {
+      "machine": 0.9896993495814974,
+      "human": 0.8255396010820636
+    },
+    "mouth_throat": {
+      "machine": 0.9911488966762123,
+      "human": 0.8212195571213439
+    },
+    "hand_arm": {
+      "machine": 0.9889486076784707,
+      "human": 0.7650574432105675
+    },
+    "foot_leg": {
+      "machine": 0.9921659428493089,
+      "human": 0.7944175861537899
+    },
+    "head": {
+      "machine": 0.9596941791809015,
+      "human": 0.6230582552114208
+    },
+    "torso": {
+      "machine": 0.9872487764451845,
+      "human": 0.742295009223299
+    }
+  },
+  "preregistered": {
+    "confirmatory": {
+      "confirmatoryWords": 246,
+      "perChannel": {
+        "touch": {
+          "n": 246,
+          "spearman": 0.7591450130481873,
+          "pearson": 0.82478601064347,
+          "pearsonCi": [
+            0.7801958737674974,
+            0.8610365695503424
+          ]
+        },
+        "hearing": {
+          "n": 246,
+          "spearman": 0.6990060646194022,
+          "pearson": 0.7279359111104385,
+          "pearsonCi": [
+            0.6632469474920181,
+            0.7818283844494829
+          ]
+        },
+        "smell": {
+          "n": 246,
+          "spearman": 0.5721599806899367,
+          "pearson": 0.7825435954710117,
+          "pearsonCi": [
+            0.7288009029139905,
+            0.8267038292637707
+          ]
+        },
+        "taste": {
+          "n": 246,
+          "spearman": 0.4674934287263327,
+          "pearson": 0.7905153719159687,
+          "pearsonCi": [
+            0.738453768064723,
+            0.8332082048785749
+          ]
+        },
+        "vision": {
+          "n": 246,
+          "spearman": 0.794440585683372,
+          "pearson": 0.7778889104561201,
+          "pearsonCi": [
+            0.723174498160769,
+            0.8229004870771605
+          ]
+        },
+        "interoception": {
+          "n": 246,
+          "spearman": 0.6504796804991831,
+          "pearson": 0.7477610463879382,
+          "pearsonCi": [
+            0.6869318699422913,
+            0.7981850781067572
+          ]
+        },
+        "mouth_throat": {
+          "n": 246,
+          "spearman": 0.681403732292096,
+          "pearson": 0.7655430965958933,
+          "pearsonCi": [
+            0.7082864436733732,
+            0.8127931493562233
+          ]
+        },
+        "hand_arm": {
+          "n": 246,
+          "spearman": 0.6790763799649832,
+          "pearson": 0.7162517281117634,
+          "pearsonCi": [
+            0.649348378702722,
+            0.7721535013401777
+          ]
+        },
+        "foot_leg": {
+          "n": 246,
+          "spearman": 0.6446474967626993,
+          "pearson": 0.7323535215826519,
+          "pearsonCi": [
+            0.668513433362661,
+            0.7854795607626046
+          ]
+        },
+        "head": {
+          "n": 246,
+          "spearman": 0.5609621172501928,
+          "pearson": 0.5814693018071077,
+          "pearsonCi": [
+            0.4921894384022569,
+            0.6586433629701977
+          ]
+        },
+        "torso": {
+          "n": 246,
+          "spearman": 0.5985632457116694,
+          "pearson": 0.6776773755824707,
+          "pearsonCi": [
+            0.6037785675583115,
+            0.7400275893276755
+          ]
+        }
+      },
+      "H1": {
+        "statistic": "mean rho(perceptual) - mean rho(action)",
+        "estimate": 0.024190197814740966,
+        "ci": [
+          -0.03323530599597935,
+          0.08015236617402843
+        ],
+        "resamples": 10000,
+        "verdict": "unresolved"
+      },
+      "H1b": {
+        "statistic": "mean disattenuated r(perceptual) - mean disattenuated r(action)",
+        "uncorrectedPearsonGap": {
+          "estimate": 0.0805794695948473,
+          "ci": [
+            0.029727589706242785,
+            0.1311115154336865
+          ],
+          "resamples": 10000
+        },
+        "corrected": {
+          "estimate": 0.03469574340120607,
+          "ci": [
+            -0.022692285823175284,
+            0.0937545300628051
+          ],
+          "resamples": 10000
+        },
+        "verdict": "consistent with a reliability artefact",
+        "note": "Reliabilities held fixed inside the bootstrap, so the interval is somewhat too narrow.",
+        "correctedByChannel": {
+          "touch": 0.8940760025024159,
+          "hearing": 0.794327367887389,
+          "smell": 0.8297472758686034,
+          "taste": 0.827983068862428,
+          "vision": 0.8833472851458968,
+          "interoception": 0.827260407148531,
+          "mouth_throat": 0.848536546008693,
+          "hand_arm": 0.8234396947110135,
+          "foot_leg": 0.8249054857738886,
+          "head": 0.7519622415545835,
+          "torso": 0.7916284877918446
+        }
+      },
+      "H3": {
+        "maxStrengthGap": {
+          "estimate": -0.28976329498759323,
+          "ci": [
+            -0.3915710950548892,
+            -0.18475182928552059
+          ],
+          "resamples": 10000
+        },
+        "exclusivityGap": {
+          "estimate": 0.10936441691625443,
+          "ci": [
+            0.08763773668126307,
+            0.13233207795339103
+          ],
+          "resamples": 10000
+        },
+        "verdict": "contradicted"
+      }
+    },
+    "sensitivityBlankAsZero": {
+      "confirmatoryWords": 246,
+      "perChannel": {
+        "touch": {
+          "n": 246,
+          "spearman": 0.7591450130481873,
+          "pearson": 0.82478601064347,
+          "pearsonCi": [
+            0.7801958737674974,
+            0.8610365695503424
+          ]
+        },
+        "hearing": {
+          "n": 246,
+          "spearman": 0.6990060646194022,
+          "pearson": 0.7279359111104385,
+          "pearsonCi": [
+            0.6632469474920181,
+            0.7818283844494829
+          ]
+        },
+        "smell": {
+          "n": 246,
+          "spearman": 0.5721599806899367,
+          "pearson": 0.7825435954710117,
+          "pearsonCi": [
+            0.7288009029139905,
+            0.8267038292637707
+          ]
+        },
+        "taste": {
+          "n": 246,
+          "spearman": 0.4674934287263327,
+          "pearson": 0.7905153719159687,
+          "pearsonCi": [
+            0.738453768064723,
+            0.8332082048785749
+          ]
+        },
+        "vision": {
+          "n": 246,
+          "spearman": 0.794440585683372,
+          "pearson": 0.7778889104561201,
+          "pearsonCi": [
+            0.723174498160769,
+            0.8229004870771605
+          ]
+        },
+        "interoception": {
+          "n": 246,
+          "spearman": 0.6504796804991831,
+          "pearson": 0.7477610463879382,
+          "pearsonCi": [
+            0.6869318699422913,
+            0.7981850781067572
+          ]
+        },
+        "mouth_throat": {
+          "n": 246,
+          "spearman": 0.681403732292096,
+          "pearson": 0.7655430965958933,
+          "pearsonCi": [
+            0.7082864436733732,
+            0.8127931493562233
+          ]
+        },
+        "hand_arm": {
+          "n": 246,
+          "spearman": 0.6790763799649832,
+          "pearson": 0.7162517281117634,
+          "pearsonCi": [
+            0.649348378702722,
+            0.7721535013401777
+          ]
+        },
+        "foot_leg": {
+          "n": 246,
+          "spearman": 0.6446474967626993,
+          "pearson": 0.7323535215826519,
+          "pearsonCi": [
+            0.668513433362661,
+            0.7854795607626046
+          ]
+        },
+        "head": {
+          "n": 246,
+          "spearman": 0.5609621172501928,
+          "pearson": 0.5814693018071077,
+          "pearsonCi": [
+            0.4921894384022569,
+            0.6586433629701977
+          ]
+        },
+        "torso": {
+          "n": 246,
+          "spearman": 0.5985632457116694,
+          "pearson": 0.6776773755824707,
+          "pearsonCi": [
+            0.6037785675583115,
+            0.7400275893276755
+          ]
+        }
+      },
+      "H1": {
+        "statistic": "mean rho(perceptual) - mean rho(action)",
+        "estimate": 0.024190197814740966,
+        "ci": [
+          -0.03323530599597935,
+          0.08015236617402843
+        ],
+        "resamples": 10000,
+        "verdict": "unresolved"
+      },
+      "H1b": {
+        "statistic": "mean disattenuated r(perceptual) - mean disattenuated r(action)",
+        "uncorrectedPearsonGap": {
+          "estimate": 0.0805794695948473,
+          "ci": [
+            0.029727589706242785,
+            0.1311115154336865
+          ],
+          "resamples": 10000
+        },
+        "corrected": {
+          "estimate": 0.03469574340120607,
+          "ci": [
+            -0.022692285823175284,
+            0.0937545300628051
+          ],
+          "resamples": 10000
+        },
+        "verdict": "consistent with a reliability artefact",
+        "note": "Reliabilities held fixed inside the bootstrap, so the interval is somewhat too narrow.",
+        "correctedByChannel": {
+          "touch": 0.8940760025024159,
+          "hearing": 0.794327367887389,
+          "smell": 0.8297472758686034,
+          "taste": 0.827983068862428,
+          "vision": 0.8833472851458968,
+          "interoception": 0.827260407148531,
+          "mouth_throat": 0.848536546008693,
+          "hand_arm": 0.8234396947110135,
+          "foot_leg": 0.8249054857738886,
+          "head": 0.7519622415545835,
+          "torso": 0.7916284877918446
+        }
+      },
+      "H3": {
+        "maxStrengthGap": {
+          "estimate": -0.28976329498759323,
+          "ci": [
+            -0.3915710950548892,
+            -0.18475182928552059
+          ],
+          "resamples": 10000
+        },
+        "exclusivityGap": {
+          "estimate": 0.10936441691625443,
+          "ci": [
+            0.08763773668126307,
+            0.13233207795339103
+          ],
+          "resamples": 10000
+        },
+        "verdict": "contradicted"
+      }
+    },
+    "H2": {
+      "byChannel": {
+        "touch": {
+          "machine": 0.9167366400153022,
+          "human": 0.258939862294583,
+          "difference": 0.6577967777207192
+        },
+        "hearing": {
+          "machine": 0.8935687109233098,
+          "human": 0.24505287634029777,
+          "difference": 0.648515834583012
+        },
+        "smell": {
+          "machine": 0.9277432067092809,
+          "human": 0.33177479521208403,
+          "difference": 0.5959684114971968
+        },
+        "taste": {
+          "machine": 0.936010333938118,
+          "human": 0.390197628703061,
+          "difference": 0.545812705235057
+        },
+        "vision": {
+          "machine": 0.8849384144668981,
+          "human": 0.1740219807579257,
+          "difference": 0.7109164337089724
+        },
+        "interoception": {
+          "machine": 0.8917783553227975,
+          "human": 0.2153542450490219,
+          "difference": 0.6764241102737756
+        },
+        "mouth_throat": {
+          "machine": 0.9056946856448299,
+          "human": 0.19828850184148497,
+          "difference": 0.707406183803345
+        },
+        "hand_arm": {
+          "machine": 0.8847221160561237,
+          "human": 0.14917987899726928,
+          "difference": 0.7355422370588545
+        },
+        "foot_leg": {
+          "machine": 0.9156957520445168,
+          "human": 0.17223128494566908,
+          "difference": 0.7434644670988477
+        },
+        "head": {
+          "machine": 0.6712757685698926,
+          "human": 0.08172714174511815,
+          "difference": 0.5895486268247744
+        },
+        "torso": {
+          "machine": 0.8691127833372867,
+          "human": 0.13426928650427514,
+          "difference": 0.7348434968330115
+        }
+      },
+      "machineHigherOnEveryChannel": true
+    }
+  },
+  "exploratory": {
+    "allWords": {
+      "words": 300,
+      "perChannel": {
+        "touch": {
+          "n": 300,
+          "spearman": 0.7661428823879608,
+          "pearson": 0.8252798195051984,
+          "pearsonCi": [
+            0.7854420382012615,
+            0.8583077811096694
+          ]
+        },
+        "hearing": {
+          "n": 300,
+          "spearman": 0.7083713772193949,
+          "pearson": 0.74124875154845,
+          "pearsonCi": [
+            0.6855518683533831,
+            0.7883192237379655
+          ]
+        },
+        "smell": {
+          "n": 300,
+          "spearman": 0.5812650429904619,
+          "pearson": 0.7862800280648847,
+          "pearsonCi": [
+            0.7388223336407094,
+            0.8259773818860872
+          ]
+        },
+        "taste": {
+          "n": 300,
+          "spearman": 0.47215442488698967,
+          "pearson": 0.8042249402484459,
+          "pearsonCi": [
+            0.760217113549188,
+            0.8408860259473248
+          ]
+        },
+        "vision": {
+          "n": 300,
+          "spearman": 0.7857251389875054,
+          "pearson": 0.7712418139940177,
+          "pearsonCi": [
+            0.7209664340474139,
+            0.8134407071949248
+          ]
+        },
+        "interoception": {
+          "n": 300,
+          "spearman": 0.6484515495617439,
+          "pearson": 0.7140104792682231,
+          "pearsonCi": [
+            0.653616823473997,
+            0.765368289378371
+          ]
+        },
+        "mouth_throat": {
+          "n": 300,
+          "spearman": 0.7039924024513387,
+          "pearson": 0.7771914398271593,
+          "pearsonCi": [
+            0.72802285904675,
+            0.8184053313987223
+          ]
+        },
+        "hand_arm": {
+          "n": 300,
+          "spearman": 0.6802829392101898,
+          "pearson": 0.7298966885485213,
+          "pearsonCi": [
+            0.6722162356404622,
+            0.7787698836895847
+          ]
+        },
+        "foot_leg": {
+          "n": 300,
+          "spearman": 0.6581856731901451,
+          "pearson": 0.7337905462529718,
+          "pearsonCi": [
+            0.6767862617692646,
+            0.7820479457374485
+          ]
+        },
+        "head": {
+          "n": 300,
+          "spearman": 0.5514872800297133,
+          "pearson": 0.5650259431959689,
+          "pearsonCi": [
+            0.48266654568395323,
+            0.6374795999362683
+          ]
+        },
+        "torso": {
+          "n": 300,
+          "spearman": 0.5756565222398009,
+          "pearson": 0.6581154045857887,
+          "pearsonCi": [
+            0.5887502310617072,
+            0.7178585365478997
+          ]
+        }
+      },
+      "maximumPerceptualStrength": {
+        "pearson": 0.7542652171363123,
+        "ci": [
+          0.7008888650793322,
+          0.7992408191203694
+        ]
+      },
+      "modalityExclusivity": {
+        "pearson": 0.4319442736209151,
+        "ci": [
+          0.3350922842534729,
+          0.5197631568544558
+        ]
+      },
+      "dominantAgreement": {
+        "matches": 239,
+        "of": 300,
+        "proportion": 0.7966666666666666
+      },
+      "means": {
+        "machineMaxStrength": 2.888160173160174,
+        "humanMaxStrength": 3.132333788503335,
+        "machineExclusivity": 0.5332578295330354,
+        "humanExclusivity": 0.42620103262648523
+      }
+    },
+    "headChannel": {
+      "all300": {
+        "n": 300,
+        "spearman": 0.5514872800297133,
+        "pearson": 0.5650259431959689,
+        "pearsonCi": [
+          0.48266654568395323,
+          0.6374795999362683
+        ]
+      },
+      "pilotPearson60": 0.445
+    },
+    "modelStabilityOnOverlap": {
+      "words": 54,
+      "byChannel": {
+        "touch": {
+          "n": 54,
+          "pearson": 0.9015535635095957
+        },
+        "hearing": {
+          "n": 54,
+          "pearson": 0.9503465038883481
+        },
+        "smell": {
+          "n": 54,
+          "pearson": 0.8410517629718199
+        },
+        "taste": {
+          "n": 54,
+          "pearson": 0.9144431654345019
+        },
+        "vision": {
+          "n": 54,
+          "pearson": 0.955665314114118
+        },
+        "interoception": {
+          "n": 54,
+          "pearson": 0.9134269607708618
+        },
+        "mouth_throat": {
+          "n": 54,
+          "pearson": 0.9344939649274011
+        },
+        "hand_arm": {
+          "n": 54,
+          "pearson": 0.9145512940544704
+        },
+        "foot_leg": {
+          "n": 54,
+          "pearson": 0.8923174715744631
+        },
+        "head": {
+          "n": 54,
+          "pearson": 0.8861363260153172
+        },
+        "torso": {
+          "n": 54,
+          "pearson": 0.8351876608405661
+        }
+      }
+    }
+  }
+}

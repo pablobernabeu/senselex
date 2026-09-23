@@ -1,0 +1,122 @@
+{
+  "design": {
+    "raters": 12,
+    "words": 300,
+    "recordsValidated": 3557,
+    "wordsMarkedUnknown": 43,
+    "blankChannels": 0,
+    "provenance": {
+      "model": "claude-opus-5-5",
+      "provider": "Anthropic",
+      "runDate": "2026-09-23",
+      "independentCalls": true,
+      "collection": "Twelve raters x five lists of 60 words; each list a separate call with no shared context and no tools (run_panel.workflow.js, run wf_342bab11-1c6). The run completed all 60 calls; its final line failed because the runtime forbids reading the clock, and the results were recovered by replaying the cached calls, which makes no new model requests.",
+      "temperature": "provider default (not set)",
+      "promptFile": "rater-prompt.md",
+      "personaFile": "personas.json",
+      "listFile": "panel-lists.json",
+      "wordSample": "words-sample.json",
+      "preregistration": "PREDICTIONS.md; public branch prereg-panel-300 at github.com/pablobernabeu/senselex (commit 668d017 at 2026-09-22T23:20:28Z, amendment ab874da at 2026-09-22T23:40:29Z)"
+    }
+  },
+  "reliability": {
+    "touch": {
+      "r1": 0.9167366400153022,
+      "rk": 0.9850880938260328,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    },
+    "hearing": {
+      "r1": 0.8935687109233098,
+      "rk": 0.9805350522534922,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    },
+    "smell": {
+      "r1": 0.9277432067092809,
+      "rk": 0.9871855945820216,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    },
+    "taste": {
+      "r1": 0.936010333938118,
+      "rk": 0.9887343162029074,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    },
+    "vision": {
+      "r1": 0.8849384144668981,
+      "rk": 0.9787892872076727,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    },
+    "interoception": {
+      "r1": 0.8917783553227975,
+      "rk": 0.9801751620831125,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    },
+    "mouth_throat": {
+      "r1": 0.9056946856448299,
+      "rk": 0.9829418888270821,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    },
+    "hand_arm": {
+      "r1": 0.8847221160561237,
+      "rk": 0.9787451768084146,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    },
+    "foot_leg": {
+      "r1": 0.9156957520445168,
+      "rk": 0.9848875918365745,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    },
+    "head": {
+      "r1": 0.6712757685698926,
+      "rk": 0.9245418630269785,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    },
+    "torso": {
+      "r1": 0.8691127833372867,
+      "rk": 0.9755147971846071,
+      "halfSize": 6,
+      "words": 284,
+      "splits": 200
+    }
+  },
+  "structure": {
+    "dominantModalityCounts": {
+      "vision": 195,
+      "interoception": 27,
+      "hearing": 44,
+      "taste": 9,
+      "smell": 7,
+      "touch": 18
+    },
+    "visionDominantShare": 0.65,
+    "modalityExclusivity": {
+      "mean": 0.533257829533035,
+      "sd": 0.18475950224592996,
+      "min": 0.06976744186046512,
+      "max": 1
+    },
+    "maximumPerceptualStrength": {
+      "mean": 2.888160173160174,
+      "sd": 1.2476280129272812
+    }
+  }
+}

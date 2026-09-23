@@ -165,8 +165,39 @@ for (const [word, pub] of published) {
 }
 failures.sort((a, b) => b.difference - a.difference);
 const worst = failures.length ? failures[0].difference : 0;
+
+// Where a word's published means do not match its own ratings, check whether they
+// match another word's ratings exactly. A published row that reproduces some
+// other word's ratings to within tolerance points to values attached to the
+// wrong item, not to any difference in how the means were computed. Each
+// component is checked separately, since perception and action were rated by
+// different participants and merged afterwards.
+function componentMeans(word, component, dims) {
+  return averageRatings(known(word, component), dims);
+}
+const matchIndex = { Perception: new Map(), Action: new Map() };
+const keyOf = (means, dims) => dims.map((d) => (means[d] === null ? 'x' : means[d].toFixed(5))).join('|');
+for (const word of vectors.keys()) {
+  matchIndex.Perception.set(keyOf(componentMeans(word, 'Perception', PERCEPTUAL_DIMENSIONS), PERCEPTUAL_DIMENSIONS), word);
+  matchIndex.Action.set(keyOf(componentMeans(word, 'Action', ACTION_DIMENSIONS), ACTION_DIMENSIONS), word);
+}
+for (const f of failures) {
+  const pub = published.get(f.word);
+  const pubP = keyOf(pub, PERCEPTUAL_DIMENSIONS);
+  const pubA = keyOf(pub, ACTION_DIMENSIONS);
+  const ownP = keyOf(componentMeans(f.word, 'Perception', PERCEPTUAL_DIMENSIONS), PERCEPTUAL_DIMENSIONS);
+  const ownA = keyOf(componentMeans(f.word, 'Action', ACTION_DIMENSIONS), ACTION_DIMENSIONS);
+  f.perception = pubP === ownP ? 'matches own ratings' : (matchIndex.Perception.get(pubP) ? `matches ${matchIndex.Perception.get(pubP)}` : 'matches no word');
+  f.action = pubA === ownA ? 'matches own ratings' : (matchIndex.Action.get(pubA) ? `matches ${matchIndex.Action.get(pubA)}` : 'matches no word');
+}
+const matchesAnother = (status) => status !== 'matches own ratings' && status !== 'matches no word';
+const displaced = failures.filter((f) => matchesAnother(f.perception) || matchesAnother(f.action));
 const inTrialNotPublished = [...vectors.keys()].filter((w) => !published.has(w)).length;
 process.stdout.write(`  ${exact.toLocaleString()} of ${compared.toLocaleString()} words reproduce on all eleven means; ${failures.length} differ (largest ${worst.toExponential(2)})\n`);
+process.stdout.write(`  of those, ${displaced.length} have published means that reproduce another word's ratings exactly
+`);
+for (const f of displaced.slice(0, 12)) process.stdout.write(`    ${f.word}: perception ${f.perception}; action ${f.action}
+`);
 if (paddedInPublished.length) {
   process.stdout.write(`  published words with trailing whitespace, matched after trimming: ${paddedInPublished.map((w) => JSON.stringify(w)).join(', ')}\n`);
 }
@@ -265,6 +296,7 @@ const results = {
     wordsDiffering: failures.length,
     largestDifference: worst,
     differences: failures,
+    wordsWhosePublishedMeansMatchAnotherWord: displaced.length,
     publishedWordsWithTrailingWhitespace: paddedInPublished,
     tolerance: TOLERANCE,
     trialWordsAbsentFromPublished: inTrialNotPublished,

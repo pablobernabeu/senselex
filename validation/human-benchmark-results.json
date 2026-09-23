@@ -1,0 +1,1704 @@
+{
+  "source": {
+    "dataset": "Lancaster Sensorimotor Norms, trial-level ratings (Lynott et al., 2020)",
+    "file": "Individual_participant_ratings_all_items_sensorimotor_norms_for_39954_words.UPDATED.csv",
+    "sha256": "3f418ae3a8234a8377f1a6c4cac1afd7ea3e5bd481705fe407997617d3ee7a65",
+    "osf": "https://osf.io/rwhs6/"
+  },
+  "reproduction": {
+    "wordsCompared": 39707,
+    "wordsReproducingAllEleven": 39617,
+    "wordsDiffering": 90,
+    "largestDifference": 3.961111111111111,
+    "differences": [
+      {
+        "word": "HOT ROD",
+        "dimension": "mouth_throat",
+        "ours": 0.3888888888888889,
+        "published": 4.35,
+        "difference": 3.961111111111111,
+        "knownRaters": {
+          "perception": 21,
+          "action": 18
+        },
+        "perception": "matches own ratings",
+        "action": "matches HOT SAUCE"
+      },
+      {
+        "word": "SELF DEFENSE",
+        "dimension": "hand_arm",
+        "ours": 4.190476190476191,
+        "published": 0.565217391,
+        "difference": 3.6252587994761907,
+        "knownRaters": {
+          "perception": 20,
+          "action": 21
+        },
+        "perception": "matches own ratings",
+        "action": "matches SELF ESTEEM"
+      },
+      {
+        "word": "HOT SAUCE",
+        "dimension": "mouth_throat",
+        "ours": 4.35,
+        "published": 0.789473684,
+        "difference": 3.560526316,
+        "knownRaters": {
+          "perception": 18,
+          "action": 20
+        },
+        "perception": "matches own ratings",
+        "action": "matches HOT SPOT"
+      },
+      {
+        "word": "HOT SPOT",
+        "dimension": "foot_leg",
+        "ours": 0.47368421052631576,
+        "published": 3.894736842,
+        "difference": 3.421052631473684,
+        "knownRaters": {
+          "perception": 17,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches HOT TUB"
+      },
+      {
+        "word": "SELF CONFIDENCE",
+        "dimension": "hand_arm",
+        "ours": 1.205128205128205,
+        "published": 4.19047619,
+        "difference": 2.9853479848717948,
+        "knownRaters": {
+          "perception": 37,
+          "action": 39
+        },
+        "perception": "matches own ratings",
+        "action": "matches SELF DEFENSE"
+      },
+      {
+        "word": "HOT-WATER BOTTLE",
+        "dimension": "mouth_throat",
+        "ours": 1.1428571428571428,
+        "published": 3.952380952,
+        "difference": 2.809523809142857,
+        "knownRaters": {
+          "perception": 20,
+          "action": 21
+        },
+        "perception": "matches own ratings",
+        "action": "matches HOT CHOCOLATE"
+      },
+      {
+        "word": "HOT TUB",
+        "dimension": "foot_leg",
+        "ours": 3.8947368421052633,
+        "published": 1.095238095,
+        "difference": 2.7994987471052633,
+        "knownRaters": {
+          "perception": 16,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches HOT-WATER BOTTLE"
+      },
+      {
+        "word": "HOT PANTS",
+        "dimension": "hand_arm",
+        "ours": 0.5238095238095238,
+        "published": 3.263157895,
+        "difference": 2.7393483711904763,
+        "knownRaters": {
+          "perception": 16,
+          "action": 21
+        },
+        "perception": "matches own ratings",
+        "action": "matches HOT POTATO"
+      },
+      {
+        "word": "HOT LINE",
+        "dimension": "foot_leg",
+        "ours": 0,
+        "published": 2.476190476,
+        "difference": 2.476190476,
+        "knownRaters": {
+          "perception": 16,
+          "action": 16
+        },
+        "perception": "matches own ratings",
+        "action": "matches HOT PANTS"
+      },
+      {
+        "word": "HOT DOG",
+        "dimension": "mouth_throat",
+        "ours": 3.473684210526316,
+        "published": 1.125,
+        "difference": 2.348684210526316,
+        "knownRaters": {
+          "perception": 21,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches HOT LINE"
+      },
+      {
+        "word": "BLACK EYE",
+        "dimension": "mouth_throat",
+        "ours": 0,
+        "published": 2.315789474,
+        "difference": 2.315789474,
+        "knownRaters": {
+          "perception": 18,
+          "action": 18
+        },
+        "perception": "matches own ratings",
+        "action": "matches BLACK-EYED PEA"
+      },
+      {
+        "word": "WAKE-UP CALL",
+        "dimension": "foot_leg",
+        "ours": 0.3157894736842105,
+        "published": 2.45,
+        "difference": 2.1342105263157896,
+        "knownRaters": {
+          "perception": 18,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches WAKE UP"
+      },
+      {
+        "word": "WAKE UP",
+        "dimension": "foot_leg",
+        "ours": 2.45,
+        "published": 0.315789474,
+        "difference": 2.1342105260000004,
+        "knownRaters": {
+          "perception": 19,
+          "action": 20
+        },
+        "perception": "matches own ratings",
+        "action": "matches WAKE-UP CALL"
+      },
+      {
+        "word": "BLACK-EYED PEA",
+        "dimension": "mouth_throat",
+        "ours": 2.3157894736842106,
+        "published": 0.294117647,
+        "difference": 2.0216718266842104,
+        "knownRaters": {
+          "perception": 19,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches BLACK BOX"
+      },
+      {
+        "word": "DROP-DOWN MENU",
+        "dimension": "foot_leg",
+        "ours": 0.21052631578947367,
+        "published": 2.214285714,
+        "difference": 2.0037593982105264,
+        "knownRaters": {
+          "perception": 16,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches DROP BY"
+      },
+      {
+        "word": "SELF-RISING FLOUR",
+        "dimension": "head",
+        "ours": 1.75,
+        "published": 3.743589744,
+        "difference": 1.9935897439999999,
+        "knownRaters": {
+          "perception": 19,
+          "action": 20
+        },
+        "perception": "matches own ratings",
+        "action": "matches SELF CONFIDENCE"
+      },
+      {
+        "word": "BLACK BOX",
+        "dimension": "head",
+        "ours": 1.8823529411764706,
+        "published": 3.833333333,
+        "difference": 1.9509803918235296,
+        "knownRaters": {
+          "perception": 20,
+          "action": 17
+        },
+        "perception": "matches own ratings",
+        "action": "matches BLACK EYE"
+      },
+      {
+        "word": "FIRST AID",
+        "dimension": "foot_leg",
+        "ours": 2.9,
+        "published": 0.952380952,
+        "difference": 1.947619048,
+        "knownRaters": {
+          "perception": 17,
+          "action": 20
+        },
+        "perception": "matches own ratings",
+        "action": "matches FIRST-AID KIT"
+      },
+      {
+        "word": "FIRST-AID KIT",
+        "dimension": "foot_leg",
+        "ours": 0.9523809523809523,
+        "published": 2.9,
+        "difference": 1.9476190476190476,
+        "knownRaters": {
+          "perception": 18,
+          "action": 21
+        },
+        "perception": "matches own ratings",
+        "action": "matches FIRST AID"
+      },
+      {
+        "word": "DROP DEAD",
+        "dimension": "hand_arm",
+        "ours": 1.65,
+        "published": 3.526315789,
+        "difference": 1.876315789,
+        "knownRaters": {
+          "perception": 20,
+          "action": 20
+        },
+        "perception": "matches own ratings",
+        "action": "matches DROP-DOWN MENU"
+      },
+      {
+        "word": "SELF ESTEEM",
+        "dimension": "hand_arm",
+        "ours": 0.5652173913043478,
+        "published": 2.3,
+        "difference": 1.7347826086956522,
+        "knownRaters": {
+          "perception": 19,
+          "action": 23
+        },
+        "perception": "matches own ratings",
+        "action": "matches SELF-RISING FLOUR"
+      },
+      {
+        "word": "PICK-UP TRUCK",
+        "dimension": "hand_arm",
+        "ours": 1.6666666666666667,
+        "published": 3.3,
+        "difference": 1.633333333333333,
+        "knownRaters": {
+          "perception": 17,
+          "action": 21
+        },
+        "perception": "matches own ratings",
+        "action": "matches PICK OUT"
+      },
+      {
+        "word": "PICK OUT",
+        "dimension": "hand_arm",
+        "ours": 3.3,
+        "published": 1.666666667,
+        "difference": 1.6333333329999997,
+        "knownRaters": {
+          "perception": 19,
+          "action": 20
+        },
+        "perception": "matches own ratings",
+        "action": "matches PICK-UP TRUCK"
+      },
+      {
+        "word": "HOT POTATO",
+        "dimension": "hand_arm",
+        "ours": 3.263157894736842,
+        "published": 2,
+        "difference": 1.263157894736842,
+        "knownRaters": {
+          "perception": 19,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches HOT ROD"
+      },
+      {
+        "word": "DROP BY",
+        "dimension": "torso",
+        "ours": 1.2142857142857142,
+        "published": 1.95,
+        "difference": 0.7357142857142858,
+        "knownRaters": {
+          "perception": 35,
+          "action": 28
+        },
+        "perception": "matches own ratings",
+        "action": "matches DROP DEAD"
+      },
+      {
+        "word": "HOT CHOCOLATE",
+        "dimension": "torso",
+        "ours": 1.1428571428571428,
+        "published": 0.473684211,
+        "difference": 0.6691729318571428,
+        "knownRaters": {
+          "perception": 17,
+          "action": 21
+        },
+        "perception": "matches own ratings",
+        "action": "matches HOT DOG"
+      },
+      {
+        "word": "PAPERHANGER",
+        "dimension": "head",
+        "ours": 1.2,
+        "published": 1.454545455,
+        "difference": 0.25454545500000014,
+        "knownRaters": {
+          "perception": 14,
+          "action": 10
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "UNDERCOVER AGENT",
+        "dimension": "mouth_throat",
+        "ours": 1.5789473684210527,
+        "published": 1.75,
+        "difference": 0.17105263157894735,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "CLASSIFIER",
+        "dimension": "hand_arm",
+        "ours": 1,
+        "published": 1.166666667,
+        "difference": 0.1666666670000001,
+        "knownRaters": {
+          "perception": 17,
+          "action": 17
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "EXPOSEDNESS",
+        "dimension": "head",
+        "ours": 2,
+        "published": 2.166666667,
+        "difference": 0.16666666699999988,
+        "knownRaters": {
+          "perception": 17,
+          "action": 17
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "GOLD RUSH",
+        "dimension": "mouth_throat",
+        "ours": 0.8333333333333334,
+        "published": 1,
+        "difference": 0.16666666666666663,
+        "knownRaters": {
+          "perception": 20,
+          "action": 18
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "APPROVER",
+        "dimension": "mouth_throat",
+        "ours": 1.1764705882352942,
+        "published": 1.333333333,
+        "difference": 0.15686274476470574,
+        "knownRaters": {
+          "perception": 20,
+          "action": 17
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "JALAPENO",
+        "dimension": "torso",
+        "ours": 1,
+        "published": 1.15,
+        "difference": 0.1499999999999999,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "CRADLE",
+        "dimension": "mouth_throat",
+        "ours": 0.3684210526315789,
+        "published": 0.5,
+        "difference": 0.13157894736842107,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "PARASITE",
+        "dimension": "head",
+        "ours": 1.4210526315789473,
+        "published": 1.55,
+        "difference": 0.1289473684210527,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "FREE REIN",
+        "dimension": "mouth_throat",
+        "ours": 1.6666666666666667,
+        "published": 1.789473684,
+        "difference": 0.12280701733333332,
+        "knownRaters": {
+          "perception": 19,
+          "action": 18
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "DARKENED",
+        "dimension": "head",
+        "ours": 2.5789473684210527,
+        "published": 2.7,
+        "difference": 0.12105263157894752,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "GRIEVE",
+        "dimension": "mouth_throat",
+        "ours": 1.5789473684210527,
+        "published": 1.7,
+        "difference": 0.1210526315789473,
+        "knownRaters": {
+          "perception": 19,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "POLYGRAPH",
+        "dimension": "hand_arm",
+        "ours": 1.5789473684210527,
+        "published": 1.7,
+        "difference": 0.1210526315789473,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "CHILDLIKE",
+        "dimension": "mouth_throat",
+        "ours": 1.631578947368421,
+        "published": 1.75,
+        "difference": 0.11842105263157898,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "SYCAMORE",
+        "dimension": "head",
+        "ours": 2.1333333333333333,
+        "published": 2.25,
+        "difference": 0.1166666666666667,
+        "knownRaters": {
+          "perception": 13,
+          "action": 15
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "DESIGNATIVE",
+        "dimension": "hand_arm",
+        "ours": 2.0588235294117645,
+        "published": 1.944444444,
+        "difference": 0.11437908541176456,
+        "knownRaters": {
+          "perception": 16,
+          "action": 17
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "OVERINDULGE",
+        "dimension": "torso",
+        "ours": 1.7894736842105263,
+        "published": 1.9,
+        "difference": 0.11052631578947358,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "TIC",
+        "dimension": "mouth_throat",
+        "ours": 2.2666666666666666,
+        "published": 2.375,
+        "difference": 0.10833333333333339,
+        "knownRaters": {
+          "perception": 14,
+          "action": 15
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "RETEST",
+        "dimension": "head",
+        "ours": 2.8421052631578947,
+        "published": 2.95,
+        "difference": 0.10789473684210549,
+        "knownRaters": {
+          "perception": 19,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "DISSECTED",
+        "dimension": "head",
+        "ours": 2,
+        "published": 2.105263158,
+        "difference": 0.10526315800000008,
+        "knownRaters": {
+          "perception": 20,
+          "action": 18
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "GIGABYTE",
+        "dimension": "head",
+        "ours": 1.894736842105263,
+        "published": 2,
+        "difference": 0.10526315789473695,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "RECOVERABLE",
+        "dimension": "mouth_throat",
+        "ours": 1.1111111111111112,
+        "published": 1.210526316,
+        "difference": 0.09941520488888878,
+        "knownRaters": {
+          "perception": 20,
+          "action": 18
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "CROSSROADS",
+        "dimension": "foot_leg",
+        "ours": 1.8333333333333333,
+        "published": 1.736842105,
+        "difference": 0.09649122833333323,
+        "knownRaters": {
+          "perception": 20,
+          "action": 18
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "PROPONENT",
+        "dimension": "head",
+        "ours": 2.2777777777777777,
+        "published": 2.368421053,
+        "difference": 0.09064327522222237,
+        "knownRaters": {
+          "perception": 17,
+          "action": 18
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "PUTTY",
+        "dimension": "head",
+        "ours": 1.3333333333333333,
+        "published": 1.421052632,
+        "difference": 0.08771929866666683,
+        "knownRaters": {
+          "perception": 20,
+          "action": 18
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "TELEPORT",
+        "dimension": "mouth_throat",
+        "ours": 1.263157894736842,
+        "published": 1.35,
+        "difference": 0.08684210526315805,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "LEGIBLY",
+        "dimension": "head",
+        "ours": 2.5625,
+        "published": 2.647058824,
+        "difference": 0.08455882400000014,
+        "knownRaters": {
+          "perception": 19,
+          "action": 16
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "AGAIN",
+        "dimension": "mouth_throat",
+        "ours": 1.368421052631579,
+        "published": 1.45,
+        "difference": 0.08157894736842097,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "ORCHID",
+        "dimension": "head",
+        "ours": 2.4210526315789473,
+        "published": 2.5,
+        "difference": 0.07894736842105265,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "FILTERABLE",
+        "dimension": "mouth_throat",
+        "ours": 1.6875,
+        "published": 1.764705882,
+        "difference": 0.07720588199999989,
+        "knownRaters": {
+          "perception": 17,
+          "action": 16
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "EXPRESSIVELY",
+        "dimension": "torso",
+        "ours": 1.4736842105263157,
+        "published": 1.55,
+        "difference": 0.07631578947368434,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "CONSEQUENCE",
+        "dimension": "hand_arm",
+        "ours": 1.4736842105263157,
+        "published": 1.4,
+        "difference": 0.0736842105263158,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "EXTREMELY",
+        "dimension": "foot_leg",
+        "ours": 1.5263157894736843,
+        "published": 1.6,
+        "difference": 0.0736842105263158,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "HABITANT",
+        "dimension": "head",
+        "ours": 1.7058823529411764,
+        "published": 1.777777778,
+        "difference": 0.07189542505882351,
+        "knownRaters": {
+          "perception": 19,
+          "action": 17
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "SPIRITUALISM",
+        "dimension": "mouth_throat",
+        "ours": 1.5789473684210527,
+        "published": 1.65,
+        "difference": 0.07105263157894726,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "OVENPROOF",
+        "dimension": "hand_arm",
+        "ours": 1.1875,
+        "published": 1.117647059,
+        "difference": 0.06985294099999995,
+        "knownRaters": {
+          "perception": 16,
+          "action": 16
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "RIGHTY",
+        "dimension": "foot_leg",
+        "ours": 1.1764705882352942,
+        "published": 1.111111111,
+        "difference": 0.06535947723529412,
+        "knownRaters": {
+          "perception": 18,
+          "action": 17
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "ATTEMPT",
+        "dimension": "head",
+        "ours": 2.789473684210526,
+        "published": 2.85,
+        "difference": 0.06052631578947398,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "BIRTHMARK",
+        "dimension": "torso",
+        "ours": 1.894736842105263,
+        "published": 1.95,
+        "difference": 0.0552631578947369,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "TAROT CARD",
+        "dimension": "mouth_throat",
+        "ours": 1.105263157894737,
+        "published": 1.05,
+        "difference": 0.0552631578947369,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "REEXAMINE",
+        "dimension": "foot_leg",
+        "ours": 1,
+        "published": 1.05,
+        "difference": 0.050000000000000044,
+        "knownRaters": {
+          "perception": 19,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "SMUG",
+        "dimension": "hand_arm",
+        "ours": 0.8888888888888888,
+        "published": 0.842105263,
+        "difference": 0.04678362588888885,
+        "knownRaters": {
+          "perception": 20,
+          "action": 18
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "ENERGY",
+        "dimension": "mouth_throat",
+        "ours": 2.263157894736842,
+        "published": 2.3,
+        "difference": 0.03684210526315779,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "RATIONALISTICALLY",
+        "dimension": "head",
+        "ours": 3.5625,
+        "published": 3.588235294,
+        "difference": 0.025735293999999964,
+        "knownRaters": {
+          "perception": 18,
+          "action": 16
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "COMPROMISE",
+        "dimension": "foot_leg",
+        "ours": 0.5789473684210527,
+        "published": 0.6,
+        "difference": 0.021052631578947323,
+        "knownRaters": {
+          "perception": 20,
+          "action": 19
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "LIQUID",
+        "dimension": "taste",
+        "ours": 3.0673280918507424,
+        "published": 3.067889679,
+        "difference": 0.0005615871492574698,
+        "knownRaters": {
+          "perception": 16026,
+          "action": 17
+        },
+        "perception": "matches no word",
+        "action": "matches own ratings"
+      },
+      {
+        "word": "HUNGRY",
+        "dimension": "hearing",
+        "ours": 1.0492263538807087,
+        "published": 1.048664837,
+        "difference": 0.0005615168807087123,
+        "knownRaters": {
+          "perception": 16028,
+          "action": 17
+        },
+        "perception": "matches no word",
+        "action": "matches own ratings"
+      },
+      {
+        "word": "BREATH",
+        "dimension": "taste",
+        "ours": 1.1592611083374937,
+        "published": 1.159697953,
+        "difference": 0.00043684466250626386,
+        "knownRaters": {
+          "perception": 16024,
+          "action": 19
+        },
+        "perception": "matches no word",
+        "action": "matches own ratings"
+      },
+      {
+        "word": "LAUGHING",
+        "dimension": "touch",
+        "ours": 0.5283348953452046,
+        "published": 0.528709778,
+        "difference": 0.0003748826547953499,
+        "knownRaters": {
+          "perception": 16005,
+          "action": 17
+        },
+        "perception": "matches no word",
+        "action": "matches own ratings"
+      },
+      {
+        "word": "NOISY",
+        "dimension": "hearing",
+        "ours": 4.751984002999437,
+        "published": 4.752296444,
+        "difference": 0.0003124410005623801,
+        "knownRaters": {
+          "perception": 16003,
+          "action": 17
+        },
+        "perception": "matches no word",
+        "action": "matches own ratings"
+      },
+      {
+        "word": "REPUBLIC",
+        "dimension": "interoception",
+        "ours": 0.6480160788381742,
+        "published": 0.648275415,
+        "difference": 0.0002593361618257184,
+        "knownRaters": {
+          "perception": 15424,
+          "action": 16
+        },
+        "perception": "matches no word",
+        "action": "matches own ratings"
+      },
+      {
+        "word": "GRASS",
+        "dimension": "interoception",
+        "ours": 0.43849665436808205,
+        "published": 0.438246514,
+        "difference": 0.0002501403680820746,
+        "knownRaters": {
+          "perception": 15991,
+          "action": 19
+        },
+        "perception": "matches no word",
+        "action": "matches own ratings"
+      },
+      {
+        "word": "HONEY",
+        "dimension": "vision",
+        "ours": 3.6388367729831144,
+        "published": 3.63902439,
+        "difference": 0.0001876170168855218,
+        "knownRaters": {
+          "perception": 15990,
+          "action": 19
+        },
+        "perception": "matches no word",
+        "action": "matches own ratings"
+      },
+      {
+        "word": "VINTAGE",
+        "dimension": "head",
+        "ours": 2.3127947756681584,
+        "published": 2.312654937,
+        "difference": 0.0001398386681583652,
+        "knownRaters": {
+          "perception": 20,
+          "action": 16538
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "ECHO",
+        "dimension": "hearing",
+        "ours": 4.643646581330003,
+        "published": 4.643521698,
+        "difference": 0.00012488333000337803,
+        "knownRaters": {
+          "perception": 16015,
+          "action": 19
+        },
+        "perception": "matches no word",
+        "action": "matches own ratings"
+      },
+      {
+        "word": "ENDURING",
+        "dimension": "hand_arm",
+        "ours": 1.9523694827482387,
+        "published": 1.952251927,
+        "difference": 0.00011755574823868464,
+        "knownRaters": {
+          "perception": 16,
+          "action": 16607
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "MOVING",
+        "dimension": "mouth_throat",
+        "ours": 2.824443511129777,
+        "published": 2.824334053,
+        "difference": 0.00010945812977736225,
+        "knownRaters": {
+          "perception": 18,
+          "action": 16667
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "BREATHE",
+        "dimension": "head",
+        "ours": 2.6119233753058424,
+        "published": 2.612006206,
+        "difference": 0.00008283069415782052,
+        "knownRaters": {
+          "perception": 20,
+          "action": 16757
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "SHELL",
+        "dimension": "mouth_throat",
+        "ours": 0.7097028981104563,
+        "published": 0.709781288,
+        "difference": 0.00007838988954367299,
+        "knownRaters": {
+          "perception": 40,
+          "action": 16459
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "BITE",
+        "dimension": "head",
+        "ours": 1.276852073843203,
+        "published": 1.276775547,
+        "difference": 0.0000765268432030286,
+        "knownRaters": {
+          "perception": 16,
+          "action": 16684
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "TOURISM",
+        "dimension": "torso",
+        "ours": 1.752158273381295,
+        "published": 1.75223308,
+        "difference": 0.00007480661870507,
+        "knownRaters": {
+          "perception": 22,
+          "action": 16680
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "DRIVING",
+        "dimension": "mouth_throat",
+        "ours": 0.7800787777512532,
+        "published": 0.780151578,
+        "difference": 0.00007280024874678492,
+        "knownRaters": {
+          "perception": 26,
+          "action": 16756
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "STARE",
+        "dimension": "head",
+        "ours": 4.677999640223062,
+        "published": 4.678018947,
+        "difference": 0.00001930677693806615,
+        "knownRaters": {
+          "perception": 28,
+          "action": 16677
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      },
+      {
+        "word": "LISTEN",
+        "dimension": "mouth_throat",
+        "ours": 0.2711105806528615,
+        "published": 0.271094403,
+        "difference": 0.000016177652861493197,
+        "knownRaters": {
+          "perception": 20,
+          "action": 16757
+        },
+        "perception": "matches own ratings",
+        "action": "matches no word"
+      }
+    ],
+    "wordsWhosePublishedMeansMatchAnotherWord": 26,
+    "publishedWordsWithTrailingWhitespace": [
+      "FROG ",
+      "GRAPE "
+    ],
+    "tolerance": 0.000001,
+    "trialWordsAbsentFromPublished": 247,
+    "ratingsRead": 10495805,
+    "unknownRatings": 614026
+  },
+  "humanReliabilityOnPanelWords": {
+    "touch": {
+      "r1": 0.258939862294583,
+      "rk": 0.6770556673807744,
+      "halfSize": 6,
+      "words": 292,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.8576370912810123,
+      "harmonicRaters": 17.24095199054014
+    },
+    "hearing": {
+      "r1": 0.24505287634029777,
+      "rk": 0.6607382341317789,
+      "halfSize": 6,
+      "words": 292,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.8484009043384754,
+      "harmonicRaters": 17.24095199054014
+    },
+    "smell": {
+      "r1": 0.33177479521208403,
+      "rk": 0.7486811293786828,
+      "halfSize": 6,
+      "words": 292,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.8953992180249127,
+      "harmonicRaters": 17.24095199054014
+    },
+    "taste": {
+      "r1": 0.390197628703061,
+      "rk": 0.7933565498604396,
+      "halfSize": 6,
+      "words": 292,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.9168887376403686,
+      "harmonicRaters": 17.24095199054014
+    },
+    "vision": {
+      "r1": 0.1740219807579257,
+      "rk": 0.5583264825407876,
+      "halfSize": 6,
+      "words": 292,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.7841304215918692,
+      "harmonicRaters": 17.24095199054014
+    },
+    "interoception": {
+      "r1": 0.2153542450490219,
+      "rk": 0.6221799756213539,
+      "halfSize": 6,
+      "words": 292,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.8255396010820636,
+      "harmonicRaters": 17.24095199054014
+    },
+    "mouth_throat": {
+      "r1": 0.19828850184148497,
+      "rk": 0.5974217209626661,
+      "halfSize": 6,
+      "words": 298,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.8212195571213439,
+      "harmonicRaters": 18.57205048047544
+    },
+    "hand_arm": {
+      "r1": 0.14917987899726928,
+      "rk": 0.5126751727814279,
+      "halfSize": 6,
+      "words": 298,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.7650574432105675,
+      "harmonicRaters": 18.57205048047544
+    },
+    "foot_leg": {
+      "r1": 0.17223128494566908,
+      "rk": 0.5552395789756618,
+      "halfSize": 6,
+      "words": 298,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.7944175861537899,
+      "harmonicRaters": 18.57205048047544
+    },
+    "head": {
+      "r1": 0.08172714174511815,
+      "rk": 0.3481118982240951,
+      "halfSize": 6,
+      "words": 298,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.6230582552114208,
+      "harmonicRaters": 18.57205048047544
+    },
+    "torso": {
+      "r1": 0.13426928650427514,
+      "rk": 0.48201599820948393,
+      "halfSize": 6,
+      "words": 298,
+      "splits": 200,
+      "reliabilityOfPublishedMeans": 0.742295009223299,
+      "harmonicRaters": 18.57205048047544
+    }
+  },
+  "designTable": {
+    "touch": {
+      "r1": 0.28081358841912,
+      "words": 31436,
+      "ratersFor80": 11,
+      "ratersFor90": 24,
+      "reliabilityAt": {
+        "5": 0.6612810847011397,
+        "10": 0.7961098104239266,
+        "15": 0.8541615291245226,
+        "20": 0.8864823362175444
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.4299635235096956,
+          "predicted": 0.43849251906473297,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.5972186806214357,
+          "predicted": 0.6096556127380188,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.6908375117061339,
+          "predicted": 0.7008460538956428,
+          "words": 38843
+        },
+        "10": {
+          "observed": 0.805303748490332,
+          "predicted": 0.7961098104239266,
+          "words": 7308
+        }
+      }
+    },
+    "hearing": {
+      "r1": 0.2579442099395876,
+      "words": 31436,
+      "ratersFor80": 12,
+      "ratersFor90": 26,
+      "reliabilityAt": {
+        "5": 0.6347749538533627,
+        "10": 0.7765900160840136,
+        "15": 0.8390760014104822,
+        "20": 0.8742478670411364
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.40338353943681177,
+          "predicted": 0.41010437172245545,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.56698065019925,
+          "predicted": 0.5816652723677599,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.6629482959809496,
+          "predicted": 0.6759186931708099,
+          "words": 38843
+        },
+        "10": {
+          "observed": 0.7829024920624253,
+          "predicted": 0.7765900160840136,
+          "words": 7308
+        }
+      }
+    },
+    "smell": {
+      "r1": 0.30604565062991557,
+      "words": 31436,
+      "ratersFor80": 10,
+      "ratersFor90": 21,
+      "reliabilityAt": {
+        "5": 0.6879957838965473,
+        "10": 0.8151629174196003,
+        "15": 0.8686846282062973,
+        "20": 0.8981705273909184
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.4600820162683545,
+          "predicted": 0.46865995914049013,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.6244870833162903,
+          "predicted": 0.6382143888701997,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.7182027831633221,
+          "predicted": 0.7257344871925037,
+          "words": 38843
+        },
+        "10": {
+          "observed": 0.8250406296619095,
+          "predicted": 0.8151629174196003,
+          "words": 7308
+        }
+      }
+    },
+    "taste": {
+      "r1": 0.4310601788165243,
+      "words": 31436,
+      "ratersFor80": 6,
+      "ratersFor90": 12,
+      "reliabilityAt": {
+        "5": 0.7911565530919309,
+        "10": 0.8834030188218002,
+        "15": 0.9191254358706726,
+        "20": 0.9380923891418952
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.5833154739233967,
+          "predicted": 0.6024347336294519,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.7310463718166936,
+          "predicted": 0.7518992455498774,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.8057611353678735,
+          "predicted": 0.8196876176689036,
+          "words": 38843
+        },
+        "10": {
+          "observed": 0.8889493836378163,
+          "predicted": 0.8834030188218002,
+          "words": 7308
+        }
+      }
+    },
+    "vision": {
+      "r1": 0.174196109867813,
+      "words": 31436,
+      "ratersFor80": 19,
+      "ratersFor90": 43,
+      "reliabilityAt": {
+        "5": 0.5133124332578616,
+        "10": 0.6783958447401395,
+        "15": 0.759853155468838,
+        "20": 0.8083859917386453
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.28932131822736834,
+          "predicted": 0.2967070124042966,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.44548857306671696,
+          "predicted": 0.45763153829816283,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.5454460362184,
+          "predicted": 0.5586250800822558,
+          "words": 38843
+        },
+        "10": {
+          "observed": 0.7005605228668961,
+          "predicted": 0.6783958447401395,
+          "words": 7308
+        }
+      }
+    },
+    "interoception": {
+      "r1": 0.25014654282959886,
+      "words": 31436,
+      "ratersFor80": 12,
+      "ratersFor90": 27,
+      "reliabilityAt": {
+        "5": 0.6251831248657266,
+        "10": 0.7693694517254841,
+        "15": 0.8334418341107798,
+        "20": 0.8696538204332591
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.39295330459942374,
+          "predicted": 0.40018755283426816,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.5517706015505371,
+          "predicted": 0.5716199262366046,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.658221020044148,
+          "predicted": 0.6668402905165686,
+          "words": 38843
+        },
+        "10": {
+          "observed": 0.782666673984026,
+          "predicted": 0.7693694517254841,
+          "words": 7308
+        }
+      }
+    },
+    "mouth_throat": {
+      "r1": 0.21119626442637277,
+      "words": 36713,
+      "ratersFor80": 15,
+      "ratersFor90": 34,
+      "reliabilityAt": {
+        "5": 0.5724142862720677,
+        "10": 0.7280705743639186,
+        "15": 0.8006434084283285,
+        "20": 0.8426398610854333
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.34656368752652716,
+          "predicted": 0.34873995343173575,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.518843450093466,
+          "predicted": 0.5171344595292833,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.6156444081591351,
+          "predicted": 0.6163371101271922,
+          "words": 39429
+        },
+        "10": {
+          "observed": 0.7376182859817352,
+          "predicted": 0.7280705743639186,
+          "words": 16266
+        }
+      }
+    },
+    "hand_arm": {
+      "r1": 0.19841502568558897,
+      "words": 36713,
+      "ratersFor80": 17,
+      "ratersFor90": 37,
+      "reliabilityAt": {
+        "5": 0.5531009620558238,
+        "10": 0.712253711212296,
+        "15": 0.7878175720817134,
+        "20": 0.8319488012182632
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.3326216060296076,
+          "predicted": 0.3311290686998517,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.5049482856602628,
+          "predicted": 0.49751609590086415,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.5969741991337749,
+          "predicted": 0.5976130805131905,
+          "words": 39429
+        },
+        "10": {
+          "observed": 0.7270251981086518,
+          "predicted": 0.712253711212296,
+          "words": 16266
+        }
+      }
+    },
+    "foot_leg": {
+      "r1": 0.2134304718140856,
+      "words": 36713,
+      "ratersFor80": 15,
+      "ratersFor90": 34,
+      "reliabilityAt": {
+        "5": 0.5756809402784251,
+        "10": 0.7307074999291436,
+        "15": 0.8027672315120943,
+        "20": 0.8444032281122712
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.3477035726221148,
+          "predicted": 0.3517803067777024,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.5242358168049069,
+          "predicted": 0.5204696429055938,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.6198394730792216,
+          "predicted": 0.6194912654916135,
+          "words": 39429
+        },
+        "10": {
+          "observed": 0.7494270093831495,
+          "predicted": 0.7307074999291436,
+          "words": 16266
+        }
+      }
+    },
+    "head": {
+      "r1": 0.07545888117385047,
+      "words": 36713,
+      "ratersFor80": 50,
+      "ratersFor90": 111,
+      "reliabilityAt": {
+        "5": 0.2898172608690565,
+        "10": 0.4493927468047414,
+        "15": 0.5504132573973435,
+        "20": 0.6201117644550798
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.1391380715914038,
+          "predicted": 0.14032871455110957,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.24759190679529244,
+          "predicted": 0.24611975961045582,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.3271989267278238,
+          "predicted": 0.3287265853355125,
+          "words": 39429
+        },
+        "10": {
+          "observed": 0.466180523157069,
+          "predicted": 0.4493927468047414,
+          "words": 16266
+        }
+      }
+    },
+    "torso": {
+      "r1": 0.16250607348013743,
+      "words": 36713,
+      "ratersFor80": 21,
+      "ratersFor90": 47,
+      "reliabilityAt": {
+        "5": 0.49243539649350837,
+        "10": 0.659908492723357,
+        "15": 0.7442833028226177,
+        "20": 0.7951143037296796
+      },
+      "empiricalCheck": {
+        "2": {
+          "observed": 0.2898740444398628,
+          "predicted": 0.279578880811609,
+          "words": 39707
+        },
+        "4": {
+          "observed": 0.43916997375748223,
+          "predicted": 0.4369857693091624,
+          "words": 39707
+        },
+        "6": {
+          "observed": 0.5388558721690647,
+          "predicted": 0.5379421268837026,
+          "words": 39429
+        },
+        "10": {
+          "observed": 0.6787823324099728,
+          "predicted": 0.659908492723357,
+          "words": 16266
+        }
+      }
+    }
+  },
+  "derivedMeasuresBySubsample": [
+    {
+      "k": 3,
+      "words": 300,
+      "maxStrength": 0.4728999189077318,
+      "exclusivity": 0.40788496824214243
+    },
+    {
+      "k": 5,
+      "words": 300,
+      "maxStrength": 0.5629510348564484,
+      "exclusivity": 0.5308463042268107
+    },
+    {
+      "k": 8,
+      "words": 300,
+      "maxStrength": 0.5946076434629978,
+      "exclusivity": 0.5504337283315011
+    },
+    {
+      "k": 10,
+      "words": 292,
+      "maxStrength": 0.5590530129518735,
+      "exclusivity": 0.5427041944277987
+    },
+    {
+      "k": 12,
+      "words": 275,
+      "maxStrength": 0.509017035801284,
+      "exclusivity": 0.5065372165475841
+    }
+  ]
+}
