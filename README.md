@@ -22,12 +22,11 @@ See `ARCHITECTURE.md` for the design and `SECURITY.md` for the security model.
 
 ## Requirements
 
-Node 22.5 or newer, for the built-in SQLite driver. The prototype was developed and tested on Node 24, and the committed validation results were produced with Node 24.12.0, recorded in `.node-version`.
+Node 22.13 or newer, the first 22.x release that provides the built-in SQLite driver without the `--experimental-sqlite` flag. The prototype was developed and tested on Node 24, and the committed validation results were produced with Node 24.12.0, recorded in `.node-version`.
 
 ## Running it
 
 ```
-cd software
 node bin/senselex.js seed     # load a small illustrative dataset
 node bin/senselex.js serve    # start the Atlas on http://127.0.0.1:8787
 ```
@@ -37,7 +36,6 @@ Open the address in a browser to use the Atlas front end. Set `SENSELEX_API_TOKE
 ## Testing
 
 ```
-cd software
 npm test
 ```
 
@@ -47,7 +45,7 @@ It also checks the browser edition against the domain core. That edition runs fr
 
 ## Validation
 
-The `validation/` folder holds the three studies reported in the paper. They reproduce the Lancaster Sensorimotor Norms from their individual ratings, estimate how many raters a norming study needs on each channel, and test a panel of simulated raters against a preregistered plan. `npm run verify` reruns all of them in a scratch copy and checks that every committed result reproduces byte for byte, without writing anything in the repository. The Lancaster files are fetched separately; `validation/README.md` gives the addresses, the checksums and the order of the steps.
+The `validation/` folder holds the three studies reported in the paper that describes and validates SenseLex, which is in preparation; until it is published, cite the software through `CITATION.cff`. They reproduce the Lancaster Sensorimotor Norms from their individual ratings, estimate how many raters a norming study needs on each channel, and test a panel of simulated raters against a preregistered plan. `npm run verify` reruns all of them in a scratch copy and checks that every committed result reproduces byte for byte, without writing anything in the repository. The Lancaster files are fetched separately; `validation/README.md` gives the addresses, the checksums and the order of the steps.
 
 ## Configuration
 
@@ -63,13 +61,16 @@ Partial vectors are the reason norms carry a per-dimension count as well as a re
 
 MIT for the code; the full text is in `LICENSE`.
 
-The data are licensed separately from the code. Norms exported by the Atlas and
-the browser edition carry a Creative Commons Attribution 4.0 licence in their
-metadata sidecar.
+The data are licensed separately from the code. Norms exported by the Atlas carry
+a Creative Commons Attribution 4.0 licence in their metadata file. The files the
+browser edition exports carry no licence of their own, so state one when you share
+them.
 
-Word-bank sources keep their own terms. Zipf frequencies come from wordfreq
-(Speer, 2022, https://doi.org/10.5281/zenodo.7199437), which is redistributable
-with attribution. English concreteness values come from Brysbaert, Warriner and
+Word-bank sources keep their own terms, so `web-static/words.js` is not covered
+by the MIT licence. Its Zipf frequencies are derived from wordfreq data (Speer,
+2022, https://doi.org/10.5281/zenodo.7199437), which wordfreq distributes under a
+Creative Commons Attribution-ShareAlike 4.0 licence, and the file is shared under
+that licence. English concreteness values come from Brysbaert, Warriner and
 Kuperman (2014, https://doi.org/10.3758/s13428-013-0403-5), offered freely for
 research and redistributed here with attribution under their original terms. Cite
 both if you use the word banks.

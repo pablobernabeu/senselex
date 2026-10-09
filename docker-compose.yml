@@ -5,7 +5,7 @@
 services:
   atlas:
     build: .
-    image: senselex:0.1.0
+    image: senselex:0.2.0
     restart: unless-stopped
     ports:
       - "8787:8787"
@@ -15,6 +15,11 @@ services:
       SENSELEX_DATABASE_PATH: /app/data/senselex.db
       SENSELEX_API_TOKENS: ${SENSELEX_API_TOKENS}
       SENSELEX_CORS_ORIGINS: ${SENSELEX_CORS_ORIGINS:-}
+      SENSELEX_AUDIT_SECRET: ${SENSELEX_AUDIT_SECRET:-}
+      SENSELEX_MAX_BODY_BYTES: ${SENSELEX_MAX_BODY_BYTES:-1000000}
+      SENSELEX_MAX_PAGE_SIZE: ${SENSELEX_MAX_PAGE_SIZE:-200}
+      SENSELEX_RATE_WINDOW_MS: ${SENSELEX_RATE_WINDOW_MS:-60000}
+      SENSELEX_RATE_MAX: ${SENSELEX_RATE_MAX:-240}
     volumes:
       - atlas-data:/app/data
 

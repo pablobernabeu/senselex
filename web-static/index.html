@@ -104,9 +104,9 @@
       <h3>Legal disclaimer</h3>
       <p>This app is being developed by Dr Pablo Bernabeu in a personal capacity during spare time. The employer is not affiliated with, does not endorse, and bears no liability for this app.</p>
       <h3>Usage and licence</h3>
-      <p>SenseLex is open-source software released under the MIT licence, so you may use, copy, modify and redistribute it, including commercially, provided the copyright notice and the licence text travel with it. The full text ships with the source. No warranty is provided and no liability is accepted for any use of this software.</p>
-      <p>Norms you export carry a Creative Commons Attribution 4.0 licence in their metadata, stated separately because the data and the code are licensed apart.</p>
-      <p>This is an early release. The interface and the export formats may still change between versions, so record which version produced any data you intend to keep.</p>
+      <p>SenseLex is open-source software released under the MIT licence, so you may use, copy, modify and redistribute it, including commercially, provided the copyright notice and the licence text travel with it. The full text ships with the source. The word banks this page loads (words.js) are not covered by it: its frequencies derive from wordfreq data, shared under a Creative Commons Attribution-ShareAlike 4.0 licence, and its English concreteness values are Brysbaert, Warriner and Kuperman's (2014), offered freely for research, and the file keeps those terms. No warranty is provided and no liability is accepted for any use of this software.</p>
+      <p>The data and the code are licensed apart. Norms exported from the full Atlas carry a Creative Commons Attribution 4.0 licence in their metadata. The files this browser edition exports carry no licence of their own, so state one when you share them.</p>
+      <p>This is SenseLex version <span id="app-version"></span>, an early release (<a href="https://doi.org/10.5281/zenodo.22905873">doi:10.5281/zenodo.22905873</a>). The interface and the export formats may still change between versions. From version 0.2.0, every record this page saves carries the version that saved it, though an Atlas does not keep the version of ratings submitted to it through a study link. The rating wording changed in 0.2.0, so check older records before pooling them with newer ones.</p>
     </div>
     <details class="how" open>
       <summary>How this works</summary>
@@ -203,7 +203,7 @@
 
       <div class="spacer"></div>
       <h3>Run the study elsewhere</h3>
-      <p class="help">Export the items for one language as a ready-to-run jsPsych experiment. The file runs on any static host or jsPsych-compatible platform, carries Prolific's participant parameters through, and saves its data both as a jsPsych CSV and as a SenseLex dataset file that imports straight back here, or into the full Atlas, through Import below. Free naming is not exported, because naming responses need an analyst's coding before they can enter the norms.</p>
+      <p class="help">Export the items for one language as a ready-to-run jsPsych experiment. The file runs on any static host or jsPsych-compatible platform, carries Prolific's participant parameters through, and saves its data both as a jsPsych CSV and as a SenseLex dataset file that imports straight back here through Import below. Free naming is not exported, because naming responses need an analyst's coding before they can enter the norms.</p>
       <div class="row">
         <div><label for="j-lang">Language</label><select id="j-lang"></select></div>
         <div style="align-self:end"><button class="act" id="j-export" type="button">Download jsPsych experiment (HTML)</button></div>
@@ -211,7 +211,7 @@
 
       <div class="spacer"></div>
       <h3>Back up, restore and reset</h3>
-      <p class="help">Your data lives only in this browser. Export it to keep a copy, to move it to another machine or to load it into the full Atlas. Import merges a previously exported file without duplicating records.</p>
+      <p class="help">Your data lives only in this browser. Export it to keep a copy or to move it to another machine. Import merges a previously exported file without duplicating records.</p>
       <div class="inline">
         <button class="act" id="d-export" type="button">Export dataset (JSON)</button>
         <button class="ghost" id="d-import-btn" type="button">Import dataset (JSON)</button>
@@ -242,6 +242,10 @@
   <script src="words.js"></script>
   <script>
   "use strict";
+  // The release this page belongs to. Every new record carries it, because the
+  // rating wording changed in 0.2.0 and records made under the two wordings should
+  // be told apart before they are pooled.
+  const APP_VERSION = "0.2.0";
 
   // ----- SENSELEX-CORE-BEGIN -----
   // A copy of src/domain/norms.js, kept here because this page has to run from a
@@ -369,7 +373,7 @@
       for (const c of CORE) for (const [lang,word] of Object.entries(c.words)) items.push({language:lang,conceptId:c.id,gloss:c.gloss,word,concreteness:"high"});
       for (const [id,word,band] of FALLBACK_ENG) items.push({language:"eng",conceptId:id,gloss:word,word,concreteness:band});
     }
-    return { version:5, languages:LANGS.map(l=>({code:l.code,name:l.name,script:l.script,direction:l.direction,family:l.family})), items, ratings:[], responses:[] };
+    return { version:5, languages:LANGS.map(l=>({code:l.code,name:l.name,script:l.script,direction:l.direction,family:l.family})), items, ratings:[], responses:[], skips:[] };
   }
 
   // ----- Persistence -----
@@ -382,7 +386,7 @@
   let data;
   function load(){ try { const raw=localStorage.getItem(KEY); data = raw ? JSON.parse(raw) : defaultDataset(); } catch { data=defaultDataset(); }
     if (!data || !Array.isArray(data.languages)) data=defaultDataset();
-    for (const k of ["languages","items","ratings","responses"]) if (!Array.isArray(data[k])) data[k]=[]; }
+    for (const k of ["languages","items","ratings","responses","skips"]) if (!Array.isArray(data[k])) data[k]=[]; }
   function save(){ try { localStorage.setItem(KEY, JSON.stringify(data)); } catch { flash("manage","Could not save to this browser's storage; the dataset may be too large. Export your data to be safe.","warn"); } renderStatus(); }
 
   // ----- Helpers -----
@@ -417,7 +421,7 @@
     authFailed: false
   };
   const studyMode = !!(STUDY.pid || STUDY.lang || STUDY.task || STUDY.cc || STUDY.atlas);
-  const stamp = rec => { if (STUDY.sid) rec.study=STUDY.sid; if (STUDY.ses) rec.session=STUDY.ses; if (STUDY.atlas) rec.pending=true; return rec; };
+  const stamp = rec => { rec.appVersion=APP_VERSION; if (STUDY.sid) rec.study=STUDY.sid; if (STUDY.ses) rec.session=STUDY.ses; if (STUDY.atlas) rec.pending=true; return rec; };
 
   // Ratings marked pending are submitted to the Atlas /v1/sync endpoint in
   // idempotent batches. The record id doubles as the client id, so a retry
@@ -474,9 +478,10 @@
     } else if (STUDY.cc) bits.push("Data stay on this device; you will be returned to Prolific at the end");
     host.replaceChildren(el("div",{className:"msg "+(STUDY.authFailed?"warn":"ok"),textContent:bits.join(". ")+"."}));
   }
-  function completionPanel(total){
+  function completionPanel(total, unknown){
     const wrap=el("div",{className:"msg ok"});
     wrap.append(el("span",{textContent:`Every item is complete for this session (${total} of ${total}). Thank you.`}));
+    if (STUDY.atlas && unknown) wrap.append(document.createTextNode(` The ${unknown} word(s) recorded as unknown stay on this device and are not submitted.`));
     if (STUDY.atlas){
       const n=data.ratings.filter(r=>r.pending&&!r.rejected).length;
       const rejected=data.ratings.filter(r=>r.rejected).length;
@@ -491,7 +496,7 @@
   }
 
   function renderStatus(){
-    const parts=[ ["languages",data.languages.length],["items",data.items.length],["ratings",data.ratings.length],["naming responses",data.responses.length] ];
+    const parts=[ ["languages",data.languages.length],["items",data.items.length],["ratings",data.ratings.length],["naming responses",data.responses.length],["skipped as unknown",data.skips.length] ];
     if (bankTotal) parts.push(["words in banks",bankTotal]);
     $("#statusbar").replaceChildren(...parts.map(([label,n])=>el("span",{}, [el("b",{textContent:String(n)}), document.createTextNode(" "+label)])));
   }
@@ -511,10 +516,23 @@
   // ===================== COLLECT =====================
   let collectIndex=0;
   function collectHelp(){ $("#c-help").textContent = $("#c-task").value==="rating"
-    ? "To what extent do you experience this word? Rate every channel from 0 (not at all) to 5 (greatly): the first six by each sense, the last five by performing an action with that part of the body. A channel through which you do not experience the word at all is a 0, not a blank. If you do not know the meaning of the word, skip it. Press Enter on a field to save and move to the next word."
-    : "Read the cue, then type the first single word the participant gives for it. Agreement across participants becomes the codability of that concept."; }
+    ? "To what extent do you experience this word? Rate every channel from 0 (not at all) to 5 (greatly): the first six by each sense, the last five by performing an action with that part of the body. A channel through which you do not experience the word at all is a 0, not a blank. If you do not know the meaning of the word, press \u201cDon\u2019t know this word\u201d. Press Enter on a field to save and move to the next word."
+    : "Read the cue, then type the first single word the participant gives for it. If the participant gives none, press \u201cNo name given\u201d. Agreement across participants becomes the codability of that concept."; }
   const ratedSet = (code,p) => new Set(data.ratings.filter(r=>r.language===code&&r.participant===p).map(r=>r.conceptId+"|"+r.word));
   const namedSet = (code,p) => new Set(data.responses.filter(r=>r.language===code&&r.participant===p).map(r=>r.conceptId));
+  // A word skipped as unknown is the Lancaster procedure's "don't know the meaning
+  // of this word". It counts as done, so that a study session, a Prolific one
+  // included, can finish, but it is kept apart from the ratings and never enters
+  // the norms. Rating or naming the item later replaces the skip.
+  const skipKey = (task,i) => task==="rating" ? i.conceptId+"|"+i.word : i.conceptId;
+  const skippedSet = (task,code,p) => new Set(data.skips.filter(s=>s.task===task&&s.language===code&&s.participant===p).map(s=>skipKey(task,s)));
+  function recordSkip(task,code,p,item,answered){
+    if (answered || skippedSet(task,code,p).has(skipKey(task,item))) return;
+    const rec={id:uuid(),task,language:code,conceptId:item.conceptId,participant:p,source:"browser",ts:Date.now(),appVersion:APP_VERSION};
+    if (task==="rating") rec.word=item.word;
+    if (STUDY.sid) rec.study=STUDY.sid; if (STUDY.ses) rec.session=STUDY.ses;
+    data.skips.push(rec); save(); }
+  const clearSkip = (task,code,p,item) => { data.skips=data.skips.filter(s=>!(s.task===task&&s.language===code&&s.participant===p&&skipKey(task,s)===skipKey(task,item))); };
 
   function renderCollect(){
     fillLangSelect($("#c-language")); collectHelp(); renderStudyNote();
@@ -522,10 +540,21 @@
     const items=itemsFor(code), area=$("#c-area"); area.replaceChildren();
     if (!items.length){ area.append(el("p",{className:"empty",textContent:"This language has no items yet. Build a study or add items under Build & manage."})); $("#c-progress").style.width="0%"; return; }
     if (!ID_RE.test(participant)){ area.append(el("p",{className:"empty",textContent:"Enter a participant code (letters, digits and -_.: only) to begin."})); $("#c-progress").style.width="0%"; return; }
-    const done = task==="rating" ? ratedSet(code,participant) : namedSet(code,participant);
-    const doneCount = task==="rating" ? items.filter(i=>done.has(i.conceptId+"|"+i.word)).length : items.filter(i=>done.has(i.conceptId)).length;
+    const answeredSet = task==="rating" ? ratedSet(code,participant) : namedSet(code,participant);
+    const skipped = skippedSet(task,code,participant);
+    const doneCount = items.filter(i=>answeredSet.has(skipKey(task,i))||skipped.has(skipKey(task,i))).length;
+    const skippedCount = items.filter(i=>!answeredSet.has(skipKey(task,i))&&skipped.has(skipKey(task,i))).length;
     $("#c-progress").style.width = Math.round(100*doneCount/items.length)+"%";
-    if (doneCount===items.length) area.append(completionPanel(items.length));
+    // A session finishes when every item is answered or recorded as unknown, but
+    // not on unknowns alone: a participant who marked every word unknown would
+    // otherwise reach the completion link having contributed nothing. On a study
+    // link with an Atlas address only ratings leave the device, so there the
+    // session needs at least one rating, whichever task is selected.
+    if (doneCount===items.length){
+      const contributed = STUDY.atlas ? data.ratings.some(r=>r.language===code&&r.participant===participant) : doneCount>skippedCount;
+      if (contributed) area.append(completionPanel(items.length, skippedCount));
+      else area.append(el("div",{className:"msg warn",textContent: STUDY.atlas ? "Rate at least one word to finish: this study collects ratings." : task==="rating" ? "Every word has been marked as unknown. Rate at least one word you know to finish." : "No name has been recorded yet. Record at least one name to finish."}));
+    }
     if (collectIndex>=items.length) collectIndex=0;
     const item=items[collectIndex];
 
@@ -535,7 +564,7 @@
     const meta=[item.conceptId];
     if (item.concreteness) meta.push(item.concreteness+" concreteness"+(typeof item.concretenessValue==="number"?` (${item.concretenessValue})`:""));
     if (typeof item.frequency==="number") meta.push("Zipf "+item.frequency);
-    meta.push(`item ${collectIndex+1} of ${items.length}`, `${doneCount} done by ${participant}`);
+    meta.push(`item ${collectIndex+1} of ${items.length}`, `${doneCount} done by ${participant}`+(skippedCount?` (${skippedCount} skipped as unknown)`:""));
     stim.append(el("span",{className:"gloss",textContent:meta.join(" · ")}));
     area.append(stim);
 
@@ -546,7 +575,13 @@
     const speakCode = task==="rating" ? code : "eng";
     const speakText = task==="rating" ? item.word : item.gloss;
     if (hasVoiceFor(speakCode)) controls.append(el("button",{className:"ghost",type:"button",textContent:"🔊 Read aloud",onclick:()=>speak(speakText, speakCode)}));
-    controls.append(el("button",{className:"ghost",type:"button",textContent:"Skip / don't know ▶",onclick:()=>{ collectIndex=(collectIndex+1)%items.length; renderCollect(); }}));
+    controls.append(el("button",{className:"ghost",type:"button",textContent:"Next ▶",onclick:()=>{ collectIndex=(collectIndex+1)%items.length; renderCollect(); }}));
+    // Moving on records nothing. Only this button records the item as unknown, and
+    // it is offered only while the item is neither answered nor already recorded.
+    if (!answeredSet.has(skipKey(task,item)) && !skipped.has(skipKey(task,item)))
+      controls.append(el("button",{className:"ghost",type:"button",textContent: task==="rating" ? "Don't know this word" : "No name given",onclick:()=>{ recordSkip(task,code,participant,item,false); collectIndex=(collectIndex+1)%items.length; renderCollect(); }}));
+    else if (skipped.has(skipKey(task,item)) && !answeredSet.has(skipKey(task,item)))
+      controls.append(el("span",{className:"gloss",textContent:"recorded as unknown"}));
     area.append(controls);
 
     if (task==="rating"){
@@ -561,7 +596,8 @@
       function saveRating(){ const dims={}; let any=false;
         for (const dim of ALL){ const v=inputs[dim].value; if (v!==""){ const n=Number(v); if (isFinite(n)&&n>=0&&n<=5){ dims[dim]=n; any=true; } } }
         if (!any){ $("#c-help").textContent="Enter at least one rating between 0 and 5 before saving."; return; }
-        if (existing){ existing.dims=dims; existing.ts=Date.now(); } else data.ratings.push(stamp({id:uuid(),language:code,conceptId:item.conceptId,word:item.word,participant,dims,source:"browser",ts:Date.now()}));
+        if (existing){ existing.dims=dims; existing.ts=Date.now(); existing.appVersion=APP_VERSION; } else data.ratings.push(stamp({id:uuid(),language:code,conceptId:item.conceptId,word:item.word,participant,dims,source:"browser",ts:Date.now()}));
+        clearSkip("rating",code,participant,item);
         save(); if (STUDY.atlas) flushSync(); collectIndex=(collectIndex+1)%items.length; renderCollect(); }
       btn.onclick=saveRating;
     } else {
@@ -571,7 +607,8 @@
       const btn=el("button",{className:"act",type:"button",textContent:existing?"Update and next":"Save and next"}); area.append(el("div",{},[btn]));
       function saveName(){ const name=inp.value.trim(); if (!name){ $("#c-help").textContent="Type a name before saving."; return; }
         const length=name.split(/\s+/).filter(Boolean).length;
-        if (existing){ existing.name=name; existing.length=length; existing.ts=Date.now(); } else { const rec={id:uuid(),language:code,conceptId:item.conceptId,cue:item.gloss,name,length,participant,source:"browser",ts:Date.now()}; if (STUDY.sid) rec.study=STUDY.sid; if (STUDY.ses) rec.session=STUDY.ses; data.responses.push(rec); }
+        if (existing){ existing.name=name; existing.length=length; existing.ts=Date.now(); existing.appVersion=APP_VERSION; } else { const rec={id:uuid(),language:code,conceptId:item.conceptId,cue:item.gloss,name,length,participant,source:"browser",ts:Date.now(),appVersion:APP_VERSION}; if (STUDY.sid) rec.study=STUDY.sid; if (STUDY.ses) rec.session=STUDY.ses; data.responses.push(rec); }
+        clearSkip("naming",code,participant,item);
         save(); collectIndex=(collectIndex+1)%items.length; renderCollect(); }
       inp.addEventListener("keydown",ev=>{ if (ev.key==="Enter") saveName(); }); btn.onclick=saveName;
     }
@@ -625,10 +662,10 @@
   // dimension, for archiving and independent reanalysis alongside the norms.
   function downloadLongCsv(){
     const code=$("#e-language").value;
-    const lines=[["participant","language","concept_id","word","dimension","rating","study","session","timestamp"].join(",")];
+    const lines=[["participant","language","concept_id","word","dimension","rating","study","session","timestamp","app_version"].join(",")];
     for (const r of data.ratings){ if (r.language!==code) continue;
       for (const d of ALL){ const v=r.dims[d]; if (typeof v!=="number") continue;
-        lines.push([r.participant,r.language,r.conceptId,r.word,d,v,r.study||"",r.session||"",r.ts?new Date(r.ts).toISOString():""].map(csvq).join(",")); } }
+        lines.push([r.participant,r.language,r.conceptId,r.word,d,v,r.study||"",r.session||"",r.ts?new Date(r.ts).toISOString():"",r.appVersion||""].map(csvq).join(",")); } }
     downloadBlob(lines.join("\n")+"\n","text/csv",`senselex-ratings-long-${code}.csv`);
   }
   function downloadBlob(text,type,name){ const b=new Blob([text],{type}); const a=el("a",{href:URL.createObjectURL(b),download:name}); document.body.append(a); a.click(); a.remove(); URL.revokeObjectURL(a.href); }
@@ -638,40 +675,44 @@
   // mirrors this app's grid exactly (same dimensions, same 0-5 scale, partial
   // vectors allowed), Prolific's parameters pass through at run time, and the
   // data save in two forms: the native jsPsych CSV and a SenseLex dataset JSON
-  // that imports straight back here or into the full Atlas. jsPsych itself
-  // loads from a pinned CDN copy, the one respect in which the exported file
-  // is not self-contained.
+  // that imports straight back here. A word the
+  // participant does not know ends its trial with dont_know set and goes into the
+  // dataset's skips, never its ratings. jsPsych itself loads from a CDN, the one
+  // respect in which the exported file is not self-contained: exact versions, with
+  // integrity hashes so a changed file is refused, and the browser bundles named
+  // explicitly, because jsDelivr's bare package address serves the Node build,
+  // which browsers will not run.
   function buildJsPsychHtml(code){
     const lm = data.languages.find(l=>l.code===code) || {code,name:code,direction:"ltr"};
     const payload = {
       language: {code:lm.code, name:lm.name||code, script:lm.script||"", direction:lm.direction||"ltr"},
-      dims: ALL, labels: RATING_LABELS,
+      dims: ALL, labels: RATING_LABELS, appVersion: APP_VERSION,
       items: itemsFor(code).map(i=>({conceptId:i.conceptId, word:i.word, gloss:i.gloss}))
     };
     const json = JSON.stringify(payload).replace(/</g,"\\u003c");
     return [
 '<!DOCTYPE html>','<html lang="en">','<head>','<meta charset="utf-8">',
 '<title>SenseLex sensorimotor rating ('+(lm.name||code)+')</title>',
-'<script src="https://cdn.jsdelivr.net/npm/jspsych@8"><\/script>',
-'<script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-html-button-response@2"><\/script>',
-'<link href="https://cdn.jsdelivr.net/npm/jspsych@8/css/jspsych.css" rel="stylesheet">',
+'<script src="https://cdn.jsdelivr.net/npm/jspsych@8.3.0/dist/index.browser.min.js" integrity="sha384-PPMNzYQfqrWFhrOxhpwxXmKK+LDH//fBCLsvA/JIRHOfiuOcZ2j8wJhqo87V4R4B" crossorigin="anonymous"><\/script>',
+'<script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-html-button-response@2.1.0/dist/index.browser.min.js" integrity="sha384-tPGtXEC8xEbInWvarnxvJ3fyzeXwRDS0QjGUts+TGQ9I8OCxiqsv9lxTS3mEN6um" crossorigin="anonymous"><\/script>',
+'<link href="https://cdn.jsdelivr.net/npm/jspsych@8.3.0/css/jspsych.css" rel="stylesheet" integrity="sha384-+gGUkbtw2BJWSroKW2jzIEXGe7KxdycJ0Bo+CqzpIOSBHOYEHHRWETaV+v2mpdWX" crossorigin="anonymous">',
 '<style>.sx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.3rem 1.4rem;max-width:46rem;margin:1rem auto;text-align:left}.sx-row{display:flex;justify-content:space-between;align-items:center;gap:.6rem}.sx-row input{width:4.6rem;font:inherit;padding:.25rem}.sx-word{font-size:2.2rem;font-weight:600;margin:.6rem 0}<\/style>',
 '</head>','<body>','<script>',
 'var SENSELEX = '+json+';',
 'var SenselexRatingPlugin = (function(){',
-'  var info = { name: "senselex-rating", version: "1.0.0",',
+'  var info = { name: "senselex-rating", version: "2.0.0",',
 '    parameters: { word:{type:"STRING"}, concept_id:{type:"STRING"}, direction:{type:"STRING", default:"ltr"} },',
-'    data: { concept_id:{type:"STRING"}, word:{type:"STRING"}, dims:{type:"OBJECT"}, rt:{type:"INT"} } };',
+'    data: { concept_id:{type:"STRING"}, word:{type:"STRING"}, dims:{type:"OBJECT"}, dont_know:{type:"BOOL"}, rt:{type:"INT"} } };',
 '  function P(jsPsych){ this.jsPsych = jsPsych; }',
 '  P.info = info;',
 '  P.prototype.trial = function(el, trial){',
 '    var t0 = performance.now(), jsPsych = this.jsPsych;',
 '    var h = "<div class=\\"sx-word\\" dir=\\""+trial.direction+"\\">"+trial.word+"</div>";',
-'    h += "<p>To what extent do you experience this word? Rate every channel from 0 (not at all) to 5 (greatly): the first six by each sense, the last five by performing an action with that part of the body. A channel through which you do not experience the word at all is a 0, not a blank.</p>";',
+'    h += "<p>To what extent do you experience this word? Rate every channel from 0 (not at all) to 5 (greatly): the first six by each sense, the last five by performing an action with that part of the body. A channel through which you do not experience the word at all is a 0, not a blank. If you do not know the meaning of the word, press \u201cDon\u2019t know this word\u201d.</p>";',
 '    h += "<div class=\\"sx-grid\\">";',
 '    for (var i=0;i<SENSELEX.dims.length;i++){ var d=SENSELEX.dims[i];',
 '      h += "<div class=\\"sx-row\\"><label for=\\"sx-"+d+"\\">"+SENSELEX.labels[d]+"</label><input id=\\"sx-"+d+"\\" type=\\"number\\" min=\\"0\\" max=\\"5\\" step=\\"0.5\\"></div>"; }',
-'    h += "</div><button id=\\"sx-save\\" class=\\"jspsych-btn\\">Save and continue</button><p id=\\"sx-msg\\"></p>";',
+'    h += "</div><button id=\\"sx-save\\" class=\\"jspsych-btn\\">Save and continue</button> <button id=\\"sx-dk\\" class=\\"jspsych-btn\\">Don\\u2019t know this word</button><p id=\\"sx-msg\\"></p>";',
 '    el.innerHTML = h;',
 '    document.getElementById("sx-save").addEventListener("click", function(){',
 '      var dims = {}, any = false;',
@@ -679,7 +720,11 @@
 '        if (v!==""){ var n=Number(v); if (isFinite(n)&&n>=0&&n<=5){ dims[d]=n; any=true; } } }',
 '      if (!any){ document.getElementById("sx-msg").textContent = "Enter at least one rating between 0 and 5 before saving."; return; }',
 '      el.innerHTML = "";',
-'      jsPsych.finishTrial({ concept_id: trial.concept_id, word: trial.word, dims: dims, rt: Math.round(performance.now()-t0) });',
+'      jsPsych.finishTrial({ concept_id: trial.concept_id, word: trial.word, dims: dims, dont_know: false, rt: Math.round(performance.now()-t0) });',
+'    });',
+'    document.getElementById("sx-dk").addEventListener("click", function(){',
+'      el.innerHTML = "";',
+'      jsPsych.finishTrial({ concept_id: trial.concept_id, word: trial.word, dims: {}, dont_know: true, rt: Math.round(performance.now()-t0) });',
 '    });',
 '  };',
 '  return P;',
@@ -690,7 +735,7 @@
 'var jsPsych = initJsPsych();',
 'var timeline = [];',
 'timeline.push({ type: jsPsychHtmlButtonResponse, choices: ["Begin"],',
-'  stimulus: "<h2>Word rating study</h2><p>You will see "+SENSELEX.items.length+" words in "+SENSELEX.language.name+", one at a time, and rate how strongly each is experienced through eleven perceptual and action channels.</p>" });',
+'  stimulus: "<h2>Word rating study</h2><p>You will see "+SENSELEX.items.length+" words in "+SENSELEX.language.name+", one at a time, and say to what extent you experience each one through eleven perceptual and action channels.</p>" });',
 'for (var i=0;i<SENSELEX.items.length;i++){ var it=SENSELEX.items[i];',
 '  timeline.push({ type: SenselexRatingPlugin, word: it.word, concept_id: it.conceptId, direction: SENSELEX.language.direction }); }',
 'timeline.push({ type: jsPsychHtmlButtonResponse, choices: ["Download my data (SenseLex JSON)", "Download my data (CSV)"],',
@@ -699,10 +744,11 @@
 '    if (d.response === 0){',
 '      var trials = jsPsych.data.get().filter({trial_type:"senselex-rating"}).values();',
 '      var now = Date.now();',
-'      var dataset = { version:5, languages:[SENSELEX.language],',
+'      var dataset = { version:5, exportedWith:"SenseLex "+SENSELEX.appVersion+" jsPsych export", languages:[SENSELEX.language],',
 '        items: SENSELEX.items.map(function(it){ return {language:SENSELEX.language.code, conceptId:it.conceptId, gloss:it.gloss, word:it.word}; }),',
-'        ratings: trials.map(function(t,i){ return { id:(crypto.randomUUID?crypto.randomUUID():"jsx-"+now+"-"+i), language:SENSELEX.language.code, conceptId:t.concept_id, word:t.word, participant:participant, dims:t.dims, source:"jspsych", ts:now }; }),',
-'        responses: [] };',
+'        ratings: trials.filter(function(t){ return !t.dont_know; }).map(function(t,i){ return { id:(crypto.randomUUID?crypto.randomUUID():"jsx-"+now+"-"+i), language:SENSELEX.language.code, conceptId:t.concept_id, word:t.word, participant:participant, dims:t.dims, source:"jspsych", ts:now, appVersion:SENSELEX.appVersion }; }),',
+'        responses: [],',
+'        skips: trials.filter(function(t){ return t.dont_know; }).map(function(t,i){ return { id:(crypto.randomUUID?crypto.randomUUID():"jsk-"+now+"-"+i), task:"rating", language:SENSELEX.language.code, conceptId:t.concept_id, word:t.word, participant:participant, source:"jspsych", ts:now, appVersion:SENSELEX.appVersion }; }) };',
 '      var b = new Blob([JSON.stringify(dataset,null,2)],{type:"application/json"});',
 '      var a = document.createElement("a"); a.href=URL.createObjectURL(b); a.download="senselex-jspsych-"+SENSELEX.language.code+"-"+participant+".json";',
 '      document.body.appendChild(a); a.click(); a.remove();',
@@ -738,7 +784,7 @@
       // curation audit found the derived bank still held too much non-content
       // material (proper nouns, foreign intrusions, unresolved inflected forms) to
       // ship. Collect and Explore already use this language's small, hand-checked
-      // core word list instead; see software/data/README.md for the audit figures.
+      // core word list instead; see data/README.md for the audit figures.
       $("#bank-help").textContent="This language has no frequency bank to draw from here, either because the underlying frequency data does not cover it, or because a curation check found the derived bank still too noisy to ship. It uses a small, hand-checked set of core words instead, already loaded in Collect and Explore. Add further items by hand below.";
       if (panel) panel.style.display="none";
       return;
@@ -801,30 +847,37 @@
     if (data.languages.some(l=>l.code===code)){ flash("manage","That language code already exists.","warn"); return; }
     data.languages.push({code,name,script,direction,family:"added"}); save(); $("#m-newcode").value=$("#m-newname").value=$("#m-newscript").value=""; renderManage(); refreshSelectors(); flash("manage","Language added.","ok"); }
 
-  function exportData(){ downloadBlob(JSON.stringify(data,null,2),"application/json",`senselex-dataset-${new Date().toISOString().slice(0,10)}.json`); }
+  function exportData(){ downloadBlob(JSON.stringify({...data, exportedWith:"SenseLex "+APP_VERSION},null,2),"application/json",`senselex-dataset-${new Date().toISOString().slice(0,10)}.json`); }
   function importData(file){ const reader=new FileReader();
     reader.onload=()=>{ try { const inc=JSON.parse(reader.result); if (!inc||!Array.isArray(inc.languages)) throw new Error("shape");
       const seenL=new Set(data.languages.map(l=>l.code)); for (const l of inc.languages||[]) if (!seenL.has(l.code)) data.languages.push(l);
       const ik=i=>i.language+"|"+i.conceptId+"|"+i.word; const seenI=new Set(data.items.map(ik)); for (const i of inc.items||[]) if (!seenI.has(ik(i))) data.items.push(i);
       const seenR=new Set(data.ratings.map(r=>r.id)); for (const r of inc.ratings||[]) if (!seenR.has(r.id)) data.ratings.push(r);
       const seenN=new Set(data.responses.map(r=>r.id)); for (const r of inc.responses||[]) if (!seenN.has(r.id)) data.responses.push(r);
+      const seenS=new Set(data.skips.map(s=>s.id)); for (const s of Array.isArray(inc.skips)?inc.skips:[]) if (!seenS.has(s.id)) data.skips.push(s);
+      // As in the app, an answer supersedes a skip of the same item by the same participant.
+      const answered=new Set([...data.ratings.map(r=>"rating|"+r.language+"|"+r.participant+"|"+skipKey("rating",r)), ...data.responses.map(r=>"naming|"+r.language+"|"+r.participant+"|"+skipKey("naming",r))]);
+      data.skips=data.skips.filter(s=>!answered.has(s.task+"|"+s.language+"|"+s.participant+"|"+skipKey(s.task,s)));
       save(); refreshSelectors(); renderManage(); flash("manage","Dataset imported and merged.","ok");
     } catch { flash("manage","That file could not be read as a SenseLex dataset.","warn"); } };
     reader.readAsText(file); }
   function loadSample(){
     const ex=[
-      ["eng","COFFEE","coffee",[{smell:5,taste:5,vision:3,touch:2,interoception:2},{smell:5,taste:4,vision:3,interoception:1},{smell:4,taste:5,vision:2,touch:1,interoception:2}]],
+      ["eng","COFFEE","coffee",[{smell:5,taste:5,vision:3,touch:2,interoception:2,mouth_throat:4,hand_arm:2},{smell:5,taste:4,vision:3,interoception:1,mouth_throat:4,hand_arm:1},{smell:4,taste:5,vision:2,touch:1,interoception:2,mouth_throat:5,hand_arm:2}]],
       ["eng","THUNDER","thunder",[{hearing:5,vision:3,touch:1,interoception:2},{hearing:5,vision:4,interoception:1},{hearing:5,vision:3,touch:1}]],
-      ["eng","JUSTICE","justice",[{vision:1,hearing:1,interoception:2},{interoception:2},{vision:1,interoception:1}]],
-      ["eng","WATER","water",[{taste:3,touch:4,vision:3,interoception:2},{touch:4,vision:3,taste:2,smell:1}]],
-      ["spa","WATER","agua",[{taste:3,touch:4,vision:3},{touch:4,vision:3,taste:2}]]
+      ["eng","JUSTICE","justice",[{vision:1,hearing:1,interoception:2,head:1},{interoception:2},{vision:1,interoception:1,mouth_throat:1}]],
+      ["eng","WATER","water",[{taste:3,touch:4,vision:3,interoception:2,mouth_throat:4,hand_arm:3},{touch:4,vision:3,taste:2,smell:1,mouth_throat:4,hand_arm:2}]],
+      ["spa","WATER","agua",[{taste:3,touch:4,vision:3,mouth_throat:4,hand_arm:3},{touch:4,vision:3,taste:2,mouth_throat:3,hand_arm:2}]]
     ];
+    // Every channel is rated, with 0 where a word is not experienced, as the
+    // instructions ask, so the sample's exclusivity is what real ratings would give.
+    const full = dims => Object.fromEntries(ALL.map(d=>[d, typeof dims[d]==="number" ? dims[d] : 0]));
     let added=0;
     for (const [language,conceptId,word,vectors] of ex){ if (!data.items.some(i=>i.language===language&&i.conceptId===conceptId&&i.word===word)) data.items.push({language,conceptId,gloss:word,word,concreteness:displayBand(conceptId==="JUSTICE"?1.5:conceptId==="WATER"?4.5:4)});
-      vectors.forEach((dims,i)=>{ const id=`sample-${language}-${conceptId}-${i}`; if (!data.ratings.some(r=>r.id===id)){ data.ratings.push({id,language,conceptId,word,participant:`S${i+1}`,dims,source:"sample",ts:Date.now()}); added++; } }); }
+      vectors.forEach((dims,i)=>{ const id=`sample-${language}-${conceptId}-${i}`; if (!data.ratings.some(r=>r.id===id)){ data.ratings.push({id,language,conceptId,word,participant:`S${i+1}`,dims:full(dims),source:"sample",ts:Date.now(),appVersion:APP_VERSION}); added++; } }); }
     const names=[["eng","SMOKE",["smoky","burnt","bonfire","acrid","woody","sharp"]],["eng","ROSE",["floral","floral","sweet","floral","perfume","floral"]]];
     for (const [language,conceptId,list] of names){ if (!data.items.some(i=>i.language===language&&i.conceptId===conceptId)) data.items.push({language,conceptId,gloss:conceptId.toLowerCase(),word:conceptId.toLowerCase(),concreteness:"high"});
-      list.forEach((nm,i)=>{ const id=`sampn-${language}-${conceptId}-${i}`; if (!data.responses.some(r=>r.id===id)) data.responses.push({id,language,conceptId,cue:conceptId.toLowerCase(),name:nm,length:nm.split(/\s+/).length,participant:`S${i+1}`,source:"sample",ts:Date.now()}); }); }
+      list.forEach((nm,i)=>{ const id=`sampn-${language}-${conceptId}-${i}`; if (!data.responses.some(r=>r.id===id)) data.responses.push({id,language,conceptId,cue:conceptId.toLowerCase(),name:nm,length:nm.split(/\s+/).length,participant:`S${i+1}`,source:"sample",ts:Date.now(),appVersion:APP_VERSION}); }); }
     save(); refreshSelectors(); renderManage(); flash("manage",`Loaded a sample of ${added} ratings and some naming responses. Open the Explore tab to see the norms.`,"ok");
   }
   function resetAll(){ if (!confirm("Remove all languages, items and collected data from this browser and return to the starter set?")) return; data=defaultDataset(); save(); refreshSelectors(); renderManage(); renderCollect(); flash("manage","Reset to the starter set.","ok"); }
@@ -837,6 +890,7 @@
     for (const s of document.querySelectorAll(".view")) s.classList.toggle("active", s.id==="view-"+v);
     if (v==="collect") renderCollect(); else if (v==="explore") renderExplore(); else renderManage(); }
 
+  $("#app-version").textContent = APP_VERSION;
   load(); renderStatus(); refreshSelectors();
   // Apply the study link, if any: preselect the language and task, fix the
   // participant code to the Prolific id, and start submitting any backlog.

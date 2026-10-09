@@ -1,5 +1,6 @@
-# Continuous integration. The unit tests run on the newest Node 22 and on the
-# Node release that produced the committed validation results. The validation's
+# Continuous integration. The unit tests run on the oldest supported Node
+# (22.13.0, the first 22.x release with node:sqlite unflagged), the newest Node 22
+# and the Node release that produced the committed validation results. The validation's
 # reproduction check then reruns every step and compares each output with the
 # committed file. The 1.4 GB Lancaster trial file is too large to fetch on every
 # run, so that check skips the one step that needs it and says so; the 17 MB norms
@@ -22,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: ['22', '24.12.0']
+        node: ['22.13.0', '22', '24.12.0']
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0

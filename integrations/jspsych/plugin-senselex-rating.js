@@ -6,8 +6,9 @@
  * allowed, exactly as in the SenseLex suite (and following Lynott, Connell,
  * Brysbaert, Brand & Carney, 2020, Behavior Research Methods,
  * https://doi.org/10.3758/s13428-019-01316-z). Use it to embed the SenseLex
- * instrument in your own jsPsych timeline; the trial's data import into the
- * SenseLex Atlas unchanged.
+ * instrument in your own jsPsych timeline. A rated trial's data satisfy the
+ * SenseLex Atlas validators once mapped onto its field names, and don't-know
+ * trials are left out.
  *
  * Usage (jsPsych 7 or 8, classic script include):
  *   <script src="plugin-senselex-rating.js"></script>
@@ -20,7 +21,17 @@
  *   });
  *
  * Data generated per trial: concept_id, word, language, dims (an object with
- * one 0-5 number per answered dimension) and rt in milliseconds.
+ * one 0-5 number per answered dimension), dont_know (true when the participant
+ * pressed "Don't know this word", in which case dims is empty) and rt in
+ * milliseconds. A don't-know trial is the Lancaster procedure's "Don't know the
+ * meaning of this word" response: it records that the word was unknown and must
+ * not be averaged into the norms.
+ *
+ * Version 2.0.0 adopted the Lancaster wording (every channel rated, 0 rather
+ * than a blank for a channel not experienced, "Head excluding mouth") and added
+ * the don't-know response. jsPsych 8 stores the plugin version with every trial
+ * (plugin_version), so data collected under version 1 can be told apart; under
+ * jsPsych 7, the dont_know field marks version-2 trials.
  */
 var jsPsychSenselexRating = (function (jspsych) {
   'use strict';
@@ -40,7 +51,7 @@ var jsPsychSenselexRating = (function (jspsych) {
 
   var info = {
     name: 'senselex-rating',
-    version: '1.0.0',
+    version: '2.0.0',
     parameters: {
       /** The word to rate, displayed as the stimulus. */
       word: { type: jspsych.ParameterType.STRING, default: undefined },
@@ -57,10 +68,13 @@ var jsPsychSenselexRating = (function (jspsych) {
         type: jspsych.ParameterType.HTML_STRING,
         default: 'To what extent do you experience this word? Rate every channel from 0 (not at all) ' +
           'to 5 (greatly): the first six by each sense, the last five by performing an action with ' +
-          'that part of the body. A channel through which you do not experience the word at all is a 0, not a blank.',
+          'that part of the body. A channel through which you do not experience the word at all is a 0, not a blank. ' +
+          "If you do not know the meaning of the word, press \"Don't know this word\".",
       },
       /** Label of the save button. */
       button_label: { type: jspsych.ParameterType.STRING, default: 'Save and continue' },
+      /** Label of the button that records the word as unknown. */
+      dont_know_label: { type: jspsych.ParameterType.STRING, default: "Don't know this word" },
     },
     data: {
       /** Concept identifier as supplied. */
@@ -69,8 +83,10 @@ var jsPsychSenselexRating = (function (jspsych) {
       word: { type: jspsych.ParameterType.STRING },
       /** Language code as supplied. */
       language: { type: jspsych.ParameterType.STRING },
-      /** One 0-5 value per answered dimension. */
+      /** One 0-5 value per answered dimension; empty when dont_know is true. */
       dims: { type: jspsych.ParameterType.OBJECT },
+      /** True when the participant did not know the word. */
+      dont_know: { type: jspsych.ParameterType.BOOL },
       /** Milliseconds from render to save. */
       rt: { type: jspsych.ParameterType.INT },
     },
@@ -100,6 +116,7 @@ var jsPsychSenselexRating = (function (jspsych) {
         'style="width:4.6rem;font:inherit;padding:.25rem"></div>';
     }
     html += '</div><button id="sx-save" class="jspsych-btn">' + trial.button_label +
+      '</button> <button id="sx-dk" class="jspsych-btn">' + trial.dont_know_label +
       '</button><p id="sx-msg" role="status"></p>';
     display_element.innerHTML = html;
 
@@ -119,15 +136,23 @@ var jsPsychSenselexRating = (function (jspsych) {
           'Enter at least one rating between 0 and 5 before saving.';
         return;
       }
+      finish(values, false);
+    });
+    display_element.querySelector('#sx-dk').addEventListener('click', function () {
+      finish({}, true);
+    });
+
+    function finish(values, dontKnow) {
       display_element.innerHTML = '';
       jsPsych.finishTrial({
         concept_id: trial.concept_id,
         word: trial.word,
         language: trial.language,
         dims: values,
+        dont_know: dontKnow,
         rt: Math.round(performance.now() - t0),
       });
-    });
+    }
   };
 
   return SenselexRatingPlugin;

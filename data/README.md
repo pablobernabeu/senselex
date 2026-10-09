@@ -1,13 +1,11 @@
 # Word-bank build pipeline
 
 `build_wordbanks.py` generates the per-language word banks that the browser-edition
-app loads (`../web-static/words.js`). The words and their features come from
-published lexical resources rather than being hand-listed, which is what lets the
+app loads (`../web-static/words.js`). The words and their features come from published lexical resources, which is what lets the
 study builder draw large, frequency-controlled samples for each language and keeps
 the coverage roughly equal across languages. A non-English bank is not a raw
 frequency list: it is curated down to genuine content-word base forms, so the
-sample a study draws holds ratable nouns, verbs and adjectives rather than
-prepositions, inflected verb forms or names.
+sample a study draws holds ratable nouns, verbs and adjectives, without prepositions, inflected verb forms or names.
 
 ## Sources
 
@@ -24,8 +22,7 @@ to help fill. Profanity filtering reads one word list per language from
 ## What it does
 
 For each language it draws words from wordfreq, filters them down to content
-words, and samples the result stratified across the frequency range, so the bank
-spans rare to common rather than only the most frequent words. For English it
+words, and samples the result stratified across the frequency range, so the bank spans rare words as well as common ones. For English it
 instead reads the concreteness file, runs the same content-word filter, attaches
 a wordfreq Zipf value, and stratifies across the concreteness-by-frequency grid so
 both vary. It writes one bank per language, each word as `[word, concreteness or
@@ -39,15 +36,12 @@ be an English word that is far more frequent in English than in the target
 language, which catches English words that leaked into another language's
 frequency list. It must not appear in the profanity list. Finally, where a
 lemmatiser and stopword list exist for the language (via `simplemma` and
-`stopwordsiso`, covering about a dozen languages plus English), it must be a
-known base form rather than a function word or an inflected form.
+`stopwordsiso`, covering about a dozen languages plus English), it must be a known base form, which excludes function words and inflected forms.
 
 For languages that filter still leaves noisy, a further per-language NLP pass
 (`deep_filter`) runs: Chinese via `jieba` part-of-speech tags, and Arabic, Hebrew,
 Tamil, Japanese, Korean, Turkish, Finnish, Hindi and Vietnamese via `stanza`
-(universal part-of-speech, lemma and named-entity recognition). A word survives
-only if it is a single token, not a named entity, not a function word or proper
-noun by part of speech, and its lemma, with diacritics stripped, equals the word
+(universal part-of-speech, lemma and named-entity recognition). A word survives only if it is a single token that is neither a named entity nor, by part of speech, a function word or proper noun, and its lemma, with diacritics stripped, equals the word
 itself. This is the strongest filter available, and it still could not bring
 every language down to an acceptable junk rate; see "Languages left on core
 words" below.
@@ -90,21 +84,18 @@ distinct causes. Arabic, Hebrew and Tamil have templatic or agglutinative
 morphology that Stanza's lemmatiser only partly normalises, so clitics and
 inflected forms survive. Vietnamese is analytic, so foreign names, brands and
 acronyms get tagged as ordinary nouns with no named-entity signal to catch them.
-Japanese carries many single-kanji tokens that are bound compound elements
-rather than standalone words, which part-of-speech tagging alone does not
-reliably separate them from genuine single-kanji nouns. Rather than ship a bank with that much
-non-content material, these six languages are left out of `LANGS`, and the app's
-existing fallback for any language missing from `words.js` — a small, hand-
-checked core word list, defined in `../web-static/index.html` — applies to them
-too. They remain available as languages in the app; they just do not currently
+Japanese carries many single-kanji tokens that are bound compound elements, which do not stand as words on their own, which part-of-speech tagging alone does not
+reliably separate them from genuine single-kanji nouns. To avoid shipping a bank with that much non-content material, these six languages are left out of `LANGS`, and the app's
+existing fallback for any language missing from `words.js`, a small hand-checked core word list defined in `../web-static/index.html`, applies to them too. They remain available as languages in the app; they just do not currently
 carry a large frequency-sampled bank. Revisit this list if a stronger
 language-specific morphological analyser or named-entity tool becomes available
 for any of the six.
 
 ## Licensing and attribution
 
-The wordfreq frequencies are redistributable with attribution, and wordfreq exists
-precisely to share them. The English concreteness norms are offered freely for
-research and carry no formal open licence, so the derived subset is distributed
-with attribution rather than relicensed. Cite both sources above if you use the
+The wordfreq data are shared under a Creative Commons Attribution-ShareAlike 4.0
+licence (https://creativecommons.org/licenses/by-sa/4.0/), so the frequencies
+derived from them in `../web-static/words.js` are shared under the same licence. The MIT licence of the code does not cover them. The English concreteness norms are offered
+freely for research and carry no formal open licence, so they keep their authors'
+terms. Cite both sources above if you use the
 words. The raw source files under `source/` are not committed.

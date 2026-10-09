@@ -38,7 +38,7 @@ Every write attempt, successful or refused, is recorded in a separate audit tabl
 
 ## Reporting
 
-For a real deployment, security reports should go to a monitored address and be handled under a coordinated disclosure policy. Add that address here before publishing the repository.
+Report a vulnerability privately through GitHub: open the Security tab of https://github.com/pablobernabeu/senselex and choose "Report a vulnerability". Please do not open a public issue for a security problem. If the button is unavailable, open an issue that asks for a private contact without describing the problem. Reports are handled under coordinated disclosure: the fix is published before the details are. A deployment run by someone else should name its own monitored contact for its users.
 
 ## What a study link exposes
 

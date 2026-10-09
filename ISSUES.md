@@ -20,12 +20,26 @@ tested locally (the tests on Node 24.12.0, and the reproduction check with the
 norms file but no trial file), but it runs on GitHub only once pushed to the
 public repository. Deferred: check the first run.
 
+**The regenerated Study 2 output still awaits an independent `verify` run.** `validation/human-benchmark-results.json` was regenerated after
+`human_benchmark.mjs` gained the confirmatory word sets. The in-place run left
+every earlier value byte-identical and added only the new block, but an
+independent run of `npm run verify -- --require-trial` did not finish on the
+build machine, which was short of memory. Deferred: run it on a machine with
+about 8 GB free.
+
 ## Minor
+
+**The Atlas does not store words recorded as unknown or the release behind a
+rating.** The browser edition keeps both on the device, and a study link with an
+Atlas address submits only ratings. Deferred: add both to the Atlas schema and
+the sync format.
+
 
 **No JavaScript linter or formatter is configured.** The project has a
 zero-dependency rule, and ESLint or Prettier would add development dependencies.
-Every script is syntax-checked with `node --check`, and the code follows one
-style by hand. Deferred: whether to accept a pinned development dependency for
+Every script passes `node --check` except `validation/run_panel.workflow.js`,
+an archived workflow body whose top-level `return` only its runtime accepts,
+and the code follows one style by hand. Deferred: whether to accept a pinned development dependency for
 linting is the maintainer's decision.
 
 **Three pilot outputs are read by no current step.**
@@ -36,12 +50,6 @@ still read (`raters-pilot.json`, `words-sample-pilot.json`,
 `criterion-results-pilot.json`), and `validation/README.md` says the pilot is
 not a result of the paper. Deferred: remove them if the pilot's record is not
 wanted in the next release.
-
-**The live browser edition may predate the current wording.** The deployed page
-at https://senselex.web.app was published before the rating task adopted the
-Lancaster wording (see `CHANGELOG.md`, Unreleased). Deferred: redeploy
-`web-static/` when the next version is released, so that the page matches the
-version the paper describes.
 
 **The Docker base-image digest will age.** It is pinned for reproducibility,
 which also freezes the operating-system packages in the image. Deferred:

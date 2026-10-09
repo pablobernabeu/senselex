@@ -3,17 +3,21 @@
 // step and no third-party code, which keeps it auditable and lets the content
 // security policy stay strict.
 
+// Labels as worded on the Lancaster Sensorimotor Norms' rating screens (Lynott et
+// al., 2020), the same as in the browser edition and the jsPsych plugin. "Head
+// excluding mouth" keeps speaking and eating under mouth, where the published
+// norms put them.
 const DIMENSIONS = [
-  ['touch', 'Touch'],
-  ['hearing', 'Hearing'],
-  ['smell', 'Smell'],
-  ['taste', 'Taste'],
-  ['vision', 'Vision'],
-  ['interoception', 'Interoception'],
-  ['mouth_throat', 'Mouth or throat'],
-  ['hand_arm', 'Hand or arm'],
-  ['foot_leg', 'Foot or leg'],
-  ['head', 'Head'],
+  ['touch', 'By feeling through touch'],
+  ['hearing', 'By hearing'],
+  ['smell', 'By smelling'],
+  ['taste', 'By tasting'],
+  ['vision', 'By seeing'],
+  ['interoception', 'By sensations inside your body'],
+  ['mouth_throat', 'Mouth / throat'],
+  ['hand_arm', 'Hand / arm'],
+  ['foot_leg', 'Foot / leg'],
+  ['head', 'Head excluding mouth'],
   ['torso', 'Torso'],
 ];
 
