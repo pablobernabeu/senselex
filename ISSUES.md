@@ -15,11 +15,6 @@ because it reads the committed `words.js`. Deferred: rebuild the banks with the
 pinned versions, compare with the committed file, and add a full lock of the
 dependencies' own dependencies.
 
-**Continuous integration has not yet run.** `.github/workflows/ci.yml` was
-tested locally (the tests on Node 24.12.0, and the reproduction check with the
-norms file but no trial file), but it runs on GitHub only once pushed to the
-public repository. Deferred: check the first run.
-
 **The regenerated Study 2 output still awaits an independent `verify` run.** `validation/human-benchmark-results.json` was regenerated after
 `human_benchmark.mjs` gained the confirmatory word sets. The in-place run left
 every earlier value byte-identical and added only the new block, but an
