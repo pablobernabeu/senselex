@@ -3,7 +3,7 @@
 // run inside a temporary copy of src/, validation/ and the word bank, and only
 // their outputs are compared.
 //
-//   node validation/verify.mjs        (from the software directory; npm run verify)
+//   node validation/verify.mjs        (from the repository root; npm run verify)
 //
 // The steps run in pipeline order, each reading what the previous one wrote:
 //   sample_words.mjs     -> words-sample.json

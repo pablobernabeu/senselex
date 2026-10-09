@@ -1,0 +1,3414 @@
+{
+ "run": "wf_342bab11-1c6",
+ "calls": 60,
+ "toolCallsAcrossAllCalls": {
+  "StructuredOutput": 60
+ },
+ "everyCallUsedOnlyTheOutputTool": true,
+ "everyCallWasOfferedFileAndShellTools": true,
+ "reasoningRetainedInAnyCall": false,
+ "studyTermsInContextBesidesThePrompt": {
+  "hypothesisLabel": {
+   "calls": 60,
+   "sources": [
+    "git status of the repository (branch and recent commit titles)"
+   ]
+  },
+  "hypothesis": {
+   "calls": 60,
+   "sources": [
+    "descriptions of the assistant's installed skills"
+   ]
+  },
+  "preregistration": {
+   "calls": 60,
+   "sources": [
+    "git status of the repository (branch and recent commit titles)"
+   ]
+  },
+  "lancaster": {
+   "calls": 60,
+   "sources": [
+    "git status of the repository (branch and recent commit titles)"
+   ]
+  },
+  "sensorimotor": {
+   "calls": 60,
+   "sources": [
+    "the assistant's memory index"
+   ]
+  }
+ },
+ "studyTermsNeverInContext": [
+  "pilot",
+  "xuEtAl",
+  "spearman",
+  "reliability"
+ ],
+ "workingDirectories": [
+  "folder containing the repository",
+  "repository root"
+ ],
+ "perCall": [
+  {
+   "label": "LLM01:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM01:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM01:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM01:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM01:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM02:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM02:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM02:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM02:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM02:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM03:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM03:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM03:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM03:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM03:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM04:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM04:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM04:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM04:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM04:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM05:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM05:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM05:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM05:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM05:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM06:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM06:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM06:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM06:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM06:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM07:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM07:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM07:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM07:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM07:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM08:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM08:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM08:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM08:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM08:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM09:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM09:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "repository root"
+  },
+  {
+   "label": "LLM09:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM09:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM09:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM10:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM10:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM10:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM10:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM10:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM11:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM11:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM11:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM11:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM11:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM12:list1",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM12:list2",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM12:list3",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM12:list4",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  },
+  {
+   "label": "LLM12:list5",
+   "model": "claude-opus-5-5",
+   "toolsOffered": 41,
+   "fileAndShellToolsOffered": [
+    "Bash",
+    "Edit",
+    "Glob",
+    "Grep",
+    "PowerShell",
+    "Read",
+    "Write"
+   ],
+   "toolCalls": {
+    "StructuredOutput": 1
+   },
+   "blockTypes": {
+    "thinking": 1,
+    "tool_use": 1
+   },
+   "reasoningRetained": false,
+   "contextReceived": {
+    "systemPrompt": "workflow subagent system prompt",
+    "relayedUserRequest": true,
+    "attachments": [
+     "date",
+     "deferred_tools_delta",
+     "environment",
+     "instructions",
+     "model",
+     "remote_session_change",
+     "session_context",
+     "skill_listing",
+     "structured_output"
+    ],
+    "memoryIndex": true,
+    "termsInContext": {
+     "hypothesisLabel": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "hypothesis": [
+      "descriptions of the assistant's installed skills"
+     ],
+     "preregistration": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "lancaster": [
+      "git status of the repository (branch and recent commit titles)"
+     ],
+     "sensorimotor": [
+      "the assistant's memory index"
+     ]
+    }
+   },
+   "workingDirectory": "folder containing the repository"
+  }
+ ]
+}

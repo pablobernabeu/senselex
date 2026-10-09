@@ -1,7 +1,13 @@
 # The rater prompt
 
-This is the verbatim prompt given to each simulated rater in the 300-word panel.
-It is reproduced here so the panel can be regenerated, and in the paper.
+This is the verbatim prompt given to each simulated rater in the 300-word panel,
+as `run_panel.workflow.js` sent it. It is reproduced here so the panel can be
+regenerated, and in the paper. The copy of this file made public with the
+preregistration omitted the prompt's last paragraph, which tells the rater how to
+return its answers, to give null ratings for a word marked as unknown and to use
+no other tool. The collection script preregistered with it,
+`run_panel.workflow.js`, held the complete prompt. The paragraph is restored
+below.
 
 The two questions, the channel wording, the scale anchors and the "don't know"
 option are those of the Lancaster Sensorimotor Norms questionnaires, taken from
@@ -13,8 +19,12 @@ top of the scale "very strongly" instead of "greatly", and allowed half points.
 The wording below removes all four.
 
 Each rater rates the 300 words in five lists of 60 (`panel-lists.json`). Every
-list is a separate call with no shared context and no tools. Only the persona and
-the word list change between calls.
+list is a separate call with no shared context. Each call ran as a subagent of an
+AI coding assistant, so it also had that assistant's standard tools and context
+available; the prompt's last paragraph tells it to use only the tool through which
+it returns its answers, and `panel-transcript-audit.json` shows that every call
+did (see the validation README for what else each call received). Only the
+persona and the word list change between calls.
 
 ## Prompt
 
@@ -48,6 +58,12 @@ the meaning of a word, mark it as "don't know" and give no ratings for it.
 
 Words:
 {WORDS}
+
+Record your answers with the structured output tool, one entry per word, using
+these field names: interoception (inside your body), taste, smell, touch, hearing,
+vision (seeing), head (head excluding mouth), foot_leg, hand_arm, mouth_throat,
+torso, and dont_know. Use null for every rating of a word you mark as don't know.
+Do not use any other tool, read any file or search anything.
 ```
 
 ## Response format

@@ -11,19 +11,22 @@
 //    step on the data it was built for, human ratings, across the whole lexicon.
 //
 // 2. HUMAN RELIABILITY BENCHMARK. Single-rater reliability per dimension,
-//    computed with the same function (stats.mjs) that compute.mjs applies to the
-//    machine panel, on the same 300 words. The machine panel's internal agreement
-//    can then be set against a measured human figure instead of a cited one.
+//    computed with the same function (stats.mjs) that the machine panel's is
+//    computed with: on the confirmatory words, as PREDICTIONS.md specifies for
+//    H2 and H1b, and descriptively on all 300 panel words. The machine panel's
+//    internal agreement can then be set against a measured human figure instead
+//    of a cited one.
 //
 // 3. RATERS-PER-WORD DESIGN TABLE. Single-rater reliability over the whole
 //    lexicon, stepped up with Spearman-Brown to the number of raters a new norming
 //    study needs for a target reliability, and checked directly against the data
 //    at several panel sizes so that the formula is not taken on trust.
 //
-// Run from the software directory:
+// Run from the repository root:
 //   node --max-old-space-size=6144 validation/human_benchmark.mjs
-// Reads lancaster-trial-ratings.csv and lancaster-sensorimotor-norms.csv from
-// SENSELEX_DATA_DIR (default: validation/). The trial file is about 1.4 GB, so
+// Reads validation/words-sample.json, validation/raters.json (for the word sets
+// of H2 and H1b) and lancaster-trial-ratings.csv and lancaster-sensorimotor-norms.csv
+// from SENSELEX_DATA_DIR (default: validation/). The trial file is about 1.4 GB, so
 // keep it outside any folder a cloud client synchronises. Both files are checked
 // against the SHA-256 that OSF publishes before anything is computed
 // (lancaster.mjs).
@@ -216,6 +219,39 @@ for (const d of ALL_DIMENSIONS) {
   process.stdout.write(`  ${d.padEnd(14)} r1 = ${rel.r1.toFixed(3)}  published means reliability = ${means.reliability.toFixed(3)} (harmonic ${means.harmonicRaters.toFixed(1)} raters, ${rel.words} words)\n`);
 }
 
+// ---- 2b. The same, on the preregistered word set ----------------------------
+//
+// PREDICTIONS.md runs every test on the 246 confirmatory words unless it says
+// otherwise, and computes H2 for both panels on the same words. Split halves of
+// six need twelve ratings, so each channel's word set is the confirmatory words
+// with at least twelve known human ratings and at least twelve machine ratings;
+// the machine panel falls short of twelve only where a rater marked a word
+// unknown. criterion.mjs computes the machine value on exactly the words listed
+// here. The published means' reliability, used by H1b, is stepped up to the
+// harmonic mean of the known-rater counts over all 246 confirmatory words, since
+// those are the means its correlations use.
+const panelRatings = JSON.parse(readFileSync(resolve(here, 'raters.json'), 'utf8'));
+const machineCount = new Map(); // word -> { channel: number of machine ratings }
+for (const rater of panelRatings.raters) {
+  for (const r of rater.ratings) {
+    if (r.dont_know) continue;
+    const counts = machineCount.get(r.word) ?? {};
+    for (const d of ALL_DIMENSIONS) if (typeof r[d] === 'number') counts[d] = (counts[d] ?? 0) + 1;
+    machineCount.set(r.word, counts);
+  }
+}
+const confirmatoryWords = sample.filter((i) => i.set === 'confirmatory').map((i) => i.word);
+process.stdout.write(`Human single-rater reliability on the ${confirmatoryWords.length} confirmatory words, as preregistered for H2 and H1b...\n`);
+const humanOnConfirmatory = {};
+for (const d of ALL_DIMENSIONS) {
+  const humanRatings = (w) => ratingsByWord([w.toUpperCase()], d)[0];
+  const wordSet = confirmatoryWords.filter((w) => humanRatings(w).length >= 12 && (machineCount.get(w)?.[d] ?? 0) >= 12);
+  const rel = singleRaterReliability(wordSet.map(humanRatings), { halfSize: 6 });
+  const means = reliabilityOfMeans(rel.r1, confirmatoryWords.map((w) => humanRatings(w).length));
+  humanOnConfirmatory[d] = { ...rel, reliabilityOfPublishedMeans: means.reliability, harmonicRaters: means.harmonicRaters, wordSet };
+  process.stdout.write(`  ${d.padEnd(14)} r1 = ${rel.r1.toFixed(3)} on ${rel.words} words  published means reliability = ${means.reliability.toFixed(3)}\n`);
+}
+
 // ---- 3. Raters-per-word design table ---------------------------------------
 
 process.stdout.write('Single-rater reliability over the whole lexicon, and the raters it implies...\n');
@@ -301,6 +337,7 @@ const results = {
     unknownRatings: unknown,
   },
   humanReliabilityOnPanelWords: humanOnSample,
+  humanReliabilityOnConfirmatoryWords: humanOnConfirmatory,
   designTable: design,
   derivedMeasuresBySubsample: derivedCurve,
 };

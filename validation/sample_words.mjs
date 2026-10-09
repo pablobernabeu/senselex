@@ -16,7 +16,7 @@
 // evenly spaced words from each band sorted by frequency, so rerunning the
 // script reproduces the sample exactly.
 //
-// Run from the software directory:  node validation/sample_words.mjs
+// Run from the repository root:  node validation/sample_words.mjs
 // Reads the pilot sample from validation/pilot/words-sample-pilot.json and the
 // Lancaster norms from SENSELEX_DATA_DIR (default: validation/), checked against
 // their published checksum (lancaster.mjs).

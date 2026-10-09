@@ -10,14 +10,18 @@
 //
 // 2. THE PREREGISTERED HYPOTHESES (PREDICTIONS.md), on the simulated panel:
 //    H1, that machine-human agreement is lower on the action channels than on the
-//    perceptual channels (Xu et al., 2025); H2, that the machine panel is more
-//    internally consistent than human raters, measured identically; H3, that the
-//    machine panel rates more strongly and less exclusively than people. All three
-//    are tested on the 246 confirmatory words no simulated rater had seen before.
+//    perceptual channels (Xu et al., 2025); H1b (Amendment 1), whether that gap
+//    survives correction for the reliability of both sets of means; H2, that the
+//    machine panel is more internally consistent than human raters, measured
+//    identically on the same words; H3, that the machine panel rates more
+//    strongly and less exclusively than people. All are tested on the 246
+//    confirmatory words no simulated rater had seen before.
 //
 // 3. EXPLORATORY, reported as such: per-channel agreement on all 300 words, the
 //    head channel under the corrected wording, stability across model versions on
-//    the 54 overlap words, and sensitivity to how blanks are treated.
+//    the 54 overlap words, the zero pile-up, and H2 and H1b as the analysis script
+//    made public with the preregistration amendment computed them, on all 300
+//    words.
 //
 // No participants and no ethical review: every human value is published data.
 //
@@ -26,7 +30,7 @@
 // action strength for 40,000 English words. Behavior Research Methods, 52,
 // 1271-1291. https://doi.org/10.3758/s13428-019-01316-z. Data: https://osf.io/7emr6/
 //
-// Run from the software directory, after compute.mjs and human_benchmark.mjs:
+// Run from the repository root, after compute.mjs and human_benchmark.mjs:
 //   node validation/criterion.mjs
 // Reads lancaster-sensorimotor-norms.csv from SENSELEX_DATA_DIR (default:
 // validation/), checked against its published checksum (lancaster.mjs).
@@ -44,7 +48,7 @@ import {
   modalityExclusivity,
 } from '../src/domain/norms.js';
 import { PERCEPTUAL_DIMENSIONS, ACTION_DIMENSIONS, ALL_DIMENSIONS } from '../src/domain/dimensions.js';
-import { pearson, spearman, fisherCi, bootstrap, mean, reliabilityOfMeans, disattenuate } from './stats.mjs';
+import { pearson, spearman, fisherCi, bootstrap, mean, reliabilityOfMeans, disattenuate, singleRaterReliability } from './stats.mjs';
 import { verifiedLancasterPath, readNormsCsv, columnIndex } from './lancaster.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -197,18 +201,41 @@ function correctedGap(reliability) {
   return (rows) => mean(PERCEPTUAL_DIMENSIONS.map((d) => corrected(rows, d))) - mean(ACTION_DIMENSIONS.map((d) => corrected(rows, d)));
 }
 
-// Reliability of each set of means, per channel. Human: from the trial-level
-// analysis, for the published means on the panel words. Machine: the panel's
-// single-rater reliability stepped up to the harmonic mean of its per-word rater
-// counts, which fall below twelve only where a rater marked a word unknown.
+// Single-rater reliability of the machine panel on the preregistered word set:
+// for each channel, the confirmatory words that both panels rated at least twelve
+// times, as listed by human_benchmark.mjs, so that the two panels' values come
+// from the same function on the same words (H2).
+const machineRatings = new Map(); // word -> { channel: [ratings] }
+for (const rater of panel.raters) {
+  for (const r of rater.ratings) {
+    if (r.dont_know) continue;
+    const byChannel = machineRatings.get(r.word) ?? {};
+    for (const d of ALL_DIMENSIONS) if (typeof r[d] === 'number') (byChannel[d] ??= []).push(r[d]);
+    machineRatings.set(r.word, byChannel);
+  }
+}
+const humanConfirmatory = humanBenchmark.humanReliabilityOnConfirmatoryWords;
+const machineConfirmatory = {};
+for (const d of ALL_DIMENSIONS) {
+  const { wordSet } = humanConfirmatory[d];
+  const rel = singleRaterReliability(wordSet.map((w) => machineRatings.get(w)[d]), { halfSize: 6 });
+  if (rel.words !== wordSet.length) throw new Error(`${d}: the machine panel rated only ${rel.words} of the ${wordSet.length} listed words twelve times`);
+  machineConfirmatory[d] = rel;
+}
+
+// Reliability of each set of means, per channel, for H1b: each panel's
+// single-rater reliability on the preregistered word set, stepped up to the
+// harmonic mean of the per-word rater counts over the 246 confirmatory words
+// whose means the correlations use. The machine counts fall below twelve only
+// where a rater marked a word unknown.
+const confirmatoryWords = sample.filter((i) => i.set === 'confirmatory').map((i) => i.word);
 function meanReliabilities() {
-  const counts = new Map();
-  for (const rater of panel.raters) for (const r of rater.ratings) if (!r.dont_know) counts.set(r.word, (counts.get(r.word) || 0) + 1);
   const out = {};
   for (const d of ALL_DIMENSIONS) {
+    const counts = confirmatoryWords.map((w) => machineRatings.get(w)?.[d]?.length ?? 0);
     out[d] = {
-      machine: reliabilityOfMeans(machineResults.reliability[d].r1, [...counts.values()]).reliability,
-      human: humanBenchmark.humanReliabilityOnPanelWords[d].reliabilityOfPublishedMeans,
+      machine: reliabilityOfMeans(machineConfirmatory[d].r1, counts).reliability,
+      human: humanConfirmatory[d].reliabilityOfPublishedMeans,
     };
   }
   return out;
@@ -266,11 +293,40 @@ const sensitivity = hypotheses(machineMeans(0), 'SENSITIVITY (blank = 0)');
 const h2 = {};
 let machineHigherEverywhere = true;
 for (const d of ALL_DIMENSIONS) {
-  const machine = machineResults.reliability[d].r1;
-  const human = humanBenchmark.humanReliabilityOnPanelWords[d].r1;
-  h2[d] = { machine, human, difference: machine - human };
+  const machine = machineConfirmatory[d].r1;
+  const human = humanConfirmatory[d].r1;
+  h2[d] = { words: humanConfirmatory[d].wordSet.length, machine, human, difference: machine - human };
   if (!(machine > human)) machineHigherEverywhere = false;
 }
+
+// The same comparison as the analysis script made public with the preregistration
+// amendment made it, on all 300 words and with each panel's own eligible words.
+// The preregistration's text puts every test on the confirmatory words, and that
+// text is followed above, a choice made after the data were collected. This
+// version is kept to show that the choice does not change the verdict.
+// Exploratory.
+const h2AllWords = Object.fromEntries(ALL_DIMENSIONS.map((d) => [d, {
+  machine: machineResults.reliability[d].r1,
+  machineWords: machineResults.reliability[d].words,
+  human: humanBenchmark.humanReliabilityOnPanelWords[d].r1,
+  humanWords: humanBenchmark.humanReliabilityOnPanelWords[d].words,
+}]));
+const h2AllWordsHigherEverywhere = ALL_DIMENSIONS.every((d) => h2AllWords[d].machine > h2AllWords[d].human);
+
+// H1b as that script computed it: the same confirmatory correlations,
+// corrected with each panel's reliability estimated on all 300 words (the machine
+// one stepped up over every word's record count). Exploratory, kept so that the
+// statement that the script's computation reached the same verdict can be checked.
+const recordCounts = new Map();
+for (const rater of panel.raters) for (const r of rater.ratings) if (!r.dont_know) recordCounts.set(r.word, (recordCounts.get(r.word) || 0) + 1);
+const reliabilitiesAllWords = Object.fromEntries(ALL_DIMENSIONS.map((d) => [d, {
+  machine: reliabilityOfMeans(machineResults.reliability[d].r1, [...recordCounts.values()]).reliability,
+  human: humanBenchmark.humanReliabilityOnPanelWords[d].reliabilityOfPublishedMeans,
+}]));
+const h1bAllWords = bootstrap(rowsFor(machineMeans(null), 'confirmatory'), correctedGap(reliabilitiesAllWords));
+const h1bAllWordsVerdict = h1bAllWords.ci[0] > 0 ? 'gradient survives correction'
+  : (h1bAllWords.estimate < primary.H1b.uncorrectedPearsonGap.estimate && h1bAllWords.ci[0] <= 0 && h1bAllWords.ci[1] >= 0) ? 'consistent with a reliability artefact'
+    : 'unresolved';
 process.stdout.write(`\nH2 machine single-rater reliability exceeds human on every channel: ${machineHigherEverywhere}\n`);
 for (const d of ALL_DIMENSIONS) process.stdout.write(`  ${d.padEnd(14)} machine ${h2[d].machine.toFixed(3)}  human ${h2[d].human.toFixed(3)}\n`);
 
@@ -369,6 +425,8 @@ const summary = {
     // The pilot's head correlation, to three places as the pilot reported it.
     headChannel: { all300: allWords.perChannel.head, pilotPearson60: Math.round(pilotCriterion.criterion.perDimension.head.r * 1000) / 1000 },
     modelStabilityOnOverlap: { words: overlap.length, byChannel: stability },
+    h2OnAllWords: { byChannel: h2AllWords, machineHigherOnEveryChannel: h2AllWordsHigherEverywhere },
+    h1bWithAllWordsReliabilities: { corrected: h1bAllWords, verdict: h1bAllWordsVerdict, reliabilitiesOfMeans: reliabilitiesAllWords },
     zerosAndLevels: {
       cells: zeroCells,
       machineMeanZero: zeroMachine,

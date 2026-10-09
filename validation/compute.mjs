@@ -1,13 +1,14 @@
 // Run the simulated-rater panel through the production code path: every record
 // through the suite's validator, every norm through its norm functions, and the
 // output in the formats the server and the browser edition use. Also computes the
-// panel's internal reliability with the same function human_benchmark.mjs applies
-// to the Lancaster raters, so the two can be compared directly (hypothesis H2 in
-// PREDICTIONS.md).
+// panel's internal reliability on every word it rated twelve times, with the same
+// function human_benchmark.mjs applies to the Lancaster raters. That all-words
+// value is descriptive: the preregistered H2 is computed by criterion.mjs on the
+// confirmatory words.
 //
 // Inputs:  validation/raters.json        (panel output: 12 raters x 300 words)
 //          validation/words-sample.json  (the sample)
-// Run:     node validation/compute.mjs   (from the software directory)
+// Run:     node validation/compute.mjs   (from the repository root)
 // Writes:  validation/results.json
 //          validation/llm-norms-eng.csv                     (server export format)
 //          validation/senselex-llm-validation-dataset.json  (imports into the app)

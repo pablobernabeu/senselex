@@ -23,13 +23,16 @@ size stepped down with the Spearman–Brown formula, and turns it into the numbe
 of raters a new norming study needs for a target reliability. The projection is
 checked directly against disjoint groups of raters at several panel sizes.
 
-**Study 3, a preregistered simulated panel.** Twelve simulated raters, each an
-isolated instance of a language model given a lay persona and the Lancaster
+**Study 3, a preregistered simulated panel.** Twelve simulated raters, each a
+separate call to a language model given a lay persona and the Lancaster
 instructions, rated 300 words. The hypotheses, sample and analysis were fixed in
 `PREDICTIONS.md` and made public on the `prereg-panel-300` branch of
 https://github.com/pablobernabeu/senselex before any rating was collected.
 `compute.mjs` runs the panel through the production validator and norm
-functions, and `criterion.mjs` tests the hypotheses against the human norms.
+functions, and `criterion.mjs` tests the hypotheses against the human norms, each
+on the 246 confirmatory words as the preregistration specifies. H2 compares the
+two panels on the same words: the confirmatory words that both rated at least
+twelve times, listed per channel in `human-benchmark-results.json`.
 
 Machine ratings are never a substitute for human norms and must never be pooled
 with them. Every panel record carries `source: "llm-validation"` so that it can
@@ -37,7 +40,7 @@ be recognised wherever it travels.
 
 ## Reproducing the results
 
-Everything runs on Node 22.5 or newer with no dependencies. The committed
+Everything runs on Node 22.13 or newer with no dependencies. The committed
 results were produced with Node 24.12.0 (`../.node-version`).
 
 The Lancaster files are not committed, because they carry their own citation
@@ -54,7 +57,7 @@ Every script checks each file against the SHA-256 that OSF publishes for it
 (`lancaster.mjs`) and stops on a mismatch. The short `https://osf.io/download/`
 links have been seen to return an empty file, hence the storage addresses above.
 
-From the `software` directory:
+From the repository root:
 
 ```
 npm run verify     # rerun every step in a scratch copy and compare with the committed outputs
@@ -79,7 +82,7 @@ with the panel's collection date, so a rerun reproduces each file byte for byte.
 | `make_lists.mjs` | `words-sample.json`, `personas.json` | `panel-lists.json` |
 | collection (`run_panel.workflow.js`) | `panel-lists.json`, the prompt in `rater-prompt.md` | `raters.json` |
 | `compute.mjs` | `raters.json`, `words-sample.json` | `results.json`, `llm-norms-eng.csv`, `senselex-llm-validation-dataset.json` |
-| `human_benchmark.mjs` | both Lancaster files, `words-sample.json` | `human-benchmark-results.json` |
+| `human_benchmark.mjs` | both Lancaster files, `words-sample.json`, `raters.json` | `human-benchmark-results.json` |
 | `criterion.mjs` | the Lancaster norms and every output above, `pilot/` | `criterion-results.json`, `panel-vs-human.json` |
 
 `stats.mjs` holds the statistics every script shares, so that a reliability
@@ -135,8 +138,6 @@ decimal places.
 `results.json`, `human-benchmark-results.json` and `criterion-results.json` hold
 the statistics reported in the paper, under keys named for what they contain
 (for example `preregistered.confirmatory.H1` in `criterion-results.json`).
-`paper/make_variables.mjs` in the manuscript repository reads each reported
-number from them by its key.
 
 ## The panel itself
 
@@ -146,6 +147,26 @@ rater was an independent call, and that sampling parameters were left at the
 provider default. `run_panel.workflow.js` is the script that collected it, kept
 so that the collection step is as inspectable as the analysis. The workflow
 runtime is not needed to reproduce the panel.
+
+Each rater call ran as a subagent of an AI coding assistant (Claude Code). Besides
+the prompt, it therefore received the assistant's subagent system prompt, the
+request that had started the session, the assistant's memory index, a list of its
+installed skills and the repository's git status, and it had the assistant's
+standard tools, including file reading
+and shell commands, in a working directory that held the Lancaster norms. The
+preregistration specified calls without tools, and the provenance block in
+`raters.json`, which `compute.mjs` copies into `results.json`, repeats that plan. The prompt told each rater to use only the tool
+that returns its answers and not to read or search anything.
+`panel-transcript-audit.json`, written by `audit_panel_transcripts.mjs` from the
+run's transcripts, records for each of the 60 calls the tools offered, the tools
+called and the kinds of context received: each call made exactly one tool call,
+the one that returned its ratings. The audit also lists the study-related terms
+the extra context contained (commit titles naming the preregistration and the
+Lancaster protocol, among others) and confirms it contained no prediction, no
+pilot result and no Lancaster value. The transcripts keep each call's reasoning
+block but not its text, so whether that context influenced a judgement cannot
+be checked directly. The transcripts themselves are not archived, because they
+hold the session's e-mail address and local paths.
 
 A new panel can be collected with any model, local or hosted, by sending the
 prompt in `rater-prompt.md` once per rater per list and recording the replies in

@@ -6,7 +6,7 @@
 // lists are reproducible. Lancaster participants likewise rated lists of about
 // 48 words (Lynott et al., 2020).
 //
-// Run from the software directory:  node validation/make_lists.mjs
+// Run from the repository root:  node validation/make_lists.mjs
 // Writes validation/panel-lists.json.
 
 import { readFileSync, writeFileSync } from 'node:fs';

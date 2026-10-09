@@ -23,48 +23,48 @@
   },
   "reliabilityOfMeans": {
     "touch": {
-      "machine": 0.9922706380605292,
-      "human": 0.8576370912810123
+      "machine": 0.9925998730076828,
+      "human": 0.8585456253933662
     },
     "hearing": {
-      "machine": 0.9898881261030779,
-      "human": 0.8484009043384754
+      "machine": 0.9898001282911401,
+      "human": 0.8503065252537139
     },
     "smell": {
-      "machine": 0.9933646511044487,
-      "human": 0.8953992180249127
+      "machine": 0.9933898154624521,
+      "human": 0.899358841746809
     },
     "taste": {
-      "machine": 0.9941709947089953,
-      "human": 0.9168887376403686
+      "machine": 0.993713854337446,
+      "human": 0.9197215431311627
     },
     "vision": {
-      "machine": 0.988971781367839,
-      "human": 0.7841304215918692
+      "machine": 0.9896277670221442,
+      "human": 0.7998545776930205
     },
     "interoception": {
-      "machine": 0.9896993495814974,
-      "human": 0.8255396010820636
+      "machine": 0.9899024201511837,
+      "human": 0.8381317088922213
     },
     "mouth_throat": {
-      "machine": 0.9911488966762123,
-      "human": 0.8212195571213439
+      "machine": 0.9905791051700937,
+      "human": 0.8196652758955013
     },
     "hand_arm": {
-      "machine": 0.9889486076784707,
-      "human": 0.7650574432105675
+      "machine": 0.9888095419177562,
+      "human": 0.7552055783523866
     },
     "foot_leg": {
-      "machine": 0.9921659428493089,
-      "human": 0.7944175861537899
+      "machine": 0.992761021223124,
+      "human": 0.7952264883007526
     },
     "head": {
-      "machine": 0.9596941791809015,
-      "human": 0.6230582552114208
+      "machine": 0.958152980311281,
+      "human": 0.6196402487967988
     },
     "torso": {
-      "machine": 0.9872487764451845,
-      "human": 0.742295009223299
+      "machine": 0.9880884716796903,
+      "human": 0.765113739410159
     }
   },
   "preregistered": {
@@ -192,27 +192,27 @@
           "resamples": 10000
         },
         "corrected": {
-          "estimate": 0.03469574340120607,
+          "estimate": 0.03215674820765568,
           "ci": [
-            -0.022692285823175284,
-            0.0937545300628051
+            -0.02505545917137464,
+            0.09090193579878147
           ],
           "resamples": 10000
         },
         "verdict": "consistent with a reliability artefact",
         "note": "Reliabilities held fixed inside the bootstrap, so the interval is somewhat too narrow.",
         "correctedByChannel": {
-          "touch": 0.8940760025024159,
-          "hearing": 0.794327367887389,
-          "smell": 0.8297472758686034,
-          "taste": 0.827983068862428,
-          "vision": 0.8833472851458968,
-          "interoception": 0.827260407148531,
-          "mouth_throat": 0.848536546008693,
-          "hand_arm": 0.8234396947110135,
-          "foot_leg": 0.8249054857738886,
-          "head": 0.7519622415545835,
-          "torso": 0.7916284877918446
+          "touch": 0.8934545990454833,
+          "hearing": 0.7934720549069159,
+          "smell": 0.8279082027561856,
+          "taste": 0.8268970971826402,
+          "vision": 0.8743315031457943,
+          "interoception": 0.8209382828723155,
+          "mouth_throat": 0.8495849187312686,
+          "hand_arm": 0.8288515688775547,
+          "foot_leg": 0.824238690581672,
+          "head": 0.7546395357009814,
+          "torso": 0.7794029949946899
         }
       },
       "H3": {
@@ -359,27 +359,27 @@
           "resamples": 10000
         },
         "corrected": {
-          "estimate": 0.03469574340120607,
+          "estimate": 0.03215674820765568,
           "ci": [
-            -0.022692285823175284,
-            0.0937545300628051
+            -0.02505545917137464,
+            0.09090193579878147
           ],
           "resamples": 10000
         },
         "verdict": "consistent with a reliability artefact",
         "note": "Reliabilities held fixed inside the bootstrap, so the interval is somewhat too narrow.",
         "correctedByChannel": {
-          "touch": 0.8940760025024159,
-          "hearing": 0.794327367887389,
-          "smell": 0.8297472758686034,
-          "taste": 0.827983068862428,
-          "vision": 0.8833472851458968,
-          "interoception": 0.827260407148531,
-          "mouth_throat": 0.848536546008693,
-          "hand_arm": 0.8234396947110135,
-          "foot_leg": 0.8249054857738886,
-          "head": 0.7519622415545835,
-          "torso": 0.7916284877918446
+          "touch": 0.8934545990454833,
+          "hearing": 0.7934720549069159,
+          "smell": 0.8279082027561856,
+          "taste": 0.8268970971826402,
+          "vision": 0.8743315031457943,
+          "interoception": 0.8209382828723155,
+          "mouth_throat": 0.8495849187312686,
+          "hand_arm": 0.8288515688775547,
+          "foot_leg": 0.824238690581672,
+          "head": 0.7546395357009814,
+          "torso": 0.7794029949946899
         }
       },
       "H3": {
@@ -405,59 +405,70 @@
     "H2": {
       "byChannel": {
         "touch": {
-          "machine": 0.9167366400153022,
-          "human": 0.258939862294583,
-          "difference": 0.6577967777207192
+          "words": 227,
+          "machine": 0.9204215700886138,
+          "human": 0.25960283655169203,
+          "difference": 0.6608187335369218
         },
         "hearing": {
-          "machine": 0.8935687109233098,
-          "human": 0.24505287634029777,
-          "difference": 0.648515834583012
+          "words": 227,
+          "machine": 0.8932508857432263,
+          "human": 0.2470721071406037,
+          "difference": 0.6461787786026226
         },
         "smell": {
-          "machine": 0.9277432067092809,
-          "human": 0.33177479521208403,
-          "difference": 0.5959684114971968
+          "words": 227,
+          "machine": 0.9283602535210169,
+          "human": 0.3404755723083734,
+          "difference": 0.5878846812126435
         },
         "taste": {
-          "machine": 0.936010333938118,
-          "human": 0.390197628703061,
-          "difference": 0.545812705235057
+          "words": 227,
+          "machine": 0.9316527878759571,
+          "human": 0.39825846945600873,
+          "difference": 0.5333943184199483
         },
         "vision": {
-          "machine": 0.8849384144668981,
-          "human": 0.1740219807579257,
-          "difference": 0.7109164337089724
+          "words": 227,
+          "machine": 0.8916256366642497,
+          "human": 0.18756496037215448,
+          "difference": 0.7040606762920951
         },
         "interoception": {
-          "machine": 0.8917783553227975,
-          "human": 0.2153542450490219,
-          "difference": 0.6764241102737756
+          "words": 227,
+          "machine": 0.8942179640708012,
+          "human": 0.23024928134279196,
+          "difference": 0.6639686827280092
         },
         "mouth_throat": {
-          "machine": 0.9056946856448299,
-          "human": 0.19828850184148497,
-          "difference": 0.707406183803345
+          "words": 229,
+          "machine": 0.900663433532342,
+          "human": 0.19701524425923148,
+          "difference": 0.7036481892731106
         },
         "hand_arm": {
-          "machine": 0.8847221160561237,
-          "human": 0.14917987899726928,
-          "difference": 0.7355422370588545
+          "words": 229,
+          "machine": 0.8839827357235032,
+          "human": 0.1427585668876146,
+          "difference": 0.7412241688358886
         },
         "foot_leg": {
-          "machine": 0.9156957520445168,
-          "human": 0.17223128494566908,
-          "difference": 0.7434644670988477
+          "words": 229,
+          "machine": 0.9220310387252085,
+          "human": 0.1733005898148493,
+          "difference": 0.7487304489103592
         },
         "head": {
-          "machine": 0.6712757685698926,
-          "human": 0.08172714174511815,
-          "difference": 0.5895486268247744
+          "words": 229,
+          "machine": 0.663793402655186,
+          "human": 0.08083062974622267,
+          "difference": 0.5829627729089634
         },
         "torso": {
-          "machine": 0.8691127833372867,
-          "human": 0.13426928650427514,
-          "difference": 0.7348434968330115
+          "words": 229,
+          "machine": 0.8773448946940499,
+          "human": 0.14954007503100702,
+          "difference": 0.7278048196630429
         }
       },
       "machineHigherOnEveryChannel": true
@@ -651,6 +662,134 @@
         "torso": {
           "n": 54,
           "pearson": 0.8351876608405661
+        }
+      }
+    },
+    "h2OnAllWords": {
+      "byChannel": {
+        "touch": {
+          "machine": 0.9167366400153022,
+          "machineWords": 284,
+          "human": 0.258939862294583,
+          "humanWords": 292
+        },
+        "hearing": {
+          "machine": 0.8935687109233098,
+          "machineWords": 284,
+          "human": 0.24505287634029777,
+          "humanWords": 292
+        },
+        "smell": {
+          "machine": 0.9277432067092809,
+          "machineWords": 284,
+          "human": 0.33177479521208403,
+          "humanWords": 292
+        },
+        "taste": {
+          "machine": 0.936010333938118,
+          "machineWords": 284,
+          "human": 0.390197628703061,
+          "humanWords": 292
+        },
+        "vision": {
+          "machine": 0.8849384144668981,
+          "machineWords": 284,
+          "human": 0.1740219807579257,
+          "humanWords": 292
+        },
+        "interoception": {
+          "machine": 0.8917783553227975,
+          "machineWords": 284,
+          "human": 0.2153542450490219,
+          "humanWords": 292
+        },
+        "mouth_throat": {
+          "machine": 0.9056946856448299,
+          "machineWords": 284,
+          "human": 0.19828850184148497,
+          "humanWords": 298
+        },
+        "hand_arm": {
+          "machine": 0.8847221160561237,
+          "machineWords": 284,
+          "human": 0.14917987899726928,
+          "humanWords": 298
+        },
+        "foot_leg": {
+          "machine": 0.9156957520445168,
+          "machineWords": 284,
+          "human": 0.17223128494566908,
+          "humanWords": 298
+        },
+        "head": {
+          "machine": 0.6712757685698926,
+          "machineWords": 284,
+          "human": 0.08172714174511815,
+          "humanWords": 298
+        },
+        "torso": {
+          "machine": 0.8691127833372867,
+          "machineWords": 284,
+          "human": 0.13426928650427514,
+          "humanWords": 298
+        }
+      },
+      "machineHigherOnEveryChannel": true
+    },
+    "h1bWithAllWordsReliabilities": {
+      "corrected": {
+        "estimate": 0.03469574340120607,
+        "ci": [
+          -0.022692285823175284,
+          0.0937545300628051
+        ],
+        "resamples": 10000
+      },
+      "verdict": "consistent with a reliability artefact",
+      "reliabilitiesOfMeans": {
+        "touch": {
+          "machine": 0.9922706380605292,
+          "human": 0.8576370912810123
+        },
+        "hearing": {
+          "machine": 0.9898881261030779,
+          "human": 0.8484009043384754
+        },
+        "smell": {
+          "machine": 0.9933646511044487,
+          "human": 0.8953992180249127
+        },
+        "taste": {
+          "machine": 0.9941709947089953,
+          "human": 0.9168887376403686
+        },
+        "vision": {
+          "machine": 0.988971781367839,
+          "human": 0.7841304215918692
+        },
+        "interoception": {
+          "machine": 0.9896993495814974,
+          "human": 0.8255396010820636
+        },
+        "mouth_throat": {
+          "machine": 0.9911488966762123,
+          "human": 0.8212195571213439
+        },
+        "hand_arm": {
+          "machine": 0.9889486076784707,
+          "human": 0.7650574432105675
+        },
+        "foot_leg": {
+          "machine": 0.9921659428493089,
+          "human": 0.7944175861537899
+        },
+        "head": {
+          "machine": 0.9596941791809015,
+          "human": 0.6230582552114208
+        },
+        "torso": {
+          "machine": 0.9872487764451845,
+          "human": 0.742295009223299
         }
       }
     },
