@@ -8,6 +8,24 @@ reason.
 
 ## [Unreleased]
 
+### Changed
+
+- Documentation corrections. The README documents the Atlas's HTTP API, and the
+  READMEs, `SECURITY.md` and code comments describe the field client, the `seed`
+  command, input validation, CORS, the audit log, study-link tokens and the
+  jsPsych export as they behave. The column descriptions in the Atlas's metadata
+  export give the rounding to three decimals and the leading apostrophe on cells
+  that would read as spreadsheet formulas, and say that exclusivity depends on the
+  number of perceptual channels rather than being bounded by it. The browser
+  edition's README documents its export formats and what an Atlas needs before
+  a study link can submit to it, and the page's help text describes the Explore
+  table and filters, pasted item lists and the languages without a word bank as
+  they behave. The word-bank build instructions give the packages that Korean
+  and Chinese need, the Stanza download step and the file names of the
+  profanity lists. The validation README describes the panel's lists, its
+  dataset, the result files and the pilot's files, and warns against importing
+  the simulated panel's dataset beside human English ratings.
+
 ## [0.2.0] - 2026-10-09
 
 This release brings every rating surface in line with the wording of the

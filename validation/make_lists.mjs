@@ -18,8 +18,9 @@ import { SEED, mulberry32, shuffleInPlace } from './stats.mjs';
 const here = dirname(fileURLToPath(import.meta.url));
 const LISTS = 5;
 
-// Rater r's order is seeded with SEED + r, so each rater's order differs and each
-// can be regenerated on its own.
+// The rater at index r of personas.json (from 0, so LLM01 uses SEED itself) is
+// seeded with SEED + r, so each rater's order differs and each can be regenerated
+// on its own.
 const shuffled = (items, seed) => shuffleInPlace([...items], mulberry32(seed));
 
 const words = JSON.parse(readFileSync(resolve(here, 'words-sample.json'), 'utf8')).items.map((i) => i.word);

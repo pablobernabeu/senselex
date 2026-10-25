@@ -94,7 +94,9 @@ for (const cells of normRows) {
 
 // ---- 1. Reproduction of the published derived columns ------------------------
 
-const TOLERANCE = 5e-4; // the release rounds its derived columns
+// A generous bound: a published value this close to the recomputed one counts as
+// exact, and worstAbsoluteDelta records how close the match actually is.
+const TOLERANCE = 5e-4;
 const rep = { words: 0, maxExact: 0, exclExact: 0, domExact: 0, domTied: 0, domGenuine: 0, maxWorst: 0, exclWorst: 0 };
 for (const entry of lancaster.values()) {
   rep.words += 1;

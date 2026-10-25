@@ -18,11 +18,12 @@ function mean(values) {
 // A channel nobody rated is not a channel rated zero. In the Lancaster protocol
 // zero is a substantive judgement ("not experienced at all through this
 // channel"), so collapsing an absent judgement onto it would invent data. The
-// rating form allows partial vectors, so this case is common rather than
-// exotic, and it matters: modality exclusivity is a range over a sum, so an
-// absent channel read as zero drives the minimum to zero and shrinks the
-// denominator at once, inflating the score. Absent channels are therefore null
-// here and are skipped by every function below.
+// rating form accepts partial vectors, so the case can occur even though the
+// instructions ask for every channel to be rated, and it matters: modality
+// exclusivity is a range over a sum, so an absent channel read as zero drives
+// the minimum to zero, widening the range while adding nothing to the sum, and
+// inflates the score. Absent channels are therefore null here and are skipped
+// by every function below.
 function ratedValue(averaged, dimension) {
   const value = averaged[dimension];
   return typeof value === 'number' && Number.isFinite(value) ? value : null;
@@ -93,8 +94,9 @@ export function maximumPerceptualStrength(averaged, dimensions = PERCEPTUAL_DIME
 // perceptual channels that were rated. It runs from 0, when a word is
 // experienced equally through every channel, to 1, when it is experienced
 // through a single channel only. Introduced by Lynott and Connell (2009) over
-// three modalities and extended to five in Lynott and Connell (2013); the six
-// channels used here follow Lynott et al. (2020). Values are not comparable
+// five modalities for 423 object properties and extended to 400 nouns in Lynott
+// and Connell (2013). The six channels used here follow Lynott et al. (2020),
+// which added interoception. Values are not comparable
 // across different numbers of channels, so exports record how many channels
 // contributed. Fewer than two rated channels leaves the range undefined, which
 // returns null rather than a misleading zero.
@@ -118,7 +120,7 @@ export function modalityExclusivity(averaged, dimensions = PERCEPTUAL_DIMENSIONS
 }
 
 // How many perceptual channels contributed to an exclusivity score. Reported
-// beside it because the measure is bounded by the number of channels and so is
+// beside it because the measure depends on the number of channels and so is
 // not comparable across sets of different size: a five-modality Dutch norm and
 // a six-channel norm computed here are different quantities.
 export function ratedChannelCount(averaged, dimensions = PERCEPTUAL_DIMENSIONS) {

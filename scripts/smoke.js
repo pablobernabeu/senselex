@@ -22,7 +22,7 @@ const norms = await (await fetch(`${base}/v1/norms/sensorimotor?language=eng`)).
 process.stdout.write(`english sensorimotor norms: ${norms.rows.length} words\n`);
 for (const row of norms.rows) {
   // Exclusivity is null when fewer than two perceptual channels were rated, and
-  // the channel count is printed beside it because the measure is bounded by it.
+  // the channel count is printed beside it because the measure depends on it.
   const exclusivity = row.modalityExclusivity === null ? 'n/a' : row.modalityExclusivity.toFixed(2);
   process.stdout.write(`  ${row.word}: dominant=${row.dominantModality ?? 'none'} exclusivity=${exclusivity} over ${row.perceptualChannels} channels (${row.nRecords} records)\n`);
 }

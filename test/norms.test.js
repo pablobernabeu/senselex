@@ -26,9 +26,11 @@ test('averageRatings averages each dimension over non-null values', () => {
 });
 
 test('an unrated channel does not inflate modality exclusivity', () => {
-  // The rating form allows partial vectors, so this is the ordinary case, not
-  // an edge case. Reading the nine blank channels as zeros would drive the
-  // minimum to zero and shrink the denominator, roughly quadrupling the score.
+  // The rating form accepts partial vectors, so a channel nobody rated can
+  // occur even though the instructions ask for every channel to be rated.
+  // Reading the four blank perceptual channels as zeros would drive the minimum
+  // to zero while adding nothing to the sum, widening the range from 1 to 4 and
+  // so quadrupling the score (4/7 against 1/7).
   const partial = averageRatings([{ vision: 4, hearing: 3 }, { vision: 4, hearing: 3 }]);
   assert.equal(modalityExclusivity(partial), (4 - 3) / (4 + 3));
   assert.equal(ratedChannelCount(partial), 2);
@@ -60,7 +62,8 @@ test('undefined norms report null rather than a misleading zero', () => {
 test('naming responses differing only in case or padding are one name', () => {
   // Case is not contrastive in naming responses, and leaving it uncollapsed
   // would inflate the distinct-name count and depress agreement. The browser
-  // edition normalised but the domain core did not, so the two disagreed.
+  // edition's copy collapses case and padding in the same way
+  // (test/browser-core.test.js).
   const responses = [
     { name: 'Smoky', responseType: 'source_based', length: 1 },
     { name: 'smoky', responseType: 'source_based', length: 1 },

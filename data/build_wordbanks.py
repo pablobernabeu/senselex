@@ -26,10 +26,10 @@ language. Each word is [word, concreteness or null, zipf].
 Pinned versions of everything below are in requirements.txt beside this file:
 python -m pip install -r requirements.txt
 
-Install: pip install wordfreq. Korean tokenisation additionally needs MeCab, so
-install that extra too: pip install "wordfreq[ko]" (which pulls in mecab-python3
-and mecab-ko-dic). Add the ja extra as well only if you re-enable Japanese in
-LANGS (see README.md). Curating the non-English banks to content words uses
+Install: pip install "wordfreq[cjk]". wordfreq needs MeCab (mecab-python3 and
+mecab-ko-dic) to look up Korean words and jieba to look up Chinese words, and its
+cjk extra installs both, as well as ipadic, which Japanese needs if you re-enable
+it in LANGS (see README.md). Curating the non-English banks to content words uses
 simplemma and stopwordsiso: pip install simplemma stopwordsiso. Without them the
 script, English-intrusion and profanity filters still run, but the lemmatiser and
 stopword filters are skipped. Profanity filtering reads one word list per
@@ -37,9 +37,10 @@ language code from source/badwords/ (the LDNOOBW list); absent files just mean n
 profanity filter for that language. Languages without a simplemma lemmatiser or
 with rich morphology (Chinese via jieba; Arabic, Hebrew, Tamil, Japanese, Korean,
 Turkish, Finnish, Hindi, Vietnamese via Stanza) are further curated by
-deep_filter: pip install stanza (jieba ships with wordfreq). Stanza downloads a
-model per language on first run; a language whose model is unavailable is left
-as-is. Then run:
+deep_filter: pip install stanza (jieba comes with wordfreq's cjk extra). The
+build never downloads a Stanza model (it loads each with download_method=None),
+so fetch the models for ko, fi and hi once beforehand with stanza.download(lang).
+A language whose model is not cached is left as-is. Then run:
 python build_wordbanks.py
 A language that this wordfreq build does not cover (for example Thai in some
 builds) is skipped with a message, and the app falls back to core words for it.
@@ -85,14 +86,15 @@ ENG_TARGET = 1200     # English bank size (stratified by concreteness and freque
 try:
     from wordfreq import top_n_list, zipf_frequency, available_languages
 except ImportError:
-    sys.exit('wordfreq is not installed. Run: pip install "wordfreq[ja,ko]"')
+    sys.exit('wordfreq is not installed. From data/, run: python -m pip install -r requirements.txt (or pip install "wordfreq[cjk]")')
 
 AVAILABLE = available_languages()
 
 # Curation tooling: a lemmatiser (drops inflected forms) and stopword lists (drop
 # function words), so the non-English banks hold genuine content-word concepts
-# rather than raw frequency tokens. Both are optional. Without them the banks are
-# frequency-only, as before.
+# rather than raw frequency tokens. Both are optional. Without them, the script,
+# English-intrusion and profanity filters still run, but the lemmatiser and
+# stopword filters are skipped.
 try:
     import simplemma
     import stopwordsiso as _stops
@@ -222,8 +224,8 @@ def build_english():
 
     Always a 2-tuple, matching the caller. build_frequency_only returns a
     3-tuple, so the fallback below drops its third element rather than returning
-    it directly: passing it through unpacked three values into two and raised a
-    ValueError. That branch is taken whenever the concreteness file is absent,
+    it directly, which would raise a ValueError where the caller unpacks two
+    values. That branch is taken whenever the concreteness file is absent,
     which is every fresh clone, since data/source/ is not committed.
     """
     if not BRYS.exists():
@@ -336,8 +338,8 @@ def _zh_content(w):
         try:
             import jieba.posseg as pg
         except ImportError:
-            # jieba is documented as optional, so an absent install must degrade
-            # to the lighter filters rather than abort the whole build.
+            # Without jieba, leave Chinese on the lighter filters rather than
+            # abort here.
             print("  jieba not installed; Chinese left on the lighter filters.")
             _deep_cache["zh"] = False
             return True
@@ -387,9 +389,10 @@ def deep_filter(pool, wf_lang):
         return [w for w in pool if _zh_content(w)]
     if wf_lang not in DEEP_STANZA:
         return pool
-    # Load one pipeline at a time and release it before the next language, so ten
-    # Stanza models are never resident together (that exhausted memory and left the
-    # last language, Vietnamese, silently unfiltered).
+    # Load one pipeline at a time and release it before the next language, so
+    # that the Stanza models are never resident together. Holding them all at
+    # once can exhaust memory, and a language whose model then fails to load is left
+    # unfiltered.
     nlp, has_ner = _load_stanza(wf_lang)
     if nlp is None:
         print(f"    (no Stanza model for {wf_lang}; left unfiltered)")

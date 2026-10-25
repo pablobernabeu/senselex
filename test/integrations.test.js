@@ -1,8 +1,11 @@
 // The jsPsych plugin must stay in lock-step with the domain constants: same
 // eleven dimensions, same 0-to-5 scale, and a trial shape the Atlas validators
-// accept once mapped onto their field names. These tests evaluate the plugin file the way a browser
-// would (a classic script against a jsPsychModule global) and then push a
-// synthetic trial result through validateRating.
+// accept once mapped onto their field names. These tests evaluate the plugin
+// file the way a browser would (a classic script against a jsPsychModule
+// global) and compare its default dimensions with ALL_DIMENSIONS. They also
+// drive its save and don't-know buttons and push a hand-written trial result
+// through validateRating. The plugin writes its 0-to-5 bounds as literals, and
+// no test here compares them with RATING_MIN and RATING_MAX.
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -39,8 +42,10 @@ test('plugin default dimensions match the domain constants exactly', () => {
 });
 
 test('a trial result maps onto a rating the Atlas validators accept', () => {
-  // The shape the plugin finishes a trial with, mapped the way the browser
-  // edition and the jsPsych export map it before submission.
+  // The data the standalone plugin finishes a rated trial with, mapped onto
+  // the Atlas field names (concept_id to conceptId, language to languageCode,
+  // dims to ratings, plus a clientId and a participantRef): the shape in which
+  // the browser edition submits a saved rating to /v1/sync.
   const trialData = {
     concept_id: 'CAFÉ',
     word: 'café',

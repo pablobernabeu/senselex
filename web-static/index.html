@@ -146,7 +146,7 @@
         <div style="align-self:end" class="inline"><button class="ghost" id="e-download-csv" type="button">Download norms (CSV)</button><button class="ghost" id="e-download-long" type="button">Download trial-level ratings (CSV)</button></div>
       </div>
       <h3>Sensorimotor norms</h3>
-      <p class="help">Means across raters on each channel, with the dominant perceptual modality, the maximum perceptual strength, the modality-exclusivity score and the mean between-rater dispersion. Dispersion is the average standard deviation across raters on the perceptual channels, so a low figure means raters agreed closely; it describes spread rather than reliability. Exclusivity is bounded by how many channels were rated, so it is not comparable across words rated on different numbers of channels. Concreteness and Zipf frequency come from the word bank. Click a column heading to sort.</p>
+      <p class="help">For each word, the table gives the number of raters, the dominant perceptual modality, the maximum perceptual strength, the modality-exclusivity score and the mean between-rater dispersion. Download norms (CSV) gives the same norms for every rated word in the language, whatever the filters. It leaves out the dispersion and adds the mean and the number of raters on each of the eleven channels and the number of perceptual channels behind the exclusivity score. Dispersion is the average standard deviation across raters on the perceptual channels, so a low figure means raters agreed closely; it describes spread rather than reliability. A blank cell means the measure is undefined for that word. The maximum strength and the dominant modality need at least one rated perceptual channel, exclusivity at least two and dispersion at least two raters on one perceptual channel. There is no dominant modality when every perceptual mean is 0. Exclusivity runs from 0 to 1 however many channels were rated, but its value depends on how many there were, so it is not comparable across words rated on different numbers of channels. For a word drawn from a bank, concreteness and Zipf frequency come from the bank. The Concreteness filter keeps words in the chosen band: a word with a concreteness value is high at 3.5 or above and low at 2.5 or below on the 1 to 5 scale, and any other item keeps the band it was given when it was added (the built-in core words are all high). Any choice but All hides words with no band, which includes every bank word outside English. The Frequency filter uses Zipf bands (high at 4.7 or above, mid from 3.5 up to 4.7, low below 3.5) and likewise hides words with no frequency, such as items added by hand. Click a column heading to sort.</p>
       <div id="e-status" role="status" aria-live="polite"></div>
       <div class="table-wrap"><table id="e-norms"><thead></thead><tbody></tbody></table></div>
       <h3>Codability from free naming</h3>
@@ -171,7 +171,7 @@
       </div>
 
       <h3>Word and cue list</h3>
-      <p class="help">These are the items participants rate or name. Add your own item below, or paste a list where each line is <span class="pill">language, conceptId, gloss, word, concreteness</span> (the concreteness field is optional). Each row has a Remove button that takes that word out of your own list on this device only. Nothing is uploaded or shared, no other user is affected and any ratings you have already saved for it are kept in your data. Translations beyond English are a starting point and should be checked by a fluent speaker before live data collection.</p>
+      <p class="help">These are the items participants rate or name. Add your own item below, or paste a list where each line is <span class="pill">language, conceptId, gloss, word, concreteness</span>. The language is the code of a language already listed under Languages, exactly as shown there (for example ita). The concept id is converted to capitals and may use letters, digits and -_.: only. The optional concreteness is high, medium or low, and any other value, a number included, is dropped. Fields cannot contain commas. A line that is incomplete, names an unknown language or has an invalid concept id is skipped and counted, and a pasted item already in the list is added again. Each row has a Remove button that takes that word out of your own list on this device only. Nothing is uploaded or shared, no other user is affected and any ratings you have already saved for it are kept in your data. Translations beyond English are a starting point and should be checked by a fluent speaker before live data collection.</p>
       <div class="row">
         <div><label for="m-lang">Language</label><select id="m-lang"></select></div>
         <div><label for="m-concept">Concept id</label><input id="m-concept" placeholder="e.g. COFFEE" autocomplete="off"></div>
@@ -182,7 +182,7 @@
       </div>
       <details>
         <summary>Paste a list of items</summary>
-        <label for="m-bulk">One item per line: language, conceptId, gloss, word, concreteness</label>
+        <label for="m-bulk">One item per line: language code, conceptId, gloss, word, concreteness (optional: high, medium or low)</label>
         <textarea id="m-bulk" placeholder="ita, COFFEE, coffee, caffè, high&#10;ita, FREEDOM, freedom, libertà, low"></textarea>
         <button class="ghost" id="m-import-items" type="button">Add pasted items</button>
       </details>
@@ -203,7 +203,7 @@
 
       <div class="spacer"></div>
       <h3>Run the study elsewhere</h3>
-      <p class="help">Export the items for one language as a ready-to-run jsPsych experiment. The file runs on any static host or jsPsych-compatible platform, carries Prolific's participant parameters through, and saves its data both as a jsPsych CSV and as a SenseLex dataset file that imports straight back here through Import below. Free naming is not exported, because naming responses need an analyst's coding before they can enter the norms.</p>
+      <p class="help">Export the items for one language as a ready-to-run jsPsych experiment. The file runs on any static host and can be adapted for a jsPsych hosting platform. It takes the participant code from Prolific's PROLIFIC_PID, or, without one, makes up a random code beginning web- on each visit, and it shows a Return to Prolific link at the end when the address carries &amp;cc=CODE. Unlike this page, it does not record STUDY_ID or SESSION_ID. It ends by letting the participant download their data, either as a SenseLex dataset file that imports straight back here through Import below or as a jsPsych CSV, and sends nothing to you by itself. Free naming is not exported, because naming responses need an analyst's coding before they can enter the norms.</p>
       <div class="row">
         <div><label for="j-lang">Language</label><select id="j-lang"></select></div>
         <div style="align-self:end"><button class="act" id="j-export" type="button">Download jsPsych experiment (HTML)</button></div>
@@ -236,7 +236,7 @@
   </section>
 
   <footer>
-    <p>SenseLex is open-source research infrastructure. The word banks are a derived feature subset drawn from the sources cited above, curated to genuine content words rather than shipped as raw frequency lists. A few languages, including Arabic, Hebrew, Tamil, Vietnamese, Turkish and Japanese, currently use a small hand-checked core list instead of a full bank, because a repeated curation check found the derived bank still too noisy to ship; see the project repository for the audit figures. This single page is the lightweight, browser-only edition. The full Atlas adds shared online collection, an offline-first field client and a server database.</p>
+    <p>SenseLex is open-source research infrastructure. The word banks are a derived feature subset drawn from the sources cited above, curated to genuine content words rather than shipped as raw frequency lists. Ten languages have no bank and start with a small hand-checked list of core words instead. The frequency data behind the banks does not cover Swahili, Yoruba, Thai and Basque. For Arabic, Hebrew, Tamil, Vietnamese, Turkish and Japanese, a repeated curation check found the derived bank too noisy to ship; see the project repository for the audit figures. This single page is the lightweight, browser-only edition. The full Atlas adds shared online collection, a server database, FAIR export and a synchronisation client for offline collection, whose packaged desktop application exists only as a sketch.</p>
   </footer>
 
   <script src="words.js"></script>
@@ -258,8 +258,9 @@
   // A channel nobody rated is null, not zero. Zero is a substantive judgement in
   // this protocol ("not experienced at all through this channel"), and because
   // exclusivity is a range over a sum, reading an absent channel as zero would
-  // drive the minimum to zero and shrink the denominator at once, inflating the
-  // score for exactly the words where raters used the partial-vector option.
+  // drive the minimum to zero, widening the range while adding nothing to the
+  // sum, and so inflate the score of a word with an unjudged channel whenever
+  // none of its judged channels is at zero.
   const PERCEPTUAL = ["touch","hearing","smell","taste","vision","interoception"];
   const ACTION = ["mouth_throat","hand_arm","foot_leg","head","torso"];
   const ALL = [...PERCEPTUAL, ...ACTION];
@@ -367,7 +368,9 @@
     if (banked.size){
       // Every language with a frequency bank gets a frequency-spanning starter set.
       for (const code of banked){ for (const w of stratifiedSample(bankFor(code), 60)) items.push(bankItem(code, w)); }
-      // Languages with no frequency corpus keep their hand-checked core words.
+      // A built-in language with no bank in words.js, because wordfreq has no data
+      // for it or because the curation audit withheld its bank (see
+      // data/README.md), keeps its hand-checked core words.
       for (const c of CORE) for (const [lang,word] of Object.entries(c.words)) if (!banked.has(lang)) items.push({language:lang,conceptId:c.id,gloss:c.gloss,word,concreteness:"high"});
     } else {
       for (const c of CORE) for (const [lang,word] of Object.entries(c.words)) items.push({language:lang,conceptId:c.id,gloss:c.gloss,word,concreteness:"high"});
@@ -377,8 +380,12 @@
   }
 
   // ----- Persistence -----
-  // Bumped v4 -> v5 when the word banks were re-curated, so returning visitors are
-  // rebuilt from the clean banks rather than keeping a stale starter set in storage.
+  // The dataset is stored under this one key, and load() reads no other. Changing
+  // it gives every returning visitor a fresh starter set built from the current
+  // banks, but it also stops the page reading anything saved under the old key:
+  // ratings, naming responses, skips, added items and languages. That data stays
+  // in the browser but is no longer shown or exported, so a change needs a
+  // migration from the old key if returning visitors are to keep their data.
   const KEY = "senselex.dataset.v5";
   const ID_RE = /^[\p{L}\p{N}_.:-]{1,128}$/u;
   const uuid = () => (crypto.randomUUID ? crypto.randomUUID() : "id-"+Math.random().toString(16).slice(2)+Date.now());
@@ -444,12 +451,10 @@
       if (res.ok){ for (const r of pending){ delete r.pending; delete r.rejected; } STUDY.authFailed=false; save(); }
       else if (res.status===401){ STUDY.authFailed=true; }
       else if (res.status>=400 && res.status<500 && res.status!==429){
-        // A rejected batch is flagged but stays pending. Clearing the flag on a
-        // 4xx used to drop the record from the queue while the interface went on
-        // to report that everything had been submitted, so a participant whose
-        // ratings the server refused was told they had arrived. The data is
-        // still safe on the device either way, and keeping it queued means a
-        // fixed server configuration picks it up on the next attempt.
+        // A rejected batch is flagged but stays pending, so the interface never
+        // reports refused ratings as submitted and a fixed server configuration
+        // picks them up on the next attempt. The data stays safe on the device
+        // either way.
         for (const r of pending) r.rejected=true;
         save();
       }
@@ -473,9 +478,9 @@
       if (STUDY.authFailed) state = " (submission refused: the study token was not accepted; your ratings are kept safely on this device)";
       else if (rejected) state = ` (${rejected} rating(s) were refused by the server and are kept on this device; please tell the study contact)`;
       else if (n) state = ` (${n} awaiting submission)`;
-      else state = " (all submitted)";
+      else state = " (nothing waiting to be submitted)";
       bits.push("Ratings are submitted to "+hostname+state);
-    } else if (STUDY.cc) bits.push("Data stay on this device; you will be returned to Prolific at the end");
+    } else if (STUDY.cc) bits.push("Data stay on this device, and a link back to Prolific appears when every item is done");
     host.replaceChildren(el("div",{className:"msg "+(STUDY.authFailed?"warn":"ok"),textContent:bits.join(". ")+"."}));
   }
   function completionPanel(total, unknown){
@@ -673,9 +678,10 @@
   // ----- jsPsych export -----
   // Generates a jsPsych 8 experiment for one language's items. The rating trial
   // mirrors this app's grid exactly (same dimensions, same 0-5 scale, partial
-  // vectors allowed), Prolific's parameters pass through at run time, and the
-  // data save in two forms: the native jsPsych CSV and a SenseLex dataset JSON
-  // that imports straight back here. A word the
+  // vectors allowed), Prolific's participant id (PROLIFIC_PID) and completion code
+  // (cc) are read at run time, though not STUDY_ID or SESSION_ID, and at the end
+  // the participant downloads their data in one of two forms: the native jsPsych
+  // CSV or a SenseLex dataset JSON that imports straight back here. A word the
   // participant does not know ends its trial with dont_know set and goes into the
   // dataset's skips, never its ratings. jsPsych itself loads from a CDN, the one
   // respect in which the exported file is not self-contained: exact versions, with
@@ -779,20 +785,22 @@
     fillLangSelect($("#b-language"));
     const code=builderLang();
     if (!BANKS[code]){
-      // No frequency bank for this language: either wordfreq has no data for it, or
-      // (for Arabic, Hebrew, Tamil, Vietnamese, Turkish and Japanese) a repeated
-      // curation audit found the derived bank still held too much non-content
-      // material (proper nouns, foreign intrusions, unresolved inflected forms) to
-      // ship. Collect and Explore already use this language's small, hand-checked
-      // core word list instead; see data/README.md for the audit figures.
-      $("#bank-help").textContent="This language has no frequency bank to draw from here, either because the underlying frequency data does not cover it, or because a curation check found the derived bank still too noisy to ship. It uses a small, hand-checked set of core words instead, already loaded in Collect and Explore. Add further items by hand below.";
+      // No frequency bank for this language. For a built-in language, either
+      // wordfreq has no data for it, or (for Arabic, Hebrew, Tamil, Vietnamese,
+      // Turkish and Japanese) a repeated curation audit found the derived bank
+      // still held too much non-content material (proper nouns, foreign
+      // intrusions, unresolved inflected forms) to ship. Its starter set holds the
+      // small, hand-checked core word list instead, which Collect presents and
+      // Explore shows once rated; see data/README.md for the audit figures. A
+      // language added under Languages has no core words and starts with no items.
+      $("#bank-help").textContent="This language has no frequency bank to draw from here. The built-in languages without a bank either lack frequency data or failed a curation check, and they start with a small, hand-checked set of core words in Collect. A language you add under Languages starts with no items. Add further items by hand below.";
       if (panel) panel.style.display="none";
       return;
     }
     if (panel) panel.style.display="";
     const hasC=bankHasConc(code);
     for (const id of ["#b-cmin","#b-cmax"]) $(id).disabled = !hasC;
-    $("#bank-help").innerHTML = `Draw a sample of words from a frequency bank, controlling word frequency${hasC?" and concreteness":""}. Frequency is on the Zipf scale (about 1 for rare words to 7 for the commonest)${hasC?", and concreteness runs from 1 (abstract) to 5 (concrete)":". Concreteness ratings are available for English only, so the concreteness limits do not apply to this language"}. The sample is added to the items for the chosen language and appears in Collect and Explore.`;
+    $("#bank-help").innerHTML = `Draw a sample of words from a frequency bank, controlling word frequency${hasC?" and concreteness":""}. Frequency is on the Zipf scale (about 1 for rare words to 7 for the commonest)${hasC?", and concreteness runs from 1 (abstract) to 5 (concrete)":". Concreteness ratings are available for English only, so the concreteness limits do not apply to this language"}. The sample is added to the items for the chosen language, ready to rate or name in Collect, and a word appears in Explore once it has been rated.`;
     const m=bankMatches();
     $("#b-match").textContent = `${m.length} of ${bankFor(code).length} bank words match the current ranges.`;
   }
@@ -807,7 +815,7 @@
     for (const w of chosen){ const it=bankItem(code, w); if (!have.has(it.conceptId+"|"+it.word)){ data.items.push(it); have.add(it.conceptId+"|"+it.word); added++; } }
     save(); refreshSelectors(); renderManage();
     const name=(data.languages.find(l=>l.code===code)||{}).name||code;
-    flash("manage",`Added ${added} word(s) to the ${name} items${added<chosen.length?` (the rest were already present)`:""}. Open Collect or Explore to use them.`,"ok");
+    flash("manage",`Added ${added} word(s) to the ${name} items${added<chosen.length?` (the rest were already present)`:""}. Open Collect to rate or name them.`,"ok");
   }
 
   function renderManage(){
@@ -878,7 +886,7 @@
     const names=[["eng","SMOKE",["smoky","burnt","bonfire","acrid","woody","sharp"]],["eng","ROSE",["floral","floral","sweet","floral","perfume","floral"]]];
     for (const [language,conceptId,list] of names){ if (!data.items.some(i=>i.language===language&&i.conceptId===conceptId)) data.items.push({language,conceptId,gloss:conceptId.toLowerCase(),word:conceptId.toLowerCase(),concreteness:"high"});
       list.forEach((nm,i)=>{ const id=`sampn-${language}-${conceptId}-${i}`; if (!data.responses.some(r=>r.id===id)) data.responses.push({id,language,conceptId,cue:conceptId.toLowerCase(),name:nm,length:nm.split(/\s+/).length,participant:`S${i+1}`,source:"sample",ts:Date.now(),appVersion:APP_VERSION}); }); }
-    save(); refreshSelectors(); renderManage(); flash("manage",`Loaded a sample of ${added} ratings and some naming responses. Open the Explore tab to see the norms.`,"ok");
+    save(); refreshSelectors(); renderManage(); flash("manage",`Loaded a sample of ${added} ratings and some naming responses, nearly all in English with a few Spanish ratings. In the Explore tab, choose English to see the norms.`,"ok");
   }
   function resetAll(){ if (!confirm("Remove all languages, items and collected data from this browser and return to the starter set?")) return; data=defaultDataset(); save(); refreshSelectors(); renderManage(); renderCollect(); flash("manage","Reset to the starter set.","ok"); }
 

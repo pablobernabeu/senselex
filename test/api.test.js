@@ -172,9 +172,9 @@ test('unknown routes return 404', async () => {
 });
 
 test('reference-data writes are validated like measurement writes', async () => {
-  // These two routes previously accepted whatever they were sent, so a malformed
-  // language produced a 500 and a concept id containing markup returned 200. The
-  // concept catalogue is what every rating keys on, so it gets the same
+  // The language and concept routes run their bodies through validators, so a
+  // malformed language and a concept id containing markup are refused with 422.
+  // The concept catalogue is what every rating keys on, so it gets the same
   // identifier check as the ratings themselves.
   const server = await startTestServer();
   try {
@@ -190,8 +190,10 @@ test('reference-data writes are validated like measurement writes', async () => 
     });
     assert.equal(badConcept.status, 422);
 
-    // An unverified Concepticon identifier is refused on shape, because a wrong
-    // link silently joins two unrelated concepts in any later merge.
+    // A Concepticon identifier that is not a concept-set number is refused,
+    // since a wrong link silently joins two unrelated concepts in any later
+    // merge. Only the shape is checked: nothing resolves the number against the
+    // catalogue, so a well-formed but wrong link is still accepted.
     const badLink = await fetch(`${server.base}/v1/concepts`, {
       method: 'POST', headers: AUTH,
       body: JSON.stringify({ id: 'LEMON', gloss: 'lemon', concepticonId: 'husk' }),
@@ -209,9 +211,9 @@ test('reference-data writes are validated like measurement writes', async () => 
 });
 
 test('CSV export returns every row rather than one page', async () => {
-  // The export used to request a single page and present it as the whole
-  // dataset, so a language with more words than the page size lost most of them
-  // silently.
+  // The export reads the norms page by page until every row is in, so a
+  // language with more words than the page size is exported whole, and
+  // X-Total-Rows gives the number of rows.
   const server = await startTestServer({ SENSELEX_MAX_PAGE_SIZE: '5' });
   try {
     await fetch(`${server.base}/v1/languages`, {
@@ -253,9 +255,9 @@ test('the export filename cannot carry a crafted language code', async () => {
 
 test('a submission naming a participant is accepted, as the recruitment pipeline requires', async () => {
   // The study-link mode locks the participant reference to the recruitment
-  // panel's identifier and sends it with every record, but nothing registered a
-  // participant first, so the foreign key refused the whole batch. Every
-  // Prolific submission therefore failed with "Unknown language or concept".
+  // panel's identifier and sends it with every record. No route registers a
+  // participant beforehand, so the server creates the participant row on insert
+  // rather than letting the foreign key refuse the batch.
   const server = await startTestServer();
   try {
     const response = await fetch(`${server.base}/v1/sync`, {

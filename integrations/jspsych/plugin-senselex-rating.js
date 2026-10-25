@@ -87,7 +87,7 @@ var jsPsychSenselexRating = (function (jspsych) {
       dims: { type: jspsych.ParameterType.OBJECT },
       /** True when the participant did not know the word. */
       dont_know: { type: jspsych.ParameterType.BOOL },
-      /** Milliseconds from render to save. */
+      /** Milliseconds from render to the save or don't-know press. */
       rt: { type: jspsych.ParameterType.INT },
     },
   };

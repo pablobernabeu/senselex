@@ -46,7 +46,7 @@ export function loadConfig(env = process.env) {
       windowMs: parseInteger(env.SENSELEX_RATE_WINDOW_MS, 60_000),
       max: parseInteger(env.SENSELEX_RATE_MAX, 240),
     },
-    // A 200-row page bounds the size of any single JSON response and of the CSV export.
+    // A 200-row page bounds the size of any single JSON response. The CSV export reads in pages of this size but returns every row.
     maxPageSize: parseInteger(env.SENSELEX_MAX_PAGE_SIZE, 200),
   };
 }

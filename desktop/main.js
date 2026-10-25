@@ -18,9 +18,9 @@ import process from 'node:process';
 
 const LOCAL_PORT = 8799;
 
-// The field build has no operator to set an environment variable, so the token is
-// generated once and kept beside the database. It is a local credential guarding
-// loopback writes, not a shared secret.
+// A field build usually has no operator to set an environment variable, so unless
+// SENSELEX_FIELD_TOKEN is set, the token is generated once and kept beside the
+// database. It is a local credential guarding loopback writes, not a shared secret.
 function requireFieldToken() {
   if (process.env.SENSELEX_FIELD_TOKEN) return process.env.SENSELEX_FIELD_TOKEN;
   const tokenPath = resolve('./data/field-token');
@@ -32,8 +32,8 @@ function requireFieldToken() {
 }
 
 export function startLocalAtlas() {
-  // A field instance writes to a local database file and requires no token,
-  // because it is reachable only from this machine over the loopback interface.
+  // A field instance writes to a local database file and listens only on the
+  // loopback interface, so it is reachable from this machine alone.
   const config = loadConfig({
     NODE_ENV: 'production',
     SENSELEX_HOST: '127.0.0.1',

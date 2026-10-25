@@ -1,12 +1,20 @@
 # SenseLex Atlas, browser edition
 
-This folder holds a self-contained web page, `index.html`, that is a working tool for building, collecting, and analysing multisensory lexical norms. It needs no installation, no build step, no server-side code, and no account or login. Everything runs in the browser, and the data you collect is saved on your own device. It loads a companion file, `words.js`, which carries an English word bank with frequency and concreteness.
+This folder holds a self-contained web page, `index.html`, that is a working tool for building, collecting, and analysing multisensory lexical norms. It needs no installation, no build step, no server-side code, and no account or login. Everything runs in the browser, and the data you collect is saved on your own device. It loads a companion file, `words.js`, which carries word banks for 14 languages, with frequency for every word and, for English, concreteness.
 
 ## What you can do with it
 
 You can draw a study set from a word bank under controlled conditions, choosing a language, how many words you want, and the frequency range, and for English the concreteness range as well, so a list is a sample you have designed. You can then run a sensorimotor rating session, presenting each word and recording its strength on the eleven perceptual and action channels of the Lancaster protocol, or a free-naming session that records the name a participant gives for each item. "Next" moves on without recording anything. "Don't know this word" (or, for naming, "No name given") records the item as unknown: it counts towards finishing the session but never enters the norms, and answering it later replaces the record. A session made of nothing but unknown items does not finish. Every record this page saves carries the SenseLex release that saved it. Items recorded as unknown stay on the device: a study link with an Atlas address submits only ratings, and the Atlas keeps neither the unknown items nor the release. The prompt can be read aloud through the browser's speech synthesis, which helps with participants who do not read, including children and people with reading difficulty. As data accumulate, the Explore tab computes the norms live: the dominant modality, the maximum perceptual strength, the modality-exclusivity score, the between-rater dispersion (a measure of spread, which runs opposite to a reliability coefficient), and the codability of any naming responses. You can sort, filter by concreteness or frequency, and download the norms as CSV, alongside a trial-level long-format CSV (one row per participant, word and dimension) for archiving and reanalysis.
 
 You manage everything under the Build and manage tab. The word list is editable by hand or by pasting a list, you can add languages with their script and direction, and the whole dataset exports to JSON for backup or transfer and imports back with a merge that does not duplicate records.
+
+## Export formats
+
+Export dataset (JSON), under Build and manage, writes `senselex-dataset-<date>.json`, one object with `version` (5), `exportedWith` (the SenseLex release that exported it), `languages`, `items`, `ratings`, `responses` and `skips`. A language has `code`, `name`, `script`, `direction` (`ltr` or `rtl`) and `family`. An item has `language`, `conceptId`, `gloss` and `word`, and its band (`high`, `medium` or `low`) is in `concreteness`, which is empty or absent when the item has none. An item drawn from a bank also has `frequency` (Zipf), and an English bank item has `concretenessValue`, its mean concreteness rating from 1 to 5. A rating has `id`, `language`, `conceptId`, `word`, `participant`, `dims` (a value from 0 to 5 for each rated channel), `source` (`browser` or `sample` for a record made on this page, and for an imported record the value it came with, such as `jspsych` or `llm-validation`), `ts` (milliseconds since 1970) and `appVersion`. A naming response has `id`, `language`, `conceptId`, `cue`, `name`, `length` (the number of words in the name), `participant`, `source`, `ts` and `appVersion`. An item recorded as unknown, in `skips`, has `id`, `task` (`rating` or `naming`), `language`, `conceptId`, `participant`, `source`, `ts` and `appVersion`, and `word` when the task is rating. A record made through a link that carries Prolific's `STUDY_ID` and `SESSION_ID` also has `study` and `session`. A rating not yet accepted by the Atlas named in a study link has `pending`, and one in a batch the Atlas refused as invalid also has `rejected` (a refused token or a server error leaves only `pending`).
+
+Import dataset (JSON) needs a `languages` array. It merges languages by code, items by language, concept and word, and ratings, responses and skips by `id`, so a record already present is kept as it is. It then drops any skip that an answer from the same participant to the same item replaces.
+
+Under Explore, Download norms (CSV) writes `senselex-sensorimotor-<code>.csv` for the language chosen there, with one row per rated word and the columns `concept_id`, `word`, `concreteness`, `zipf_frequency`, `n_records`, `mean_<channel>` and `n_<channel>` for each of the eleven channels, `dominant_modality`, `max_perceptual_strength`, `modality_exclusivity` and `n_perceptual_channels`. These are the Atlas export's columns with `concreteness` and `zipf_frequency` added. `concreteness` holds the bank's mean concreteness rating for an English bank word and otherwise the item's band, if it has one. Means, the maximum strength and exclusivity are rounded to three decimals. Download trial-level ratings (CSV) writes `senselex-ratings-long-<code>.csv` with one row for each rated channel of each rating in that language, in the columns `participant`, `language`, `concept_id`, `word`, `dimension`, `rating`, `study`, `session`, `timestamp` (ISO 8601) and `app_version`.
 
 ## The word banks
 
@@ -24,7 +32,10 @@ A study link preconfigures a session through URL parameters, so a recruitment
 platform can send participants straight into a task with nothing to set up on
 screen:
 
-- `?lang=spa&task=rating` preselects the language and the task.
+- `?lang=spa&task=rating` preselects the language and the task. `lang` is a
+  language code from the page's list, shown in brackets after each name in the
+  Language menu, and `task` is `rating` or `naming`. Other values are ignored,
+  and the participant can still change both.
 - `&cc=CODE` holds a Prolific completion code. When every item is complete, the
   page shows a Return to Prolific link that registers the submission.
 - `&atlas=https://your-atlas.example&token=TOKEN` submits ratings to a hosted
@@ -33,10 +44,28 @@ screen:
   when the connection returns, and the page states on screen that submission is
   happening and to where. Naming responses stay local, because the Atlas stores
   coded responses and coding is an analyst's judgement. A rating edited after
-  successful submission stays local.
+  successful submission stays local. On such a link, a session finishes only
+  once the participant has saved at least one rating in that language, whichever
+  task is selected.
+
+Before you share a link with an `atlas` address, prepare that Atlas. Add the
+origin the page is served from (for example `https://study.example.org`) to its
+`SENSELEX_CORS_ORIGINS`. That list is empty by default, and the browser blocks
+every submission from an origin that is not on it. A page opened from a file has
+the origin `null`, so host the page rather than sending participants the file.
+If the Atlas has write tokens (`SENSELEX_API_TOKENS`), `token` must be one of
+them. Create the study's language and the concept id of every item participants
+will see, with `POST /v1/languages` and `POST /v1/concepts` (see `../README.md`),
+because the Atlas refuses a whole batch if any rating in it names a language or
+concept it does not hold. A participant's browser holds the page's starter set,
+not a list you have edited, so read the ids from the Concept column under Build &
+manage in a browser that has not opened the page before. Ratings the
+Atlas does not accept stay on the participant's device, and the page reports
+them as refused or as still awaiting submission.
 
 Prolific's own `PROLIFIC_PID`, `STUDY_ID` and `SESSION_ID` parameters are read
-automatically: the participant code locks to the Prolific id and all three are
+automatically: the participant code locks to the Prolific id (when it consists
+of up to 128 letters, digits and `_.:-`, as Prolific ids do) and all three are
 stored with each record. The same mechanics serve any panel that can append URL
 parameters to a study address.
 
@@ -44,9 +73,12 @@ parameters to a study address.
 
 Under Build & manage, "Run the study elsewhere" exports the items of one
 language as a ready-to-run jsPsych 8 experiment: a single HTML file that
-presents the same rating instrument, passes Prolific parameters through at run
-time, and saves its data both as a jsPsych CSV and as a SenseLex dataset file
-that imports straight back here. A standalone jsPsych
+presents the same rating instrument, reads the Prolific participant id
+(`PROLIFIC_PID`) and the `cc` completion code at run time, and ends by offering
+the participant one download of their data, either a SenseLex dataset file that
+imports straight back here or a jsPsych CSV, saved on the participant's own
+device. The file sends nothing anywhere, so on a plain static host, the data
+reach you only if participants pass the file on. A standalone jsPsych
 plugin for embedding the trial in your own timelines lives in
 `../integrations/jspsych/`.
 

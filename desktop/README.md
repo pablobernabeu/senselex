@@ -22,6 +22,12 @@ To turn it into a real application:
    cannot, and validate stimulus timing against published testing standards.
 5. Package per platform with electron-builder, and sign the installers.
 
+`startLocalAtlas()` in `main.js` runs the Atlas on 127.0.0.1:8799 against
+`./data/field.db`. Writes need a token, taken from `SENSELEX_FIELD_TOKEN` when
+that is set and otherwise generated on first run and saved to `./data/field-token`
+(created with mode 0600). Both paths are relative to the working directory. Enter
+that token in the Write token field of the front end.
+
 Tauri is a lighter alternative to Electron for low-specification field hardware,
 at the cost of less deterministic rendering across the operating-system web views.
 The choice between them is a design decision to settle early, against the timing

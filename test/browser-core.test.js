@@ -1,9 +1,8 @@
 // The browser edition has to run from a file:// URL with no build step, so it
-// cannot import the domain core and carries a copy instead. A copy that is only
-// checked by eye drifts: before this test existed, the two implementations had
-// already diverged on how free-naming responses are counted, so the same data
-// gave agreement 1.00 and one distinct name in the browser and 0.00 and two on
-// the server.
+// cannot import the domain core and carries a copy instead. A copy checked only
+// by eye drifts, and a drift in how free-naming responses are counted would
+// give the same data different agreement and distinct-name figures in the
+// browser and on the server.
 //
 // This test extracts the copy from between the markers in web-static/index.html,
 // evaluates it as a browser would, and asserts that every function agrees with
@@ -52,7 +51,7 @@ const browser = loadBrowserCore();
 const VECTOR_FIXTURES = [
   // A complete vector.
   [{ touch: 1, hearing: 0, smell: 4, taste: 5, vision: 2, interoception: 1, mouth_throat: 0, hand_arm: 2, foot_leg: 0, head: 1, torso: 0 }],
-  // Partial vectors, the case the two copies used to disagree about.
+  // Partial vectors, which the rating form accepts and which leave some channels unrated.
   [{ vision: 4, hearing: 3 }, { vision: 4, hearing: 3 }],
   [{ vision: 4, hearing: 3 }, { vision: 2, smell: 1 }],
   // Every rated channel at zero, which has no dominant modality.

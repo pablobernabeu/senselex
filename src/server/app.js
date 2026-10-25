@@ -70,8 +70,9 @@ export function buildApp(config) {
   const rateLimiter = createRateLimiter(config.rateLimit);
   const hashIp = createAddressDigest(config.auditSecret);
 
-  // Guards a write handler: enforces auth (when tokens are configured) and writes
-  // an audit entry for every attempt, successful or not.
+  // Guards a write handler: enforces auth (when tokens are configured) and records
+  // a refused token, or an unauthenticated development write, in the audit log.
+  // handleWrite records the outcome of a write that passes validation.
   function authorise(req, res, route) {
     if (!auth.configured) {
       // Development mode with no tokens set. Allowed, but recorded.
@@ -263,7 +264,7 @@ export function buildApp(config) {
         // the quoted filename and append a second header parameter.
         if (!isIdentifier(language)) { sendError(res, 400, 'language must be a valid identifier'); return; }
         // Page through to the end rather than returning one page. An export that
-        // silently stopped at maxPageSize dropped most of a large language's
+        // silently stopped at maxPageSize would drop most of a large language's
         // norms while still presenting itself as the complete dataset.
         const rows = [];
         let total = 0;

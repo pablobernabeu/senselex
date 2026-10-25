@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // Command-line entry point. Two subcommands keep the prototype easy to run:
-// "serve" starts the Atlas web service, and "seed" loads the reference data.
+// "serve" (the default) starts the Atlas web service, and "seed" loads the
+// demonstration data, which includes invented ratings and naming responses that
+// enter the norms like real data.
 
 import process from 'node:process';
 import { loadConfig } from '../src/config.js';

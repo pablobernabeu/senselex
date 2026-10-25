@@ -16,8 +16,14 @@ only, comes from Brysbaert, Warriner & Kuperman (2014), Behavior Research Method
 46(3), 904 to 911, https://doi.org/10.3758/s13428-013-0403-5, read from the cached
 file under `source/`. Concreteness ratings of this kind are not available in a
 comparable form for the other languages, which is one of the gaps the tool exists
-to help fill. Profanity filtering reads one word list per language from
-`source/badwords/`, drawn from the LDNOOBW list.
+to help fill. Profanity filtering reads one plain-text list per language (UTF-8,
+one word per line) from `source/badwords/<code>.txt`, where `<code>` is the
+wordfreq language code (`en`, `es`, `zh`, `ko`, ...). The lists come from the
+LDNOOBW list (List of Dirty, Naughty, Obscene and Otherwise Bad Words,
+https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words),
+whose files are named by language code without an extension, so save each one as
+`<code>.txt`. A language without a file is built without the profanity filter,
+and the script does not report it.
 
 ## What it does
 
@@ -49,21 +55,34 @@ words" below.
 ## Running it
 
 ```
-pip install "wordfreq[ko]"                   # the ko extra pulls in MeCab for Korean;
-                                              # add ja too only if you re-enable Japanese in LANGS
-pip install simplemma stopwordsiso stanza    # content-word curation and deep per-language NLP
+cd data                                      # from the repository root
+python -m pip install -r requirements.txt    # pinned versions, for Python 3.13
 python build_wordbanks.py
 ```
 
-`stanza` downloads one model per language on first use and then runs offline from
-its local cache; a language whose model cannot be loaded is simply left with the
-lighter filters. `simplemma` and `stopwordsiso` are optional: without them the
+The pins are the versions installed on 23 September 2026, and the committed banks
+were built in July 2026, so a rebuild may not reproduce `../web-static/words.js`
+exactly (see `../ISSUES.md`). Without the pins,
+`pip install "wordfreq[cjk]" simplemma stopwordsiso stanza` installs the latest
+versions. The `cjk` extra brings MeCab with its Korean dictionary, which wordfreq
+needs to look up Korean words, and `jieba`, which it needs to look up Chinese
+words and which the Chinese pass of `deep_filter` also uses. It also brings
+`ipadic`, the Japanese dictionary, which is needed only if you re-enable Japanese
+in `LANGS`.
+
+`stanza` downloads nothing during the build: the script loads each model from the
+local cache (`download_method=None`), so fetch the models once beforehand for
+Korean, Finnish and Hindi, the languages in `LANGS` for which the per-language
+pass uses Stanza: `python -c "import stanza; [stanza.download(lang) for lang in ('ko', 'fi', 'hi')]"`.
+A language whose model cannot be loaded is left with the lighter filters, and the
+script prints a note. `simplemma` and `stopwordsiso` are optional: without them the
 script, cross-lingual and profanity filters still run, but the lemmatiser and
 stopword filters are skipped for the languages that would have used them.
 
 The English concreteness file is expected at
 `source/Concreteness_ratings_Brysbaert_et_al_BRM.txt`. If it is absent, fetch it
-with `curl -sS -L "https://raw.githubusercontent.com/ArtsEngine/concreteness/master/Concreteness_ratings_Brysbaert_et_al_BRM.txt" -o source/Concreteness_ratings_Brysbaert_et_al_BRM.txt`.
+by running `curl -sS -L --create-dirs "https://raw.githubusercontent.com/ArtsEngine/concreteness/master/Concreteness_ratings_Brysbaert_et_al_BRM.txt" -o source/Concreteness_ratings_Brysbaert_et_al_BRM.txt` from `data/`.
+Without it, the script still builds an English bank, with frequency only.
 A language that the installed wordfreq build does not cover is skipped with a
 message, and the app falls back to its core words for that language.
 
@@ -84,7 +103,7 @@ distinct causes. Arabic, Hebrew and Tamil have templatic or agglutinative
 morphology that Stanza's lemmatiser only partly normalises, so clitics and
 inflected forms survive. Vietnamese is analytic, so foreign names, brands and
 acronyms get tagged as ordinary nouns with no named-entity signal to catch them.
-Japanese carries many single-kanji tokens that are bound compound elements, which do not stand as words on their own, which part-of-speech tagging alone does not
+Japanese carries many single-kanji tokens that are bound compound elements and do not stand as words on their own, and part-of-speech tagging alone does not
 reliably separate them from genuine single-kanji nouns. To avoid shipping a bank with that much non-content material, these six languages are left out of `LANGS`, and the app's
 existing fallback for any language missing from `words.js`, a small hand-checked core word list defined in `../web-static/index.html`, applies to them too. They remain available as languages in the app; they just do not currently
 carry a large frequency-sampled bank. Revisit this list if a stronger
