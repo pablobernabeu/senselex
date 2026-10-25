@@ -68,7 +68,7 @@ versions. The `cjk` extra brings MeCab with its Korean dictionary, which wordfre
 needs to look up Korean words, and `jieba`, which it needs to look up Chinese
 words and which the Chinese pass of `deep_filter` also uses. It also brings
 `ipadic`, the Japanese dictionary, which is needed only if you re-enable Japanese
-in `LANGS`.
+in `LANGS` and which `requirements.txt` does not pin.
 
 `stanza` downloads nothing during the build: the script loads each model from the
 local cache (`download_method=None`), so fetch the models once beforehand for

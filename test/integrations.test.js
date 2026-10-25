@@ -44,8 +44,9 @@ test('plugin default dimensions match the domain constants exactly', () => {
 test('a trial result maps onto a rating the Atlas validators accept', () => {
   // The data the standalone plugin finishes a rated trial with, mapped onto
   // the Atlas field names (concept_id to conceptId, language to languageCode,
-  // dims to ratings, plus a clientId and a participantRef): the shape in which
-  // the browser edition submits a saved rating to /v1/sync.
+  // dims to ratings, plus a clientId and a participantRef): a rating record as
+  // the browser edition submits it to /v1/sync, less the `kind` that /v1/sync
+  // reads before it calls validateRating.
   const trialData = {
     concept_id: 'CAFÉ',
     word: 'café',

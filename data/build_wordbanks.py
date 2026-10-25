@@ -29,7 +29,7 @@ python -m pip install -r requirements.txt
 Install: pip install "wordfreq[cjk]". wordfreq needs MeCab (mecab-python3 and
 mecab-ko-dic) to look up Korean words and jieba to look up Chinese words, and its
 cjk extra installs both, as well as ipadic, which Japanese needs if you re-enable
-it in LANGS (see README.md). Curating the non-English banks to content words uses
+it in LANGS (see README.md) and which requirements.txt does not pin. Curating the non-English banks to content words uses
 simplemma and stopwordsiso: pip install simplemma stopwordsiso. Without them the
 script, English-intrusion and profanity filters still run, but the lemmatiser and
 stopword filters are skipped. Profanity filtering reads one word list per

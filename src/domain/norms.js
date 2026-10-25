@@ -22,8 +22,8 @@ function mean(values) {
 // instructions ask for every channel to be rated, and it matters: modality
 // exclusivity is a range over a sum, so an absent channel read as zero drives
 // the minimum to zero, widening the range while adding nothing to the sum, and
-// inflates the score. Absent channels are therefore null here and are skipped
-// by every function below.
+// so inflates the score whenever none of the rated channels is at zero. Absent
+// channels are therefore null here and are skipped by every function below.
 function ratedValue(averaged, dimension) {
   const value = averaged[dimension];
   return typeof value === 'number' && Number.isFinite(value) ? value : null;
