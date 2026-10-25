@@ -24,7 +24,14 @@ reason.
   and Chinese need, the Stanza download step and the file names of the
   profanity lists. The validation README describes the panel's lists, its
   dataset, the result files and the pilot's files, and warns against importing
-  the simulated panel's dataset beside human English ratings.
+  the simulated panel's dataset beside human English ratings. The browser
+  edition's help text also says that concept ids and participant codes cannot
+  carry combining marks, how the study builder picks words and that items are
+  presented in list order, and the validation README says what the panel's
+  transcript audit searched for and found. The README says that
+  `test/browser-core.test.js` checks the browser edition's name tally against a
+  restatement of the domain core's rule, and that the browser edition drops a
+  naming response that is empty after trimming, which the core counts.
 
 ## [0.2.0] - 2026-10-09
 

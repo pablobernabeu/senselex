@@ -241,12 +241,19 @@ preregistration specified calls without tools, and the provenance block in
 `raters.json`, which `compute.mjs` copies into `results.json`, repeats that plan. The prompt told each rater to use only the tool
 that returns its answers and not to read or search anything.
 `panel-transcript-audit.json`, written by `audit_panel_transcripts.mjs` from the
-run's transcripts, records for each of the 60 calls the tools offered, the tools
-called and the kinds of context received: each call made exactly one tool call,
-the one that returned its ratings. The audit also lists the study-related terms
-the extra context contained (commit titles naming the preregistration and the
-Lancaster protocol, among others) and confirms it contained no prediction, no
-pilot result and no Lancaster value. The transcripts keep each call's reasoning
+run's transcripts, records for each of the 60 calls how many tools it was
+offered and which file and shell tools were among them, the tools it called and
+the kinds of context it received: each call made exactly one tool call, the one
+that returned its ratings. The script also matches nine study-related terms, each
+a regular expression, against the context a call received besides the prompt,
+and records which matched and where. Five matched in every call:
+`hypothesisLabel`, `preregistration` and `lancaster` in the git status (the
+branch and recent commit titles, which named the preregistration, H1b and the
+Lancaster protocol), `hypothesis` in the descriptions of the installed skills
+and `sensorimotor` in the memory index. `pilot`, `xuEtAl`, `spearman` and
+`reliability` never matched. A search for these terms does not by itself show
+that the context held no prediction, no pilot result and no Lancaster value.
+The transcripts keep each call's reasoning
 block but not its text, so whether that context influenced a judgement cannot
 be checked directly. The transcripts themselves are not archived, because they
 hold the session's e-mail address and local paths.

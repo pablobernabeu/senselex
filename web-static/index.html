@@ -110,7 +110,7 @@
     </div>
     <details class="how" open>
       <summary>How this works</summary>
-      <p>The work runs across three tabs. Build &amp; manage is where you assemble the word list: draw a frequency-controlled sample from the built-in banks, add your own words and manage languages and backups. Collect presents those words one at a time for sensorimotor rating or free naming. Explore turns the collected ratings into norms you can sort and download.</p>
+      <p>The work runs across three tabs. Build &amp; manage is where you assemble the word list: draw a frequency-controlled sample from the built-in banks, add your own words and manage languages and backups. Collect presents those words one at a time for sensorimotor rating or free naming. It follows the order of the word list, as does the jsPsych experiment you can export, so every participant sees the words in the same order. Explore turns the collected ratings into norms you can sort and download.</p>
       <p>Everything stays in this browser on this device, with one exception you control: a study link that names an Atlas address submits ratings there as they are saved, and says so on screen. There is otherwise no account, no upload and no server. Removing a word, or resetting, changes only your own copy here, so use Export to keep a copy or move your data to another machine.</p>
       <p>A study link preconfigures a session through the address, so a recruitment platform such as Prolific can send participants straight into a task: <span class="pill">?lang=spa&amp;task=rating</span> selects the language and task, <span class="pill">&amp;cc=CODE</span> shows a Return to Prolific button when every item is done, and <span class="pill">&amp;atlas=…&amp;token=…</span> submits ratings to a hosted Atlas. Prolific's own PROLIFIC_PID, STUDY_ID and SESSION_ID parameters are picked up automatically.</p>
     </details>
@@ -171,7 +171,7 @@
       </div>
 
       <h3>Word and cue list</h3>
-      <p class="help">These are the items participants rate or name. Add your own item below, or paste a list where each line is <span class="pill">language, conceptId, gloss, word, concreteness</span>. The language is the code of a language already listed under Languages, exactly as shown there (for example ita). The concept id is converted to capitals and may use letters, digits and -_.: only. The optional concreteness is high, medium or low, and any other value, a number included, is dropped. Fields cannot contain commas. A line that is incomplete, names an unknown language or has an invalid concept id is skipped and counted, and a pasted item already in the list is added again. Each row has a Remove button that takes that word out of your own list on this device only. Nothing is uploaded or shared, no other user is affected and any ratings you have already saved for it are kept in your data. Translations beyond English are a starting point and should be checked by a fluent speaker before live data collection.</p>
+      <p class="help">These are the items participants rate or name. Add your own item below, or paste a list where each line is <span class="pill">language, conceptId, gloss, word, concreteness</span>. The language is the code of a language already listed under Languages, exactly as shown there (for example ita). The concept id is converted to capitals and may use letters, digits and -_.: only, without combining marks such as Devanagari vowel signs. The optional concreteness is high, medium or low, and any other value, a number included, is dropped. Fields cannot contain commas. A line that is incomplete, names an unknown language or has an invalid concept id is skipped and counted, and a pasted item already in the list is added again. Each row has a Remove button that takes that word out of your own list on this device only. Nothing is uploaded or shared, no other user is affected and any ratings you have already saved for it are kept in your data. Translations beyond English are a starting point and should be checked by a fluent speaker before live data collection.</p>
       <div class="row">
         <div><label for="m-lang">Language</label><select id="m-lang"></select></div>
         <div><label for="m-concept">Concept id</label><input id="m-concept" placeholder="e.g. COFFEE" autocomplete="off"></div>
@@ -304,9 +304,11 @@
   const bankTotal = Object.values(BANKS).reduce((t,b)=>t+((b.words&&b.words.length)||0),0);
   const displayBand = c => c>=3.5 ? "high" : c<=2.5 ? "low" : "medium";
   const freqBand = z => z>=4.7 ? "high" : z>=3.5 ? "mid" : "low";
-  // Concept ids preserve the word's own letters (accented or non-Latin) rather
-  // than replacing them with underscores; only spaces and punctuation collapse to
-  // a single underscore. So "acción" yields ACCIÓN, not ACCI_N.
+  // Concept ids keep the word's letters and digits, accented or non-Latin, and
+  // each run of other characters collapses to a single underscore, or is dropped
+  // at either end. So "acción" yields ACCIÓN, not ACCI_N. Combining marks, such as
+  // Devanagari and Tamil vowel signs, are not letters and collapse too: the Hindi
+  // पानी and पीना both yield प_न, so distinct words can share an id.
   const sanitiseId = w => w.toUpperCase().normalize("NFC").replace(/[^\p{L}\p{N}]+/gu,"_").replace(/^_+|_+$/g,"") || "ITEM";
 
   // Draw an evenly spread sample across the frequency range (and concreteness too,
@@ -544,7 +546,7 @@
     const code=$("#c-language").value, participant=$("#c-participant").value.trim(), task=$("#c-task").value;
     const items=itemsFor(code), area=$("#c-area"); area.replaceChildren();
     if (!items.length){ area.append(el("p",{className:"empty",textContent:"This language has no items yet. Build a study or add items under Build & manage."})); $("#c-progress").style.width="0%"; return; }
-    if (!ID_RE.test(participant)){ area.append(el("p",{className:"empty",textContent:"Enter a participant code (letters, digits and -_.: only) to begin."})); $("#c-progress").style.width="0%"; return; }
+    if (!ID_RE.test(participant)){ area.append(el("p",{className:"empty",textContent:"Enter a participant code (letters, digits and -_.: only, without combining marks such as Devanagari vowel signs) to begin."})); $("#c-progress").style.width="0%"; return; }
     const answeredSet = task==="rating" ? ratedSet(code,participant) : namedSet(code,participant);
     const skipped = skippedSet(task,code,participant);
     const doneCount = items.filter(i=>answeredSet.has(skipKey(task,i))||skipped.has(skipKey(task,i))).length;
@@ -800,7 +802,7 @@
     if (panel) panel.style.display="";
     const hasC=bankHasConc(code);
     for (const id of ["#b-cmin","#b-cmax"]) $(id).disabled = !hasC;
-    $("#bank-help").innerHTML = `Draw a sample of words from a frequency bank, controlling word frequency${hasC?" and concreteness":""}. Frequency is on the Zipf scale (about 1 for rare words to 7 for the commonest)${hasC?", and concreteness runs from 1 (abstract) to 5 (concrete)":". Concreteness ratings are available for English only, so the concreteness limits do not apply to this language"}. The sample is added to the items for the chosen language, ready to rate or name in Collect, and a word appears in Explore once it has been rated.`;
+    $("#bank-help").innerHTML = `Draw a sample of words from a frequency bank, controlling word frequency${hasC?" and concreteness":""}. Frequency is on the Zipf scale (about 1 for rare words to 7 for the commonest)${hasC?", and concreteness runs from 1 (abstract) to 5 (concrete)":". Concreteness ratings are available for English only, so the concreteness limits do not apply to this language"}. Words are taken at even steps through the bank words that match the ranges, ordered by frequency, or all of them when no more match than the number asked for, so the same ranges and number always give the same words. The sample is added to the end of the items for the chosen language, ready to rate or name in Collect, and a word appears in Explore once it has been rated.`;
     const m=bankMatches();
     $("#b-match").textContent = `${m.length} of ${bankFor(code).length} bank words match the current ranges.`;
   }
@@ -841,7 +843,7 @@
     ltbl.append(ltb); lhost.append(el("div",{className:"table-wrap"},[ltbl]));
   }
   function addItem(){ const language=$("#m-lang").value, conceptId=$("#m-concept").value.trim().toUpperCase(), gloss=$("#m-gloss").value.trim(), word=$("#m-word").value.trim(), concreteness=$("#m-conc").value;
-    if (!ID_RE.test(conceptId)){ flash("manage","Concept id may use letters, digits and -_.: only.","warn"); return; }
+    if (!ID_RE.test(conceptId)){ flash("manage","Concept id may use letters, digits and -_.: only, without combining marks such as Devanagari vowel signs.","warn"); return; }
     if (!gloss||!word){ flash("manage","Gloss and word are both required.","warn"); return; }
     data.items.push({language,conceptId,gloss,word,concreteness}); save(); $("#m-concept").value=$("#m-gloss").value=$("#m-word").value=""; renderManage(); refreshSelectors(); flash("manage","Item added.","ok"); }
   function importItems(){ const text=$("#m-bulk").value.trim(); if (!text) return; let added=0,skipped=0;
