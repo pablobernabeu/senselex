@@ -146,6 +146,28 @@ export function createRepository(db) {
     return { limit: safeLimit, offset: safeOffset };
   }
 
+  // Runs write so that either every row it writes is kept or none is. It uses a
+  // savepoint rather than BEGIN, because applySyncBatch calls the measurement
+  // inserts inside its own transaction, where BEGIN would fail.
+  function atomically(write) {
+    db.exec('SAVEPOINT measurement');
+    try {
+      write();
+      db.exec('RELEASE measurement');
+    } catch (error) {
+      // A full disk or an I/O error can roll back the whole transaction,
+      // savepoint included, so a rollback that fails here is ignored and the
+      // original error is the one thrown.
+      try {
+        db.exec('ROLLBACK TO measurement');
+        db.exec('RELEASE measurement');
+      } catch {
+        // Nothing is left to undo.
+      }
+      throw error;
+    }
+  }
+
   return {
     upsertLanguage(language) {
       statements.upsertLanguage.run(
@@ -190,7 +212,6 @@ export function createRepository(db) {
     // already present (an idempotent duplicate). Throws ReferenceIntegrityError
     // when the language or concept does not exist.
     insertRating(rating) {
-      if (rating.participantRef) statements.ensureParticipant.run(rating.participantRef, rating.languageCode);
       const params = [
         rating.clientId,
         rating.languageCode,
@@ -201,7 +222,10 @@ export function createRepository(db) {
         rating.source ?? 'web',
       ];
       try {
-        statements.insertRating.run(...params);
+        atomically(() => {
+          if (rating.participantRef) statements.ensureParticipant.run(rating.participantRef, rating.languageCode);
+          statements.insertRating.run(...params);
+        });
         return true;
       } catch (error) {
         const kind = classifyConstraint(error);
@@ -211,18 +235,20 @@ export function createRepository(db) {
       }
     },
     insertResponse(response) {
-      if (response.participantRef) statements.ensureParticipant.run(response.participantRef, response.languageCode);
       try {
-        statements.insertResponse.run(
-          response.clientId,
-          response.languageCode,
-          response.conceptId,
-          response.name,
-          response.responseType,
-          response.length ?? 0,
-          response.participantRef ?? null,
-          response.source ?? 'web',
-        );
+        atomically(() => {
+          if (response.participantRef) statements.ensureParticipant.run(response.participantRef, response.languageCode);
+          statements.insertResponse.run(
+            response.clientId,
+            response.languageCode,
+            response.conceptId,
+            response.name,
+            response.responseType,
+            response.length ?? 0,
+            response.participantRef ?? null,
+            response.source ?? 'web',
+          );
+        });
         return true;
       } catch (error) {
         const kind = classifyConstraint(error);

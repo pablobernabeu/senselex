@@ -27,6 +27,7 @@ export async function startTestServer(overrides = {}) {
   return {
     base: `http://127.0.0.1:${port}`,
     repo: app.repo,
+    db: app.db,
     async stop() {
       await new Promise((resolve) => app.server.close(resolve));
       app.close();

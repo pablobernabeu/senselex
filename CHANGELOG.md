@@ -33,6 +33,20 @@ reason.
   restatement of the domain core's rule, and that the browser edition drops a
   naming response that is empty after trimming, which the core counts.
 
+### Fixed
+
+- The Atlas answered `500` to a rating or naming response whose
+  `participantRef` named a new participant and whose language had not been
+  created, and to a sync that contained one, because the new participant's
+  reference to the language failed before the measurement's did. Such a write is
+  now refused with `422` (`Unknown language or concept`), like any other unknown
+  reference, so a study link reports the ratings as refused by the server and
+  asks the participant to tell the study contact, where it used to show them as
+  awaiting submission. The participant is now stored in the same transaction as
+  the measurement, so a write that stores no measurement, because it names an
+  unknown concept or repeats a stored `clientId`, no longer leaves a participant
+  behind.
+
 ## [0.2.0] - 2026-10-09
 
 This release brings every rating surface in line with the wording of the

@@ -280,3 +280,55 @@ test('a submission naming a participant is accepted, as the recruitment pipeline
     await server.stop();
   }
 });
+
+test('a new participant with an unknown language is refused with 422', async () => {
+  // The participant row refers to the language too, so its foreign key fails
+  // before the measurement's does. That failure is reported like any other
+  // unknown reference.
+  const server = await startTestServer();
+  try {
+    const rating = { kind: 'rating', clientId: 'lang-r', languageCode: 'zzz', conceptId: 'COFFEE', word: 'coffee', participantRef: 'new-participant-1', ratings: { smell: 4 } };
+    const naming = { kind: 'response', clientId: 'lang-s', languageCode: 'zzz', conceptId: 'COFFEE', name: 'bitter', responseType: 'abstract', participantRef: 'new-participant-2' };
+    for (const [path, body] of [['/v1/ratings', rating], ['/v1/responses', naming], ['/v1/sync', { records: [rating, naming] }]]) {
+      const response = await fetch(`${server.base}${path}`, { method: 'POST', headers: AUTH, body: JSON.stringify(body) });
+      assert.equal(response.status, 422, path);
+      assert.equal((await response.json()).error, 'Unknown language or concept');
+    }
+  } finally {
+    await server.stop();
+  }
+});
+
+test('a refused measurement stores no participant', async () => {
+  // The participant row is written together with the measurement, so a write
+  // refused for an unknown concept leaves no participant behind.
+  const server = await startTestServer();
+  try {
+    const rating = { clientId: 'concept-r', languageCode: 'tst', conceptId: 'NOPE', word: 'nope', participantRef: 'new-participant-3', ratings: { smell: 4 } };
+    const naming = { clientId: 'concept-s', languageCode: 'tst', conceptId: 'NOPE', name: 'none', responseType: 'abstract', participantRef: 'new-participant-4' };
+    for (const [path, body] of [['/v1/ratings', rating], ['/v1/responses', naming]]) {
+      const response = await fetch(`${server.base}${path}`, { method: 'POST', headers: AUTH, body: JSON.stringify(body) });
+      assert.equal(response.status, 422, path);
+      assert.equal((await response.json()).error, 'Unknown language or concept');
+    }
+    assert.equal(server.db.prepare('SELECT COUNT(*) AS n FROM participants').get().n, 0);
+  } finally {
+    await server.stop();
+  }
+});
+
+test('a resent clientId stores no new participant', async () => {
+  // A resent measurement is not stored again, so the participant it names is
+  // not stored either.
+  const server = await startTestServer();
+  try {
+    const rating = { clientId: 'dup-r', languageCode: 'tst', conceptId: 'COFFEE', word: 'coffee', ratings: { smell: 4 } };
+    for (const participantRef of ['first', 'second']) {
+      const response = await fetch(`${server.base}/v1/ratings`, { method: 'POST', headers: AUTH, body: JSON.stringify({ ...rating, participantRef }) });
+      assert.equal(response.status, 200);
+    }
+    assert.deepEqual(server.db.prepare('SELECT ref FROM participants ORDER BY ref').all().map((row) => row.ref), ['first']);
+  } finally {
+    await server.stop();
+  }
+});
