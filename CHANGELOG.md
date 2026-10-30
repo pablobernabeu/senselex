@@ -46,6 +46,8 @@ reason.
   the measurement, so a write that stores no measurement, because it names an
   unknown concept or repeats a stored `clientId`, no longer leaves a participant
   behind.
+- The browser edition's Explore tab stopped updating the codability table when
+  a concept had one naming response, so it could show another language's rows.
 
 ## [0.2.0] - 2026-10-09
 

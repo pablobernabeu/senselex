@@ -150,7 +150,7 @@
       <div id="e-status" role="status" aria-live="polite"></div>
       <div class="table-wrap"><table id="e-norms"><thead></thead><tbody></tbody></table></div>
       <h3>Codability from free naming</h3>
-      <p class="help">Agreement is the chance that two participants give a stimulus the same name. Shorter, more agreed responses mean higher codability.</p>
+      <p class="help">Agreement is the chance that two participants give a stimulus the same name, so it is blank for a concept with fewer than two named responses. Shorter, more agreed responses mean higher codability.</p>
       <div class="table-wrap"><table id="e-cod"><thead><tr><th>Concept</th><th>Responses</th><th>Distinct names</th><th>Agreement</th><th>Mean length</th></tr></thead><tbody></tbody></table></div>
     </section>
 
@@ -654,7 +654,7 @@
     const cg={}; for (const r of data.responses){ if (r.language!==code) continue; (cg[r.conceptId]=cg[r.conceptId]||[]).push(r); }
     const cbody=$("#e-cod tbody");
     const crows=Object.entries(cg).map(([concept,rs])=>{ const counts=tally(rs.map(r=>r.name)); return {concept,n:rs.length,distinct:Object.keys(counts).length,agreement:agreement(counts),len:mean(rs.map(r=>r.length||0))}; });
-    cbody.replaceChildren(...(crows.length ? crows.map(c=>el("tr",{},[el("td",{textContent:c.concept}),el("td",{textContent:c.n}),el("td",{textContent:c.distinct}),el("td",{textContent:c.agreement.toFixed(2)}),el("td",{textContent:c.len.toFixed(2)})])) : [el("tr",{},[el("td",{colSpan:5,className:"empty",textContent:"No naming responses yet for this language."})])]));
+    cbody.replaceChildren(...(crows.length ? crows.map(c=>el("tr",{},[el("td",{textContent:c.concept}),el("td",{textContent:c.n}),el("td",{textContent:c.distinct}),el("td",{textContent:show(c.agreement)}),el("td",{textContent:c.len.toFixed(2)})])) : [el("tr",{},[el("td",{colSpan:5,className:"empty",textContent:"No naming responses yet for this language."})])]));
   }
   const csvq = c => /[",\n]/.test(String(c)) ? `"${String(c).replace(/"/g,'""')}"` : String(c);
   function downloadCsv(){
