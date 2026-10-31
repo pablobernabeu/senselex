@@ -17,17 +17,22 @@ function sha256(value) {
 
 export function createAuthenticator(writeTokens, adminTokens = []) {
   // Keyed by digest, so a token listed as both kinds is held once. Admin tokens
-  // are added last, so such a token ends up as an admin token.
+  // are added last, so such a token ends up as an admin token, and its id is
+  // kept so that start-up can warn that it must not go in a study link.
   const byDigest = new Map();
+  const sharedTokenIds = new Set();
   for (const [tokens, admin] of [[writeTokens, false], [adminTokens, true]]) {
     for (const token of tokens) {
       const digest = sha256(token);
       const hex = digest.toString('hex');
-      byDigest.set(hex, { digest, tokenId: hex.slice(0, 8), admin });
+      const tokenId = hex.slice(0, 8);
+      if (admin && byDigest.get(hex)?.admin === false) sharedTokenIds.add(tokenId);
+      byDigest.set(hex, { digest, tokenId, admin });
     }
   }
   const allowed = [...byDigest.values()];
   const adminConfigured = allowed.some((entry) => entry.admin);
+  const writeOnlyConfigured = allowed.some((entry) => !entry.admin);
 
   return {
     // Returns { ok, tokenId, admin } without revealing which token matched on
@@ -51,6 +56,15 @@ export function createAuthenticator(writeTokens, adminTokens = []) {
     // True when admin tokens are set, which restricts reference data to them.
     get adminConfigured() {
       return adminConfigured;
+    },
+    // True when some write token is not also an admin token, so that a study
+    // can be given a token that cannot change reference data.
+    get writeOnlyConfigured() {
+      return writeOnlyConfigured;
+    },
+    // The ids of the tokens listed as both kinds, which act as admin tokens.
+    get sharedTokenIds() {
+      return [...sharedTokenIds];
     },
   };
 }

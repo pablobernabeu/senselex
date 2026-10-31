@@ -24,7 +24,10 @@ export function loadConfig(env = process.env) {
   // Write endpoints require a bearer token. In production a missing token list
   // is a hard error rather than an open door. Admin tokens do not stand in for
   // write tokens. They are meant to stay with whoever maintains the reference
-  // data, so a deployment always keeps a lesser token to hand out to studies.
+  // data, so a deployment has a token to hand out to studies that is not an
+  // admin token, as long as at least one write token is not also listed as an
+  // admin token. In production, `senselex serve` warns about any token in
+  // both lists, because such a token is an admin token.
   if (environment === 'production' && writeTokens.length === 0) {
     const hint = adminTokens.length > 0 ? ' SENSELEX_ADMIN_TOKENS does not replace it.' : '';
     throw new Error(`SENSELEX_API_TOKENS must be set in production so that write endpoints are protected.${hint}`);

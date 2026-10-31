@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 
 import { loadConfig } from '../src/config.js';
 import { createAuthenticator } from '../src/server/auth.js';
@@ -389,10 +390,19 @@ test('the authenticator tells write tokens from admin tokens', () => {
   assert.equal(auth.adminConfigured, true);
   assert.deepEqual(auth.verify('Bearer write-1'), { ok: true, tokenId: tokenId('write-1'), admin: false });
   assert.deepEqual(auth.verify('Bearer admin-1'), { ok: true, tokenId: tokenId('admin-1'), admin: true });
-  // A token in both lists is an admin token, with the same id as either alone.
+  // A token in both lists is an admin token, with the same id as either alone,
+  // and its id is reported so that start-up can warn about it.
   assert.deepEqual(auth.verify('Bearer both'), { ok: true, tokenId: tokenId('both'), admin: true });
   assert.deepEqual(auth.verify('Bearer nope'), { ok: false });
   assert.deepEqual(auth.verify(undefined), { ok: false });
+  assert.deepEqual(auth.sharedTokenIds, [tokenId('both')]);
+  assert.equal(auth.writeOnlyConfigured, true);
+
+  // With every write token also an admin token, no write-only token is left.
+  const overlapping = createAuthenticator(['same', 'same'], ['same', 'admin-1']);
+  assert.deepEqual(overlapping.sharedTokenIds, [tokenId('same')]);
+  assert.equal(overlapping.writeOnlyConfigured, false);
+  assert.deepEqual(createAuthenticator(['write-1'], ['admin-1']).sharedTokenIds, []);
 
   assert.equal(createAuthenticator(['write-1']).adminConfigured, false);
   assert.equal(createAuthenticator([], ['admin-1']).configured, true);
@@ -494,6 +504,22 @@ test('with admin tokens, measurement routes take a write token or an admin token
   }
 });
 
+test('every write route is classified as reference data or a measurement', () => {
+  // Read from the router itself, so that a new write route fails here until it
+  // is added to REFERENCE_WRITES or measurementWrites, whose routes the tests
+  // around this one check with each kind of token. authorise treats a route of
+  // no stated kind as reference data, so a route missed here would still need
+  // an admin token.
+  const source = readFileSync(new URL('../src/server/app.js', import.meta.url), 'utf8');
+  const routed = [...source.matchAll(/pathname === '([^']+)'\) \{\s+await handleWrite\(req, res, pathname, (\w+),/g)]
+    .map(([, path, kind]) => [path, kind]);
+  assert.equal(routed.length, source.match(/await handleWrite\(/g).length, 'a write route is routed in an unexpected form');
+  assert.deepEqual(routed.sort(), [
+    ...REFERENCE_WRITES.map(([path]) => [path, 'REFERENCE_DATA']),
+    ...measurementWrites('kind').map(([path]) => [path, 'MEASUREMENT']),
+  ].sort());
+});
+
 test('with admin tokens, a missing or unknown token still gets 401 on every write route', async () => {
   // Authentication comes before the admin check, so a reference-data route
   // answers an unknown token with 401 rather than 403.
@@ -526,7 +552,10 @@ test('a token listed as both a write token and an admin token acts as an admin t
       assert.equal((await post(server, path, body, headers)).status, 200, path);
     }
     assert.deepEqual(referenceData(server), { language: 'Testish (revised)', concept: 'coffee (revised)' });
-    assert.ok(auditRows(server).every((row) => row.tokenId === tokenId('both-token')));
+    assert.deepEqual(
+      auditRows(server).map((row) => [row.route, row.status, row.tokenId]),
+      [...REFERENCE_WRITES, ...measurementWrites('both')].map(([path]) => [path, 200, tokenId('both-token')]),
+    );
   } finally {
     await server.stop();
   }
@@ -542,7 +571,15 @@ test('with only admin tokens set, every write needs a token', async () => {
     }
     assert.equal((await post(server, ...rating, ADMIN_AUTH)).status, 200);
     assert.equal((await post(server, ...REFERENCE_WRITES[0], ADMIN_AUTH)).status, 200);
-    assert.ok(auditRows(server).every((row) => row.detail !== 'unauthenticated-dev'));
+    const [ratingPath] = rating;
+    const [languagePath] = REFERENCE_WRITES[0];
+    const refusals = [[ratingPath, 401, 'auth-failed', null], [languagePath, 401, 'auth-failed', null]];
+    assert.deepEqual(auditRows(server).map((row) => [row.route, row.status, row.detail, row.tokenId]), [
+      ...refusals,
+      ...refusals,
+      [ratingPath, 200, null, tokenId('admin-token')],
+      [languagePath, 200, null, tokenId('admin-token')],
+    ]);
   } finally {
     await server.stop();
   }
@@ -588,4 +625,36 @@ test('a production server without admin tokens warns once on stderr', async () =
   const adminOnly = await runServeBriefly({ SENSELEX_ADMIN_TOKENS: 'admin-token' });
   assert.match(adminOnly.stdout, /listening on/);
   assert.doesNotMatch(adminOnly.stdout, /write endpoints are open/);
+});
+
+test('a production server names tokens listed in both lists, without showing them', async () => {
+  const warningLines = (text) => text.split('\n').filter((line) => line.includes('SENSELEX_ADMIN_TOKENS'));
+
+  // Some write token is left for studies, so the warning names the shared one.
+  const shared = await runServeBriefly({
+    NODE_ENV: 'production',
+    SENSELEX_API_TOKENS: 'study-token,shared-token',
+    SENSELEX_ADMIN_TOKENS: 'admin-token,shared-token',
+  });
+  assert.match(shared.stdout, /listening on/);
+  const sharedLines = warningLines(shared.stderr);
+  assert.equal(sharedLines.length, 1, shared.stderr);
+  assert.match(sharedLines[0], /acts as an admin token .* keep it out of study links/);
+  assert.match(sharedLines[0], new RegExp(`Token ids listed in both: ${tokenId('shared-token')}\\.$`));
+  assert.doesNotMatch(shared.stderr, /shared-token|study-token|admin-token/);
+
+  // The study link's only token is also an admin token, so the warning says
+  // that no token is left to hand out.
+  const onlyShared = await runServeBriefly({ NODE_ENV: 'production', SENSELEX_API_TOKENS: 'study-token', SENSELEX_ADMIN_TOKENS: 'study-token' });
+  assert.match(onlyShared.stdout, /listening on/);
+  const onlySharedLines = warningLines(onlyShared.stderr);
+  assert.equal(onlySharedLines.length, 1, onlyShared.stderr);
+  assert.match(onlySharedLines[0], /every token in SENSELEX_API_TOKENS is also in SENSELEX_ADMIN_TOKENS/);
+  assert.match(onlySharedLines[0], new RegExp(`Token ids listed in both: ${tokenId('study-token')}\\.$`));
+  assert.doesNotMatch(onlyShared.stderr, /study-token/);
+
+  // Like the warning about unset admin tokens, this one is for production.
+  const development = await runServeBriefly({ SENSELEX_API_TOKENS: 'study-token', SENSELEX_ADMIN_TOKENS: 'study-token' });
+  assert.match(development.stdout, /listening on/);
+  assert.deepEqual(warningLines(development.stderr), []);
 });
