@@ -1,3 +1,7 @@
+import { spawn } from 'node:child_process';
+import process from 'node:process';
+import { fileURLToPath } from 'node:url';
+
 import { loadConfig } from '../src/config.js';
 import { createServer } from '../src/server/app.js';
 
@@ -36,3 +40,36 @@ export async function startTestServer(overrides = {}) {
 }
 
 export const AUTH = { Authorization: 'Bearer test-token', 'Content-Type': 'application/json' };
+
+// For a server started with SENSELEX_ADMIN_TOKENS: 'admin-token'.
+export const ADMIN_AUTH = { Authorization: 'Bearer admin-token', 'Content-Type': 'application/json' };
+
+const CLI = fileURLToPath(new URL('../bin/senselex.js', import.meta.url));
+
+// Runs `senselex serve` as its own process with only the given environment,
+// stops it once it is listening and returns what it wrote. The port is
+// ephemeral and the database in memory, so nothing is left behind. A process
+// that never starts listening is killed after ten seconds.
+export function runServeBriefly(env) {
+  return new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [CLI, 'serve'], {
+      env: { PORT: '0', SENSELEX_HOST: '127.0.0.1', SENSELEX_DATABASE_PATH: ':memory:', ...env },
+      stdio: ['ignore', 'pipe', 'pipe'],
+    });
+    let stdout = '';
+    let stderr = '';
+    const timer = setTimeout(() => child.kill('SIGKILL'), 10_000);
+    child.stdout.setEncoding('utf8');
+    child.stderr.setEncoding('utf8');
+    child.stdout.on('data', (chunk) => {
+      stdout += chunk;
+      if (stdout.includes('listening on')) child.kill('SIGTERM');
+    });
+    child.stderr.on('data', (chunk) => { stderr += chunk; });
+    child.on('error', reject);
+    child.on('close', (code) => {
+      clearTimeout(timer);
+      resolve({ code, stdout, stderr });
+    });
+  });
+}

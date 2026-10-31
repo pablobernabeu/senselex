@@ -1,6 +1,6 @@
 # A single-service deployment for the Atlas. The data directory is a named volume
-# so the database survives container restarts. Set the write tokens in a .env file
-# beside this one before bringing it up.
+# so the database survives container restarts. Set the write tokens, and the admin
+# tokens if you use them, in a .env file beside this one before bringing it up.
 
 services:
   atlas:
@@ -14,6 +14,7 @@ services:
       SENSELEX_HOST: 0.0.0.0
       SENSELEX_DATABASE_PATH: /app/data/senselex.db
       SENSELEX_API_TOKENS: ${SENSELEX_API_TOKENS}
+      SENSELEX_ADMIN_TOKENS: ${SENSELEX_ADMIN_TOKENS:-}
       SENSELEX_CORS_ORIGINS: ${SENSELEX_CORS_ORIGINS:-}
       SENSELEX_AUDIT_SECRET: ${SENSELEX_AUDIT_SECRET:-}
       SENSELEX_MAX_BODY_BYTES: ${SENSELEX_MAX_BODY_BYTES:-1000000}

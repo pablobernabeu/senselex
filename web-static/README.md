@@ -53,11 +53,16 @@ origin the page is served from (for example `https://study.example.org`) to its
 `SENSELEX_CORS_ORIGINS`. That list is empty by default, and the browser blocks
 every submission from an origin that is not on it. A page opened from a file has
 the origin `null`, so host the page rather than sending participants the file.
-If the Atlas has write tokens (`SENSELEX_API_TOKENS`), `token` must be one of
-them. Create the study's language and the concept id of every item participants
-will see, with `POST /v1/languages` and `POST /v1/concepts` (see `../README.md`),
-because the Atlas refuses a whole batch if any rating in it names a language or
-concept it does not hold. A participant's browser holds the page's starter set,
+If the Atlas has tokens configured, `token` must be one it accepts. Every
+participant can read it from the address bar, so use a write token
+(`SENSELEX_API_TOKENS`) issued for this study alone, and never an admin token
+(`SENSELEX_ADMIN_TOKENS`). Unless the Atlas has admin tokens set, whoever copies
+the link's token can also overwrite its languages and concepts (see
+`../SECURITY.md`). The Atlas refuses a whole batch if any rating in it names a
+language or concept it does not hold, so create the study's language and the
+concept id of every item participants will see, with `POST /v1/languages` and
+`POST /v1/concepts` (see `../README.md`). On an Atlas with admin tokens, those
+two routes need one. A participant's browser holds the page's starter set,
 not a list you have edited, so read the ids from the Concept column under Build &
 manage in a browser that has not opened the page before. Ratings the
 Atlas does not accept stay on the participant's device, and the page reports

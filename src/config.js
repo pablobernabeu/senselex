@@ -19,11 +19,15 @@ function parseInteger(value, fallback) {
 export function loadConfig(env = process.env) {
   const environment = env.NODE_ENV || 'development';
   const writeTokens = parseList(env.SENSELEX_API_TOKENS);
+  const adminTokens = parseList(env.SENSELEX_ADMIN_TOKENS);
 
   // Write endpoints require a bearer token. In production a missing token list
-  // is a hard error rather than an open door.
+  // is a hard error rather than an open door. Admin tokens do not stand in for
+  // write tokens. They are meant to stay with whoever maintains the reference
+  // data, so a deployment always keeps a lesser token to hand out to studies.
   if (environment === 'production' && writeTokens.length === 0) {
-    throw new Error('SENSELEX_API_TOKENS must be set in production so that write endpoints are protected.');
+    const hint = adminTokens.length > 0 ? ' SENSELEX_ADMIN_TOKENS does not replace it.' : '';
+    throw new Error(`SENSELEX_API_TOKENS must be set in production so that write endpoints are protected.${hint}`);
   }
 
   return {
@@ -33,6 +37,9 @@ export function loadConfig(env = process.env) {
     databasePath: env.SENSELEX_DATABASE_PATH || './data/senselex.db',
     // Tokens that may write. They are hashed before comparison (see auth.js).
     writeTokens,
+    // Tokens that may also write languages and concepts. Once any is set, only
+    // these may (see app.js). A token in both lists is an admin token.
+    adminTokens,
     // An empty allow list means same-origin only, which is the safe default.
     corsOrigins: parseList(env.SENSELEX_CORS_ORIGINS),
     // Keys the audit log's client-address digest. Without it addresses are not

@@ -14,7 +14,7 @@ The offline layer is a client rather than a server. It records measurements to a
 
 ## Request lifecycle
 
-A request first receives the security headers and the CORS decision. A preflight is answered at once. The rate limiter is consulted next, and an exhausted client is turned away before any work is done. The URL is parsed, and the router matches the method and path. A read is served directly from the repository. A write first passes authentication, then the body is read under a size cap, then the body is validated, and only then does it reach the repository, with the outcome and the actor recorded in the audit log.
+A request first receives the security headers and the CORS decision. A preflight is answered at once. The rate limiter is consulted next, and an exhausted client is turned away before any work is done. The URL is parsed, and the router matches the method and path. A read is served directly from the repository. A write first passes authentication, and once admin tokens are configured, a write to the language or concept routes must also carry an admin token. Then the body is read under a size cap, then the body is validated, and only then does it reach the repository, with the outcome and the actor recorded in the audit log.
 
 ## Idempotency and the offline path
 

@@ -1,7 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 
-import { startTestServer, AUTH } from './helpers.js';
+import { loadConfig } from '../src/config.js';
+import { createAuthenticator } from '../src/server/auth.js';
+import { startTestServer, runServeBriefly, AUTH, ADMIN_AUTH } from './helpers.js';
 
 test('health endpoint reports a summary', async () => {
   const server = await startTestServer();
@@ -331,4 +334,258 @@ test('a resent clientId stores no new participant', async () => {
   } finally {
     await server.stop();
   }
+});
+
+// Admin tokens. SENSELEX_ADMIN_TOKENS restricts the reference-data routes to the
+// tokens it lists, and leaves the measurement routes open to write tokens.
+
+// The audit log's 8-character token id, worked out here rather than taken from
+// auth.js, so that a change to it there is caught.
+function tokenId(token) {
+  return createHash('sha256').update(token, 'utf8').digest('hex').slice(0, 8);
+}
+
+function auditRows(server) {
+  return server.db.prepare('SELECT route, token_id AS tokenId, ip_hash AS ipHash, status, detail FROM audit_log ORDER BY id')
+    .all()
+    .map((row) => ({ ...row }));
+}
+
+function post(server, path, body, headers) {
+  return fetch(`${server.base}${path}`, { method: 'POST', headers, body: JSON.stringify(body) });
+}
+
+const NO_AUTH = { 'Content-Type': 'application/json' };
+
+// One write to each reference-data route. Both change an entry that
+// startTestServer provides, so a test can tell whether the write took effect.
+const REFERENCE_WRITES = [
+  ['/v1/languages', { code: 'tst', name: 'Testish (revised)', script: 'Latin' }],
+  ['/v1/concepts', { id: 'COFFEE', gloss: 'coffee (revised)' }],
+];
+
+// One write to each measurement route. The tag keeps client ids apart, so that
+// each call stores new records rather than duplicates.
+function measurementWrites(tag) {
+  const rating = { clientId: `${tag}-r`, languageCode: 'tst', conceptId: 'COFFEE', word: 'coffee', ratings: { smell: 4 } };
+  const naming = { clientId: `${tag}-n`, languageCode: 'tst', conceptId: 'COFFEE', name: 'bitter', responseType: 'abstract' };
+  return [
+    ['/v1/ratings', rating],
+    ['/v1/responses', naming],
+    ['/v1/sync', { records: [{ kind: 'rating', ...rating, clientId: `${tag}-sr` }, { kind: 'response', ...naming, clientId: `${tag}-sn` }] }],
+  ];
+}
+
+function referenceData(server) {
+  return {
+    language: server.repo.getLanguage('tst').name,
+    concept: server.db.prepare("SELECT gloss FROM concepts WHERE id = 'COFFEE'").get().gloss,
+  };
+}
+
+test('the authenticator tells write tokens from admin tokens', () => {
+  const auth = createAuthenticator(['write-1', 'both'], ['admin-1', 'both']);
+  assert.equal(auth.configured, true);
+  assert.equal(auth.adminConfigured, true);
+  assert.deepEqual(auth.verify('Bearer write-1'), { ok: true, tokenId: tokenId('write-1'), admin: false });
+  assert.deepEqual(auth.verify('Bearer admin-1'), { ok: true, tokenId: tokenId('admin-1'), admin: true });
+  // A token in both lists is an admin token, with the same id as either alone.
+  assert.deepEqual(auth.verify('Bearer both'), { ok: true, tokenId: tokenId('both'), admin: true });
+  assert.deepEqual(auth.verify('Bearer nope'), { ok: false });
+  assert.deepEqual(auth.verify(undefined), { ok: false });
+
+  assert.equal(createAuthenticator(['write-1']).adminConfigured, false);
+  assert.equal(createAuthenticator([], ['admin-1']).configured, true);
+  assert.equal(createAuthenticator([], []).configured, false);
+});
+
+test('SENSELEX_ADMIN_TOKENS is parsed like SENSELEX_API_TOKENS', () => {
+  const config = loadConfig({ SENSELEX_API_TOKENS: ' a, b ,,c ', SENSELEX_ADMIN_TOKENS: ' x, y ,,z ' });
+  assert.deepEqual(config.writeTokens, ['a', 'b', 'c']);
+  assert.deepEqual(config.adminTokens, ['x', 'y', 'z']);
+  assert.deepEqual(loadConfig({}).adminTokens, []);
+  assert.deepEqual(loadConfig({ SENSELEX_ADMIN_TOKENS: ' , ' }).adminTokens, []);
+});
+
+test('in production SENSELEX_API_TOKENS stays required when admin tokens are set', () => {
+  assert.throws(() => loadConfig({ NODE_ENV: 'production' }), /^Error: SENSELEX_API_TOKENS must be set in production so that write endpoints are protected\.$/);
+  assert.throws(
+    () => loadConfig({ NODE_ENV: 'production', SENSELEX_ADMIN_TOKENS: 'admin-token' }),
+    /SENSELEX_API_TOKENS must be set in production.* SENSELEX_ADMIN_TOKENS does not replace it\./,
+  );
+  assert.doesNotThrow(() => loadConfig({ NODE_ENV: 'production', SENSELEX_API_TOKENS: 'test-token' }));
+  assert.doesNotThrow(() => loadConfig({ NODE_ENV: 'production', SENSELEX_API_TOKENS: 'test-token', SENSELEX_ADMIN_TOKENS: 'admin-token' }));
+});
+
+test('without admin tokens, a write token still writes languages and concepts', async () => {
+  // The restriction is opt-in, so a deployment that does not set
+  // SENSELEX_ADMIN_TOKENS, or sets it to nothing but separators, keeps the
+  // earlier behaviour.
+  for (const overrides of [{}, { SENSELEX_ADMIN_TOKENS: ' , ' }]) {
+    const server = await startTestServer(overrides);
+    try {
+      for (const [path, body] of REFERENCE_WRITES) {
+        assert.equal((await post(server, path, body, AUTH)).status, 200, path);
+      }
+      assert.deepEqual(referenceData(server), { language: 'Testish (revised)', concept: 'coffee (revised)' });
+      assert.deepEqual(auditRows(server).map((row) => [row.route, row.status, row.tokenId]), [
+        ['/v1/languages', 200, tokenId('test-token')],
+        ['/v1/concepts', 200, tokenId('test-token')],
+      ]);
+    } finally {
+      await server.stop();
+    }
+  }
+});
+
+test('with admin tokens, a write token on a reference-data route gets 403 and is audited', async () => {
+  const server = await startTestServer({ SENSELEX_ADMIN_TOKENS: 'admin-token', SENSELEX_AUDIT_SECRET: 'audit-key' });
+  try {
+    for (const [path, body] of REFERENCE_WRITES) {
+      const response = await post(server, path, body, AUTH);
+      assert.equal(response.status, 403, path);
+      assert.equal((await response.json()).error, 'This route needs an admin token');
+    }
+    assert.deepEqual(referenceData(server), { language: 'Testish', concept: 'coffee' });
+    const rows = auditRows(server);
+    assert.deepEqual(rows.map(({ ipHash, ...row }) => row), [
+      { route: '/v1/languages', tokenId: tokenId('test-token'), status: 403, detail: 'admin-required' },
+      { route: '/v1/concepts', tokenId: tokenId('test-token'), status: 403, detail: 'admin-required' },
+    ]);
+    // Like a refused token, the refusal carries the keyed address digest.
+    for (const row of rows) assert.match(row.ipHash, /^[0-9a-f]{16}$/);
+  } finally {
+    await server.stop();
+  }
+});
+
+test('with admin tokens, an admin token writes languages and concepts', async () => {
+  const server = await startTestServer({ SENSELEX_ADMIN_TOKENS: 'admin-token' });
+  try {
+    for (const [path, body] of REFERENCE_WRITES) {
+      assert.equal((await post(server, path, body, ADMIN_AUTH)).status, 200, path);
+    }
+    assert.deepEqual(referenceData(server), { language: 'Testish (revised)', concept: 'coffee (revised)' });
+    assert.deepEqual(auditRows(server).map((row) => [row.route, row.status, row.tokenId]), [
+      ['/v1/languages', 200, tokenId('admin-token')],
+      ['/v1/concepts', 200, tokenId('admin-token')],
+    ]);
+  } finally {
+    await server.stop();
+  }
+});
+
+test('with admin tokens, measurement routes take a write token or an admin token', async () => {
+  const server = await startTestServer({ SENSELEX_ADMIN_TOKENS: 'admin-token' });
+  try {
+    const expected = [];
+    for (const [tag, headers, token] of [['write', AUTH, 'test-token'], ['admin', ADMIN_AUTH, 'admin-token']]) {
+      for (const [path, body] of measurementWrites(tag)) {
+        const response = await post(server, path, body, headers);
+        assert.equal(response.status, 200, `${path} with the ${tag} token`);
+        const result = await response.json();
+        assert.ok(result.stored === true || result.inserted === 2, `${path} with the ${tag} token stored nothing`);
+        expected.push([path, 200, tokenId(token)]);
+      }
+    }
+    assert.deepEqual(auditRows(server).map((row) => [row.route, row.status, row.tokenId]), expected);
+  } finally {
+    await server.stop();
+  }
+});
+
+test('with admin tokens, a missing or unknown token still gets 401 on every write route', async () => {
+  // Authentication comes before the admin check, so a reference-data route
+  // answers an unknown token with 401 rather than 403.
+  const server = await startTestServer({ SENSELEX_ADMIN_TOKENS: 'admin-token' });
+  try {
+    const writes = [...REFERENCE_WRITES, ...measurementWrites('refused')];
+    for (const headers of [NO_AUTH, { ...NO_AUTH, Authorization: 'Bearer not-a-token' }]) {
+      for (const [path, body] of writes) {
+        const response = await post(server, path, body, headers);
+        assert.equal(response.status, 401, path);
+        assert.equal((await response.json()).error, 'Authentication required');
+      }
+    }
+    const rows = auditRows(server);
+    assert.equal(rows.length, writes.length * 2);
+    for (const row of rows) {
+      assert.deepEqual([row.status, row.detail, row.tokenId], [401, 'auth-failed', null]);
+    }
+    assert.deepEqual(referenceData(server), { language: 'Testish', concept: 'coffee' });
+  } finally {
+    await server.stop();
+  }
+});
+
+test('a token listed as both a write token and an admin token acts as an admin token', async () => {
+  const server = await startTestServer({ SENSELEX_API_TOKENS: 'test-token,both-token', SENSELEX_ADMIN_TOKENS: 'admin-token,both-token' });
+  try {
+    const headers = { ...NO_AUTH, Authorization: 'Bearer both-token' };
+    for (const [path, body] of [...REFERENCE_WRITES, ...measurementWrites('both')]) {
+      assert.equal((await post(server, path, body, headers)).status, 200, path);
+    }
+    assert.deepEqual(referenceData(server), { language: 'Testish (revised)', concept: 'coffee (revised)' });
+    assert.ok(auditRows(server).every((row) => row.tokenId === tokenId('both-token')));
+  } finally {
+    await server.stop();
+  }
+});
+
+test('with only admin tokens set, every write needs a token', async () => {
+  const server = await startTestServer({ SENSELEX_API_TOKENS: '', SENSELEX_ADMIN_TOKENS: 'admin-token' });
+  try {
+    const [rating] = measurementWrites('only-admin');
+    for (const headers of [NO_AUTH, AUTH]) {
+      assert.equal((await post(server, ...rating, headers)).status, 401);
+      assert.equal((await post(server, ...REFERENCE_WRITES[0], headers)).status, 401);
+    }
+    assert.equal((await post(server, ...rating, ADMIN_AUTH)).status, 200);
+    assert.equal((await post(server, ...REFERENCE_WRITES[0], ADMIN_AUTH)).status, 200);
+    assert.ok(auditRows(server).every((row) => row.detail !== 'unauthenticated-dev'));
+  } finally {
+    await server.stop();
+  }
+});
+
+test('with no tokens at all, development writes stay open and are recorded', async () => {
+  const server = await startTestServer({ SENSELEX_API_TOKENS: '' });
+  try {
+    const [rating] = measurementWrites('dev');
+    assert.equal((await post(server, ...REFERENCE_WRITES[0], NO_AUTH)).status, 200);
+    assert.equal((await post(server, ...rating, NO_AUTH)).status, 200);
+    const rows = auditRows(server).filter((row) => row.detail === 'unauthenticated-dev');
+    assert.deepEqual(rows.map((row) => [row.route, row.status, row.tokenId]), [
+      ['/v1/languages', 0, null],
+      ['/v1/ratings', 0, null],
+    ]);
+  } finally {
+    await server.stop();
+  }
+});
+
+test('a production server without admin tokens warns once on stderr', async () => {
+  const warningLines = (text) => text.split('\n').filter((line) => line.includes('SENSELEX_ADMIN_TOKENS'));
+
+  const unset = await runServeBriefly({ NODE_ENV: 'production', SENSELEX_API_TOKENS: 'test-token' });
+  assert.match(unset.stdout, /listening on/);
+  const lines = warningLines(unset.stderr);
+  assert.equal(lines.length, 1, unset.stderr);
+  assert.match(lines[0], /any write token can change languages and concepts/);
+  assert.deepEqual(warningLines(unset.stdout), []);
+
+  const set = await runServeBriefly({ NODE_ENV: 'production', SENSELEX_API_TOKENS: 'test-token', SENSELEX_ADMIN_TOKENS: 'admin-token' });
+  assert.match(set.stdout, /listening on/);
+  assert.deepEqual(warningLines(set.stderr), []);
+
+  // Development does not warn about admin tokens. It still says when writes are
+  // open, which they are not once admin tokens alone are set.
+  const development = await runServeBriefly({});
+  assert.match(development.stdout, /listening on/);
+  assert.deepEqual(warningLines(development.stderr), []);
+  assert.match(development.stdout, /write endpoints are open/);
+
+  const adminOnly = await runServeBriefly({ SENSELEX_ADMIN_TOKENS: 'admin-token' });
+  assert.match(adminOnly.stdout, /listening on/);
+  assert.doesNotMatch(adminOnly.stdout, /write endpoints are open/);
 });

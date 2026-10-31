@@ -55,6 +55,15 @@ function sendError(res, status, message, detail) {
   sendJson(res, status, { error: message, detail });
 }
 
+// Writes are of two kinds. Reference data, the languages and concepts, is what
+// every measurement keys on and what the exports and their metadata describe, so
+// it takes an admin token once admin tokens are set. Every other write is a
+// measurement: a rating, a naming response or a sync batch of those two. A
+// measurement may add a participant row but cannot create or change a language
+// or concept, which it can only name (see validateSyncBatch and the foreign keys
+// in schema.sql).
+const REFERENCE_DATA_ROUTES = new Set(['/v1/languages', '/v1/concepts']);
+
 function pageParams(url, maxPageSize) {
   return {
     limit: url.searchParams.get('limit'),
@@ -66,13 +75,15 @@ function pageParams(url, maxPageSize) {
 export function buildApp(config) {
   const db = openDatabase(config.databasePath);
   const repo = createRepository(db);
-  const auth = createAuthenticator(config.writeTokens);
+  const auth = createAuthenticator(config.writeTokens, config.adminTokens);
   const rateLimiter = createRateLimiter(config.rateLimit);
   const hashIp = createAddressDigest(config.auditSecret);
 
   // Guards a write handler: enforces auth (when tokens are configured) and records
   // a refused token, or an unauthenticated development write, in the audit log.
-  // handleWrite records the outcome of a write that passes validation.
+  // A write token on a reference-data route is refused with 403 once admin
+  // tokens are set. handleWrite records the outcome of a write that passes
+  // validation.
   function authorise(req, res, route) {
     if (!auth.configured) {
       // Development mode with no tokens set. Allowed, but recorded.
@@ -89,6 +100,18 @@ export function buildApp(config) {
         detail: 'auth-failed',
       });
       sendError(res, 401, 'Authentication required');
+      return { ok: false };
+    }
+    if (REFERENCE_DATA_ROUTES.has(route) && auth.adminConfigured && !result.admin) {
+      repo.recordAudit({
+        action: 'write',
+        route,
+        tokenId: result.tokenId,
+        ipHash: hashIp(clientAddress(req)),
+        status: 403,
+        detail: 'admin-required',
+      });
+      sendError(res, 403, 'This route needs an admin token');
       return { ok: false };
     }
     return result;

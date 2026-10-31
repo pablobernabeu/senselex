@@ -4,6 +4,10 @@
 // a constant-time comparison, which removes the timing side channel that a naive
 // string compare would leak. A short, non-reversible token id is kept only so
 // that the audit log can attribute a write without recording the secret.
+//
+// There are two kinds of token. A write token may submit measurements, and an
+// admin token may also change reference data. The kind travels with a match, so
+// that the application decides route by route what a token may do.
 
 import { createHash, createHmac, timingSafeEqual } from 'node:crypto';
 
@@ -11,14 +15,23 @@ function sha256(value) {
   return createHash('sha256').update(value, 'utf8').digest();
 }
 
-export function createAuthenticator(writeTokens) {
-  const allowed = writeTokens.map((token) => {
-    const digest = sha256(token);
-    return { digest, tokenId: digest.toString('hex').slice(0, 8) };
-  });
+export function createAuthenticator(writeTokens, adminTokens = []) {
+  // Keyed by digest, so a token listed as both kinds is held once. Admin tokens
+  // are added last, so such a token ends up as an admin token.
+  const byDigest = new Map();
+  for (const [tokens, admin] of [[writeTokens, false], [adminTokens, true]]) {
+    for (const token of tokens) {
+      const digest = sha256(token);
+      const hex = digest.toString('hex');
+      byDigest.set(hex, { digest, tokenId: hex.slice(0, 8), admin });
+    }
+  }
+  const allowed = [...byDigest.values()];
+  const adminConfigured = allowed.some((entry) => entry.admin);
 
   return {
-    // Returns { ok, tokenId } without revealing which token matched on failure.
+    // Returns { ok, tokenId, admin } without revealing which token matched on
+    // failure.
     verify(authorizationHeader) {
       if (typeof authorizationHeader !== 'string') return { ok: false };
       const match = authorizationHeader.match(/^Bearer\s+(.+)$/i);
@@ -26,13 +39,18 @@ export function createAuthenticator(writeTokens) {
       const candidate = sha256(match[1]);
       for (const entry of allowed) {
         if (candidate.length === entry.digest.length && timingSafeEqual(candidate, entry.digest)) {
-          return { ok: true, tokenId: entry.tokenId };
+          return { ok: true, tokenId: entry.tokenId, admin: entry.admin };
         }
       }
       return { ok: false };
     },
+    // True when any token of either kind is set.
     get configured() {
       return allowed.length > 0;
+    },
+    // True when admin tokens are set, which restricts reference data to them.
+    get adminConfigured() {
+      return adminConfigured;
     },
   };
 }
