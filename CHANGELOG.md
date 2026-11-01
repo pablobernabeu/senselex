@@ -97,9 +97,8 @@ reason.
 
 ## [0.2.0] - 2026-10-09
 
-This version was not released as a package, but the browser edition and the
-Atlas on main carried 0.2.0 from 2026-10-09 until 0.3.0, so records stamped
-0.2.0 come from that period.
+This version was not released as a package. The browser edition on main
+stamped its records 0.2.0 from 2026-10-09 until 0.3.0.
 
 This release uses the wording of the Lancaster Sensorimotor Norms rating screens
 (Lynott et al., 2020) on every rating surface, records a word the rater does not
