@@ -5,7 +5,7 @@
 services:
   atlas:
     build: .
-    image: senselex:0.2.0
+    image: senselex:0.3.0
     restart: unless-stopped
     ports:
       - "8787:8787"
