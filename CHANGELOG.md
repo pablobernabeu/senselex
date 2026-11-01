@@ -8,234 +8,265 @@ reason.
 
 ## [Unreleased]
 
+### Upgrading from 0.2.0
+
+- The browser edition's Explore tab updates the codability table when a concept
+  has one naming response, leaving that concept's agreement blank. Such a
+  concept made the table keep its previous rows, possibly another language's.
+- A rating or naming response, or a sync holding one, whose `participantRef`
+  names a new participant in a language not yet created gets `422` (`Unknown
+  language or concept`) instead of `500`, so a study link reports such ratings
+  as refused.
+- A rating or naming response that is not stored, because it names an unknown
+  concept or repeats a stored `clientId`, no longer adds its participant to the
+  Atlas's database.
+- The column descriptions in the Atlas's metadata export give the rounding to
+  three decimals and the leading apostrophe on formula-like values. They say
+  that exclusivity depends on the number of perceptual channels instead of
+  being bounded by it.
+- When `NODE_ENV` is `production`, as in the Docker image, `senselex serve`
+  writes a warning to stderr at start-up while `SENSELEX_ADMIN_TOKENS` is unset
+  or empty, since any write token can then change languages and concepts.
+- When wordfreq is missing, `data/build_wordbanks.py` points to
+  `data/requirements.txt` or `wordfreq[cjk]`, which include MeCab and jieba for
+  Korean and Chinese. The 0.2.0 command asked for `ja` and `ko` extras, which
+  wordfreq does not define, so it installed wordfreq without MeCab or jieba.
+
 ### Changed
 
-- Documentation corrections. The README documents the Atlas's HTTP API, and the
-  READMEs, `SECURITY.md` and code comments describe the field client, the `seed`
-  command, input validation, CORS, the audit log, study-link tokens and the
-  jsPsych export as they behave. The column descriptions in the Atlas's metadata
-  export give the rounding to three decimals and the leading apostrophe on cells
-  that would read as spreadsheet formulas, and say that exclusivity depends on the
-  number of perceptual channels rather than being bounded by it. The browser
-  edition's README documents its export formats and what an Atlas needs before
-  a study link can submit to it, and the page's help text describes the Explore
-  table and filters, pasted item lists and the languages without a word bank as
-  they behave. The word-bank build instructions give the packages that Korean
-  and Chinese need, the Stanza download step and the file names of the
-  profanity lists. The validation README describes the panel's lists, its
-  dataset, the result files and the pilot's files, and warns against importing
-  the simulated panel's dataset beside human English ratings. The browser
-  edition's help text also says that concept ids and participant codes cannot
-  carry combining marks, how the study builder picks words and that items are
-  presented in list order, and the validation README says what the panel's
-  transcript audit searched for and found. The README says that
-  `test/browser-core.test.js` checks the browser edition's name tally against a
-  restatement of the domain core's rule, and that the browser edition drops a
-  naming response that is empty after trimming, which the core counts.
+- The browser edition's on-screen messages match its behaviour. A study link's
+  status reads 'nothing waiting to be submitted' instead of 'all submitted' and
+  its Prolific notice says that a return link appears when every item is done.
+  The prompt for a participant code and the warning for an invalid concept id
+  say that combining marks such as Devanagari vowel signs are not allowed. The
+  message after loading the sample of ratings says to choose English in Explore,
+  and the message after a draw from a word bank points to Collect, since Explore
+  lists a word only once it has been rated.
 
-### Fixed
+### Security
 
-- The Atlas answered `500` to a rating or naming response whose
-  `participantRef` named a new participant and whose language had not been
-  created, and to a sync that contained one, because the new participant's
-  reference to the language failed before the measurement's did. Such a write is
-  now refused with `422` (`Unknown language or concept`), like any other unknown
-  reference, so a study link reports the ratings as refused by the server and
-  asks the participant to tell the study contact, where it used to show them as
-  awaiting submission. The participant is now stored in the same transaction as
-  the measurement, so a write that stores no measurement, because it names an
-  unknown concept or repeats a stored `clientId`, no longer leaves a participant
-  behind.
-- The browser edition's Explore tab stopped updating the codability table when
-  a concept had one naming response, so it could show another language's rows.
+- With `SENSELEX_ADMIN_TOKENS` set, `POST /v1/languages` and
+  `POST /v1/concepts` accept only the admin tokens it lists and refuse a write
+  token with `403`, so a study link's token, which participants can read,
+  cannot change languages or concepts. The measurement routes accept either
+  kind of token. A token in both lists is an admin token, and `senselex serve`
+  in production reports such tokens by their audit-log ids.
+  `SENSELEX_API_TOKENS` stays required in production.
+
+### Documentation
+
+- The README documents the Atlas's HTTP API route by route. It warns that
+  `seed` replaces any language or concept with the same code or identifier and
+  writes invented ratings and naming responses that enter the norms and
+  exports. It also says that the only store that comes with the field client
+  keeps the queue in memory, so queued records do not survive a restart, and
+  that the suite includes no persistent store or packaged desktop application.
+  It says that the leading apostrophe on a CSV export cell that would read as a
+  spreadsheet formula, such as the word `-ness`, stays in the file, so R and
+  pandas read it as part of the value. It says that, without the Lancaster
+  trial-level file, `npm run verify` skips `human_benchmark.mjs` and reruns
+  `criterion.mjs` on the committed `human-benchmark-results.json`.
+- `SECURITY.md` says that input validation refuses unknown rating dimensions and
+  drops other unrecognised fields, and it describes what the audit log records
+  and that the log is not tamper-evident. It says that the server does not
+  itself refuse requests from other origins, so a cross-site form or
+  `text/plain` POST still reaches it and is processed. It also says that
+  clients behind a reverse proxy share one rate-limit allowance.
+- The jsPsych README, the browser edition's README and its help text say that
+  the exported experiment reads `PROLIFIC_PID` and the `cc` code and sends
+  nothing to the researcher, offering the participant a download of their data
+  instead. The help text adds that it does not record `STUDY_ID` or
+  `SESSION_ID`. The browser edition's README documents its export formats and
+  what a study link needs from an Atlas.
+- The browser edition's help text describes the Explore table, its filters
+  (which the norms CSV ignores), pasted item lists and the languages without a
+  word bank. It says that the study builder draws the same words for the same
+  settings and that every participant sees the items in list order.
+- The word-bank build instructions give the packages that Korean and Chinese
+  need, the Stanza model download step and the file names of the profanity
+  lists.
+- `validation/README.md` describes the panel's word lists, dataset and result
+  files and the pilot's files. It warns against importing the panel's dataset
+  beside human English ratings. It says which study-related terms the
+  transcript audit found in every rater call's context, such as
+  'preregistration' in the git status. It no longer says that the audit
+  confirms that this context held no prediction, no pilot result and no
+  Lancaster value, since a search for these terms does not by itself show this.
 
 ## [0.2.0] - 2026-10-09
 
-This release brings every rating surface in line with the wording of the
-Lancaster Sensorimotor Norms, records a word the rater does not know, and adds
-three validation studies: a reproduction of the Lancaster norms from their
-trial-level ratings, an estimate of how many raters a norming study needs on each
-channel, and a preregistered panel of twelve simulated raters who each rated 300
-English words. Every validation input is checked against its published checksum
-and expected structure, and one command reruns the validation and compares each
-output with the committed file.
+This release uses the wording of the Lancaster Sensorimotor Norms rating screens
+(Lynott et al., 2020) on every rating surface, records a word the rater does not
+know and adds three validation studies: a reproduction of the Lancaster norms
+from their trial-level ratings, an estimate of how many raters a norming study
+needs on each channel and a preregistered panel of twelve simulated raters who
+each rated 300 English words.
 
-### Changed
+### Upgrading from 0.0.1
 
-- The rating task uses the wording of the Lancaster Sensorimotor Norms rating
-  screens (Lynott et al., 2020) in the browser edition, the jsPsych experiment it
-  exports, the standalone jsPsych plugin and the Atlas contribution form. Raters
-  are asked "To what extent do you experience this word?" and rate every channel
-  from 0 (not at all) to 5 (greatly). A channel through which the word is not
-  experienced is a 0, not a blank. The perceptual rows read "By feeling through
-  touch", "By hearing", "By smelling", "By tasting", "By seeing" and "By
-  sensations inside your body", and the head effector reads "Head excluding
-  mouth". The previous instructions asked raters to leave a channel blank if it
-  did not apply, anchored the top of the scale at "very strongly" and labelled the
-  effector "Head", which let speaking and eating earn head credit that the
-  published norms assign to the mouth. Ratings collected under the two wordings
-  should not be pooled without checking. The rating fields still accept half
-  points where Lancaster used whole numbers.
-- A word the rater does not know is recorded. The browser edition's collection
-  screen separates moving on ("Next", which records nothing) from recording an
-  item as unknown ("Don't know this word", or "No name given" when naming). An
-  item recorded as unknown counts towards completing a session, so a Prolific
-  session can finish, but it never enters the norms, and a session made only of
-  unknown items does not finish. Answering the item later replaces the record.
-  Unknown items travel in the dataset JSON (`skips`) and merge on import, where
-  an answer in the merged data supersedes them. They are not submitted to an
-  Atlas, which does not yet store them.
-- The jsPsych plugin `senselex-rating`, standalone and in the exported
-  experiment, is version 2.0.0. It has a "Don't know this word" button, which ends
-  the trial with `dont_know: true` and no ratings. jsPsych 8 stores the plugin
-  version with every trial, so trials from the two wordings can be told apart
-  (under jsPsych 7, the `dont_know` field marks version-2 trials).
-  The exported experiment writes don't-know trials to `skips`, not `ratings`.
-- Records the browser edition saves carry the release that saved them
-  (`appVersion`), the long-format CSV export has an `app_version` column, the
-  page shows the release, and the dataset JSON records which release exported it
-  (`exportedWith`). The Atlas does not yet store a release, so ratings it
-  received under the two wordings can be separated only by when they arrived.
-- The demonstration sample of ratings rates every channel, with 0 where a word is
-  not experienced, as the instructions ask.
-- The browser edition and the README no longer claim that the browser edition's
-  exports carry a licence: only the Atlas's export does, in its metadata file.
-  The README now states that `web-static/words.js` is not covered by the MIT
-  licence: its frequencies derive from wordfreq data, distributed under CC BY-SA
-  4.0, and the file is shared under that licence.
-- The simulated panel's reliability is reported per channel as single-rater
-  reliability, estimated with the same function as for the Lancaster raters
-  (`validation/stats.mjs`): two halves of six ratings per word, averaged over 200
-  seeded random splits and stepped down with the Spearman-Brown formula.
-  `validation/compute.mjs` no longer computes the measures reported for the pilot
-  in v0.0.1, namely the Spearman-Brown reliability of the twelve-rater mean from
-  one odd/even split of raters, the mean pairwise inter-rater correlation and the
-  correlation of maximum perceptual strength with concreteness. The pilot's
-  values remain in `validation/pilot/results-pilot.json`.
-- Records in the exported validation dataset are identified as
-  `panel-<rater>-<CONCEPT>` (previously `llmval-...`) and stamped with the panel's
-  collection date from `raters.json`. The `SENSELEX_VALIDATION_TIMESTAMP`
-  override has been removed.
+#### Changed results
+
+- The rating task (browser edition, jsPsych export and plugin, Atlas form) uses
+  the Lancaster wording, with 'Head excluding mouth', and asks for 0 rather than
+  a blank for a channel not experienced (blanks are still accepted). Check
+  before pooling ratings across wordings.
+- The browser edition's collection screen offers 'Don't know this word' ('No
+  name given' when naming), which records the item as unknown, beside 'Next'
+  (formerly 'Skip'), which records nothing. Unknown items stay out of the norms
+  and out of Atlas submissions.
+- The jsPsych plugin `senselex-rating` (standalone and exported) is version
+  2.0.0, with a 'Don't know this word' button, and every trial records
+  `dont_know`. No parameter hides the button or restores the 1.0.0 row labels.
+  The standalone plugin's `preamble` can restore the 1.0.0 instruction.
+- In `validation/`, `raters.json`, `words-sample.json`, `results.json`,
+  `llm-norms-eng.csv`, `senselex-llm-validation-dataset.json` and
+  `criterion-results.json` hold the 300-word panel's sample, ratings and
+  results. The pilot's files are in `validation/pilot/`, unchanged, with
+  `-pilot` added to each name.
+- `validation/compute.mjs` fills the `n_records`, `n_<channel>` and
+  `n_perceptual_channels` columns of `llm-norms-eng.csv`, which were empty or 0
+  because it passed a record count where the export expects per-channel counts.
+  The pilot's copy in `validation/pilot/` keeps the defect.
+- `validation/criterion.mjs` tests the preregistered hypotheses H1, H1b, H2 and
+  H3 on the confirmatory words, reading blank channels as 0 in a sensitivity
+  analysis. Agreement with the Lancaster norms on all 300 words, the analysis
+  behind the pilot's main result, is exploratory.
+- `validation/compute.mjs` reports the panel's single-rater reliability per
+  channel, estimated as for the Lancaster raters. It no longer computes the
+  measures reported for the pilot, namely the twelve-rater split-half
+  reliability, the mean inter-rater correlation and the correlations with
+  concreteness (see `validation/pilot/results-pilot.json`).
 - `validation/sample_words.mjs` draws 300 words, six concreteness bands of 50,
-  from words that appear in the Lancaster norms and have a Zipf frequency above
-  zero. It keeps the 54 pilot words that pass these filters as an overlap set and
-  needs the Lancaster norms file to run. It no longer regenerates the pilot's
-  60-word sample, which is kept as `validation/pilot/words-sample-pilot.json`.
-- The simulated-rater prompt (`validation/rater-prompt.md`) follows the Lancaster
-  wording, asks for whole numbers and offers a "don't know" response. Each rater
-  rates five lists of 60 words, one isolated call per list.
-- The pilot panel and all its outputs moved, unchanged, to `validation/pilot/`.
-- The minimum Node release is 22.13, the first 22.x release that provides
-  `node:sqlite` without the `--experimental-sqlite` flag. The earlier stated
-  minimum, 22.5, needed that flag.
-- `docker-compose.yml` passes the audit secret and the request limits through
-  from `.env`, and `.env.example` says how to load the file without Docker.
-- `SECURITY.md` asks for vulnerabilities to be reported through GitHub's private
-  vulnerability reporting.
-- The Docker base image is pinned by digest
-  (`node:24-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1`).
-- `CITATION.cff` points to https://github.com/pablobernabeu/senselex and to the
-  concept DOI 10.5281/zenodo.22905873, gives the release date, and cites both
-  word-bank sources.
+  from the English word bank's words in the Lancaster norms with a Zipf
+  frequency above zero, keeping the 54 pilot words that pass. It no longer
+  regenerates the pilot's 60-word sample.
+- The simulated-rater prompt (`validation/rater-prompt.md`) uses the Lancaster
+  wording, asks for whole numbers and offers a 'don't know' response.
+- The browser edition's sample of ratings ('Load a sample of ratings') rates
+  every channel, with 0 where a word is not experienced, so its norms change.
+
+#### Changed interface
+
+- The minimum Node release is 22.13 instead of 22.5. It is the first 22.x
+  release that provides `node:sqlite` without the `--experimental-sqlite` flag.
+- On a browser edition study link with an Atlas address, a session finishes only
+  once the participant has rated at least one word, whichever task is selected,
+  since only ratings are submitted.
+- Under `docker compose`, `SENSELEX_AUDIT_SECRET`, `SENSELEX_MAX_BODY_BYTES`,
+  `SENSELEX_MAX_PAGE_SIZE`, `SENSELEX_RATE_WINDOW_MS` and `SENSELEX_RATE_MAX`
+  set in `.env` take effect. Remove them from `.env` to keep the defaults.
+- The validation scripts stop on a Lancaster file that fails OSF's published
+  SHA-256 checksum and on incomplete, duplicated or non-numeric input, such as a
+  renamed column or a sample word absent from the Lancaster norms.
+- `validation/sample_words.mjs` needs the Lancaster norms file and the pilot
+  sample in `validation/pilot/`. `validation/compute.mjs` needs
+  `provenance.runDate` in `raters.json` and no longer reads
+  `SENSELEX_VALIDATION_TIMESTAMP`. `validation/criterion.mjs` needs
+  `human-benchmark-results.json` and the pilot's raters and criterion results in
+  `validation/pilot/`.
+
+#### Changed output
+
+- The browser edition's long-format CSV export ends with a new `app_version`
+  column, and its dataset JSON, which the exported jsPsych experiment also
+  writes, adds `exportedWith`, `appVersion` on records saved from 0.2.0 and a
+  `skips` list of items recorded as unknown.
+- `validation/criterion-results.json` gives agreement on all words in
+  `exploratory.allWords` instead of the top-level `criterion` block, with
+  renamed keys such as `perChannel` for `perDimension`, and no longer has
+  `machinePanel`.
+- The exported validation dataset (`senselex-llm-validation-dataset.json`)
+  identifies records as `panel-<rater>-<CONCEPT>` instead of
+  `llmval-<rater>-<CONCEPT>` and dates them with the panel's collection date.
+- `validation/compute.mjs` prints the record counts and each channel's
+  single-rater reliability instead of the full results, which it writes to
+  `validation/results.json`.
 
 ### Added
 
-- The preregistered 300-word simulated-rater panel: the plan
-  (`validation/PREDICTIONS.md`), the seeded per-rater word lists
-  (`make_lists.mjs`, `panel-lists.json`), the collection script
-  (`run_panel.workflow.js`) and the raw ratings (`raters.json`, model
-  `claude-opus-5-5`), committed before any analysis ran.
-- The panel's analysis in `validation/criterion.mjs`: hypotheses H1, H1b, H2 and
-  H3 on the 246 confirmatory words, a sensitivity analysis that reads blank
-  channels as 0, and exploratory analyses labelled as such. H2 compares the two
-  panels on the same words, and H1b uses reliabilities from the same word set.
-  Per-word panel and human means are written to `validation/panel-vs-human.json`.
-  The analysis script made public with the preregistration amendment computed H2
-  and the H1b reliabilities on all 300 words, with slightly different word sets
-  for the two panels, while the preregistration's text puts every test on the
-  confirmatory words. This release follows the text, a choice made after the
-  data were collected. The script's computations are kept as labelled exploratory
-  outputs and reach the same verdicts.
-- `validation/human_benchmark.mjs` reproduces the published Lancaster means from
-  the trial-level ratings. Where a word's published means differ from its own
-  ratings, it checks whether they match another word's ratings. It also estimates
-  human single-rater reliability on the panel's words and across the lexicon, and
-  gives the number of raters per word a new study needs to reach a target
-  reliability on each channel.
-- `validation/stats.mjs`, the statistics and the preregistered seed shared by
-  every validation script.
-- `validation/lancaster.mjs`, with the storage addresses of the two Lancaster
-  files and the SHA-256 checksums OSF publishes for them. Every script that reads
-  a Lancaster file checks its checksum first and stops on a mismatch. The files
-  are read from `SENSELEX_DATA_DIR` (default `validation/`).
-- `npm run verify` (`validation/verify.mjs`) reruns the validation steps in a
-  scratch copy and compares each output with the committed file. Without the
-  1.4 GB trial file it skips `human_benchmark.mjs` and says so, and
-  `--require-trial` turns that into a failure. `npm run validate` reruns
-  `compute.mjs`, `human_benchmark.mjs` and `criterion.mjs` in place.
-- Input checks that stop a validation run on an incomplete or duplicated panel,
-  a sample word missing from the Lancaster norms, a missing or renamed column, an
-  empty or non-numeric rating, a quoted field in the trial file, or two published
-  rows with the same word. Columns are located by name.
-- `.node-version`, recording Node 24.12.0, the release that produced the
-  committed validation results.
+- The panel of twelve simulated raters (model `claude-opus-5-5`), each rating
+  five lists of 60 English words in separate calls: the word lists
+  (`make_lists.mjs`, `panel-lists.json`) and the collection script
+  (`run_panel.workflow.js`). The ratings in `raters.json` were committed before
+  any analysis ran.
+- `validation/PREDICTIONS.md`, the panel's hypotheses, sample and analysis plan
+  with Amendment 1, as made public on the `prereg-panel-300` branch on 22
+  September 2026, UTC (commits 668d017 and ab874da), before any rating was
+  collected. The amendment, informed by the human trial-level data and by no
+  machine rating, fixed the size of the split halves for H2 and added H1b. The
+  copy of `validation/rater-prompt.md` made public with it lacks the prompt's
+  final paragraph, on returning answers, giving null ratings for an unknown word
+  and using no other tool. The preregistered collection script and the file in
+  this release hold it. H2 and the H1b reliabilities use the confirmatory
+  words, as the plan's text says, where its analysis script used all 300 words.
+  Following the text was decided after data collection.
+  `validation/criterion.mjs` reports the script's computation as exploratory,
+  and both reach the same verdicts.
 - `validation/panel-transcript-audit.json`, written by
-  `validation/audit_panel_transcripts.mjs` from the collection run's transcripts:
-  for each of the 60 rater calls, the tools offered, the tools called and the
-  kinds of context received.
-- Tests of the validation statistics against hand-worked values
-  (`test/stats.test.js`), and of the jsPsych plugin's save and don't-know paths.
-- Continuous integration (`.github/workflows/ci.yml`) runs the unit tests on Node
-  22.13.0, the newest Node 22 and 24.12.0, and runs `npm run verify` with the
-  Lancaster norms file but without the trial file on every push and pull request.
-- `data/requirements.txt`, pinning the direct Python dependencies of
-  `data/build_wordbanks.py` at the versions installed on 23 September 2026. The
-  committed word banks were built in July 2026 with versions that were not
-  recorded, so a rebuild may not reproduce `web-static/words.js` exactly.
-- A codebook and step-by-step reproduction instructions in `validation/README.md`,
-  and `ISSUES.md`, which lists the open issues and why each was deferred.
+  `validation/audit_panel_transcripts.mjs`, records for each of the 60 rater
+  calls the tools offered, the tools called and the kinds of context received.
+  The calls, preregistered as calls without tools, ran as subagents of an AI
+  coding assistant with its standard tools and context available. Each made
+  exactly one tool call, the one that returns its answers.
+- `validation/panel-vs-human.json`, written by `validation/criterion.mjs`, holds
+  the per-word panel and human means.
+- `validation/human_benchmark.mjs`, which writes
+  `validation/human-benchmark-results.json`, reproduces the published Lancaster
+  means from the trial-level ratings, estimates human single-rater reliability
+  and gives the number of raters per word a new study needs to reach a target
+  reliability on each channel.
+- `npm run verify` reruns the validation in a scratch copy and checks each
+  output against the committed file. Without the Lancaster trial-level file, it
+  skips the human benchmark, and `npm run verify -- --require-trial` makes that
+  a failure.
+- `npm run validate` reruns the validation analyses in place.
+- `.node-version` records Node 24.12.0, the release that produced the committed
+  validation results.
+- `data/requirements.txt` pins the direct Python dependencies for rebuilding the
+  word banks. The committed banks were built with unrecorded versions, so a
+  rebuild may not reproduce `web-static/words.js` exactly.
+
+### Changed
+
+- The standalone jsPsych plugin takes a new optional `dont_know_label`
+  parameter, the label of the button that records a word as unknown (default
+  'Don't know this word').
+- The browser edition shows its release. The Atlas stores no release, so
+  ratings submitted to it under the two wordings can be told apart only by when
+  they arrived.
+- The validation scripts read the Lancaster files from `SENSELEX_DATA_DIR` when
+  it is set, and from `validation/` otherwise.
+- The Docker base image, `node:24-alpine`, is pinned by digest.
 
 ### Fixed
 
-- The jsPsych experiment exported by the browser edition never started: it
-  loaded jsPsych from jsDelivr's bare package addresses, which serve the Node
-  build, and browsers refuse to run that. It now loads the browser bundles of
-  jsPsych 8.3.0 and plugin-html-button-response 2.1.0, with integrity hashes.
-- On a study link, a participant who skipped a word could never reach the
-  completion screen or the Prolific return link, because a skip recorded nothing.
-  Recording a word as unknown now counts towards completion. On a study link
-  with an Atlas address, the session also needs at least one rating, since only
-  ratings are submitted.
-- `validation/compute.mjs` passed a record count where the CSV export expects
-  per-channel counts. As a result `llm-norms-eng.csv` had empty `n_records` and
-  `n_perceptual_channels` columns and a 0 in every `n_<channel>` column. The
-  300-word export carries the correct counts. The pilot's export, kept as
-  released in `validation/pilot/llm-norms-eng-pilot.csv`, still has the defect.
-- `npm test` ran `test/helpers.js` as a test file. It now runs only
-  `test/*.test.js`.
+- The jsPsych experiment that the browser edition exports now starts: it loads
+  the browser bundles of jsPsych 8.3.0 and plugin-html-button-response 2.1.0,
+  with integrity hashes. Unlike the browser edition, it lets a participant mark
+  every word as unknown and still reach the Prolific return link, so check the
+  data before approving a submission.
+- On a study link, a participant who does not know a word can reach the
+  completion screen and the Prolific return link by recording the word as
+  unknown, provided they answer at least one other item (for a link with an
+  Atlas address, see 'Changed interface').
 
-### Preregistration
+### Documentation
 
-The hypotheses, sample and analysis plan for the 300-word panel, and Amendment 1
-to them (`validation/PREDICTIONS.md`), were made public on the `prereg-panel-300`
-branch of this repository on 22 September 2026, UTC (commits 668d017 and
-ab874da),
-before any rating was collected. The amendment was informed by the human
-trial-level data and not by any machine rating. It fixed the size of the split
-halves used for H2 and added H1b. The copy of `validation/rater-prompt.md` made
-public then omitted the prompt's final paragraph, which tells the rater how to
-return its answers, to give null ratings for a word marked as unknown and to use
-no other tool. The collection script preregistered with it held the complete
-prompt, and this release restores the paragraph to the file.
-
-Two points depart from the plan. First, the preregistration specified rater
-calls without tools, but each call ran as a subagent of an AI coding assistant,
-with that assistant's standard tools and context available. The prompt told each
-rater to use no other tool than the one that returns its answers, and the
-transcript audit shows that every call made exactly that one tool call. Second,
-the preregistration's text and its analysis script disagreed on the words H2 and
-the H1b reliabilities use, and the text was followed after the data were
-collected, as described above.
+- The README and the browser edition's help text say that the browser edition's
+  exports carry no licence, unlike the Atlas's export, and that
+  `web-static/words.js` is not covered by the MIT licence. They and the file's
+  header say that it keeps the CC BY-SA 4.0 licence of the wordfreq data behind
+  its frequencies and that its English concreteness values keep their authors'
+  terms.
+- The READMEs and help texts no longer say that data exported from the browser
+  edition or a jsPsych experiment can be loaded into the full Atlas, which has
+  no import for them, or that the Atlas form can play an audio prompt. The
+  jsPsych README says that a rated plugin trial passes the Atlas validators once
+  its fields are mapped to the Atlas's names.
+- `.env.example` says that Node does not read `.env` by itself and how to load
+  it without Docker.
+- `validation/README.md` has a codebook and step-by-step reproduction
+  instructions.
 
 ## [0.0.1] - 2026-09-22
 
