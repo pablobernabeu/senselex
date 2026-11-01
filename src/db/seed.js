@@ -21,8 +21,10 @@ const LANGUAGES = [
 // Only SMOKE carries an id here, checked against concepticon.clld.org/parameters/778
 // (concept set SMOKE (EXHAUST)). The others are null on purpose. An unverified
 // identifier is worse than an absent one, because a wrong link silently joins two
-// unrelated concepts in any later merge, and nothing in the suite validates the
-// field. Resolve these against the catalogue before using them for anything real.
+// unrelated concepts in any later merge, and nothing in the suite checks it
+// against the catalogue (validateConcept checks only that it looks like a
+// concept-set number). Resolve these against the catalogue before using them for
+// anything real.
 const CONCEPTS = [
   { id: 'COFFEE', gloss: 'coffee', concepticonId: null },
   { id: 'SMOKE', gloss: 'smoke', concepticonId: '778' },

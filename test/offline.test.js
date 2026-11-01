@@ -58,10 +58,9 @@ test('invalid field input is caught locally before it can be queued', async () =
 });
 
 test('a queue larger than one batch syncs in slices instead of deadlocking', async () => {
-  // A field device accumulates far more than one batch between connections.
-  // Sending the whole queue at once was rejected on size and then retried at the
-  // same size for ever, so the queue could never drain. The client now slices to
-  // the size the server validator accepts.
+  // A field device accumulates far more than one batch between connections. A
+  // queue sent whole would be rejected on size and then retried at the same size
+  // for ever, so the client slices it to the size the server validator accepts.
   const store = createMemoryStore();
   const seen = [];
   const client = createOfflineClient({

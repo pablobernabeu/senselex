@@ -8,6 +8,10 @@
 # were not recorded, so a rebuild with these pins may not reproduce words.js
 # exactly (see ISSUES.md). Only the direct dependencies are pinned; a full lock
 # of their own dependencies is still to be made.
+#
+# wordfreq defines no ja or ko extra, so pip ignores both. MeCab, its Korean
+# dictionary and jieba, which wordfreq needs for Korean and Chinese, are pinned
+# below.
 wordfreq[ja,ko]==3.1.1
 mecab-python3==1.0.12
 mecab-ko-dic==1.0.0

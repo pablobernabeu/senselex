@@ -1,7 +1,9 @@
 // The repository is the only place that writes SQL. Every statement is prepared
 // with bound parameters, so user input is never concatenated into a query and
-// injection is structurally impossible. Confining SQL here also means a move to
-// PostgreSQL touches this file alone.
+// injection is structurally impossible. A move to PostgreSQL would rewrite this
+// file together with connection.js and schema.sql, and because this API is
+// synchronous, like node:sqlite, an asynchronous driver would also make its
+// callers await it.
 
 import { ALL_DIMENSIONS, PERCEPTUAL_DIMENSIONS } from '../domain/dimensions.js';
 import {
@@ -69,8 +71,8 @@ export function createRepository(db) {
 
     // Measurements carry a pseudonymous participant reference minted by the
     // client, and there is no route by which a client registers a participant
-    // first. Without this the foreign key rejected every submission that named a
-    // participant, which is every submission in the documented recruitment
+    // first. Without this, the foreign key would reject every submission that names
+    // a participant, which is every submission in the documented recruitment
     // pipeline, since that locks the reference to the panel's identifier.
     // OR IGNORE leaves an existing row untouched, so a participant who already
     // has recorded study variables does not have them erased by a later batch.
@@ -144,6 +146,28 @@ export function createRepository(db) {
     return { limit: safeLimit, offset: safeOffset };
   }
 
+  // Runs write so that either every row it writes is kept or none is. It uses a
+  // savepoint rather than BEGIN, because applySyncBatch calls the measurement
+  // inserts inside its own transaction, where BEGIN would fail.
+  function atomically(write) {
+    db.exec('SAVEPOINT measurement');
+    try {
+      write();
+      db.exec('RELEASE measurement');
+    } catch (error) {
+      // A full disk or an I/O error can roll back the whole transaction,
+      // savepoint included, so a rollback that fails here is ignored and the
+      // original error is the one thrown.
+      try {
+        db.exec('ROLLBACK TO measurement');
+        db.exec('RELEASE measurement');
+      } catch {
+        // Nothing is left to undo.
+      }
+      throw error;
+    }
+  }
+
   return {
     upsertLanguage(language) {
       statements.upsertLanguage.run(
@@ -188,7 +212,6 @@ export function createRepository(db) {
     // already present (an idempotent duplicate). Throws ReferenceIntegrityError
     // when the language or concept does not exist.
     insertRating(rating) {
-      if (rating.participantRef) statements.ensureParticipant.run(rating.participantRef, rating.languageCode);
       const params = [
         rating.clientId,
         rating.languageCode,
@@ -199,7 +222,10 @@ export function createRepository(db) {
         rating.source ?? 'web',
       ];
       try {
-        statements.insertRating.run(...params);
+        atomically(() => {
+          if (rating.participantRef) statements.ensureParticipant.run(rating.participantRef, rating.languageCode);
+          statements.insertRating.run(...params);
+        });
         return true;
       } catch (error) {
         const kind = classifyConstraint(error);
@@ -209,18 +235,20 @@ export function createRepository(db) {
       }
     },
     insertResponse(response) {
-      if (response.participantRef) statements.ensureParticipant.run(response.participantRef, response.languageCode);
       try {
-        statements.insertResponse.run(
-          response.clientId,
-          response.languageCode,
-          response.conceptId,
-          response.name,
-          response.responseType,
-          response.length ?? 0,
-          response.participantRef ?? null,
-          response.source ?? 'web',
-        );
+        atomically(() => {
+          if (response.participantRef) statements.ensureParticipant.run(response.participantRef, response.languageCode);
+          statements.insertResponse.run(
+            response.clientId,
+            response.languageCode,
+            response.conceptId,
+            response.name,
+            response.responseType,
+            response.length ?? 0,
+            response.participantRef ?? null,
+            response.source ?? 'web',
+          );
+        });
         return true;
       } catch (error) {
         const kind = classifyConstraint(error);

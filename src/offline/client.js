@@ -1,7 +1,7 @@
 // The offline-first client. In the field there is often no connection, so the
 // elicitation app records to a local queue and synchronises later. The queue is
-// behind a small storage interface, so the same logic runs against a file in the
-// desktop app and against IndexedDB in the browser. Records carry a
+// behind a small storage interface, so the same logic could run against a file
+// in a desktop app or against IndexedDB in a browser. Records carry a
 // client-generated id, which the server treats as the primary key, so a sync that
 // is retried after a dropped connection cannot create duplicates.
 
@@ -18,8 +18,10 @@ function newId() {
 }
 
 // A minimal in-memory store, used for tests and as the reference implementation
-// of the storage interface. A real desktop build supplies a file-backed store
-// and the browser build supplies an IndexedDB store with the same three methods.
+// of the storage interface. It is the only store that ships, and its queue does
+// not outlive the process. A desktop or browser build would supply a file-backed
+// or IndexedDB store with the same three methods. The browser edition in
+// web-static/ does not use this client and keeps its records in localStorage.
 // Records are stored in the same flat shape the sync endpoint expects, namely a
 // kind alongside the validated fields.
 export function createMemoryStore() {

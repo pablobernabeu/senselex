@@ -55,6 +55,18 @@ function sendError(res, status, message, detail) {
   sendJson(res, status, { error: message, detail });
 }
 
+// Writes are of two kinds. Reference data, the languages and concepts, is what
+// every measurement keys on and what the exports and their metadata describe, so
+// it takes an admin token once admin tokens are set. A measurement is a rating, a
+// naming response or a sync batch of those two. It may add a participant row but
+// cannot create or change a language or concept, which it can only name (see
+// validateSyncBatch and the foreign keys in schema.sql). Each write route states
+// its kind where it is routed, and authorise treats any kind but MEASUREMENT as
+// reference data, so a write route added without a decision needs an admin token
+// rather than accepting a study link's token.
+const REFERENCE_DATA = 'reference-data';
+const MEASUREMENT = 'measurement';
+
 function pageParams(url, maxPageSize) {
   return {
     limit: url.searchParams.get('limit'),
@@ -66,13 +78,16 @@ function pageParams(url, maxPageSize) {
 export function buildApp(config) {
   const db = openDatabase(config.databasePath);
   const repo = createRepository(db);
-  const auth = createAuthenticator(config.writeTokens);
+  const auth = createAuthenticator(config.writeTokens, config.adminTokens);
   const rateLimiter = createRateLimiter(config.rateLimit);
   const hashIp = createAddressDigest(config.auditSecret);
 
-  // Guards a write handler: enforces auth (when tokens are configured) and writes
-  // an audit entry for every attempt, successful or not.
-  function authorise(req, res, route) {
+  // Guards a write handler: enforces auth (when tokens are configured) and records
+  // a refused token, or an unauthenticated development write, in the audit log.
+  // A write token on a route of any kind but MEASUREMENT is refused with 403
+  // once admin tokens are set. handleWrite records the outcome of a write that
+  // passes validation.
+  function authorise(req, res, route, kind) {
     if (!auth.configured) {
       // Development mode with no tokens set. Allowed, but recorded.
       repo.recordAudit({ action: 'write', route, status: 0, detail: 'unauthenticated-dev' });
@@ -90,11 +105,23 @@ export function buildApp(config) {
       sendError(res, 401, 'Authentication required');
       return { ok: false };
     }
+    if (kind !== MEASUREMENT && auth.adminConfigured && !result.admin) {
+      repo.recordAudit({
+        action: 'write',
+        route,
+        tokenId: result.tokenId,
+        ipHash: hashIp(clientAddress(req)),
+        status: 403,
+        detail: 'admin-required',
+      });
+      sendError(res, 403, 'This route needs an admin token');
+      return { ok: false };
+    }
     return result;
   }
 
-  async function handleWrite(req, res, route, validate, persist) {
-    const authResult = authorise(req, res, route);
+  async function handleWrite(req, res, route, kind, validate, persist) {
+    const authResult = authorise(req, res, route, kind);
     if (!authResult.ok) return;
     let body;
     try {
@@ -202,7 +229,7 @@ export function buildApp(config) {
         return;
       }
       if (req.method === 'POST' && pathname === '/v1/languages') {
-        await handleWrite(req, res, pathname, validateLanguage, (body) => {
+        await handleWrite(req, res, pathname, REFERENCE_DATA, validateLanguage, (body) => {
           repo.upsertLanguage(body);
           return { code: body.code };
         });
@@ -215,7 +242,7 @@ export function buildApp(config) {
         return;
       }
       if (req.method === 'POST' && pathname === '/v1/concepts') {
-        await handleWrite(req, res, pathname, validateConcept, (body) => {
+        await handleWrite(req, res, pathname, REFERENCE_DATA, validateConcept, (body) => {
           repo.upsertConcept(body);
           return { id: body.id };
         });
@@ -224,15 +251,15 @@ export function buildApp(config) {
 
       // Data submission.
       if (req.method === 'POST' && pathname === '/v1/ratings') {
-        await handleWrite(req, res, pathname, validateRating, (value) => ({ stored: repo.insertRating(value) }));
+        await handleWrite(req, res, pathname, MEASUREMENT, validateRating, (value) => ({ stored: repo.insertRating(value) }));
         return;
       }
       if (req.method === 'POST' && pathname === '/v1/responses') {
-        await handleWrite(req, res, pathname, validateResponse, (value) => ({ stored: repo.insertResponse(value) }));
+        await handleWrite(req, res, pathname, MEASUREMENT, validateResponse, (value) => ({ stored: repo.insertResponse(value) }));
         return;
       }
       if (req.method === 'POST' && pathname === '/v1/sync') {
-        await handleWrite(req, res, pathname, validateSyncBatch, (records) => repo.applySyncBatch(records));
+        await handleWrite(req, res, pathname, MEASUREMENT, validateSyncBatch, (records) => repo.applySyncBatch(records));
         return;
       }
 
@@ -263,7 +290,7 @@ export function buildApp(config) {
         // the quoted filename and append a second header parameter.
         if (!isIdentifier(language)) { sendError(res, 400, 'language must be a valid identifier'); return; }
         // Page through to the end rather than returning one page. An export that
-        // silently stopped at maxPageSize dropped most of a large language's
+        // silently stopped at maxPageSize would drop most of a large language's
         // norms while still presenting itself as the complete dataset.
         const rows = [];
         let total = 0;
@@ -311,6 +338,9 @@ export function buildApp(config) {
     handler,
     repo,
     db,
+    // Exposed so that start-up can warn about the configured tokens. It holds
+    // digests, never a token.
+    auth,
     close() {
       db.close();
     },

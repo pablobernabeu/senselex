@@ -288,8 +288,10 @@ for (const d of ALL_DIMENSIONS) {
 }
 
 // The derived measures a study reports also depend on panel size, so the table
-// includes how closely the maximum strength and exclusivity of a k-rater panel
-// track the full-panel values, on the panel words.
+// includes how closely the maximum strength and exclusivity of k randomly drawn
+// raters track the same measures from the word's remaining raters (a disjoint
+// group of at least two), on the panel words. The remaining group shrinks as k
+// grows, so the correlation does not rise steadily with k.
 function derivedAtK(k, seed) {
   const rand = mulberry32(seed);
   const small = [];

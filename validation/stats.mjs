@@ -82,7 +82,8 @@ function ranks(xs) {
 // study the 300-word panel tests, reported rank correlations.
 export const spearman = (xs, ys) => pearson(ranks(xs), ranks(ys));
 
-// Fisher-z interval for a correlation.
+// Fisher-z 95% interval for a correlation, as [low, high]. Returns null when r is
+// null or n < 4.
 export function fisherCi(r, n) {
   if (r === null || n < 4) return null;
   const z = Math.atanh(r);
@@ -91,7 +92,9 @@ export function fisherCi(r, n) {
 }
 
 // Percentile bootstrap over the rows of a dataset. `statistic` receives an array
-// of resampled rows and returns a number.
+// of resampled rows and returns a number. Returns { estimate, ci, resamples }: the
+// statistic on all rows, the 2.5th and 97.5th percentiles of the resampled values
+// and the number of resamples whose statistic was finite (the others are dropped).
 export function bootstrap(rows, statistic, { resamples = 10000, seed = SEED } = {}) {
   const rand = mulberry32(seed);
   const values = [];
@@ -130,17 +133,23 @@ export function ratersFor(r1, target) {
 // rater with Spearman-Brown. Averaged over many random splits so that no one split
 // decides the figure.
 //
-// The half size is fixed, and words with fewer than 2k ratings are left out. An
-// earlier version split each word's own raters in half, so the half size varied
-// from word to word, and stepped down using the mean half size. Because a mean's
-// reliability rises less than linearly with the number of raters, averaging over
-// unequal halves pulls the split-half correlation below the value at the mean
-// size, and the single-rater estimate came out too low: on the Lancaster data it
-// predicted .70 for an eight-rater mean of touch ratings where two disjoint
-// eight-rater means actually correlated at .76. A fixed half size removes the
-// mixture. Six is the default because the simulated panel has twelve raters.
+// The half size is fixed, and words with fewer than 2k ratings are left out.
+// Splitting each word's own raters in half instead would make the half size vary
+// from word to word, with the step-down using the mean half size. Because a
+// mean's reliability rises less than linearly with the number of raters,
+// averaging over unequal halves pulls the split-half correlation below the value
+// at the mean size, and the single-rater estimate comes out too low: on the
+// Lancaster data, that approach predicts .70 for an eight-rater mean of touch
+// ratings where two disjoint eight-rater means actually correlate at .76. A
+// fixed half size removes the mixture. Six is the default because the simulated
+// panel has twelve raters.
 //
 // `ratingsByWord` holds one array per word of that word's individual ratings.
+// Returns { r1, rk, halfSize, words, splits }: the single-rater estimate, the mean
+// split-half correlation (the reliability of a k-rater mean), k, the number of
+// words with at least 2k ratings that the estimate rests on and the number of
+// splits that gave a correlation. Returns null when fewer than ten words have at
+// least 2k ratings.
 export function singleRaterReliability(ratingsByWord, { halfSize = 6, splits = 200, seed = SEED } = {}) {
   const k = halfSize;
   const words = ratingsByWord.filter((r) => r.length >= 2 * k);

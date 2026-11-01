@@ -19,8 +19,12 @@ export function openDatabase(databasePath) {
   db.exec('PRAGMA journal_mode = WAL;');
   db.exec('PRAGMA foreign_keys = ON;');
   db.exec('PRAGMA busy_timeout = 5000;'); // wait up to 5000 ms for a lock before erroring
-  // NORMAL is durable under WAL and much faster than FULL. The only exposure is
-  // losing the last transaction on an OS crash, which an idempotent client re-sync restores.
+  // Under WAL, NORMAL is much faster than FULL and does not risk corrupting the
+  // database, but it is not fully durable: transactions committed since the last
+  // WAL sync can roll back after an OS crash or power failure (an application
+  // crash loses nothing). Clients drop records once the server confirms them, so
+  // nothing re-sends a transaction lost this way. Change this to FULL where that
+  // matters.
   db.exec('PRAGMA synchronous = NORMAL;');
   const schema = readFileSync(SCHEMA_PATH, 'utf8');
   db.exec(schema);

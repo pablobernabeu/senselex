@@ -1,15 +1,20 @@
 // The browser edition has to run from a file:// URL with no build step, so it
-// cannot import the domain core and carries a copy instead. A copy that is only
-// checked by eye drifts: before this test existed, the two implementations had
-// already diverged on how free-naming responses are counted, so the same data
-// gave agreement 1.00 and one distinct name in the browser and 0.00 and two on
-// the server.
+// cannot import the domain core and carries a copy instead. A copy checked only
+// by eye drifts, and a drift in how free-naming responses are counted would
+// give the same data different agreement and distinct-name figures in the
+// browser and on the server.
 //
 // This test extracts the copy from between the markers in web-static/index.html,
-// evaluates it as a browser would, and asserts that every function agrees with
-// src/domain/norms.js across a fixture set including the awkward cases: partial
-// vectors, all-zero vectors, single raters and case-variant names. A change to
-// one side that is not mirrored on the other fails here.
+// evaluates it as a browser would, and asserts that averageRatings, ratedCounts,
+// dominantModality, modalityExclusivity, ratedChannelCount, simpsonDiversity and
+// agreement agree with src/domain/norms.js across a fixture set including the
+// awkward cases: partial vectors, all-zero vectors and single raters. A change to
+// one of them on one side that is not mirrored on the other fails here. The core
+// keeps its name tally private, so the copy's tally is checked over case-variant
+// names against the core's rule (trim, then lower-case) restated in the last
+// test, and a change to that rule in norms.js passes here unless the restatement
+// changes with it. The copy and the restatement drop a name that is empty after
+// trimming, which the core counts.
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
@@ -52,7 +57,7 @@ const browser = loadBrowserCore();
 const VECTOR_FIXTURES = [
   // A complete vector.
   [{ touch: 1, hearing: 0, smell: 4, taste: 5, vision: 2, interoception: 1, mouth_throat: 0, hand_arm: 2, foot_leg: 0, head: 1, torso: 0 }],
-  // Partial vectors, the case the two copies used to disagree about.
+  // Partial vectors, which the rating form accepts and which leave some channels unrated.
   [{ vision: 4, hearing: 3 }, { vision: 4, hearing: 3 }],
   [{ vision: 4, hearing: 3 }, { vision: 2, smell: 1 }],
   // Every rated channel at zero, which has no dominant modality.
@@ -120,9 +125,10 @@ test('browser and server count naming responses the same way', () => {
   for (const names of NAME_FIXTURES) {
     const label = JSON.stringify(names);
     const browserCounts = browser.tally(names);
-    // The server tallies through codability, which applies the same
-    // normalisation; comparing the count objects directly keeps the check on the
-    // one thing that differed.
+    // The core's tally is private to src/domain/norms.js, so its rule (trim, then
+    // lower-case) is restated here and the count objects are compared directly.
+    // Like the browser copy, and unlike the core, the restatement drops a name
+    // that is empty after trimming.
     const serverCounts = {};
     for (const name of names) {
       const key = String(name).trim().toLowerCase();

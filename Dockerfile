@@ -9,9 +9,11 @@
 #   run in this image; they need only Node (see validation/README.md).
 # Build:   docker build -t senselex:0.2.0 .
 # Run (one line):
-#   docker run -p 8787:8787 -v senselex-data:/app/data -e SENSELEX_API_TOKENS=<comma-separated tokens> -e SENSELEX_CORS_ORIGINS=<allowed origins, optional> senselex:0.2.0
+#   docker run -p 8787:8787 -v senselex-data:/app/data -e SENSELEX_API_TOKENS=<comma-separated tokens> -e SENSELEX_ADMIN_TOKENS=<comma-separated admin tokens, optional> -e SENSELEX_CORS_ORIGINS=<allowed origins, optional> senselex:0.2.0
 # Or:      docker compose up, which reads the same variables from a .env file
 #          beside docker-compose.yml.
+# Without SENSELEX_ADMIN_TOKENS, any write token can change languages and
+# concepts, and the server warns about it on start-up (see SECURITY.md).
 #
 # A minimal, hardened image. There is nothing to install because the application
 # has no third-party dependencies, so the build is just the runtime plus the

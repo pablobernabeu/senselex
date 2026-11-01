@@ -1,7 +1,8 @@
 -- SenseLex schema. SQLite is used for the prototype because it ships with Node
--- and needs no separate server, which suits a field laptop. The same schema maps
--- onto PostgreSQL for a scaled deployment; only the column types and the upsert
--- syntax change, both of which are isolated in the repository layer.
+-- and needs no separate server, which suits a field laptop. The tables map onto
+-- PostgreSQL for a scaled deployment, but this file is SQLite-specific (the
+-- PRAGMA, the strftime defaults and AUTOINCREMENT), so a move needs a PostgreSQL
+-- version of it alongside changes to connection.js and repository.js.
 
 PRAGMA foreign_keys = ON;
 
@@ -22,7 +23,8 @@ CREATE TABLE IF NOT EXISTS concepts (
   created_at    TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
 );
 
--- Participants are pseudonymous. Only a hashed reference and coarse,
+-- Participants are pseudonymous. Only the client-supplied reference, stored as
+-- sent (a recruitment-panel identifier stays resolvable by that panel), and coarse,
 -- non-identifying study variables are stored. No names, contact details, or
 -- free-text that could identify a child are ever persisted here.
 CREATE TABLE IF NOT EXISTS participants (
@@ -71,8 +73,11 @@ CREATE TABLE IF NOT EXISTS responses (
   created_at     TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
 );
 
--- A tamper-evident record of every write, kept separate from the data so that
--- governance questions can be answered without touching participant records.
+-- A record of write attempts (SECURITY.md says which are recorded) and of
+-- unhandled server errors, kept separate from the data so that governance
+-- questions can be answered without touching participant records. Nothing makes
+-- it tamper-evident: anyone who can write to the database file can alter or
+-- delete its rows.
 CREATE TABLE IF NOT EXISTS audit_log (
   id        INTEGER PRIMARY KEY AUTOINCREMENT,
   ts        TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now')),
