@@ -58,14 +58,16 @@ reason.
 - The README documents the Atlas's HTTP API route by route. It warns that
   `seed` replaces any language or concept with the same code or identifier and
   writes invented ratings and naming responses that enter the norms and
-  exports. It also says that the only store that comes with the field client
-  keeps the queue in memory, so queued records do not survive a restart, and
-  that the suite includes no persistent store or packaged desktop application.
-  It says that the leading apostrophe on a CSV export cell that would read as a
-  spreadsheet formula, such as the word `-ness`, stays in the file, so R and
-  pandas read it as part of the value. It says that, without the Lancaster
-  trial-level file, `npm run verify` skips `human_benchmark.mjs` and reruns
-  `criterion.mjs` on the committed `human-benchmark-results.json`.
+  exports. It says that the field client sends its queue to the Atlas only when
+  the host application calls `sync()`. It also says that the only store that
+  comes with the field client keeps the queue in memory, so queued records do
+  not survive a restart, and that the suite includes no persistent store or
+  packaged desktop application. It says that the leading apostrophe on a cell of
+  the Atlas's CSV export that would read as a spreadsheet formula, such as the
+  word `-ness`, stays in the file, so R and pandas read it as part of the value.
+  It says that, without the Lancaster trial-level file, `npm run verify` skips
+  `human_benchmark.mjs` and reruns `criterion.mjs` on the committed
+  `human-benchmark-results.json`.
 - `SECURITY.md` says that input validation refuses unknown rating dimensions and
   drops other unrecognised fields, and it describes what the audit log records
   and that the log is not tamper-evident. It says that the server does not
