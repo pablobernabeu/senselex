@@ -62,11 +62,11 @@ reason.
   the host application calls `sync()`. It also says that the only store that
   comes with the field client keeps the queue in memory, so queued records do
   not survive a restart, and that the suite includes no persistent store or
-  packaged desktop application. It says that the leading apostrophe on a cell of
-  the Atlas's CSV export that would read as a spreadsheet formula, such as the
-  word `-ness`, stays in the file, so R and pandas read it as part of the value.
-  It says that, without the Lancaster trial-level file, `npm run verify` skips
-  `human_benchmark.mjs` and reruns `criterion.mjs` on the committed
+  packaged desktop application. It says that, in the Atlas's CSV export, the
+  leading apostrophe on a cell that would read as a spreadsheet formula, such as
+  the word `-ness`, stays in the file, so R and pandas read it as part of the
+  value. It says that, without the Lancaster trial-level file, `npm run verify`
+  skips `human_benchmark.mjs` and reruns `criterion.mjs` on the committed
   `human-benchmark-results.json`.
 - `SECURITY.md` says that input validation refuses unknown rating dimensions and
   drops other unrecognised fields, and it describes what the audit log records
