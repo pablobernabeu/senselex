@@ -15,13 +15,6 @@ because it reads the committed `words.js`. Deferred: rebuild the banks with the
 pinned versions, compare with the committed file, and add a full lock of the
 dependencies' own dependencies.
 
-**The regenerated Study 2 output still awaits an independent `verify` run.** `validation/human-benchmark-results.json` was regenerated after
-`human_benchmark.mjs` gained the confirmatory word sets. The in-place run left
-every earlier value byte-identical and added only the new block, but an
-independent run of `npm run verify -- --require-trial` did not finish on the
-build machine, which was short of memory. Deferred: run it on a machine with
-about 8 GB free.
-
 ## Minor
 
 **The Atlas does not store words recorded as unknown or the release behind a

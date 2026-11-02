@@ -94,8 +94,15 @@ reason.
   'preregistration' in the git status. It no longer says that the audit
   confirms that this context held no prediction, no pilot result and no
   Lancaster value, since a search for these terms does not by itself show this.
+- `validation/README.md` documents the verify-trial workflow, which reruns the
+  whole validation with the Lancaster trial file on GitHub's runners. Its first
+  run reproduced every committed output byte for byte,
+  `human-benchmark-results.json` included.
 
 ## [0.2.0] - 2026-10-09
+
+This version was not released as a package. The browser edition on main
+stamped its records 0.2.0 from 2026-10-09 until 0.3.0.
 
 This release uses the wording of the Lancaster Sensorimotor Norms rating screens
 (Lynott et al., 2020) on every rating surface, records a word the rater does not
@@ -274,9 +281,9 @@ each rated 300 English words.
 
 First public release, archived at https://doi.org/10.5281/zenodo.22905874. Its
 `package.json`, `CITATION.cff` and `docker-compose.yml` gave the version as 0.1.0
-in error. Anything labelled 0.1.0 is this release, which is why the next release
-is 0.2.0.
+in error. Anything labelled 0.1.0 is this release, which is why the version
+after it is 0.2.0.
 
-[Unreleased]: https://github.com/pablobernabeu/senselex/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/pablobernabeu/senselex/compare/v0.0.1...v0.2.0
+[Unreleased]: https://github.com/pablobernabeu/senselex/compare/1cf6bd9...HEAD
+[0.2.0]: https://github.com/pablobernabeu/senselex/compare/v0.0.1...1cf6bd9
 [0.0.1]: https://github.com/pablobernabeu/senselex/releases/tag/v0.0.1
