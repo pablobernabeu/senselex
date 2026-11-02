@@ -76,6 +76,21 @@ output differs from the committed file. Without the trial file it skips
 (`node validation/verify.mjs --require-trial`) turns that into a failure. The
 trial-level analysis takes a few minutes and up to 6 GB of memory.
 
+The workflow `.github/workflows/verify-trial.yaml` runs
+`npm run verify -- --require-trial` on a commit pushed to the repository, on a
+GitHub-hosted Linux runner with the Node release in `../.node-version`. It
+fetches both Lancaster files from the addresses above into a folder outside the
+checkout and checks them against the checksums in `lancaster.mjs` before the
+run. It keeps them in the Actions cache, under a key made of those checksums,
+for later runs on the same branch. It stops before downloading anything if the
+runner has less than 7 GiB of memory available or Node is not the release in
+`../.node-version`. It runs when the last commit of a push to a branch other
+than main has '[verify trial]' in its message. Once the workflow is on main, it
+can also be started on any branch with Run workflow on the repository's Actions
+tab. It commits nothing and fails if any output differs from the committed
+file. The `ci` workflow's own verify job runs on every push without the trial
+file. To reproduce the results on your own machine, use the commands above.
+
 Every random step (list order, split halves, bootstrap resamples) is seeded from
 the one preregistered seed in `stats.mjs`, and the exported records are stamped
 with the panel's collection date, so a rerun reproduces each file byte for byte.
