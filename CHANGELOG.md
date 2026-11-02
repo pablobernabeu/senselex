@@ -94,6 +94,10 @@ reason.
   'preregistration' in the git status. It no longer says that the audit
   confirms that this context held no prediction, no pilot result and no
   Lancaster value, since a search for these terms does not by itself show this.
+- `validation/README.md` documents the verify-trial workflow, which reruns the
+  whole validation with the Lancaster trial file on GitHub's runners. Its first
+  run reproduced every committed output byte for byte,
+  `human-benchmark-results.json` included.
 
 ## [0.2.0] - 2026-10-09
 
