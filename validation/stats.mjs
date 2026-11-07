@@ -6,8 +6,8 @@
 // No dependencies: the suite's zero-dependency rule extends to its analyses.
 
 // The seed for every random step in the validation: sampling lists, split halves
-// and bootstrap resamples. It is the one fixed in the preregistration
-// (PREDICTIONS.md), so it lives here once and every script imports it.
+// and bootstrap resamples. It is the one fixed in PREDICTIONS.md, so it lives
+// here once and every script imports it.
 export const SEED = 20260923;
 
 // mulberry32, a small deterministic generator. Its statistical quality is ample

@@ -24,17 +24,17 @@ turns this estimate into the number of raters a new norming study needs for a
 target reliability. The projection is checked directly against disjoint groups
 of raters at several panel sizes.
 
-Study 3 is a preregistered simulated panel. Twelve simulated raters, each a
-separate call to a language model given a lay persona and the Lancaster
-instructions, rated 300 words. The hypotheses, sample and analysis were fixed in
-`PREDICTIONS.md` and made public on the `prereg-panel-300` branch of
-https://github.com/pablobernabeu/senselex before any rating was collected.
-`compute.mjs` runs the panel through the production validator and norm
-functions, and `criterion.mjs` tests the hypotheses against the human norms, each
-on the 246 confirmatory words as the preregistration specifies. H2 compares the
-two panels, simulated and human, on the same words: the confirmatory words that
-both rated at least twelve times, listed per channel in
-`human-benchmark-results.json`.
+Study 3 is an exploratory study of a simulated panel. Twelve simulated raters,
+each a language model given a lay persona and the Lancaster instructions, rated
+300 words in five lists of 60, each list a separate call. `PREDICTIONS.md` sets
+out the hypotheses, sample and analysis, and 'Status of the plan' below explains
+why the study does not count as preregistered. `compute.mjs` runs the panel
+through the production validator and norm functions, and `criterion.mjs` tests
+the hypotheses against the human norms, each on the 246 words of the
+`confirmatory` set (words no simulated rater had rated before), as
+`PREDICTIONS.md` specifies. H2 compares the two panels, simulated and human, on
+the same words: the confirmatory words that both rated at least twelve times,
+listed per channel in `human-benchmark-results.json`.
 
 Machine ratings are never a substitute for human norms and must never be pooled
 with them. Every rating in `senselex-llm-validation-dataset.json` is marked as
@@ -78,8 +78,9 @@ output differs from the committed file. Without the trial file, it skips
 trial-level analysis takes a few minutes and up to 6 GB of memory.
 
 Every random step (list order, split halves, bootstrap resamples) is seeded from
-the one preregistered seed in `stats.mjs`, and the exported records are stamped
-with the panel's collection date, so a rerun reproduces each file byte for byte.
+the one seed fixed in `PREDICTIONS.md` and set in `stats.mjs`, and the exported
+records are stamped with the panel's collection date, so a rerun reproduces each
+file byte for byte.
 
 The workflow `.github/workflows/verify-trial.yaml` runs
 `npm run verify -- --require-trial` on a GitHub-hosted Linux runner with the
@@ -88,15 +89,15 @@ branch other than main has '[verify trial]' in its message. Once the workflow is
 on main, it can also be started on any branch with 'Run workflow' on the
 repository's Actions tab.
 
-The workflow stops before downloading anything if the runner has less than
-7 GiB of memory available or Node is not the release in `../.node-version`. It
-fetches both Lancaster files from the addresses above into a folder outside the
-checkout and checks them against the checksums in `lancaster.mjs` before the
-run. It keeps them in the Actions cache, under a key made of those checksums,
-for later runs on the same branch. It commits nothing and fails if any output
-differs from the committed file. The `ci` workflow's own verify job runs on
-every push without the trial file. To reproduce the results on your own
-machine, use the commands above.
+The workflow stops before downloading anything if Node is not the release in
+`../.node-version` or the runner has less than 7 GiB of memory available or less
+than 5 GiB of disk free. It fetches both Lancaster files from the addresses
+above into a folder outside the checkout and checks them against the checksums
+in `lancaster.mjs` before the run. It keeps them in the Actions cache, under a
+key made of those checksums, for later runs on the same branch. It commits
+nothing and fails if any output differs from the committed file. The `ci`
+workflow's own verify job runs on every push without the trial file. To
+reproduce the results on your own machine, use the commands above.
 
 ## The steps and their files
 
@@ -144,20 +145,23 @@ rater code that `panel-lists.json`, `raters.json` and
 `senselex-llm-validation-dataset.json` use) and `persona` (the description put
 into the prompt in place of `{PERSONA}`).
 
-`panel-lists.json`: `seed` (the preregistered seed), `listSize` (60) and
-`raters`, one per rater, each with its `rater` code, `persona` and `lists`, five
-arrays of 60 words in the order the rater saw them. A rating's `list` and
-`position` in `raters.json` index into these arrays from 1. The words of the
-rater at index i of `personas.json`, counting from 0, were shuffled with
+`panel-lists.json`: `seed` (the seed fixed in `PREDICTIONS.md`), `listSize`
+(60) and `raters`, one per rater, each with its `rater` code, `persona` and
+`lists`, five arrays of 60 words in the order the rater saw them. A rating's
+`list` and `position` in `raters.json` index into these arrays from 1. The words
+of the rater at index i of `personas.json`, counting from 0, were shuffled with
 `seed` + i.
 
-`raters.json`: `provenance` describes the collection (model, provider, run date,
-sampling settings, and the files that defined the prompt, personas, lists, sample
-and preregistration). `raters` holds one entry per rater, with its `rater` code,
-its `persona` and its `ratings`. Each rating has the `word`, the `list` (1 to 5)
-and `position` (1 to 60) at which the rater saw it, `dont_know` (true if the rater
-did not know the word, in which case no channel is rated), and one field per
-channel.
+`raters.json`: `provenance` describes the collection (model, provider, run date
+and sampling settings) and names the files that defined the prompt, personas,
+lists and sample. Its `preregistration` entry, which `results.json` repeats,
+names `PREDICTIONS.md`, calls the branch that holds it public and gives the
+times recorded in the plan's commits. 'Status of the plan' below gives the times
+GitHub received them and what is known of the repository's visibility. `raters`
+holds one entry per rater, with its `rater` code, its `persona` and its
+`ratings`. Each rating has the `word`, the `list` (1 to 5) and `position` (1 to
+60) at which the rater saw it, `dont_know` (true if the rater did not know the
+word, in which case no channel is rated), and one field per channel.
 
 `llm-norms-eng.csv`, one row per word, in the format the Atlas exports:
 
@@ -235,29 +239,34 @@ the words' rater counts on the channel, and the second is that harmonic mean.
 | `preregistered.confirmatory` | the tests on the confirmatory words (`confirmatoryWords` gives their number), with a blank channel read as not judged: `perChannel` agreement (`n`, `spearman`, `pearson` and `pearsonCi`, a 95% Fisher-z interval), `H1`, `H1b` (`uncorrectedPearsonGap`, `corrected`, `correctedByChannel`) and `H3` (machine minus human `maxStrengthGap` and `exclusivityGap`), each with its `verdict` |
 | `preregistered.sensitivityBlankAsZero` | the same with a blank channel read as 0 (identical here, since the panel left no channel blank) |
 | `preregistered.H2` | `byChannel` gives the number of `words` in the channel's `wordSet`, the `machine` and `human` single-rater reliability on those words and their `difference`. `machineHigherOnEveryChannel` says whether the machine value is higher on every channel |
-| `exploratory` | `allWords`: agreement on all 300 words. `headChannel`: the head channel's agreement on all 300 words beside the pilot's head correlation on its 60 words. `modelStabilityOnOverlap`: pilot against panel means on the overlap words. `h2OnAllWords` and `h1bWithAllWordsReliabilities`: H2 and H1b as computed by the analysis script published with the amendment. `zerosAndLevels`: for each panel, how often each channel's mean is exactly 0 and the channel's mean level |
+| `exploratory` | `allWords`: agreement on all 300 words. `headChannel`: the head channel's agreement on all 300 words beside the pilot's head correlation on its 60 words. `modelStabilityOnOverlap`: pilot against panel means on the overlap words. `h2OnAllWords` and `h1bWithAllWordsReliabilities`: H2 and H1b as computed by the analysis script pushed with Amendment 1. `zerosAndLevels`: for each panel, how often each channel's mean is exactly 0 and the channel's mean level |
 
 A bootstrap result gives the full-sample `estimate` and a 95% percentile interval
-`ci` from 10,000 resamples seeded with the preregistered seed. `resamples` is the
-number of resamples whose statistic was defined.
+`ci` from 10,000 resamples seeded with the seed fixed in `PREDICTIONS.md`.
+`resamples` is the number of resamples whose statistic was defined.
 
 ## The panel itself
 
-`raters.json` is the panel's raw output, committed before any analysis ran. Its
-`provenance` block records the model, the provider, the run date, that each
-rater was an independent call, and that sampling parameters were left at the
-provider default. `run_panel.workflow.js`, the script that collected it, is kept
-so that the collection step can be inspected like the analysis. The workflow
-runtime is not needed to reproduce the panel.
+`raters.json` is the panel's raw output. Its commit precedes those of the
+panel's analyses, with the limits on such dating that 'Status of the plan' sets
+out. Its `provenance` block records the model, the provider, the run date, that
+each rater was an independent call, and that sampling parameters were left at
+the provider default. `run_panel.workflow.js`, the script that collected it, is
+kept so that the collection step can be inspected like the analysis. The
+workflow runtime is not needed to reproduce the panel.
 
 Each rater call ran as a subagent of an AI coding assistant (Claude Code).
 Besides the prompt, it therefore received the assistant's subagent system
 prompt, the request that had started the session, the assistant's memory index,
-a list of its installed skills and the repository's git status. It also had the
-assistant's standard tools, including file reading and shell commands, in a
-working directory that held the Lancaster norms. The preregistration specified
-calls without tools, and the provenance block in `raters.json`, which
-`compute.mjs` copies into `results.json`, repeats that plan. The prompt told
+a list of its installed skills and the git status of the development repository
+in which the session ran (see 'Status of the plan'). It also had the assistant's
+standard tools, including file reading and shell commands, in a working
+directory, this repository's files or, as the audit labels it, the folder
+holding them. Earlier in the same session, the assistant had downloaded the
+Lancaster trial-level ratings into the development repository's copy of
+`validation/`. `PREDICTIONS.md` specified calls without tools, and the
+provenance block in `raters.json`, which `compute.mjs` copies into
+`results.json`, repeats that specification. The prompt told
 each rater to use only the tool that returns its answers and not to read or
 search anything.
 
@@ -269,15 +278,15 @@ that returned its ratings.
 
 `audit_panel_transcripts.mjs` also matches nine study-related terms, each a
 regular expression, against the context a call received besides the prompt, and
-records which matched and where. Five matched in every call:
-`hypothesisLabel`, `preregistration` and `lancaster` in the git status (the
-branch and recent commit titles, which named the preregistration, H1b and the
+records which matched and where. Five matched in every call: `hypothesisLabel`,
+`preregistration` and `lancaster` in the git status (the branch and recent
+commit titles, which called the plan a preregistration and named H1b and the
 Lancaster protocol), `hypothesis` in the descriptions of the installed skills
 and `sensorimotor` in the memory index. `pilot`, `xuEtAl`, `spearman` and
 `reliability` never matched. A search for these terms does not by itself show
-that the context held no prediction, no pilot result and no Lancaster value.
-The transcripts keep each call's reasoning block but not its text, so whether
-that context influenced a judgement cannot be checked directly. The transcripts
+that the context held no prediction, no pilot result and no Lancaster value. The
+transcripts keep each call's reasoning block but not its text, so whether that
+context influenced a judgement cannot be checked directly. The transcripts
 themselves are not archived, because they hold the session's e-mail address and
 local paths.
 
@@ -290,12 +299,74 @@ the rater does not know is marked as unknown. Open models run locally make the
 workflow free of any external service (Hussain, Binz, Mata & Wulff, 2024,
 *Behavior Research Methods*, https://doi.org/10.3758/s13428-024-02455-8).
 
+## Status of the plan
+
+Study 3 was not preregistered. `PREDICTIONS.md` and its Amendment 1 were
+written, committed under the maintainer's name and pushed by an AI coding
+assistant (Claude Code) during a session the maintainer had started, without the
+maintainer's review, and neither was entered in a registry such as OSF or
+AsPredicted. Both commits list the assistant as co-author, and the model that
+`raters.json` records for the raters is the assistant's own model. The commits
+here are copies of commits first made in the maintainer's private development
+repository, which holds this repository's files in a subfolder and in which the
+session ran. Version 0.2.0, the commit messages of that time and the provenance
+blocks of `raters.json` and `results.json` call the plan a preregistration. The
+names `prereg-panel-300`, `preregistered` (in `criterion-results.json`),
+`preregistration` (in the provenance blocks) and `confirmatory` are kept as
+identifiers only.
+
+GitHub's push log for this repository
+(https://github.com/pablobernabeu/senselex/activity) records the plan's commit,
+668d017, on the `prereg-panel-300` branch at 23:29 UTC on 22 September 2026, and
+the amendment, ab874da, at 23:41 UTC. The branch has not been rewritten since.
+The push log does not record whether the repository was public at those times.
+It probably was, since its v0.0.1 release, published at 22:08 UTC that day, was
+archived by Zenodo's GitHub integration
+(https://doi.org/10.5281/zenodo.22905874), which works only with public
+repositories.
+
+Within the repository, only the assistant's own records date the collection.
+The commit that added `raters.json` gives 00:01 UTC on 23 September as its
+author date, but this repository's copy of it was made on 9 October, and the
+push log records the ratings reaching this repository at 02:03 UTC that day.
+The run date in the provenance block gives no time. The same commit replaced the
+line of `run_panel.workflow.js` that was to record when the run ended with a
+comment that the workflow runtime forbids reading the clock. According to the
+provenance block, that line made the run fail after all 60 calls had returned,
+and the ratings were recovered by replaying the cached calls, which makes no new
+model request. Outside the repository, the session log that the Claude Code
+service keeps in the maintainer's account, which is not public, records the
+start of the collection run at 23:46 UTC on 22 September, after both pushes.
+
+Besides the deviations described under 'The panel itself', four limitations
+apply. First, the plan does not report how closely the pilot's simulated raters
+agreed with one another. The correlation between the means of their two halves
+of six raters was .98 to .99 on every channel (`splitHalf` in
+`pilot/results-pilot.json`), which the Spearman–Brown formula steps down to a
+single-rater reliability of .88 to .97. Human single-rater reliabilities on the
+H2 words are .08 to .40, and Amendment 1 already reports human values as low as
+.08, so H2's prediction was close to certain, although the pilot used an earlier
+model and wording. Second, Amendment 1 states that it was informed by the human
+trial-level ratings, including human reliabilities on the same 300 words, and by
+no machine rating. The pilot's machine ratings, which cover 54 of these words
+and agreed least with the human norms on the head and torso channels (.45
+each), were available when it was written. Third, H2 and the H1b reliabilities
+use the confirmatory words, as the plan's text says. The analysis script pushed
+with Amendment 1 instead used, for each panel, every one of the 300 words that
+the panel had rated at least twelve times. Following the text was decided after
+the data were collected. `criterion.mjs` reports the script's computation as
+exploratory, and both reach the same verdicts. Finally, the assistant that wrote
+the plan also ran the raters as its own subagents and wrote the provenance
+records, so nothing public shows that the reported run was the only one.
+
 ## The pilot
 
 `pilot/` keeps the earlier 60-word panel, which used SenseLex's previous wording
 and an earlier model. It is not a result of the paper. `sample_words.mjs` keeps
-its words as the overlap set, and `criterion.mjs` uses it only to measure how
-much simulated norms change between model versions.
+as the overlap set the 54 pilot words that pass its filters (the other six have
+a Zipf frequency of zero). `criterion.mjs` uses the pilot only in exploratory
+results, to measure how much simulated norms change between model versions and
+to report the pilot's head correlation beside the panel's.
 
 The pilot's files keep the format its own scripts wrote, which differs from the
 files above. In `raters-pilot.json`, a rating may be a half point and a channel

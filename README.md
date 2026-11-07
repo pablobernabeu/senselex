@@ -1,12 +1,12 @@
 # SenseLex
 
-Open infrastructure for collecting, sharing and reusing crosslinguistic multisensory lexical norms. SenseLex is the software deliverable of the SenseLex research programme and is also built for the wider language-science community. The suite has three parts that share one core.
+Open infrastructure for collecting, sharing and reusing crosslinguistic multisensory lexical norms. SenseLex is the software deliverable of the SenseLex research programme and is also built for the wider language-science community. The suite has three parts: the Atlas, the field client and a shared core.
 
 The Atlas is a web service and database. It accepts sensorimotor ratings and free-naming responses, computes norms from them, and serves and exports those norms under an open licence.
 
 The field client is an offline-first layer for data collection where there is little or no connectivity. It validates each record locally, keeps it in a queue and, whenever the host application calls `sync()`, sends the queue to the Atlas in idempotent batches. It is a module, `src/offline/client.js`, and the only store it comes with keeps the queue in memory, so queued records do not survive a restart. The suite does not include a persistent store or a packaged desktop application. `desktop/README.md` sketches the desktop build.
 
-The shared core holds the rating dimensions, the norm computations and the validation rules, written as pure functions. The same logic runs on the server, in the field client and in batch re-analysis.
+The shared core holds the rating dimensions, the norm computations and the validation rules, written as pure functions. The server and batch re-analysis use its norm computations, and the field client uses the same validation rules as the server.
 
 Alongside these, the `web-static/` folder holds a browser edition. It is a single self-contained page that runs the same study building, rating and norm computation in the browser alone, with no server and no account, and saves data to the device. It suits quick use, demonstration and low-connectivity settings. Through URL study links, it can also run studies for recruited participants, with support for Prolific parameters, completion codes and optional submission to a hosted Atlas. See `web-static/README.md`.
 
@@ -31,7 +31,7 @@ node bin/senselex.js serve    # start the Atlas on http://127.0.0.1:8787 (the de
 
 `seed` writes six languages and five concepts into the database at `SENSELEX_DATABASE_PATH`, replacing any entry with the same code or identifier. It also writes 11 invented rating vectors and 12 naming responses, which enter the norms and exports like real data, so use it only on a demonstration database. `npm run seed` and `npm start` run the same two commands.
 
-Open the address in a browser to use the Atlas front end. Before any real use, set `SENSELEX_API_TOKENS`, and set `SENSELEX_ADMIN_TOKENS` on any Atlas that a study link points to (see Configuration). With neither set, write endpoints are open and the server warns about this on start-up.
+Open the address in a browser to use the Atlas front end. Before any real use, set `SENSELEX_API_TOKENS`, and set `SENSELEX_ADMIN_TOKENS` on any Atlas that a study link points to (see Configuration). With neither set, write endpoints are open and the server warns about this on start-up, except in production, where the server does not start without `SENSELEX_API_TOKENS`.
 
 `npm run smoke` is a quick check that an installation works. It starts a temporary Atlas on an in-memory database, so nothing is written to disk. It then loads the seed data and queries the health, norms and CSV export routes, printing a summary that ends in `smoke ok`.
 
@@ -47,7 +47,7 @@ The test suite also checks the browser edition. That edition runs from a file wi
 
 ## Validation
 
-The `validation/` folder holds the three studies reported in the paper that describes and validates SenseLex. They reproduce the Lancaster Sensorimotor Norms from their individual ratings, estimate how many raters a norming study needs on each channel and test a panel of simulated raters against a preregistered plan. The paper is in preparation. Until it is published, cite the software through `CITATION.cff`.
+The `validation/` folder holds the three studies reported in the paper that describes and validates SenseLex. They reproduce the Lancaster Sensorimotor Norms from their individual ratings, estimate how many raters a norming study needs on each channel and compare a panel of simulated raters with the human norms. The third study is exploratory. It was not preregistered, and `validation/README.md` sets out the status of its plan. The paper is in preparation. Until it is published, cite the software through `CITATION.cff`.
 
 `npm run verify` reruns the studies in a scratch copy, writing nothing in the repository, and checks that every output reproduces the committed file. Without the 1.4 GB trial-level file, it skips `human_benchmark.mjs`, the one step that needs it, and notes the skip in its report. `criterion.mjs`, the step after it, then reads the committed `human-benchmark-results.json`. The Lancaster files are fetched separately. `validation/README.md` gives the addresses and the order of the steps, and `validation/lancaster.mjs` holds the published checksums, which every script that reads a Lancaster file checks first.
 

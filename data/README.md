@@ -3,11 +3,11 @@
 `build_wordbanks.py` generates the per-language word banks that the browser-edition
 app loads (`../web-static/words.js`). The words and their features come from
 published lexical resources. These let the study builder draw large,
-frequency-controlled samples for each language and keep the coverage roughly
-equal across languages. A non-English bank starts from a frequency list and is
-curated down to content-word base forms, so the sample a study draws holds
-ratable nouns, verbs and adjectives, without prepositions, inflected verb forms
-or names.
+frequency-controlled samples for each language. The committed banks hold from
+618 words (German and Italian) to 1,001 (English). A non-English bank starts
+from a frequency list and is curated towards content-word base forms, so that
+the sample a study draws holds ratable nouns, verbs and adjectives, without
+prepositions, inflected verb forms or names.
 
 ## Sources
 
@@ -38,24 +38,27 @@ filter, attaches a wordfreq Zipf value and stratifies across the
 concreteness-by-frequency grid. It writes one bank per language, each word as
 `[word, concreteness or null, zipf]`, with an attribution header.
 
-The content-word filter applies several checks in order. The token must be made
-of letters, with at most one internal hyphen or apostrophe, which rejects
+The content-word filter applies several checks. The token must be made of
+letters, with at most one internal hyphen or apostrophe, which rejects
 abbreviations and mixed junk. It must be written in the language's own script,
 which drops a foreign token carried in a different alphabet. It must not be an
 English word that is far more frequent in English than in the target language,
-which removes English words that have entered another language's frequency
-list. It must not appear in the profanity list. Finally, where a lemmatiser and
-stopword list exist for the language (via `simplemma` and `stopwordsiso`,
-covering about a dozen languages plus English), it must be a known base form,
-which excludes function words and inflected forms.
+which removes English words that have entered another language's frequency list.
+It must not appear in the profanity list. Where `stopwordsiso` has a stopword
+list for the language, the token must not appear in it, which excludes function
+words. Finally, where `simplemma` has a lemmatiser for the language, as it does
+for English and 11 other languages in `LANGS`, the token must be a known base
+form, which excludes inflected forms.
 
 For languages that the content-word filter still leaves noisy, a further
 per-language NLP pass (`deep_filter`) runs. It uses `jieba` part-of-speech tags
 for Chinese, and `stanza` (universal part-of-speech, lemma and named-entity
 recognition) for Arabic, Hebrew, Tamil, Japanese, Korean, Turkish, Finnish,
-Hindi and Vietnamese. A word survives only if it is a single token, is neither a
-named entity nor tagged as a function word or proper noun, and has a lemma that,
-with diacritics stripped, equals the word itself. This is the strongest filter
+Hindi and Vietnamese. In the Stanza pass, a word survives only if it is a single
+token, is neither a named entity nor tagged as a function word or proper noun,
+and has a lemma that, with diacritics stripped, equals the word itself. The
+Chinese pass keeps a word only if `jieba` leaves it as a single token tagged as
+a noun, verb or adjective and not as a proper noun. This is the strongest filter
 available, and it still could not bring every language down to an acceptable
 junk rate (see 'Languages left on core words' below).
 
@@ -97,24 +100,27 @@ message, and the app falls back to its core words for that language.
 ## Languages left on core words
 
 `LANGS` in `build_wordbanks.py` omits Arabic, Hebrew, Tamil, Vietnamese, Turkish
-and Japanese, alongside the languages wordfreq does not cover (Swahili, Yoruba
-and Basque, and Thai in some wordfreq builds). The six were left out on
+and Japanese, as well as Swahili, Yoruba and Basque, which wordfreq does not
+cover. Thai is in `LANGS`, but some wordfreq builds do not cover it, and the
+build then skips it, as it did for the committed banks. The six were left out on
 2026-07-04 after a repeated, multi-round adversarial audit. Independent
-fluent-reader LLM judges read every word in each bank and flagged anything that
-was not a ratable content word (a proper noun, a foreign intrusion, a bound
-morpheme or fragment, an unresolved inflected or clitic form, a function word,
-or a vulgar term). After every filter above had run, including the per-language
-NLP pass, the measured junk rates were approximately Arabic 60%, Hebrew 42%,
-Tamil 37 to 47%, Vietnamese 41%, Turkish 21 to 37% and Japanese 14%. The other
-curated languages had junk rates of roughly 1 to 12%.
+fluent-reader LLM judges read every word, or nearly every word, in each bank and
+flagged anything that was not a ratable content word (a proper noun, a foreign
+intrusion, a bound morpheme or fragment, an unresolved inflected or clitic form,
+a function word, or a vulgar term). After every filter above had run, including
+the per-language NLP pass, the measured junk rates were approximately Arabic 57
+to 88%, Hebrew 42 to 80%, Tamil 37 to 90%, Vietnamese 22 to 67%, Turkish 21 to
+37% and Japanese 14 to 18%. The other curated languages had junk rates of
+roughly 2 to 12%.
 
-The high rates have three causes. Arabic, Hebrew and Tamil have templatic or
-agglutinative morphology that Stanza's lemmatiser only partly normalises, so
-clitics and inflected forms survive. Vietnamese is analytic, so foreign names,
-brands and acronyms are tagged as ordinary nouns, with no named-entity signal to
-identify them. Japanese has many single-kanji tokens that are bound compound
-elements and do not stand as words on their own, and part-of-speech tagging
-alone does not reliably separate them from single-kanji nouns.
+The high rates for Arabic, Hebrew, Tamil, Vietnamese and Japanese have three
+causes. Arabic, Hebrew and Tamil have templatic or agglutinative morphology that
+Stanza's lemmatiser only partly normalises, so clitics and inflected forms
+survive. Vietnamese is analytic, so foreign names, brands and acronyms are
+tagged as ordinary nouns, with no named-entity signal to identify them. Japanese
+has many single-kanji tokens that are bound compound elements and do not stand
+as words on their own, and part-of-speech tagging alone does not reliably
+separate them from single-kanji nouns.
 
 Leaving the six out of `LANGS` keeps banks with that much non-content material
 out of the app. Like any language missing from `words.js`, they use the app's

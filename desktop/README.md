@@ -1,10 +1,11 @@
 # SenseLex Field (desktop)
 
-The field client packages the elicitation and assessment workflow as a desktop
-application for sites with little or no connectivity. The pattern is to run the
-Atlas service in-process, bound to the loopback address, and to show its front
-end in a desktop window, so the researcher works against a local instance and
-synchronises to the central Atlas when a connection returns.
+SenseLex Field is a planned desktop build of the field client that would package
+the elicitation and assessment workflow for sites with little or no connectivity.
+The pattern is to run the Atlas service in-process, bound to the loopback
+address, and to show its front end in a desktop window, so the researcher works
+against a local instance and synchronises to the central Atlas when a connection
+returns.
 
 This directory holds `main.js`, a documented Electron main-process stub that
 outlines that build. It is a stub because Electron is a large native dependency
@@ -25,8 +26,9 @@ To turn the stub into a working application:
 3. Bundle the broad-coverage Noto fonts with the application so every target
    script renders offline.
 4. Add the hardware bridge for olfactory and gustatory stimulus delivery, which a
-   desktop process can drive over a serial or USB connection in a way a browser
-   cannot, and validate stimulus timing against published testing standards.
+   desktop process can drive over a serial or USB connection without relying on
+   the Web Serial and WebUSB interfaces that only some browsers provide, and
+   validate stimulus timing against published testing standards.
 5. Package per platform with electron-builder, and sign the installers.
 
 Tauri is a lighter alternative to Electron for low-specification field hardware,

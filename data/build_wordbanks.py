@@ -155,6 +155,7 @@ SCRIPT_OF_LANG = {
     "ru": {"CYRILLIC"}, "el": {"GREEK"}, "hi": {"DEVANAGARI"}, "ta": {"TAMIL"},
     "ar": {"ARABIC"}, "he": {"HEBREW"}, "zh": {"CJK"},
     "ja": {"CJK", "HIRAGANA", "KATAKANA"}, "ko": {"HANGUL", "CJK"},
+    "th": {"THAI"},
 }
 
 

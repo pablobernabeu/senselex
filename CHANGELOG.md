@@ -31,6 +31,10 @@ reason.
   `data/requirements.txt` or `wordfreq[cjk]`, which include MeCab and jieba for
   Korean and Chinese. The 0.2.0 command asked for `ja` and `ko` extras, which
   wordfreq does not define, so it installed wordfreq without MeCab or jieba.
+- `data/build_wordbanks.py` expects Thai words in Thai script. It expected Latin
+  script, so a wordfreq build with a Thai list would have yielded a Thai bank of
+  Latin-script tokens only. The pinned wordfreq 3.1.1 has no Thai list, so the
+  committed banks are unchanged.
 
 ### Changed
 
@@ -55,6 +59,17 @@ reason.
 
 ### Documentation
 
+- Study 3 is described as exploratory. Version 0.2.0 called it preregistered
+  and said that its plan was made public before any rating was collected. The
+  plan was written and pushed by an AI coding assistant without the
+  maintainer's review and was never entered in a registry, and the repository
+  dates the collection only by the assistant's own records. A new section of
+  `validation/README.md`, 'Status of the plan', sets out what the record shows
+  and the plan's further limitations. `README.md`, the header of
+  `validation/rater-prompt.md`, the comments in the validation scripts and two
+  messages that the scripts print are corrected to match. `PREDICTIONS.md`, the
+  prompt itself, `raters.json` and the names of the output fields are
+  unchanged.
 - The README documents the Atlas's HTTP API route by route. It warns that
   `seed` replaces any language or concept with the same code or identifier and
   writes invented ratings and naming responses that enter the norms and

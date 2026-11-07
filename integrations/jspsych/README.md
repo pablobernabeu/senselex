@@ -27,8 +27,8 @@ your server or platform. The SenseLex JSON imports back into the browser edition
 through 'Import dataset (JSON)' under 'Build & manage', so jsPsych-collected
 ratings join the same norms as ratings collected natively. The full Atlas has no
 import for these files yet. Unlike the browser edition, the exported experiment
-does not stop a participant from marking every word as unknown, so check the
-data before approving a submission.
+lets a participant finish after marking every word as unknown, so check the data
+before approving a submission.
 
 ## Embed the SenseLex trial in your own timeline
 
