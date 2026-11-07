@@ -3,7 +3,7 @@
 // output in the formats the server and the browser edition use. Also computes the
 // panel's internal reliability on every word it rated twelve times, with the same
 // function human_benchmark.mjs applies to the Lancaster raters. That all-words
-// value is descriptive: the preregistered H2 is computed by criterion.mjs on the
+// value is descriptive: H2 itself is computed by criterion.mjs on the
 // confirmatory words.
 //
 // Inputs:  validation/raters.json        (panel output: 12 raters x 300 words)

@@ -1,0 +1,147 @@
+name: verify-trial
+
+# Reruns the whole validation with the Lancaster trial-level file, which the ci
+# workflow's verify job leaves out: npm run verify -- --require-trial on Linux
+# with the Node release in .node-version. human_benchmark.mjs needs a heap of up
+# to 6 GB, and a GitHub-hosted ubuntu-latest runner for a public repository has
+# 16 GB of memory and 14 GB of disk, enough for the 1.4 GB trial file.
+#
+# Both Lancaster files are fetched from the OSF storage addresses in
+# validation/lancaster.mjs into a folder outside the checkout, which
+# SENSELEX_DATA_DIR names, and checked against the SHA-256 pinned there before
+# the run. They are kept in the Actions cache under a key made of the two
+# checksums, so a later run on the same branch skips the download, and a
+# restored copy is checked like a fresh one.
+#
+# verify.mjs reruns every step in a scratch copy and writes nothing in the
+# repository, and it exits non-zero if any output differs from the committed
+# file or the trial file is missing. So this workflow commits nothing and needs
+# only read access to the repository. It checks at the end that the checkout is
+# unchanged.
+#
+# It runs when the last commit of a push to a branch other than main has
+# '[verify trial]' in its message. It can also be started by hand on any branch,
+# main included, since it pushes nothing. Actions are pinned by commit, as in
+# ci.yml.
+
+on:
+  push:
+    branches-ignore: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Only a run whose job will run joins the branch's group, so that a push without
+# the token neither waits behind a trial run nor replaces one that is waiting.
+# The group is decided before the job's if is read.
+concurrency:
+  group: >-
+    ${{ (github.event_name == 'workflow_dispatch' ||
+    contains(github.event.head_commit.message, '[verify trial]')) &&
+    format('verify-trial-{0}', github.ref) ||
+    format('verify-trial-skip-{0}', github.run_id) }}
+  cancel-in-progress: false
+
+jobs:
+  verify-trial:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      contains(github.event.head_commit.message, '[verify trial]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+
+      # Checked before anything is downloaded, so that a runner too small for
+      # the trial-level step fails in seconds and says why.
+      - name: Check the Node release, memory and disk
+        run: |
+          want="v$(tr -d ' \r\n' < .node-version)"
+          have=$(node --version)
+          echo "Node ${have}, .node-version ${want}"
+          test "$have" = "$want" || { echo "::error::Node is ${have}, not ${want}"; exit 1; }
+          mem_kib=$(awk '/^MemAvailable:/ { print $2 }' /proc/meminfo)
+          disk_kib=$(df -Pk "$RUNNER_TEMP" | awk 'NR == 2 { print $4 }')
+          echo "$(nproc) processors, $((mem_kib / 1048576)) GiB of memory available, $((disk_kib / 1048576)) GiB of disk free in $RUNNER_TEMP"
+          # A 6 GiB heap for human_benchmark.mjs and 1 GiB for the rest.
+          test "$mem_kib" -ge $((7 * 1048576)) || { echo '::error::less than 7 GiB of memory available'; exit 1; }
+          # The trial file, the norms file and the archive the cache step builds.
+          test "$disk_kib" -ge $((5 * 1048576)) || { echo '::error::less than 5 GiB of disk free'; exit 1; }
+
+      - name: Read the Lancaster files that lancaster.mjs pins
+        id: pins
+        run: |
+          echo "SENSELEX_DATA_DIR=$RUNNER_TEMP/lancaster" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/lancaster"
+          node --input-type=module -e "
+            import { LANCASTER_FILES as f } from './validation/lancaster.mjs';
+            for (const k of ['norms', 'trial']) console.log([f[k].local, f[k].sha256, f[k].url].join('\t'));
+          " > "$RUNNER_TEMP/lancaster-files.tsv"
+          cat "$RUNNER_TEMP/lancaster-files.tsv"
+          test "$(wc -l < "$RUNNER_TEMP/lancaster-files.tsv")" -eq 2
+          echo "key=lancaster-$(cut -f2 "$RUNNER_TEMP/lancaster-files.tsv" | paste -sd- -)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore the Lancaster files from the cache
+        id: restore
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ env.SENSELEX_DATA_DIR }}
+          key: ${{ steps.pins.outputs.key }}
+
+      - name: Fetch the Lancaster files from OSF
+        if: steps.restore.outputs.cache-hit != 'true'
+        timeout-minutes: 30
+        run: |
+          while IFS=$'\t' read -r name _ url <&3; do
+            echo "Fetching ${name}"
+            curl -fsSL --retry 3 --retry-all-errors -o "$SENSELEX_DATA_DIR/$name" "$url"
+          done 3< "$RUNNER_TEMP/lancaster-files.tsv"
+
+      - name: Check the Lancaster files against the pinned SHA-256
+        run: |
+          while IFS=$'\t' read -r name sha _ <&3; do
+            ls -l "$SENSELEX_DATA_DIR/$name"
+            printf '%s  %s\n' "$sha" "$SENSELEX_DATA_DIR/$name" | sha256sum -c -
+          done 3< "$RUNNER_TEMP/lancaster-files.tsv"
+
+      # Saved as soon as both files have passed the check, so that a run whose
+      # verify step fails still leaves them for the next run.
+      - name: Save the Lancaster files to the cache
+        if: steps.restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: ${{ env.SENSELEX_DATA_DIR }}
+          key: ${{ steps.pins.outputs.key }}
+
+      - name: Rerun the validation with the trial file
+        id: verify
+        timeout-minutes: 45
+        env:
+          # Keeps npm's update notice out of the report's last lines.
+          NPM_CONFIG_UPDATE_NOTIFIER: 'false'
+        run: npm run verify -- --require-trial 2>&1 | tee "$RUNNER_TEMP/verify.log"
+
+      - name: Check that the checkout is unchanged
+        run: |
+          out=$(git status --porcelain --untracked-files=all)
+          test -z "$out" || { echo "$out"; echo '::error::the run changed files in the checkout'; exit 1; }
+
+      - name: Summarise the verify run
+        if: always() && steps.verify.outcome != 'skipped'
+        env:
+          OUTCOME: ${{ steps.verify.outcome }}
+        run: |
+          {
+            echo "verify on ${GITHUB_SHA}: ${OUTCOME}"
+            echo
+            echo '```'
+            tail -n 15 "$RUNNER_TEMP/verify.log" 2>/dev/null || echo 'no log'
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

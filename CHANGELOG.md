@@ -31,6 +31,10 @@ reason.
   `data/requirements.txt` or `wordfreq[cjk]`, which include MeCab and jieba for
   Korean and Chinese. The 0.2.0 command asked for `ja` and `ko` extras, which
   wordfreq does not define, so it installed wordfreq without MeCab or jieba.
+- `data/build_wordbanks.py` expects Thai words in Thai script. It expected Latin
+  script, so a wordfreq build with a Thai list would have yielded a Thai bank of
+  Latin-script tokens only. The pinned wordfreq 3.1.1 has no Thai list, so the
+  committed banks are unchanged.
 
 ### Changed
 
@@ -55,6 +59,17 @@ reason.
 
 ### Documentation
 
+- Study 3 is described as exploratory. Version 0.2.0 called it preregistered
+  and said that its plan was made public before any rating was collected. The
+  plan was written and pushed by an AI coding assistant without the
+  maintainer's review and was never entered in a registry, and the repository
+  dates the collection only by the assistant's own records. A new section of
+  `validation/README.md`, 'Status of the plan', sets out what the record shows
+  and the plan's further limitations. `README.md`, the header of
+  `validation/rater-prompt.md`, the comments in the validation scripts and two
+  messages that the scripts print are corrected to match. `PREDICTIONS.md`, the
+  prompt itself, `raters.json` and the names of the output fields are
+  unchanged.
 - The README documents the Atlas's HTTP API route by route. It warns that
   `seed` replaces any language or concept with the same code or identifier and
   writes invented ratings and naming responses that enter the norms and
@@ -94,8 +109,15 @@ reason.
   'preregistration' in the git status. It no longer says that the audit
   confirms that this context held no prediction, no pilot result and no
   Lancaster value, since a search for these terms does not by itself show this.
+- `validation/README.md` documents the verify-trial workflow, which reruns the
+  whole validation with the Lancaster trial file on GitHub's runners. Its first
+  run reproduced every committed output byte for byte,
+  `human-benchmark-results.json` included.
 
 ## [0.2.0] - 2026-10-09
+
+This version was not released as a package. The browser edition on main
+stamped its records 0.2.0 from 2026-10-09 until 0.3.0.
 
 This release uses the wording of the Lancaster Sensorimotor Norms rating screens
 (Lynott et al., 2020) on every rating surface, records a word the rater does not
@@ -274,9 +296,9 @@ each rated 300 English words.
 
 First public release, archived at https://doi.org/10.5281/zenodo.22905874. Its
 `package.json`, `CITATION.cff` and `docker-compose.yml` gave the version as 0.1.0
-in error. Anything labelled 0.1.0 is this release, which is why the next release
-is 0.2.0.
+in error. Anything labelled 0.1.0 is this release, which is why the version
+after it is 0.2.0.
 
-[Unreleased]: https://github.com/pablobernabeu/senselex/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/pablobernabeu/senselex/compare/v0.0.1...v0.2.0
+[Unreleased]: https://github.com/pablobernabeu/senselex/compare/1cf6bd9...HEAD
+[0.2.0]: https://github.com/pablobernabeu/senselex/compare/v0.0.1...1cf6bd9
 [0.0.1]: https://github.com/pablobernabeu/senselex/releases/tag/v0.0.1

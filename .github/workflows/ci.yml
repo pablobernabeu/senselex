@@ -5,6 +5,7 @@
 # committed file. The 1.4 GB Lancaster trial file is too large to fetch on every
 # run, so that check skips the one step that needs it and says so; the 17 MB norms
 # file is fetched and verified against the checksum OSF publishes.
+# verify-trial.yaml runs the full check, trial file included, on request.
 #
 # Actions are pinned by commit, with the release each commit belongs to noted
 # beside it, so that a moved tag cannot change what runs.

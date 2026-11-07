@@ -219,7 +219,7 @@ for (const d of ALL_DIMENSIONS) {
   process.stdout.write(`  ${d.padEnd(14)} r1 = ${rel.r1.toFixed(3)}  published means reliability = ${means.reliability.toFixed(3)} (harmonic ${means.harmonicRaters.toFixed(1)} raters, ${rel.words} words)\n`);
 }
 
-// ---- 2b. The same, on the preregistered word set ----------------------------
+// ---- 2b. The same, on the word set PREDICTIONS.md specifies -----------------
 //
 // PREDICTIONS.md runs every test on the 246 confirmatory words unless it says
 // otherwise, and computes H2 for both panels on the same words. Split halves of
@@ -241,7 +241,7 @@ for (const rater of panelRatings.raters) {
   }
 }
 const confirmatoryWords = sample.filter((i) => i.set === 'confirmatory').map((i) => i.word);
-process.stdout.write(`Human single-rater reliability on the ${confirmatoryWords.length} confirmatory words, as preregistered for H2 and H1b...\n`);
+process.stdout.write(`Human single-rater reliability on the ${confirmatoryWords.length} confirmatory words, as PREDICTIONS.md specifies for H2 and H1b...\n`);
 const humanOnConfirmatory = {};
 for (const d of ALL_DIMENSIONS) {
   const humanRatings = (w) => ratingsByWord([w.toUpperCase()], d)[0];
