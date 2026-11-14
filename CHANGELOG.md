@@ -56,6 +56,8 @@ reason.
   kind of token. A token in both lists is an admin token, and `senselex serve`
   in production reports such tokens by their audit-log ids.
   `SENSELEX_API_TOKENS` stays required in production.
+- The Docker image is based on Node 24.22.3 and Alpine 3.24.4, with the fixes
+  of the Node security releases of 21 October and 11 November 2026.
 
 ### Documentation
 
