@@ -203,7 +203,7 @@
 
       <div class="spacer"></div>
       <h3>Run the study elsewhere</h3>
-      <p class="help">Export the items for one language as a ready-to-run jsPsych experiment. The file runs on any static host and can be adapted for a jsPsych hosting platform. It takes the participant code from Prolific's PROLIFIC_PID, or, without one, makes up a random code beginning web- on each visit, and it shows a Return to Prolific link at the end when the address carries &amp;cc=CODE. Unlike this page, it does not record STUDY_ID or SESSION_ID. It ends by letting the participant download their data, either as a SenseLex dataset file that imports straight back here through Import below or as a jsPsych CSV, and sends nothing to you by itself. Free naming is not exported, because naming responses need an analyst's coding before they can enter the norms.</p>
+      <p class="help">Export the items for one language as a ready-to-run jsPsych experiment. The file runs on any static host and can be adapted for a jsPsych hosting platform. It takes the participant code from Prolific's PROLIFIC_PID, or, without one, makes up a random code beginning web- on each visit, and it shows a Return to Prolific link at the end when the address carries &amp;cc=CODE. Unlike this page, it does not record STUDY_ID or SESSION_ID. It ends by letting the participant download their data, either as a SenseLex dataset file that imports straight back here through Import below or as a jsPsych CSV, and sends nothing to you by itself. The CSV has jsPsych's columns, and a cell that begins with =, +, -, @, a tab or a carriage return starts with an apostrophe, as in the downloads under Explore. Free naming is not exported, because naming responses need an analyst's coding before they can enter the norms.</p>
       <div class="row">
         <div><label for="j-lang">Language</label><select id="j-lang"></select></div>
         <div style="align-self:end"><button class="act" id="j-export" type="button">Download jsPsych experiment (HTML)</button></div>
@@ -660,7 +660,7 @@
   // checks against it. A cell that begins with =, +, -, @, a tab or a carriage
   // return gets a leading apostrophe, so that a spreadsheet does not run it as a
   // formula. The apostrophe stays in the file, so R and pandas read it as part of
-  // the value.
+  // the value. buildJsPsychHtml copies csvq into the exported experiment.
   const csvq = c => { if (c===null||c===undefined) return ""; let t=String(c); if (/^[=+\-@\t\r]/.test(t)) t="'"+t; return /[",\n\r]/.test(t) ? `"${t.replace(/"/g,'""')}"` : t; };
   function downloadCsv(){
     const code=$("#e-language").value, rows=normRows(code);
@@ -687,8 +687,10 @@
   // mirrors this app's grid exactly (same dimensions, same 0-5 scale, partial
   // vectors allowed), Prolific's participant id (PROLIFIC_PID) and completion code
   // (cc) are read at run time, though not STUDY_ID or SESSION_ID, and at the end
-  // the participant downloads their data in one of two forms: the native jsPsych
-  // CSV or a SenseLex dataset JSON that imports straight back here. A word the
+  // the participant downloads their data in one of two forms: a CSV with the
+  // columns and values of jsPsych's own CSV writer or a SenseLex dataset JSON that
+  // imports straight back here. jsPsych's writer leaves a formula-like cell as it
+  // is, so the experiment writes the CSV itself, with a copy of csvq. A word the
   // participant does not know ends its trial with dont_know set and goes into the
   // dataset's skips, never its ratings. jsPsych itself loads from a CDN, the one
   // respect in which the exported file is not self-contained: exact versions, with
@@ -717,6 +719,18 @@
 '</head>','<body>','<script>',
 'var SENSELEX = '+json+';',
 'function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }',
+'var csvq = '+String(csvq)+';',
+'function dataCsv(rows){',
+'  var cols = [];',
+'  rows.forEach(function(r){ Object.keys(r).forEach(function(k){ if (cols.indexOf(k)<0) cols.push(k); }); });',
+'  var lines = [cols.map(csvq).join(",")];',
+'  rows.forEach(function(r){ lines.push(cols.map(function(k){ var v=r[k]; return typeof v==="object" ? JSON.stringify(v) : v; }).map(csvq).join(",")); });',
+'  return lines.join("\\r\\n")+"\\r\\n";',
+'}',
+'function save(text, type, name){',
+'  var a = document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type:type})); a.download=name;',
+'  document.body.appendChild(a); a.click(); a.remove();',
+'}',
 'var SenselexRatingPlugin = (function(){',
 '  var info = { name: "senselex-rating", version: "2.0.0",',
 '    parameters: { word:{type:"STRING"}, concept_id:{type:"STRING"}, direction:{type:"STRING", default:"ltr"} },',
@@ -767,10 +781,8 @@
 '        ratings: trials.filter(function(t){ return !t.dont_know; }).map(function(t,i){ return { id:(crypto.randomUUID?crypto.randomUUID():"jsx-"+now+"-"+i), language:SENSELEX.language.code, conceptId:t.concept_id, word:t.word, participant:participant, dims:t.dims, source:"jspsych", ts:now, appVersion:SENSELEX.appVersion }; }),',
 '        responses: [],',
 '        skips: trials.filter(function(t){ return t.dont_know; }).map(function(t,i){ return { id:(crypto.randomUUID?crypto.randomUUID():"jsk-"+now+"-"+i), task:"rating", language:SENSELEX.language.code, conceptId:t.concept_id, word:t.word, participant:participant, source:"jspsych", ts:now, appVersion:SENSELEX.appVersion }; }) };',
-'      var b = new Blob([JSON.stringify(dataset,null,2)],{type:"application/json"});',
-'      var a = document.createElement("a"); a.href=URL.createObjectURL(b); a.download="senselex-jspsych-"+SENSELEX.language.code+"-"+participant+".json";',
-'      document.body.appendChild(a); a.click(); a.remove();',
-'    } else { jsPsych.data.get().localSave("csv","senselex-jspsych-"+SENSELEX.language.code+"-"+participant+".csv"); }',
+'      save(JSON.stringify(dataset,null,2),"application/json","senselex-jspsych-"+SENSELEX.language.code+"-"+participant+".json");',
+'    } else { save(dataCsv(jsPsych.data.get().values()),"text/csv","senselex-jspsych-"+SENSELEX.language.code+"-"+participant+".csv"); }',
 '  }, });',
 'jsPsych.run(timeline);',
 '<\/script>','</body>','</html>'

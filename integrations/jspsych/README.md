@@ -20,7 +20,10 @@ it behaves the same whenever it is run.
 
 At the end, the experiment offers the participant one download of their data,
 either a SenseLex dataset JSON or a jsPsych CSV, saved on the participant's own
-device. The experiment sends nothing anywhere. On a plain static host, the data
+device. The CSV has the columns of jsPsych's own CSV writer, but a cell that
+begins with `=`, `+`, `-`, `@`, a tab or a carriage return, such as the word
+`-ness`, gets a leading apostrophe so that spreadsheets do not run it as a
+formula. The experiment sends nothing anywhere. On a plain static host, the data
 reach the researcher only if the participant passes the downloaded file on, so
 to collect data centrally, add a step to the timeline that saves the data to
 your server or platform. The SenseLex JSON imports back into the browser edition
@@ -51,7 +54,9 @@ eleven by default), `preamble` (the instruction shown above the rating grid),
 'Don't know this word'). Each trial records `concept_id`, `word`, `language`,
 `dims` (one 0-to-5 number per answered dimension, empty on a don't-know trial),
 `dont_know` and `rt` in milliseconds. The plugin's `info` block documents each
-parameter and data field.
+parameter and data field. jsPsych's own CSV writer leaves each value as it is,
+so a word that begins with `=`, `+`, `-` or `@`, such as `-ness`, can run as a
+formula when its CSV is opened in a spreadsheet.
 
 Version 2.0.0 adopted the Lancaster wording and added the don't-know response.
 jsPsych 8 stores the plugin version with every trial (`plugin_version`), so data

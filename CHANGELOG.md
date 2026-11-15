@@ -66,6 +66,12 @@ reason.
   from an imported dataset, such as a participant code, or from a study link's
   `STUDY_ID` or `SESSION_ID` could run as a formula. The apostrophe stays in
   the file, so R and pandas read it as part of the value.
+- The CSV that the browser edition's jsPsych export offers the participant puts
+  the same apostrophe on such a cell. In 0.2.0, the export left this file to
+  jsPsych's own CSV writer, which writes such a cell as it is, so a spreadsheet
+  could run a word or concept id from the item list, such as `-ness`, as a
+  formula. The file keeps that writer's columns and values but quotes only the
+  cells that need it.
 - The jsPsych plugin and the browser edition's jsPsych export show the word,
   and the export the language name, as text. A word holding `<` or `&` now
   shows as written, and an item list or dataset from someone else can no

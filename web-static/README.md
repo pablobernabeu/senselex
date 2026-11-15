@@ -92,10 +92,12 @@ id (`PROLIFIC_PID`) and the `cc` completion code at run time. Like the page, it
 presents the items in the order of the word list, the same for every
 participant. At the end, it offers the participant one download of their data to
 their own device, either as a SenseLex dataset file that imports straight back
-here or as a jsPsych CSV. The file sends nothing anywhere, so on a plain static
-host, the data reach you only if participants pass the downloaded file on. A
-standalone jsPsych plugin for embedding the trial in your own timelines is in
-`../integrations/jspsych/`.
+here or as a jsPsych CSV. The CSV has the columns of jsPsych's own CSV writer,
+and a cell that begins with `=`, `+`, `-`, `@`, a tab or a carriage return is
+written with a leading apostrophe, as in the CSV downloads under 'Explore'. The
+file sends nothing anywhere, so on a plain static host, the data reach you only
+if participants pass the downloaded file on. A standalone jsPsych plugin for
+embedding the trial in your own timelines is in `../integrations/jspsych/`.
 
 ## Viewing and hosting it
 
