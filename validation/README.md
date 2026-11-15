@@ -96,8 +96,9 @@ above into a folder outside the checkout and checks them against the checksums
 in `lancaster.mjs` before the run. It keeps them in the Actions cache, under a
 key made of those checksums, for later runs on the same branch. It commits
 nothing and fails if any output differs from the committed file. The `ci`
-workflow's own verify job runs on every push without the trial file. To
-reproduce the results on your own machine, use the commands above.
+workflow's own verify job, which runs on pull requests, on pushes to main and
+version tags and weekly on main, leaves out the trial file. To reproduce the
+results on your own machine, use the commands above.
 
 ## The steps and their files
 
