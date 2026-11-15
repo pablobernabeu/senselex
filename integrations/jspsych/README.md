@@ -41,9 +41,10 @@ and no ratings, the Lancaster procedure's response for a word whose meaning the
 participant does not know. Leave such trials out of the norms.
 
 Include the plugin after jsPsych and push trials of type
-`jsPsychSenselexRating`. Its parameters are `word` (the stimulus, required),
-`concept_id` and `language` (stored with the data, and `language` also sets the
-stimulus's `lang` attribute), `direction` (`ltr`, the default, or `rtl`),
+`jsPsychSenselexRating`. Its parameters are `word` (the stimulus, required,
+shown as text, so that `<` and `&` appear as written), `concept_id` and
+`language` (stored with the data, and `language` also sets the stimulus's
+`lang` attribute), `direction` (`ltr`, the default, or `rtl`),
 `dimensions` (an array of dimension keys such as `vision` or `hand_arm`, all
 eleven by default), `preamble` (the instruction shown above the rating grid),
 `button_label` (default 'Save and continue') and `dont_know_label` (default

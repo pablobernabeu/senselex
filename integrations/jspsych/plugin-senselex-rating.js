@@ -53,7 +53,7 @@ var jsPsychSenselexRating = (function (jspsych) {
     name: 'senselex-rating',
     version: '2.0.0',
     parameters: {
-      /** The word to rate, displayed as the stimulus. */
+      /** The word to rate, displayed as the stimulus and shown as text. */
       word: { type: jspsych.ParameterType.STRING, default: undefined },
       /** Stable concept identifier stored with the data (e.g. COFFEE). */
       concept_id: { type: jspsych.ParameterType.STRING, default: '' },
@@ -92,6 +92,14 @@ var jsPsychSenselexRating = (function (jspsych) {
     },
   };
 
+  // The word, the language code and the direction are written into HTML as
+  // text, so a word holding < or & shows as written and an item list from
+  // someone else cannot add markup to the trial.
+  function escapeHtml(text) {
+    return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
   function SenselexRatingPlugin(jsPsych) {
     this.jsPsych = jsPsych;
   }
@@ -103,8 +111,9 @@ var jsPsychSenselexRating = (function (jspsych) {
     var dims = trial.dimensions && trial.dimensions.length ? trial.dimensions : ALL;
 
     var html = '<div style="font-size:2.2rem;font-weight:600;margin:.6rem 0" dir="' +
-      trial.direction + '"' + (trial.language ? ' lang="' + trial.language + '"' : '') + '>' +
-      trial.word + '</div>';
+      escapeHtml(trial.direction) + '"' +
+      (trial.language ? ' lang="' + escapeHtml(trial.language) + '"' : '') + '>' +
+      escapeHtml(trial.word) + '</div>';
     html += '<div>' + trial.preamble + '</div>';
     html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));' +
       'gap:.3rem 1.4rem;max-width:46rem;margin:1rem auto;text-align:left">';

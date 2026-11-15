@@ -146,7 +146,7 @@
         <div style="align-self:end" class="inline"><button class="ghost" id="e-download-csv" type="button">Download norms (CSV)</button><button class="ghost" id="e-download-long" type="button">Download trial-level ratings (CSV)</button></div>
       </div>
       <h3>Sensorimotor norms</h3>
-      <p class="help">For each word, the table gives the number of raters, the dominant perceptual modality, the maximum perceptual strength, the modality-exclusivity score and the mean between-rater dispersion. Download norms (CSV) gives the same norms for every rated word in the language, whatever the filters. It leaves out the dispersion and adds the mean and the number of raters on each of the eleven channels and the number of perceptual channels behind the exclusivity score. Dispersion is the average standard deviation across raters on the perceptual channels, so a low figure means raters agreed closely; it describes spread rather than reliability. A blank cell means the measure is undefined for that word. The maximum strength and the dominant modality need at least one rated perceptual channel, exclusivity at least two and dispersion at least two raters on one perceptual channel. There is no dominant modality when every perceptual mean is 0. Exclusivity runs from 0 to 1 however many channels were rated, but its value depends on how many there were, so it is not comparable across words rated on different numbers of channels. For a word drawn from a bank, concreteness and Zipf frequency come from the bank. The Concreteness filter keeps words in the chosen band: a word with a concreteness value is high at 3.5 or above and low at 2.5 or below on the 1 to 5 scale, and any other item keeps the band it was given when it was added (the built-in core words are all high). Any choice but All hides words with no band, which includes every bank word outside English. The Frequency filter uses Zipf bands (high at 4.7 or above, mid from 3.5 up to 4.7, low below 3.5) and likewise hides words with no frequency, such as items added by hand. Click a column heading to sort.</p>
+      <p class="help">For each word, the table gives the number of raters, the dominant perceptual modality, the maximum perceptual strength, the modality-exclusivity score and the mean between-rater dispersion. Download norms (CSV) gives the same norms for every rated word in the language, whatever the filters. It leaves out the dispersion and adds the mean and the number of raters on each of the eleven channels and the number of perceptual channels behind the exclusivity score. In both downloads, a cell that begins with =, +, -, @, a tab or a carriage return, such as the word -ness, starts with an apostrophe so that a spreadsheet does not run it as a formula. Dispersion is the average standard deviation across raters on the perceptual channels, so a low figure means raters agreed closely; it describes spread rather than reliability. A blank cell means the measure is undefined for that word. The maximum strength and the dominant modality need at least one rated perceptual channel, exclusivity at least two and dispersion at least two raters on one perceptual channel. There is no dominant modality when every perceptual mean is 0. Exclusivity runs from 0 to 1 however many channels were rated, but its value depends on how many there were, so it is not comparable across words rated on different numbers of channels. For a word drawn from a bank, concreteness and Zipf frequency come from the bank. The Concreteness filter keeps words in the chosen band: a word with a concreteness value is high at 3.5 or above and low at 2.5 or below on the 1 to 5 scale, and any other item keeps the band it was given when it was added (the built-in core words are all high). Any choice but All hides words with no band, which includes every bank word outside English. The Frequency filter uses Zipf bands (high at 4.7 or above, mid from 3.5 up to 4.7, low below 3.5) and likewise hides words with no frequency, such as items added by hand. Click a column heading to sort.</p>
       <div id="e-status" role="status" aria-live="polite"></div>
       <div class="table-wrap"><table id="e-norms"><thead></thead><tbody></tbody></table></div>
       <h3>Codability from free naming</h3>
@@ -656,7 +656,12 @@
     const crows=Object.entries(cg).map(([concept,rs])=>{ const counts=tally(rs.map(r=>r.name)); return {concept,n:rs.length,distinct:Object.keys(counts).length,agreement:agreement(counts),len:mean(rs.map(r=>r.length||0))}; });
     cbody.replaceChildren(...(crows.length ? crows.map(c=>el("tr",{},[el("td",{textContent:c.concept}),el("td",{textContent:c.n}),el("td",{textContent:c.distinct}),el("td",{textContent:show(c.agreement)}),el("td",{textContent:c.len.toFixed(2)})])) : [el("tr",{},[el("td",{colSpan:5,className:"empty",textContent:"No naming responses yet for this language."})])]));
   }
-  const csvq = c => /[",\n]/.test(String(c)) ? `"${String(c).replace(/"/g,'""')}"` : String(c);
+  // A copy of csvCell in src/server/export.js, which test/browser-export.test.js
+  // checks against it. A cell that begins with =, +, -, @, a tab or a carriage
+  // return gets a leading apostrophe, so that a spreadsheet does not run it as a
+  // formula. The apostrophe stays in the file, so R and pandas read it as part of
+  // the value.
+  const csvq = c => { if (c===null||c===undefined) return ""; let t=String(c); if (/^[=+\-@\t\r]/.test(t)) t="'"+t; return /[",\n\r]/.test(t) ? `"${t.replace(/"/g,'""')}"` : t; };
   function downloadCsv(){
     const code=$("#e-language").value, rows=normRows(code);
     const header=["concept_id","word","concreteness","zipf_frequency","n_records",...ALL.flatMap(d=>["mean_"+d,"n_"+d]),"dominant_modality","max_perceptual_strength","modality_exclusivity","n_perceptual_channels"];
@@ -691,6 +696,10 @@
   // explicitly, because jsDelivr's bare package address serves the Node build,
   // which browsers will not run.
   function buildJsPsychHtml(code){
+    // Words, language names and directions come from the dataset, which may hold
+    // another person's import, so they are escaped wherever they enter HTML. The
+    // generated script carries its own copy of esc for the same purpose.
+    const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
     const lm = data.languages.find(l=>l.code===code) || {code,name:code,direction:"ltr"};
     const payload = {
       language: {code:lm.code, name:lm.name||code, script:lm.script||"", direction:lm.direction||"ltr"},
@@ -700,13 +709,14 @@
     const json = JSON.stringify(payload).replace(/</g,"\\u003c");
     return [
 '<!DOCTYPE html>','<html lang="en">','<head>','<meta charset="utf-8">',
-'<title>SenseLex sensorimotor rating ('+(lm.name||code)+')</title>',
+'<title>SenseLex sensorimotor rating ('+esc(lm.name||code)+')</title>',
 '<script src="https://cdn.jsdelivr.net/npm/jspsych@8.3.0/dist/index.browser.min.js" integrity="sha384-PPMNzYQfqrWFhrOxhpwxXmKK+LDH//fBCLsvA/JIRHOfiuOcZ2j8wJhqo87V4R4B" crossorigin="anonymous"><\/script>',
 '<script src="https://cdn.jsdelivr.net/npm/@jspsych/plugin-html-button-response@2.1.0/dist/index.browser.min.js" integrity="sha384-tPGtXEC8xEbInWvarnxvJ3fyzeXwRDS0QjGUts+TGQ9I8OCxiqsv9lxTS3mEN6um" crossorigin="anonymous"><\/script>',
 '<link href="https://cdn.jsdelivr.net/npm/jspsych@8.3.0/css/jspsych.css" rel="stylesheet" integrity="sha384-+gGUkbtw2BJWSroKW2jzIEXGe7KxdycJ0Bo+CqzpIOSBHOYEHHRWETaV+v2mpdWX" crossorigin="anonymous">',
 '<style>.sx-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:.3rem 1.4rem;max-width:46rem;margin:1rem auto;text-align:left}.sx-row{display:flex;justify-content:space-between;align-items:center;gap:.6rem}.sx-row input{width:4.6rem;font:inherit;padding:.25rem}.sx-word{font-size:2.2rem;font-weight:600;margin:.6rem 0}<\/style>',
 '</head>','<body>','<script>',
 'var SENSELEX = '+json+';',
+'function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }',
 'var SenselexRatingPlugin = (function(){',
 '  var info = { name: "senselex-rating", version: "2.0.0",',
 '    parameters: { word:{type:"STRING"}, concept_id:{type:"STRING"}, direction:{type:"STRING", default:"ltr"} },',
@@ -715,7 +725,7 @@
 '  P.info = info;',
 '  P.prototype.trial = function(el, trial){',
 '    var t0 = performance.now(), jsPsych = this.jsPsych;',
-'    var h = "<div class=\\"sx-word\\" dir=\\""+trial.direction+"\\">"+trial.word+"</div>";',
+'    var h = "<div class=\\"sx-word\\" dir=\\""+esc(trial.direction)+"\\">"+esc(trial.word)+"</div>";',
 '    h += "<p>To what extent do you experience this word? Rate every channel from 0 (not at all) to 5 (greatly): the first six by each sense, the last five by performing an action with that part of the body. A channel through which you do not experience the word at all is a 0, not a blank. If you do not know the meaning of the word, press \u201cDon\u2019t know this word\u201d.</p>";',
 '    h += "<div class=\\"sx-grid\\">";',
 '    for (var i=0;i<SENSELEX.dims.length;i++){ var d=SENSELEX.dims[i];',
@@ -743,7 +753,7 @@
 'var jsPsych = initJsPsych();',
 'var timeline = [];',
 'timeline.push({ type: jsPsychHtmlButtonResponse, choices: ["Begin"],',
-'  stimulus: "<h2>Word rating study</h2><p>You will see "+SENSELEX.items.length+" words in "+SENSELEX.language.name+", one at a time, and say to what extent you experience each one through eleven perceptual and action channels.</p>" });',
+'  stimulus: "<h2>Word rating study</h2><p>You will see "+SENSELEX.items.length+" words in "+esc(SENSELEX.language.name)+", one at a time, and say to what extent you experience each one through eleven perceptual and action channels.</p>" });',
 'for (var i=0;i<SENSELEX.items.length;i++){ var it=SENSELEX.items[i];',
 '  timeline.push({ type: SenselexRatingPlugin, word: it.word, concept_id: it.conceptId, direction: SENSELEX.language.direction }); }',
 'timeline.push({ type: jsPsychHtmlButtonResponse, choices: ["Download my data (SenseLex JSON)", "Download my data (CSV)"],',

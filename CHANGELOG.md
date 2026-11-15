@@ -58,6 +58,18 @@ reason.
   `SENSELEX_API_TOKENS` stays required in production.
 - The Docker image is based on Node 24.22.3 and Alpine 3.24.4, with the fixes
   of the Node security releases of 21 October and 11 November 2026.
+- The browser edition's 'Download norms (CSV)' and 'Download trial-level
+  ratings (CSV)' write a cell that begins with `=`, `+`, `-`, `@`, a tab or a
+  carriage return with a leading apostrophe, as the Atlas's CSV export does,
+  and quote a cell that holds a carriage return. In 0.2.0, a spreadsheet ran
+  such a cell as a formula, so the word `-ness` showed as an error, and a value
+  from an imported dataset, such as a participant code, or from a study link's
+  `STUDY_ID` or `SESSION_ID` could run as a formula. The apostrophe stays in
+  the file, so R and pandas read it as part of the value.
+- The jsPsych plugin and the browser edition's jsPsych export show the word,
+  and the export the language name, as text. A word holding `<` or `&` now
+  shows as written, and an item list or dataset from someone else can no
+  longer add markup to the experiment.
 
 ### Documentation
 

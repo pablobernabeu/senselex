@@ -6,7 +6,7 @@
 // or CLDF metadata file, so crosslinguistic tooling needs a conversion step to
 // read it.
 
-function csvCell(value) {
+export function csvCell(value) {
   if (value === null || value === undefined) return '';
   let text = String(value);
   // Spreadsheet applications treat a cell opening with any of these as a
