@@ -24,10 +24,10 @@ schema and the sync format.
 
 No JavaScript linter or formatter is configured. The project has a
 zero-dependency rule, and ESLint or Prettier would add development dependencies.
-The code follows one style by hand, and every script except
-`validation/run_panel.workflow.js` passes `node --check`. That file is an
-archived workflow body with a top-level `return`, which only its runtime
-accepts. Deferred: whether to accept a pinned development dependency for linting
+The code follows one style by hand, and the ci workflow checks that every
+script except `validation/run_panel.workflow.js` passes `node --check`. That
+file is an archived workflow body with a top-level `return`, which only its
+runtime accepts. Deferred: whether to accept a pinned development dependency for linting
 is the maintainer's decision.
 
 Three pilot outputs are read by no current step.
@@ -39,10 +39,12 @@ still read (`raters-pilot.json`, `words-sample-pilot.json`,
 not a result of the paper. Deferred: remove them if the pilot's record is not
 wanted in the next release.
 
-The Docker base-image digest will go out of date. Pinning it for
-reproducibility also pins the operating-system packages in the image. Deferred:
-re-resolve `node:24-alpine` and update the digest in `Dockerfile` when a
-security release of Node or Alpine appears.
+The Docker base-image digest goes out of date with each security release of
+Node or Alpine. Pinning it for reproducibility also pins the operating-system
+packages in the image. Dependabot proposes the new digest of `node:24-alpine`
+in a weekly pull request (`.github/dependabot.yml`). Deferred: each such pull
+request needs a review and a merge, and its fixes reach users of a released
+image only with the next release.
 
 The trial-level analysis holds the whole file in memory.
 `validation/human_benchmark.mjs` needs about 6 GB of heap
