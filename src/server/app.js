@@ -1,7 +1,7 @@
 // The HTTP application. It is built on Node's own http module with no web
-// framework, which keeps the dependency surface at zero and makes every piece of
-// request handling explicit. Routing is a small table of method-and-path matchers
-// dispatched in order.
+// framework, so the project needs no dependencies and every step of request
+// handling is explicit. Routing is a small table of method-and-path matchers
+// tried in order.
 
 import http from 'node:http';
 import { readFileSync } from 'node:fs';

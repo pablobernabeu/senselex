@@ -1,8 +1,10 @@
 // The rating protocol follows the Lancaster Sensorimotor Norms (Lynott, Connell,
-// Brysbaert, Brand, & Carney, 2020): six perceptual channels and five action
-// effectors, each rated from 0 to 5. Keeping these as the single source of truth
-// means the database schema, the validators, the norm maths, and the rating form
-// can never drift apart.
+// Brysbaert, Brand and Carney, 2020): six perceptual channels and five action
+// effectors, each rated from 0 to 5. The validators, the norm calculations, the
+// repository and the validation scripts read the channels from here. The
+// database schema, the Atlas's rating form (src/web/app.js), the browser edition
+// and the jsPsych plugin list them again, so a change here must be made there
+// too.
 
 export const PERCEPTUAL_DIMENSIONS = Object.freeze([
   'touch',
