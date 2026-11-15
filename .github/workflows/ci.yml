@@ -83,9 +83,11 @@ jobs:
           npm install --global --no-audit --no-fund "playwright@${PLAYWRIGHT_VERSION}"
           playwright install --with-deps chromium
       - name: Run the tests, the browser test included
+        # The command of npm test, with the TAP reporter named so that the
+        # count of skipped tests can be read.
         run: |
           export NODE_PATH="$(npm root --global)"
-          npm test -- --test-reporter=tap | tee "$RUNNER_TEMP/test.tap"
+          node --test --test-reporter=tap 'test/*.test.js' | tee "$RUNNER_TEMP/test.tap"
           grep -qx '# skipped 0' "$RUNNER_TEMP/test.tap" || { echo '::error::a test was skipped'; exit 1; }
 
   docker:
