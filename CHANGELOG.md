@@ -149,6 +149,9 @@ reason.
   says that the forms that look inflected are ones the authors kept as lemmas.
   'Majid and colleagues' is named as Majid et al. (2018,
   https://doi.org/10.1073/pnas.1720419115).
+- The pilot's three outputs that no current step reads stay in
+  `validation/pilot/` as the pilot's record, and `validation/README.md` says so.
+  The item on them is gone from `ISSUES.md`.
 
 ## [0.2.0] - 2026-10-09
 
