@@ -134,7 +134,14 @@ available for any of the six.
 
 The wordfreq data are shared under a Creative Commons Attribution-ShareAlike 4.0
 licence (https://creativecommons.org/licenses/by-sa/4.0/), so the frequencies
-derived from them in `../web-static/words.js` are shared under the same licence. The MIT licence of the code does not cover them. The English concreteness norms are offered
-freely for research and carry no formal open licence, so they keep their authors'
-terms. Cite both sources above if you use the
+derived from them in `../web-static/words.js` are shared under the same licence. The MIT licence of the code does not cover them. The English concreteness norms were distributed
+by their authors with a Creative Commons Attribution-NonCommercial-NoDerivs 3.0
+Unported licence notice (https://creativecommons.org/licenses/by-nc-nd/3.0/),
+which stood directly below the download links on their page from October 2013
+until the page went offline (archived at
+https://web.archive.org/web/20230925032140/http://crr.ugent.be/archives/1330).
+The mirror from which the build downloads the file states no licence of its own.
+The concreteness values in `../web-static/words.js` remain under the authors'
+licence, which neither the MIT licence nor the wordfreq licence replaces. Cite
+both sources above if you use the
 words. The raw source files under `source/` are not committed.

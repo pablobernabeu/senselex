@@ -101,8 +101,14 @@ edition exports carry no licence of their own, so state one when you share them.
 Word-bank sources keep their own terms, so `web-static/words.js` is not covered
 by the MIT licence. Its Zipf frequencies are derived from wordfreq data (Speer,
 2022, https://doi.org/10.5281/zenodo.7199437), which wordfreq distributes under a
-Creative Commons Attribution-ShareAlike 4.0 licence, and the file is shared under
-that licence. English concreteness values come from Brysbaert, Warriner and
-Kuperman (2014, https://doi.org/10.3758/s13428-013-0403-5), offered freely for
-research and redistributed here with attribution under their original terms. Cite
-both if you use the word banks.
+Creative Commons Attribution-ShareAlike 4.0 licence, and the frequencies are
+shared under that licence. English concreteness values come from Brysbaert,
+Warriner and Kuperman (2014, https://doi.org/10.3758/s13428-013-0403-5). The
+authors distributed the ratings with a Creative Commons
+Attribution-NonCommercial-NoDerivs 3.0 Unported licence notice
+(https://creativecommons.org/licenses/by-nc-nd/3.0/) on their download page,
+which is now offline (archived at
+https://web.archive.org/web/20230925032140/http://crr.ugent.be/archives/1330).
+The concreteness values remain under that licence and are covered neither by the
+MIT licence nor by the wordfreq licence. Cite both sources if you use the word
+banks.
