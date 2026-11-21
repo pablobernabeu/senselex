@@ -152,6 +152,8 @@ reason.
 - The pilot's three outputs that no current step reads stay in
   `validation/pilot/` as the pilot's record, and `validation/README.md` says so.
   The item on them is gone from `ISSUES.md`.
+- `CITATION.cff` no longer gives an affiliation for the author, as the citation
+  files of the author's other packages do not.
 
 ## [0.2.0] - 2026-10-09
 
