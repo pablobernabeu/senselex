@@ -113,7 +113,7 @@ function runTrial(values) {
 }
 
 test('plugin version 2 marks trials collected under the Lancaster wording', () => {
-  assert.equal(loadPlugin().info.version, '2.0.0');
+  assert.equal(loadPlugin().info.version, '2.0.1');
 });
 
 test('a saved trial carries its ratings and dont_know false', () => {

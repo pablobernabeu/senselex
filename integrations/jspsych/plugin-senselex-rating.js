@@ -54,7 +54,7 @@ var jsPsychSenselexRating = (function (jspsych) {
 
   var info = {
     name: 'senselex-rating',
-    version: '2.0.0',
+    version: '2.0.1',
     parameters: {
       /** The word to rate, displayed as the stimulus and shown as text. */
       word: { type: jspsych.ParameterType.STRING, default: undefined },

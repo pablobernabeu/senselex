@@ -35,6 +35,12 @@ reason.
   script, so a wordfreq build with a Thai list would have yielded a Thai bank of
   Latin-script tokens only. The pinned wordfreq 3.1.1 has no Thai list, so the
   committed banks are unchanged.
+- The jsPsych plugin `senselex-rating`, standalone and exported, is version
+  2.0.1, which jsPsych 8 records with every trial as `plugin_version`. Both
+  copies now write the word, the direction and the language (its code in the
+  plugin, its name in the export) into the page as text, as described under
+  'Security'. The fix changes no parameter or data field, so only the patch
+  number rises.
 
 ### Changed
 
