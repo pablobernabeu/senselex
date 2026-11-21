@@ -133,6 +133,16 @@ reason.
   whole validation with the Lancaster trial file on GitHub's runners. Its first
   run reproduced every committed output byte for byte,
   `human-benchmark-results.json` included.
+- The citations in the code comments were checked against their published
+  records and corrected where they differed. The Lancaster scale's zero anchor
+  is quoted verbatim. A Lancaster list is given as 48 test words in 58 items,
+  and the jsPsych plugin's header says which parts of its procedure follow
+  Lynott et al. (2020) and which depart from it. The note on the Lancaster
+  trial-level file says that the data were reissued on OSF as a corrected file
+  beside the original, not revised in place. The note on the Brysbaert norms
+  says that the forms that look inflected are ones the authors kept as lemmas.
+  'Majid and colleagues' is named as Majid et al. (2018,
+  https://doi.org/10.1073/pnas.1720419115).
 
 ## [0.2.0] - 2026-10-09
 

@@ -38,6 +38,7 @@ export const RATING_MAX = 5;
 // slices to a size the server will accept.
 export const MAX_SYNC_BATCH = 1000;
 
-// Elicitation responses are coded in the tradition Majid and colleagues use, so
-// that codability can be quantified rather than only described.
+// Elicitation responses are coded in the tradition Majid et al. (2018,
+// https://doi.org/10.1073/pnas.1720419115) use, so that codability can be
+// quantified rather than only described.
 export const RESPONSE_TYPES = Object.freeze(['abstract', 'source_based', 'evaluative']);

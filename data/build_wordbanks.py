@@ -235,8 +235,10 @@ def build_english():
         entries, has_conc, _curated = build_frequency_only("en")
         return entries, has_conc
     # Run the same content-word filter over English: the Brysbaert norms include
-    # function words ("against", "may") and inflected forms ("bought", "sparks"),
-    # which the stopword list and lemmatiser drop just as for the other languages.
+    # function words ('against', 'may') and some forms that look inflected, which
+    # the authors kept as lemmas (plurals more frequent than their singular, and
+    # verb forms that are also adjectives or nouns). The stopword list and
+    # lemmatiser drop these just as for the other languages.
     eng_keep, _ = content_keep("en")
     entries = []
     with BRYS.open(encoding="utf-8") as fh:

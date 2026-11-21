@@ -1,14 +1,17 @@
 /**
  * plugin-senselex-rating
  *
- * A jsPsych plugin for Lancaster-protocol sensorimotor rating trials: one word,
- * eleven perceptual and action channels, each rated 0 to 5 with partial vectors
- * allowed, exactly as in the SenseLex suite (and following Lynott, Connell,
- * Brysbaert, Brand & Carney, 2020, Behavior Research Methods,
- * https://doi.org/10.3758/s13428-019-01316-z). Use it to embed the SenseLex
- * instrument in your own jsPsych timeline. A rated trial's data satisfy the
- * SenseLex Atlas validators once mapped onto its field names, and don't-know
- * trials are left out.
+ * A jsPsych plugin for sensorimotor rating trials on the channels, wording and
+ * 0-to-5 scale of the Lancaster Sensorimotor Norms (Lynott, Connell, Brysbaert,
+ * Brand & Carney, 2020, Behavior Research Methods,
+ * https://doi.org/10.3758/s13428-019-01316-z): one word and eleven perceptual
+ * and action channels. As in the SenseLex suite, partial vectors are allowed
+ * and all eleven channels appear together, whereas the Lancaster procedure
+ * required a rating on every scale and gave the perceptual and action questions
+ * to different participants. Use it to embed the SenseLex instrument in your
+ * own jsPsych timeline. A rated trial's data satisfy the SenseLex Atlas
+ * validators once mapped onto its field names, and don't-know trials are left
+ * out.
  *
  * Usage (jsPsych 7 or 8, classic script include):
  *   <script src="plugin-senselex-rating.js"></script>

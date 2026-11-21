@@ -367,7 +367,10 @@ and an earlier model. It is not a result of the paper. `sample_words.mjs` keeps
 as the overlap set the 54 pilot words that pass its filters (the other six have
 a Zipf frequency of zero). `criterion.mjs` uses the pilot only in exploratory
 results, to measure how much simulated norms change between model versions and
-to report the pilot's head correlation beside the panel's.
+to report the pilot's head correlation beside the panel's. The pilot's outputs
+are kept as its record, including the three that no current step reads
+(`results-pilot.json`, `llm-norms-eng-pilot.csv` and
+`senselex-llm-validation-dataset-pilot.json`).
 
 The pilot's files keep the format its own scripts wrote, which differs from the
 files above. In `raters-pilot.json`, a rating may be a half point and a channel

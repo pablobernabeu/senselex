@@ -30,15 +30,6 @@ file is an archived workflow body with a top-level `return`, which only its
 runtime accepts. Deferred: whether to accept a pinned development dependency for linting
 is the maintainer's decision.
 
-Three pilot outputs are read by no current step.
-`validation/pilot/results-pilot.json`, `llm-norms-eng-pilot.csv` and
-`senselex-llm-validation-dataset-pilot.json` were written by the pilot's version
-of `compute.mjs`. They are kept as the pilot's record next to the files that are
-still read (`raters-pilot.json`, `words-sample-pilot.json`,
-`criterion-results-pilot.json`), and `validation/README.md` says the pilot is
-not a result of the paper. Deferred: remove them if the pilot's record is not
-wanted in the next release.
-
 The Docker base-image digest goes out of date with each security release of
 Node or Alpine. Pinning it for reproducibility also pins the operating-system
 packages in the image. Dependabot proposes the new digest of `node:24-alpine`

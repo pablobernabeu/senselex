@@ -3,8 +3,9 @@
 // Each rater sees every word once, but in its own order and grouped with
 // different neighbours, so that position and context effects vary across raters
 // instead of being shared by all twelve. The shuffle is seeded per rater, so the
-// lists are reproducible. Lancaster participants likewise rated lists of about
-// 48 words (Lynott et al., 2020).
+// lists are reproducible. Lancaster participants likewise rated lists of 48
+// test words, 58 items with the five calibrator and five control words
+// (Lynott et al., 2020).
 //
 // Run from the repository root:  node validation/make_lists.mjs
 // Writes validation/panel-lists.json.
