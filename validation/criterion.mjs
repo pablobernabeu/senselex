@@ -8,7 +8,8 @@
 //    external standard across the whole lexicon. human_benchmark.mjs goes one step
 //    further back, from individual ratings to the means.
 //
-// 2. THE PREREGISTERED HYPOTHESES (PREDICTIONS.md), on the simulated panel:
+// 2. THE HYPOTHESES IN PREDICTIONS.md, on the simulated panel (planned but not
+//    preregistered, as 'Status of the plan' in README.md explains):
 //    H1, that machine-human agreement is lower on the action channels than on the
 //    perceptual channels (Xu et al., 2025); H1b (Amendment 1), whether that gap
 //    survives correction for the reliability of both sets of means; H2, that the
@@ -19,9 +20,9 @@
 //
 // 3. EXPLORATORY, reported as such: per-channel agreement on all 300 words, the
 //    head channel under the corrected wording, stability across model versions on
-//    the 54 overlap words, the zero pile-up, and H2 and H1b as the analysis script
-//    made public with the preregistration amendment computed them, on all 300
-//    words.
+//    the 54 overlap words, the zero pile-up, and H2 and H1b as the analysis
+//    script pushed with Amendment 1 computed them, with reliabilities estimated
+//    on all 300 words.
 //
 // No participants and no ethical review: every human value is published data.
 //
@@ -137,8 +138,8 @@ const humanBenchmark = JSON.parse(readFileSync(resolve(here, 'human-benchmark-re
 
 // Per-word machine means. `blankAs` decides what a blank channel means: null
 // follows SenseLex's semantics (not judged), 0 follows Lancaster's (every channel
-// rated, not experienced is 0). The confirmatory analysis uses null; the other is
-// the preregistered sensitivity check.
+// rated, not experienced is 0). The main analysis uses null, and the other is the
+// sensitivity check that PREDICTIONS.md specifies.
 function machineMeans(blankAs) {
   const byWord = new Map();
   for (const rater of panel.raters) {
@@ -203,10 +204,10 @@ function correctedGap(reliability) {
   return (rows) => mean(PERCEPTUAL_DIMENSIONS.map((d) => corrected(rows, d))) - mean(ACTION_DIMENSIONS.map((d) => corrected(rows, d)));
 }
 
-// Single-rater reliability of the machine panel on the preregistered word set:
-// for each channel, the confirmatory words that both panels rated at least twelve
-// times, as listed by human_benchmark.mjs, so that the two panels' values come
-// from the same function on the same words (H2).
+// Single-rater reliability of the machine panel on the word set that
+// PREDICTIONS.md specifies: for each channel, the confirmatory words that both
+// panels rated at least twelve times, as listed by human_benchmark.mjs, so that
+// the two panels' values come from the same function on the same words (H2).
 const machineRatings = new Map(); // word -> { channel: [ratings] }
 for (const rater of panel.raters) {
   for (const r of rater.ratings) {
@@ -226,9 +227,9 @@ for (const d of ALL_DIMENSIONS) {
 }
 
 // Reliability of each set of means, per channel, for H1b: each panel's
-// single-rater reliability on the preregistered word set, stepped up to the
-// harmonic mean of the per-word rater counts over the 246 confirmatory words
-// whose means the correlations use. The machine counts fall below twelve only
+// single-rater reliability on the word set PREDICTIONS.md specifies, stepped up
+// to the harmonic mean of the per-word rater counts over the 246 confirmatory
+// words whose means the correlations use. The machine counts fall below twelve only
 // where a rater marked a word unknown.
 const confirmatoryWords = sample.filter((i) => i.set === 'confirmatory').map((i) => i.word);
 function meanReliabilities() {
@@ -288,7 +289,7 @@ function hypotheses(means, label) {
   };
 }
 
-const primary = hypotheses(machineMeans(null), 'CONFIRMATORY (blank = not judged)');
+const primary = hypotheses(machineMeans(null), 'CONFIRMATORY SET (blank = not judged)');
 const sensitivity = hypotheses(machineMeans(0), 'SENSITIVITY (blank = 0)');
 
 // H2: single-rater reliability, machine against human, same function, same words.
@@ -301,12 +302,11 @@ for (const d of ALL_DIMENSIONS) {
   if (!(machine > human)) machineHigherEverywhere = false;
 }
 
-// The same comparison as the analysis script made public with the preregistration
-// amendment made it, on all 300 words and with each panel's own eligible words.
-// The preregistration's text puts every test on the confirmatory words, and that
-// text is followed above, a choice made after the data were collected. This
-// version is kept to show that the choice does not change the verdict.
-// Exploratory.
+// The same comparison as the analysis script pushed with Amendment 1 made it, on
+// all 300 words and with each panel's own eligible words. The text of
+// PREDICTIONS.md puts every test on the confirmatory words, and that text is
+// followed above, a choice made after the data were collected. This version is
+// kept to show that the choice does not change the verdict. Exploratory.
 const h2AllWords = Object.fromEntries(ALL_DIMENSIONS.map((d) => [d, {
   machine: machineResults.reliability[d].r1,
   machineWords: machineResults.reliability[d].words,

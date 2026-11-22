@@ -1,7 +1,8 @@
 // The browser edition's interface needs a DOM, which Node does not have, so this
 // test loads web-static/index.html in headless Chromium through Playwright. The
 // project installs no dependencies, so the test runs only where Playwright and
-// its Chromium are already installed and skips otherwise, as it does in CI.
+// its Chromium are already installed and skips otherwise. The ci workflow's
+// browser job installs both, so the test runs there.
 //
 // A concept with a single naming response has no agreement figure, because
 // agreement needs two responses to compare. Explore must show that cell blank,

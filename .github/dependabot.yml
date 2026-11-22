@@ -1,0 +1,26 @@
+version: 2
+updates:
+  # Keep the GitHub Actions that the workflows pin by commit up to date.
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "ci"
+
+  # Refresh the node:24-alpine digest that the Dockerfile pins when Docker Hub
+  # publishes a new image under that tag, for example after a security release
+  # of Node or Alpine. A move to another Node major is left to the maintainer.
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    commit-message:
+      prefix: "deps"
+    ignore:
+      - dependency-name: "node"
+        update-types: ["version-update:semver-major"]
+
+  # npm and pip are not tracked. package.json lists no dependencies, and
+  # data/requirements.txt records the versions for rebuilding the word banks,
+  # which change only with a rebuild (see ISSUES.md).

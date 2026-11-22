@@ -2,12 +2,12 @@
 
 This is the verbatim prompt given to each simulated rater in the 300-word panel,
 as `run_panel.workflow.js` sent it. It is reproduced here so the panel can be
-regenerated, and in the paper. The copy of this file made public with the
-preregistration omitted the prompt's last paragraph, which tells the rater how to
-return its answers, to give null ratings for a word marked as unknown and to use
-no other tool. The collection script preregistered with it,
-`run_panel.workflow.js`, held the complete prompt. The paragraph is restored
-below.
+regenerated, and in the paper. The copy of this file pushed with
+`PREDICTIONS.md` to the `prereg-panel-300` branch omitted the prompt's last
+paragraph, which tells the rater how to return its answers, to give null ratings
+for a word marked as unknown and to use no other tool. The collection script
+pushed with it, `run_panel.workflow.js`, held the complete prompt. The paragraph
+is restored below.
 
 The two questions, the channel wording, the scale anchors and the "don't know"
 option are those of the Lancaster Sensorimotor Norms questionnaires, taken from

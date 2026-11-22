@@ -4,17 +4,16 @@ title: "SenseLex: offline-first, browser-based collection of multisensory lexica
 abstract: >-
   An open-source suite for collecting, analysing and sharing multisensory
   lexical norms across languages and scripts. A self-contained browser edition
-  runs with no installation, account or server; a companion service adds shared
-  collection with idempotent synchronisation and FAIR exports; a jsPsych plugin
-  and exporter connect the instrument to existing experiment pipelines.
+  runs with no installation, account or server. A companion service adds shared
+  collection with idempotent synchronisation and FAIR exports, and a jsPsych
+  plugin and exporter connect the instrument to existing experiment pipelines.
 type: software
 authors:
   - given-names: Pablo
     family-names: Bernabeu
-    affiliation: University of Oxford
     orcid: "https://orcid.org/0000-0003-1083-2460"
-version: 0.2.0
-date-released: "2026-10-09"
+version: 0.3.0
+date-released: "2026-11-22"
 license: MIT
 repository-code: "https://github.com/pablobernabeu/senselex"
 doi: 10.5281/zenodo.22905873
@@ -71,5 +70,5 @@ references:
         given-names: Robyn
     year: 2022
     version: "3.0.2"
-    notes: "The release cited by the DOI; the word banks were built with a later wordfreq release."
+    notes: "The DOI names this release. The word banks were built with a later wordfreq release."
     doi: 10.5281/zenodo.7199437

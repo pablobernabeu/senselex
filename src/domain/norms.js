@@ -16,14 +16,15 @@ function mean(values) {
 }
 
 // A channel nobody rated is not a channel rated zero. In the Lancaster protocol
-// zero is a substantive judgement ("not experienced at all through this
-// channel"), so collapsing an absent judgement onto it would invent data. The
-// rating form accepts partial vectors, so the case can occur even though the
-// instructions ask for every channel to be rated, and it matters: modality
-// exclusivity is a range over a sum, so an absent channel read as zero drives
-// the minimum to zero, widening the range while adding nothing to the sum, and
-// so inflates the score whenever none of the rated channels is at zero. Absent
-// channels are therefore null here and are skipped by every function below.
+// zero is a substantive judgement, 'not experienced at all with that
+// sense/action' (Lynott et al., 2020), so collapsing an absent judgement onto
+// it would invent data. The rating form accepts partial vectors, so the case
+// can occur even though the instructions ask for every channel to be rated, and
+// it matters: modality exclusivity is a range over a sum, so an absent channel
+// read as zero drives the minimum to zero, widening the range while adding
+// nothing to the sum, and so inflates the score whenever none of the rated
+// channels is at zero. Absent channels are therefore null here and are skipped
+// by every function below.
 function ratedValue(averaged, dimension) {
   const value = averaged[dimension];
   return typeof value === 'number' && Number.isFinite(value) ? value : null;
@@ -134,11 +135,11 @@ export function ratedChannelCount(averaged, dimensions = PERCEPTUAL_DIMENSIONS) 
 // Simpson's index of diversity (Simpson, 1949) over a set of categorical
 // responses, here the distinct names a community gives a stimulus. It is the
 // probability that two responses drawn at random name the stimulus
-// differently. Lower diversity means higher agreement, which Majid and
-// colleagues treat as one component of codability. The unbiased,
-// sampling-without-replacement form is used.
+// differently. Lower diversity means higher agreement, which Majid et al.
+// (2018, https://doi.org/10.1073/pnas.1720419115) treat as one component of
+// codability. The unbiased, sampling-without-replacement form is used.
 //
-// Note on naming: Majid and colleagues report this quantity as Simpson's D,
+// Note on naming: Majid et al. (2018) report this quantity as Simpson's D,
 // defined so that a higher value means greater agreement. The value returned
 // here is its complement, 1 - D. `agreement` below returns D itself, and that
 // is the figure to compare with published codability results.
@@ -158,7 +159,7 @@ export function simpsonDiversity(responseCounts) {
 }
 
 // Agreement is the complement of diversity: the probability that two responses
-// match, which is Simpson's D as the codability literature reports it. Returned
+// match, which is Simpson's D as Majid et al. (2018) report it. Returned
 // alongside diversity so neither has to be inverted by hand.
 export function agreement(responseCounts) {
   const diversity = simpsonDiversity(responseCounts);
@@ -186,7 +187,7 @@ function tally(items, normalise = (value) => String(value)) {
 
 // Codability of a stimulus from its free-naming responses, in the sense
 // introduced by Brown and Lenneberg (1954) and operationalised for crosslinguistic
-// comparison by Majid and colleagues. Each response carries a name, an utterance
+// comparison by Majid et al. (2018). Each response carries a name, an utterance
 // length, and a coded type. The three components are returned together:
 // agreement (from name diversity), brevity (mean utterance length), and
 // abstractness (the share of abstract responses).

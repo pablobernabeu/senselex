@@ -3,9 +3,10 @@
 // accept once mapped onto their field names. These tests evaluate the plugin
 // file the way a browser would (a classic script against a jsPsychModule
 // global) and compare its default dimensions with ALL_DIMENSIONS. They also
-// drive its save and don't-know buttons and push a hand-written trial result
-// through validateRating. The plugin writes its 0-to-5 bounds as literals, and
-// no test here compares them with RATING_MIN and RATING_MAX.
+// drive its save and don't-know buttons, push a hand-written trial result
+// through validateRating and check that the word reaches the trial as text.
+// The plugin writes its 0-to-5 bounds as literals, and no test here compares
+// them with RATING_MIN and RATING_MAX.
 
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -112,7 +113,7 @@ function runTrial(values) {
 }
 
 test('plugin version 2 marks trials collected under the Lancaster wording', () => {
-  assert.equal(loadPlugin().info.version, '2.0.0');
+  assert.equal(loadPlugin().info.version, '2.0.1');
 });
 
 test('a saved trial carries its ratings and dont_know false', () => {
@@ -136,4 +137,21 @@ test('saving with no rating asks for one and does not end the trial', () => {
   display.node('#sx-save').click();
   assert.equal(finished.length, 0);
   assert.match(display.node('#sx-msg').textContent, /at least one rating/);
+});
+
+test('the plugin shows the word, language and direction as text', () => {
+  const Plugin = loadPlugin();
+  const finished = [];
+  const plugin = new Plugin({ finishTrial: (data) => finished.push(data) });
+  const display = fakeDisplay({});
+  const word = '<img src=x onerror="alert(1)"> & co';
+  plugin.trial(display, {
+    word, concept_id: 'TAG', language: 'x"y', direction: 'rtl"><b>',
+    dimensions: [...ALL_DIMENSIONS], preamble: '', button_label: 'Save', dont_know_label: "Don't know",
+  });
+  assert.ok(display.innerHTML.includes('&lt;img src=x onerror=&quot;alert(1)&quot;&gt; &amp; co</div>'));
+  assert.ok(display.innerHTML.includes('dir="rtl&quot;&gt;&lt;b&gt;" lang="x&quot;y"'));
+  assert.ok(!display.innerHTML.includes('<img'));
+  display.node('#sx-dk').click();
+  assert.equal(finished[0].word, word);
 });

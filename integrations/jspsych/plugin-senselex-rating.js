@@ -1,14 +1,17 @@
 /**
  * plugin-senselex-rating
  *
- * A jsPsych plugin for Lancaster-protocol sensorimotor rating trials: one word,
- * eleven perceptual and action channels, each rated 0 to 5 with partial vectors
- * allowed, exactly as in the SenseLex suite (and following Lynott, Connell,
- * Brysbaert, Brand & Carney, 2020, Behavior Research Methods,
- * https://doi.org/10.3758/s13428-019-01316-z). Use it to embed the SenseLex
- * instrument in your own jsPsych timeline. A rated trial's data satisfy the
- * SenseLex Atlas validators once mapped onto its field names, and don't-know
- * trials are left out.
+ * A jsPsych plugin for sensorimotor rating trials on the channels, wording and
+ * 0-to-5 scale of the Lancaster Sensorimotor Norms (Lynott, Connell, Brysbaert,
+ * Brand & Carney, 2020, Behavior Research Methods,
+ * https://doi.org/10.3758/s13428-019-01316-z): one word and eleven perceptual
+ * and action channels. As in the SenseLex suite, partial vectors are allowed
+ * and all eleven channels appear together, whereas the Lancaster procedure
+ * required a rating on every scale and gave the perceptual and action questions
+ * to different participants. Use it to embed the SenseLex instrument in your
+ * own jsPsych timeline. A rated trial's data satisfy the SenseLex Atlas
+ * validators once mapped onto its field names, and don't-know trials are left
+ * out.
  *
  * Usage (jsPsych 7 or 8, classic script include):
  *   <script src="plugin-senselex-rating.js"></script>
@@ -51,9 +54,9 @@ var jsPsychSenselexRating = (function (jspsych) {
 
   var info = {
     name: 'senselex-rating',
-    version: '2.0.0',
+    version: '2.0.1',
     parameters: {
-      /** The word to rate, displayed as the stimulus. */
+      /** The word to rate, displayed as the stimulus and shown as text. */
       word: { type: jspsych.ParameterType.STRING, default: undefined },
       /** Stable concept identifier stored with the data (e.g. COFFEE). */
       concept_id: { type: jspsych.ParameterType.STRING, default: '' },
@@ -92,6 +95,14 @@ var jsPsychSenselexRating = (function (jspsych) {
     },
   };
 
+  // The word, the language code and the direction are written into HTML as
+  // text, so a word holding < or & shows as written and an item list from
+  // someone else cannot add markup to the trial.
+  function escapeHtml(text) {
+    return String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
   function SenselexRatingPlugin(jsPsych) {
     this.jsPsych = jsPsych;
   }
@@ -103,8 +114,9 @@ var jsPsychSenselexRating = (function (jspsych) {
     var dims = trial.dimensions && trial.dimensions.length ? trial.dimensions : ALL;
 
     var html = '<div style="font-size:2.2rem;font-weight:600;margin:.6rem 0" dir="' +
-      trial.direction + '"' + (trial.language ? ' lang="' + trial.language + '"' : '') + '>' +
-      trial.word + '</div>';
+      escapeHtml(trial.direction) + '"' +
+      (trial.language ? ' lang="' + escapeHtml(trial.language) + '"' : '') + '>' +
+      escapeHtml(trial.word) + '</div>';
     html += '<div>' + trial.preamble + '</div>';
     html += '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));' +
       'gap:.3rem 1.4rem;max-width:46rem;margin:1rem auto;text-align:left">';

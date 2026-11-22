@@ -1,10 +1,25 @@
-# Continuous integration. The unit tests run on the oldest supported Node
-# (22.13.0, the first 22.x release with node:sqlite unflagged), the newest Node 22
-# and the Node release that produced the committed validation results. The validation's
-# reproduction check then reruns every step and compares each output with the
-# committed file. The 1.4 GB Lancaster trial file is too large to fetch on every
-# run, so that check skips the one step that needs it and says so; the 17 MB norms
-# file is fetched and verified against the checksum OSF publishes.
+# Continuous integration.
+#
+# - test: the unit tests and the smoke check on the oldest supported Node
+#   (22.13.0, the first 22.x release with node:sqlite unflagged), the Node
+#   release that produced the committed validation results (24.12.0) and the
+#   newest release of Node 22, 24 and 26.
+# - browser: the same tests with Playwright and Chromium installed, so that the
+#   test that drives web-static/index.html runs instead of skipping.
+# - docker: builds the image from the Dockerfile, starts it and waits for its
+#   health check, and checks docker-compose.yml.
+# - syntax: every script passes `node --check` and data/build_wordbanks.py
+#   parses.
+# - verify: reruns every step of the validation and compares each output with
+#   the committed file. The 1.4 GB Lancaster trial file is too large to fetch on
+#   every run, so this job skips the one step that needs it and says so. The
+#   17 MB norms file is fetched and checked against the checksum that OSF
+#   publishes. verify-trial.yaml runs the full check, trial file included, on
+#   request.
+#
+# A pull request runs the workflow once, on its merge with the base branch.
+# Pushes run it only on main and on version tags, and a weekly run on main
+# shows a dead OSF address or a new Node release that breaks the suite.
 #
 # Actions are pinned by commit, with the release each commit belongs to noted
 # beside it, so that a moved tag cannot change what runs.
@@ -13,36 +28,149 @@ name: ci
 
 on:
   push:
+    branches: [main]
+    tags: ['v*']
   pull_request:
+  schedule:
+    # Mondays at 05:17 UTC. GitHub runs scheduled workflows on the default
+    # branch only.
+    - cron: '17 5 * * 1'
+  workflow_dispatch:
 
 permissions:
   contents: read
 
+defaults:
+  run:
+    # Explicit, so that every step runs with -e and -o pipefail.
+    shell: bash
+
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     strategy:
+      fail-fast: false
       matrix:
-        node: ['22.13.0', '22', '24.12.0']
+        node: ['22.13.0', '22', '24.12.0', '24', '26']
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: ${{ matrix.node }}
+          # A major version alone resolves to its newest release, not to the
+          # release that the runner image caches.
+          check-latest: ${{ !contains(matrix.node, '.') }}
       - run: npm test
+      - run: npm run smoke
+
+  browser:
+    # test/browser-page.test.js skips where Playwright is missing. Playwright is
+    # installed here alone, globally and at a pinned release, and found through
+    # NODE_PATH, so package.json keeps no dependencies. The job fails if any
+    # test is skipped.
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PLAYWRIGHT_VERSION: '1.64.1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --global --no-audit --no-fund "playwright@${PLAYWRIGHT_VERSION}"
+          playwright install --with-deps chromium
+      - name: Run the tests, the browser test included
+        # The command of npm test, with the TAP reporter named so that the
+        # count of skipped tests can be read.
+        run: |
+          export NODE_PATH="$(npm root --global)"
+          node --test --test-reporter=tap 'test/*.test.js' | tee "$RUNNER_TEMP/test.tap"
+          grep -qx '# skipped 0' "$RUNNER_TEMP/test.tap" || { echo '::error::a test was skipped'; exit 1; }
+
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Build the image
+        run: |
+          docker build --tag senselex:ci .
+          docker run --rm senselex:ci node --version
+      - name: Check that the image refuses to start without write tokens
+        run: |
+          docker run --detach --name no-tokens senselex:ci
+          code=$(timeout 60 docker wait no-tokens) || { echo '::error::the image kept running without SENSELEX_API_TOKENS'; exit 1; }
+          docker logs no-tokens
+          echo "exit code ${code}"
+          test "$code" -ne 0
+      - name: Start the image and wait for its health check
+        run: |
+          docker run --detach --name atlas --publish 127.0.0.1:8787:8787 \
+            --env SENSELEX_API_TOKENS=ci-write-token senselex:ci
+          # The HEALTHCHECK runs every 30 seconds, the first time 30 seconds
+          # after the start.
+          for _ in $(seq 1 30); do
+            status=$(docker inspect --format '{{.State.Health.Status}}' atlas)
+            echo "health: ${status}"
+            test "$status" = healthy && break
+            test "$status" = unhealthy && break
+            sleep 5
+          done
+          test "$status" = healthy
+          curl -fsS http://127.0.0.1:8787/health
+          echo
+          test "$(docker exec atlas id -un)" = node
+      - name: Show the container log
+        if: always()
+        run: docker logs atlas || true
+      - name: Check docker-compose.yml
+        env:
+          SENSELEX_API_TOKENS: ci-write-token
+        run: docker compose config --quiet
+
+  syntax:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .node-version
+      - name: Check every script with node --check
+        # validation/run_panel.workflow.js is an archived workflow body with a
+        # top-level return, which only its runtime accepts (see ISSUES.md).
+        run: |
+          status=0
+          while IFS= read -r file; do
+            node --check "$file" || { echo "::error file=${file}::node --check failed"; status=1; }
+          done < <(git ls-files '*.js' '*.mjs' '*.cjs' ':!validation/run_panel.workflow.js')
+          exit "$status"
+      - name: Parse data/build_wordbanks.py
+        run: python3 -c 'import ast, sys; ast.parse(open(sys.argv[1], encoding="utf-8").read(), sys.argv[1])' data/build_wordbanks.py
 
   verify:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .node-version
       - name: Fetch the Lancaster Sensorimotor Norms
+        # The file name and address are read from validation/lancaster.mjs, as
+        # in verify-trial.yaml.
         run: |
           mkdir -p "$RUNNER_TEMP/lancaster"
-          curl -fsSL -o "$RUNNER_TEMP/lancaster/lancaster-sensorimotor-norms.csv" \
-            "https://files.de-1.osf.io/v1/resources/rwhs6/providers/osfstorage/5cc2d6441906ec0017056ba8"
+          node --input-type=module -e "
+            import { LANCASTER_FILES as f } from './validation/lancaster.mjs';
+            console.log([f.norms.local, f.norms.url].join('\t'));
+          " > "$RUNNER_TEMP/norms.tsv"
+          IFS=$'\t' read -r name url < "$RUNNER_TEMP/norms.tsv"
+          echo "Fetching ${name} from ${url}"
+          curl -fsSL --retry 3 --retry-all-errors -o "$RUNNER_TEMP/lancaster/${name}" "$url"
       - run: npm run verify
         env:
           SENSELEX_DATA_DIR: ${{ runner.temp }}/lancaster

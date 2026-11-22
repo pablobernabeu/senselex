@@ -155,6 +155,7 @@ SCRIPT_OF_LANG = {
     "ru": {"CYRILLIC"}, "el": {"GREEK"}, "hi": {"DEVANAGARI"}, "ta": {"TAMIL"},
     "ar": {"ARABIC"}, "he": {"HEBREW"}, "zh": {"CJK"},
     "ja": {"CJK", "HIRAGANA", "KATAKANA"}, "ko": {"HANGUL", "CJK"},
+    "th": {"THAI"},
 }
 
 
@@ -234,8 +235,10 @@ def build_english():
         entries, has_conc, _curated = build_frequency_only("en")
         return entries, has_conc
     # Run the same content-word filter over English: the Brysbaert norms include
-    # function words ("against", "may") and inflected forms ("bought", "sparks"),
-    # which the stopword list and lemmatiser drop just as for the other languages.
+    # function words ('against', 'may') and some forms that look inflected, which
+    # the authors kept as lemmas (plurals more frequent than their singular, and
+    # verb forms that are also adjectives or nouns). The stopword list and
+    # lemmatiser drop these just as for the other languages.
     eng_keep, _ = content_keep("en")
     entries = []
     with BRYS.open(encoding="utf-8") as fh:
@@ -460,8 +463,9 @@ header = (
     "// Frequency (all languages): wordfreq (Speer, 2022). https://doi.org/10.5281/zenodo.7199437\n"
     "// Concreteness (English only): Brysbaert, Warriner & Kuperman (2014), Behavior Research Methods 46(3), 904-911. https://doi.org/10.3758/s13428-013-0403-5\n"
     "// Derived feature subset. Frequencies derive from wordfreq data, shared under CC BY-SA 4.0\n"
-    "// (https://creativecommons.org/licenses/by-sa/4.0/); this file keeps that licence, and the\n"
-    "// concreteness values keep their authors' terms. Please cite both sources.\n"
+    "// (https://creativecommons.org/licenses/by-sa/4.0/), and keep that licence. The concreteness\n"
+    "// values are the authors' mean ratings, reproduced unaltered, and keep the authors' licence,\n"
+    "// CC BY-NC-ND 3.0 (https://creativecommons.org/licenses/by-nc-nd/3.0/). Please cite both sources.\n"
 )
 OUT.write_text(header + "window.SENSELEX_WORDBANK = " + json.dumps(obj, ensure_ascii=False) + ";\n", encoding="utf-8")
 total = sum(counts.values())

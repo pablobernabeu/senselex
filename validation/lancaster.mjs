@@ -1,9 +1,10 @@
 // The two Lancaster Sensorimotor Norms files the validation scripts read, in one
 // place: where they are kept, where to fetch them, and the SHA-256 that OSF
-// publishes for each. OSF files can be revised in place (the trial-level file was,
-// in June 2024), so every script checks the checksum before using a file, and a
-// mismatch stops the run before it can produce different numbers under the same
-// name.
+// publishes for each. OSF files can be revised in place, and the trial-level
+// data have already been reissued once, as a corrected file beside the original
+// (marked 'UPDATED', 27 June 2024), so every script checks the checksum before
+// using a file, and a mismatch stops the run before it can produce different
+// numbers under the same name.
 //
 // The files are not redistributed here: they carry their own citation and terms
 // (Lynott et al., 2020, https://osf.io/7emr6/). Keep them in SENSELEX_DATA_DIR,

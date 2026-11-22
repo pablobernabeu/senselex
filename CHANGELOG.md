@@ -8,6 +8,8 @@ reason.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-22
+
 ### Upgrading from 0.2.0
 
 - The browser edition's Explore tab updates the codability table when a concept
@@ -31,6 +33,16 @@ reason.
   `data/requirements.txt` or `wordfreq[cjk]`, which include MeCab and jieba for
   Korean and Chinese. The 0.2.0 command asked for `ja` and `ko` extras, which
   wordfreq does not define, so it installed wordfreq without MeCab or jieba.
+- `data/build_wordbanks.py` expects Thai words in Thai script. It expected Latin
+  script, so a wordfreq build with a Thai list would have yielded a Thai bank of
+  Latin-script tokens only. The pinned wordfreq 3.1.1 has no Thai list, so the
+  committed banks are unchanged.
+- The jsPsych plugin `senselex-rating`, standalone and exported, is version
+  2.0.1, which jsPsych 8 records with every trial as `plugin_version`. Both
+  copies now write the word, the direction and the language (its code in the
+  plugin, its name in the export) into the page as text, as described under
+  'Security'. The fix changes no parameter or data field, so only the patch
+  number rises.
 
 ### Changed
 
@@ -52,9 +64,40 @@ reason.
   kind of token. A token in both lists is an admin token, and `senselex serve`
   in production reports such tokens by their audit-log ids.
   `SENSELEX_API_TOKENS` stays required in production.
+- The Docker image is based on Node 24.22.3 and Alpine 3.24.4, with the fixes
+  of the Node security releases of 21 October and 11 November 2026.
+- The browser edition's 'Download norms (CSV)' and 'Download trial-level
+  ratings (CSV)' write a cell that begins with `=`, `+`, `-`, `@`, a tab or a
+  carriage return with a leading apostrophe, as the Atlas's CSV export does,
+  and quote a cell that holds a carriage return. In 0.2.0, a spreadsheet ran
+  such a cell as a formula, so the word `-ness` showed as an error, and a value
+  from an imported dataset, such as a participant code, or from a study link's
+  `STUDY_ID` or `SESSION_ID` could run as a formula. The apostrophe stays in
+  the file, so R and pandas read it as part of the value.
+- The CSV that the browser edition's jsPsych export offers the participant puts
+  the same apostrophe on such a cell. In 0.2.0, the export left this file to
+  jsPsych's own CSV writer, which writes such a cell as it is, so a spreadsheet
+  could run a word or concept id from the item list, such as `-ness`, as a
+  formula. The file keeps that writer's columns and values but quotes only the
+  cells that need it.
+- The jsPsych plugin and the browser edition's jsPsych export show the word,
+  and the export the language name, as text. A word holding `<` or `&` now
+  shows as written, and an item list or dataset from someone else can no
+  longer add markup to the experiment.
 
 ### Documentation
 
+- Study 3 is described as exploratory. Version 0.2.0 called it preregistered
+  and said that its plan was made public before any rating was collected. The
+  plan was written and pushed by an AI coding assistant without the
+  maintainer's review and was never entered in a registry, and the repository
+  dates the collection only by the assistant's own records. A new section of
+  `validation/README.md`, 'Status of the plan', sets out what the record shows
+  and the plan's further limitations. `README.md`, the header of
+  `validation/rater-prompt.md`, the comments in the validation scripts and two
+  messages that the scripts print are corrected to match. `PREDICTIONS.md`, the
+  prompt itself, `raters.json` and the names of the output fields are
+  unchanged.
 - The README documents the Atlas's HTTP API route by route. It warns that
   `seed` replaces any language or concept with the same code or identifier and
   writes invented ratings and naming responses that enter the norms and
@@ -94,8 +137,40 @@ reason.
   'preregistration' in the git status. It no longer says that the audit
   confirms that this context held no prediction, no pilot result and no
   Lancaster value, since a search for these terms does not by itself show this.
+- `validation/README.md` documents the verify-trial workflow, which reruns the
+  whole validation with the Lancaster trial file on GitHub's runners. Its first
+  run reproduced every committed output byte for byte,
+  `human-benchmark-results.json` included.
+- The citations in the code comments were checked against their published
+  records and corrected where they differed. The Lancaster scale's zero anchor
+  is quoted verbatim. A Lancaster list is given as 48 test words in 58 items,
+  and the jsPsych plugin's header says which parts of its procedure follow
+  Lynott et al. (2020) and which depart from it. The note on the Lancaster
+  trial-level file says that the data were reissued on OSF as a corrected file
+  beside the original, not revised in place. The note on the Brysbaert norms
+  says that the forms that look inflected are ones the authors kept as lemmas.
+  'Majid and colleagues' is named as Majid et al. (2018,
+  https://doi.org/10.1073/pnas.1720419115).
+- The pilot's three outputs that no current step reads stay in
+  `validation/pilot/` as the pilot's record, and `validation/README.md` says so.
+  The item on them is gone from `ISSUES.md`.
+- `CITATION.cff` no longer gives an affiliation for the author, as the citation
+  files of the author's other packages do not.
+- `README.md`, `data/README.md`, `web-static/README.md` and the page's licence
+  text say that Brysbaert, Warriner and Kuperman license their concreteness
+  ratings under Creative Commons Attribution-NonCommercial-NoDerivs 3.0
+  Unported, as their download page, now offline and linked in an archived copy,
+  stated. They say that the word banks reproduce the mean ratings for a
+  selection of words unaltered, that these values remain under that licence and
+  that neither the MIT licence nor the wordfreq licence covers them. The header
+  that `data/build_wordbanks.py` writes names both licences. The documentation
+  said that the norms were offered freely for research and carried no formal
+  open licence.
 
 ## [0.2.0] - 2026-10-09
+
+This version was not released as a package. The browser edition on main
+stamped its records 0.2.0 from 2026-10-09 until 0.3.0.
 
 This release uses the wording of the Lancaster Sensorimotor Norms rating screens
 (Lynott et al., 2020) on every rating surface, records a word the rater does not
@@ -274,9 +349,10 @@ each rated 300 English words.
 
 First public release, archived at https://doi.org/10.5281/zenodo.22905874. Its
 `package.json`, `CITATION.cff` and `docker-compose.yml` gave the version as 0.1.0
-in error. Anything labelled 0.1.0 is this release, which is why the next release
-is 0.2.0.
+in error. Anything labelled 0.1.0 is this release, which is why the version
+after it is 0.2.0.
 
-[Unreleased]: https://github.com/pablobernabeu/senselex/compare/v0.2.0...HEAD
-[0.2.0]: https://github.com/pablobernabeu/senselex/compare/v0.0.1...v0.2.0
+[Unreleased]: https://github.com/pablobernabeu/senselex/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/pablobernabeu/senselex/compare/1cf6bd9...v0.3.0
+[0.2.0]: https://github.com/pablobernabeu/senselex/compare/v0.0.1...1cf6bd9
 [0.0.1]: https://github.com/pablobernabeu/senselex/releases/tag/v0.0.1

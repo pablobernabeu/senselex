@@ -1,25 +1,25 @@
 # SenseLex Atlas server image.
 #
 # Base image: node:24-alpine, pinned by digest
-#   sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
-#   (resolved from Docker Hub on 23 September 2026; the tag was last updated on
-#   18 September 2026). Re-resolve and update the digest to take up security
-#   fixes: docker buildx imagetools inspect node:24-alpine
+#   sha256:116b800c3754b440ee0aa3ed2f20f5bf3d99a554bfd9adeea09ea8017f6e85f5
+#   (pushed to Docker Hub on 11 November 2026 and resolved there on 14 November
+#   2026). Dependabot proposes a new digest when Docker Hub publishes one
+#   under this tag. To resolve the current digest by hand:
+#   docker buildx imagetools inspect node:24-alpine
 # Purpose: run the Atlas web service and database. The validation analyses do not
-#   run in this image; they need only Node (see validation/README.md).
-# Build:   docker build -t senselex:0.2.0 .
+#   run in this image. They need only Node (see validation/README.md).
+# Build:   docker build -t senselex:0.3.0 .
 # Run (one line):
-#   docker run -p 8787:8787 -v senselex-data:/app/data -e SENSELEX_API_TOKENS=<comma-separated tokens> -e SENSELEX_ADMIN_TOKENS=<comma-separated admin tokens, optional> -e SENSELEX_CORS_ORIGINS=<allowed origins, optional> senselex:0.2.0
+#   docker run -p 8787:8787 -v senselex-data:/app/data -e SENSELEX_API_TOKENS=<comma-separated tokens> -e SENSELEX_ADMIN_TOKENS=<comma-separated admin tokens, optional> -e SENSELEX_CORS_ORIGINS=<allowed origins, optional> senselex:0.3.0
 # Or:      docker compose up, which reads the same variables from a .env file
 #          beside docker-compose.yml.
 # Without SENSELEX_ADMIN_TOKENS, any write token can change languages and
 # concepts, and the server warns about it on start-up (see SECURITY.md).
 #
-# A minimal, hardened image. There is nothing to install because the application
-# has no third-party dependencies, so the build is just the runtime plus the
-# source, run as an unprivileged user.
+# The application has no third-party dependencies, so the image holds only the
+# Node runtime and the source, and it runs as an unprivileged user.
 
-FROM node:24-alpine@sha256:ebfe2f90462722a7a4de65e91990e97fe0d401c70e0e762c5b53302f905ec1c1
+FROM node:24-alpine@sha256:116b800c3754b440ee0aa3ed2f20f5bf3d99a554bfd9adeea09ea8017f6e85f5
 
 ENV NODE_ENV=production
 WORKDIR /app

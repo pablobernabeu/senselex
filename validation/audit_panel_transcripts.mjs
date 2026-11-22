@@ -4,9 +4,9 @@
 //
 // Each rater call ran as a subagent of an AI coding assistant (Claude Code)
 // through run_panel.workflow.js. Such a subagent receives the assistant's system
-// prompt and session context and has its standard tools, which the
-// preregistration's "no tools" did not anticipate. The prompt told the rater to
-// use no tool other than the one that returns its answers. This script reads the
+// prompt and session context and has its standard tools, which the 'no tools'
+// of PREDICTIONS.md did not anticipate. The prompt told the rater to use no tool
+// other than the one that returns its answers. This script reads the
 // run's transcripts and records, per call:
 //   - the tools offered and every tool call made, server-side ones included;
 //   - the kinds of context received besides the prompt, and which study-related
