@@ -155,12 +155,15 @@ reason.
 - `CITATION.cff` no longer gives an affiliation for the author, as the citation
   files of the author's other packages do not.
 - `README.md`, `data/README.md`, `web-static/README.md` and the page's licence
-  text name the licence with which Brysbaert, Warriner and Kuperman distributed
-  their concreteness ratings, Creative Commons Attribution-NonCommercial-NoDerivs
-  3.0 Unported, link an archived copy of their download page, which is now
-  offline, and say that the concreteness values in the word banks remain under
-  it. They said that the norms were offered freely for research and carried no
-  formal open licence.
+  text say what the sources show about the terms of Brysbaert, Warriner and
+  Kuperman's concreteness ratings. Their download page, now offline and linked
+  in an archived copy, carried a Creative Commons
+  Attribution-NonCommercial-NoDerivs 3.0 Unported licence notice without saying
+  whether it covered the data files, and the article's supplement and the
+  authors' copy on OSF state no licence. They also say that neither the MIT
+  licence nor the wordfreq licence covers the concreteness values. They said
+  that the norms were offered freely for research and carried no formal open
+  licence.
 
 ## [0.2.0] - 2026-10-09
 
