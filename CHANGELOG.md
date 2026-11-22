@@ -8,6 +8,8 @@ reason.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-11-22
+
 ### Upgrading from 0.2.0
 
 - The browser edition's Explore tab updates the codability table when a concept
@@ -350,6 +352,7 @@ First public release, archived at https://doi.org/10.5281/zenodo.22905874. Its
 in error. Anything labelled 0.1.0 is this release, which is why the version
 after it is 0.2.0.
 
-[Unreleased]: https://github.com/pablobernabeu/senselex/compare/1cf6bd9...HEAD
+[Unreleased]: https://github.com/pablobernabeu/senselex/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/pablobernabeu/senselex/compare/1cf6bd9...v0.3.0
 [0.2.0]: https://github.com/pablobernabeu/senselex/compare/v0.0.1...1cf6bd9
 [0.0.1]: https://github.com/pablobernabeu/senselex/releases/tag/v0.0.1
