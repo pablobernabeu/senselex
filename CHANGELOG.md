@@ -10,6 +10,8 @@ reason.
 
 ## [0.3.0] - 2026-11-22
 
+Archived at https://doi.org/10.5281/zenodo.24449444.
+
 ### Upgrading from 0.2.0
 
 - The browser edition's Explore tab updates the codability table when a concept
