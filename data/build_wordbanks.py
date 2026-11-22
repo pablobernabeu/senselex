@@ -463,8 +463,9 @@ header = (
     "// Frequency (all languages): wordfreq (Speer, 2022). https://doi.org/10.5281/zenodo.7199437\n"
     "// Concreteness (English only): Brysbaert, Warriner & Kuperman (2014), Behavior Research Methods 46(3), 904-911. https://doi.org/10.3758/s13428-013-0403-5\n"
     "// Derived feature subset. Frequencies derive from wordfreq data, shared under CC BY-SA 4.0\n"
-    "// (https://creativecommons.org/licenses/by-sa/4.0/); this file keeps that licence, and the\n"
-    "// concreteness values keep their authors' terms. Please cite both sources.\n"
+    "// (https://creativecommons.org/licenses/by-sa/4.0/), and keep that licence. The concreteness\n"
+    "// values are the authors' mean ratings, reproduced unaltered, and keep the authors' licence,\n"
+    "// CC BY-NC-ND 3.0 (https://creativecommons.org/licenses/by-nc-nd/3.0/). Please cite both sources.\n"
 )
 OUT.write_text(header + "window.SENSELEX_WORDBANK = " + json.dumps(obj, ensure_ascii=False) + ";\n", encoding="utf-8")
 total = sum(counts.values())

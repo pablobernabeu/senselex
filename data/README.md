@@ -134,17 +134,19 @@ available for any of the six.
 
 The wordfreq data are shared under a Creative Commons Attribution-ShareAlike 4.0
 licence (https://creativecommons.org/licenses/by-sa/4.0/), so the frequencies
-derived from them in `../web-static/words.js` are shared under the same licence. The MIT licence of the code does not cover them. From October 2013 until it
-went offline, the authors' download page for the English concreteness norms
-carried a Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported
-licence notice (https://creativecommons.org/licenses/by-nc-nd/3.0/) directly
-below the download links, without saying whether it covered the data files
+derived from them in `../web-static/words.js` are shared under the same licence. The MIT licence of the code does not cover them. The authors license the
+English concreteness norms under a Creative Commons
+Attribution-NonCommercial-NoDerivs 3.0 Unported licence
+(https://creativecommons.org/licenses/by-nc-nd/3.0/), as their download page
+stated below the download links from October 2013 until it went offline
 (archived at
-https://web.archive.org/web/20230925032140/http://crr.ugent.be/archives/1330).
+https://web.archive.org/web/20230401202850/http://crr.ugent.be/archives/1330).
 The article's supplementary file, the authors' copy on OSF
 (https://osf.io/qpmf4/) and the mirror from which the build downloads the file
-state no licence. The concreteness values in `../web-static/words.js` are a
-selection of the authors' mean ratings, which neither the MIT licence nor the
-wordfreq licence covers, so check the authors' terms before reusing them. Cite
-both sources above if you use the
+repeat no licence. `../web-static/words.js` reproduces the authors' mean
+ratings for a selection of words unaltered, to the two decimals of the source
+file. These values remain under the authors' licence, which allows
+non-commercial sharing with credit and without changes, and neither the MIT
+licence nor the wordfreq licence covers them. Cite both sources above if you use
+the
 words. The raw source files under `source/` are not committed.

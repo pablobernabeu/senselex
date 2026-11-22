@@ -102,15 +102,15 @@ Word-bank sources keep their own terms, so `web-static/words.js` is not covered
 by the MIT licence. Its Zipf frequencies are derived from wordfreq data (Speer,
 2022, https://doi.org/10.5281/zenodo.7199437), which wordfreq distributes under a
 Creative Commons Attribution-ShareAlike 4.0 licence, and the frequencies are
-shared under that licence. English concreteness values are a selection of the
-mean ratings of Brysbaert, Warriner and Kuperman (2014,
-https://doi.org/10.3758/s13428-013-0403-5). From October 2013, the authors'
-download page, now offline, carried a Creative Commons
-Attribution-NonCommercial-NoDerivs 3.0 Unported licence notice
-(https://creativecommons.org/licenses/by-nc-nd/3.0/) below the download links,
-without saying whether it covered the data files (archived at
-https://web.archive.org/web/20230925032140/http://crr.ugent.be/archives/1330).
-The article's supplementary file and the authors' copy on OSF
-(https://osf.io/qpmf4/) state no licence. Neither the MIT licence nor the
-wordfreq licence covers these values, so check the authors' terms before reusing
-them. Cite both sources if you use the word banks.
+shared under that licence. English concreteness values are the mean ratings of
+Brysbaert, Warriner and Kuperman (2014,
+https://doi.org/10.3758/s13428-013-0403-5) for a selection of words, reproduced
+unaltered. The authors license the ratings under a Creative Commons
+Attribution-NonCommercial-NoDerivs 3.0 Unported licence
+(https://creativecommons.org/licenses/by-nc-nd/3.0/), as their download page,
+now offline, stated (archived at
+https://web.archive.org/web/20230401202850/http://crr.ugent.be/archives/1330).
+The values remain under that licence, which allows them to be shared for
+non-commercial purposes with credit and without changes, and neither the MIT
+licence nor the wordfreq licence covers them. Cite both sources if you use the
+word banks.
